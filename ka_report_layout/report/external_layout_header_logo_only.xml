@@ -1,0 +1,19 @@
+<odoo>
+	<data>
+		<template id="external_layout_header_logo_only" name="external_layout_header_logo_only">
+			<div class="header">
+				<img src="ka_report_layout/static/src/img/icon-kebonagung.png" style="position: absolute; height: 30px"/>
+				
+				<t t-if="company.parent_id">
+					<div class="row text-center" style="width: 300px">
+						<img src="ka_report_layout/static/src/img/logo-ptkebonagung.png" style="margin: 0 auto; height: 10px"/>
+					</div>
+				</t>
+
+				<div class="row text-center" style="width: 300px">
+					<img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin: 3px auto 0 auto; height: 16px"/>
+				</div>
+			</div>
+		</template>
+	</data>
+</odoo>

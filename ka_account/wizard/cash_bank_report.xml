@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="cash_bank_wizard_form" model="ir.ui.view">
+            <field name="name">cash.bank.wizard.form</field>
+            <field name="model">cash.bank.report</field>
+            <field name="arch" type="xml">
+            	<form string="Laporan Kas / Bank">
+                	<div class="col-xs-6">
+            			<group>
+            				<field name="report_date"/>
+            			</group>
+	            	</div>
+	            	<footer>
+	            		<button name="generate_pdf_cash_bank" string="Generate PDF" type="object" class="btn-primary"
+                                attrs="{'invisible':[('report_date','=',False)]}"/> 
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                 	</footer>
+            	</form>
+            </field>
+        </record>
+        
+        <record id="open_cash_bank_wizard" model="ir.actions.act_window">
+            <field name="name">Laporan Kas / Bank</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cash.bank.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">new</field>
+        </record>
+
+		<menuitem 
+        	action="open_cash_bank_wizard"
+			id="menu_cash_bank_report" 
+			name="Laporan Kas / Bank" 
+			parent="ka_account.menu_ka_history_transaction" 
+            sequence="4"/>  
+	</data>
+</odoo>

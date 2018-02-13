@@ -1,0 +1,189 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_sp_kontrak_filter">
+			<field name="name">sp.kontrak.filter</field>
+			<field name="model">purchase.order</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="SP Kontrak">
+					<field name="name" string="No. Kontrak"/>
+					<field name="nama_kontrak" string="Nama Kontrak"/>
+					<field name="ref_investasi"/>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sp_kontrak_form">
+			<field name="name">sp.kontrak.form</field>
+			<field name="model">purchase.order</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="SP Kontrak">
+					<header>
+						<button name="purchase_confirm" states="draft" string="Confirm Order" id="draft_confirm"/>
+						<button name="action_cancel_draft" states="cancel,sent,confirmed,approved" string="Set to Draft" type="object"/>
+					</header>
+					<sheet>
+						<group>
+							<div class="header">
+								<h2>SP Kontrak</h2>
+							</div>
+						</group>
+						<hr/>
+						<group col="2">
+							<group>
+								<field name="name" string="No. Kontrak" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<field name="date_order" string="Tanggal Kontrak" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<field name="nama_kontrak" string="Nama Kontrak" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<field name="partner_id" on_change="onchange_partner_id(partner_id, context)" context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}" domain="[('supplier','=',True)]" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<field domain="[('type','=','purchase')]" name="pricelist_id" groups="product.group_purchase_pricelist" on_change="onchange_pricelist(pricelist_id, context)" invisible="1" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<field name="pengadaan" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+							</group>
+							<group>
+								<field name="company_id" string="Unit/PG" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<field name="picking_type_id" on_change="onchange_picking_type_id(picking_type_id, context)" domain="[('code','=','incoming')]" options="{'no_create': True}" context="{'special_shortened_wh_name': True}" groups="stock.group_locations" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<!--field name="tgl_mulai" string="Tanggal Mulai" attrs="{'readonly': [('state','!=', 'draft')]}"/-->
+								<field name="minimum_planned_date" string="Tanggal Selesai" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<field name="state" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+								<field name="progress_ba"/>
+							</group>
+						</group>
+						<notebook colspan="4" groups="logistik_pkrat.group_manager">
+							<page string="Barang / Jasa">
+								<field name="order_line" colspan="2" nolabel="1">
+									<tree editable="bottom">
+										<field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,False,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,False,False,parent.state,context)" domain="[('type', '=', 'service')]" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="name" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="date_planned" invisible="1" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" invisible="1" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="account_analytic_id" groups="purchase.group_analytic_accounting" domain="[('type','not in',('view','template'))]" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="product_uom" groups="product.group_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="price_unit" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="taxes_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]" invisible="1" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="price_subtotal" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="state" invisible="1" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+									</tree>
+								</field>
+								<group class="oe_subtotal_footer oe_right">
+									<field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<div class="oe_subtotal_footer_separator oe_inline">
+										<label for="amount_total"/>
+										<button name="button_dummy" states="draft" string="(update)" type="object" class="oe_edit_only oe_link"/>
+									</div>
+									<field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+								</group>
+								<div class="oe_clear"/>
+								<field name="notes" class="oe_inline" placeholder="Catatan..."/>
+							</page>
+							<page string="Deliveries &amp; Invoices">
+								<group>
+									<group>
+										<!--field name="minimum_planned_date" attrs="{'readonly': [('state','!=', 'draft')]}"/-->
+										<field name="location_id" groups="stock.group_locations" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="shipped" groups="base.group_no_one" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+									</group>
+									<group>
+										<field name="invoice_method"/>
+										<field name="invoiced"/>
+										<field name="payment_term_id" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="fiscal_position" attrs="{'readonly': [('invoiced','=', True), ('state','!=', 'draft')]}" />
+										<!-- We do not need these fields anymore, the information is in open chatter -->
+										<field name="validator" groups="base.group_no_one" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+										<field name="date_approve" groups="base.group_no_one" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+									</group>
+								</group>
+							</page>
+							<page string="Informasi Berita Acara">
+								<field name="beritaacara_ids">
+									<tree>
+										<field name="nomor"/>
+										<field name="tanggal"/>
+										<field name="progress"/>
+										<field name="nilai"/>
+									</tree>
+									<form>
+										<group>
+											<group>
+												<field name="nomor" string="Nomor Berita Acara"/>
+												<field name="tanggal" string="Tanggal"/>
+												<label for="progress" string="Progress"/>
+												<div>
+													<field name="progress" class="oe_inline"/>
+													<span class="oe_inline"> %</span>
+												</div>
+												<label for="nilai" string="Nilai"/>
+												<div>
+													<field name="nilai" class="oe_inline"/>
+													<span class="oe_inline"> Rp.</span>
+												</div>
+											</group>
+											<group>
+												<field name="keterangan"/>
+											</group>
+										</group>
+									</form>									
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sp_kontrak_tree">
+			<field name="name">sp.kontrak.tree</field>
+			<field name="model">purchase.order</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="SP Kontrak">
+					<field name="name" string="No. Kontrak"/>
+					<field name="partner_id" string="Supplier"/>
+					<field name="nama_kontrak" string="Nama Kontrak"/>
+					<field name="ref_investasi"/>
+					<field name="date_order" string="Tanggal Mulai"/>
+					<field name="minimum_planned_date" string="Tanggal Selesai"/>
+					<field name="amount_total" string="Nilai Kontrak"/>
+					<field name="progress_ba"/>
+					<field name="progress_sp"/>
+					<field name="state" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_sp_kontrak">
+			<field name="name">SP Kontrak</field>
+			<field name="res_model">purchase.order</field>
+			<field name="priority" eval="100"/>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_sp_kontrak_tree"/>
+			<field name="domain">[('golongan', '=', 'kontrak')]</field>
+			<field name="context">{'default_golongan': 'kontrak', 'default_pengadaan':'RD'}</field>
+			<field name="search_view_id" ref="view_sp_kontrak_filter"/>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<record id="view_act_object_tree" model="ir.actions.act_window.view">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_sp_kontrak_tree"/>
+			<field name="act_window_id" ref="action_sp_kontrak"/>
+		</record>
+
+		<record id="view_act_object_form" model="ir.actions.act_window.view">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_sp_kontrak_form"/>
+			<field name="act_window_id" ref="action_sp_kontrak"/>
+		</record>
+
+		<menuitem
+			parent="logistik_pengadaan.menu_log4500"
+			name="SP Kontrak"
+			id="menu_log4540"
+			action="action_sp_kontrak"
+			sequence="5"/>
+	</data>
+</odoo>

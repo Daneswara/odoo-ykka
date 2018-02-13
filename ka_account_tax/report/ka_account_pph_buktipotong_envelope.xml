@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_pph_buktipotong_envelope">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="partner_id" t-value="False"/>
+                    <t t-foreach="doc.buktipotong_ids.sorted(key=lambda b: b.partner_id)" t-as="o">
+                        <t t-if="o.partner_id != partner_id">
+                            <div class="page" style="font-family: 'Arial';font-size:16px">
+                                <div class="row">
+                                    <div class="col-xs-5 col-xs-offset-7" style="margin-top:150px">
+                                        Kepada Yth :<br/>
+                                        <span t-field="o.partner_id.name"/><br/>
+                                        <span t-field="o.partner_id.street"/>
+                                        <t t-if="o.partner_id.street2"><br/><span t-field="o.partner_id.street2"/></t>
+                                        - <span t-field="o.partner_id.city"/><br/>
+                                        Telp : <span t-field="o.partner_id.phone"/>
+                                        <br/><u>BUKTI POTONG PPh</u>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-set="partner_id" t-value="o.partner_id"/>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+		<report
+			id="action_report_pph_buktipotong_envelope"
+			model="ka_account.pph.periode"
+			string="Amplop Bukti Potong"
+			report_type="qweb-pdf"
+			file="ka_account_tax.report_pph_buktipotong_envelope"
+			name="ka_account_tax.report_pph_buktipotong_envelope"
+			paperformat="ka_report_layout.standart_envelope"
+            menu="False"
+		/>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ka_account_pph_periode_user,ka_account.pph.periode.user,model_ka_account_pph_periode,account.group_account_user,1,1,1,1
+access_ka_account_pph_buktipotong_user,ka_account.pph.buktipotong.user,model_ka_account_pph_buktipotong,account.group_account_user,1,1,1,1
+access_ka_account_payment_pph_account_user,ka_account.payment.pph.account.user,model_ka_account_payment_pph,account.group_account_user,1,1,1,1
+access_ka_account_payment_pph_purchase_user,ka_account.payment.pph.purchase.user,ka_account.model_ka_account_payment_pph,purchase.group_purchase_user,1,0,0,0

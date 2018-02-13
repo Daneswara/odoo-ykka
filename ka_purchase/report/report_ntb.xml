@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data> 
+		
+		<!--      Action Invoice        -->
+											
+		<template id="template_report_ntb">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_purchase.report_ntb_document"/>
+				</div>
+			</t>
+		</template>  
+
+		<template id="report_ntb_document">
+			<t t-call="report.html_container">
+				<br/><br/>		
+				<div class="header" style="font-family: Dotrice;"> 
+					<div class="container" position="fixed" style="font-size: 11px;">
+		            	<div class="col-xs-12" style="text-align:center;">
+		            		<p style="margin-left: 40px; margin-bottom: 2px;"><span t-field="o.ka_number"/></p>
+		            	</div>
+		            </div>	
+		            
+					<div class="row">                        
+		            	<div class="col-xs-6">
+				    		<table>  
+				          		<tr>    
+				                    <td width="330" class="text-left"></td>
+				                    <td width="3" class="text-left"></td>
+				                    <td width="200" style="font-size:11px; padding-top:0px;" class="text-left"><span t-esc="o.get_number_po()"/></td>
+				                </tr>
+				                <tr>    
+				                    <td width="330" class="text-left"></td>
+				                    <td width="3" class="text-left"></td>
+				                    <td width="200" style="font-size:11px; padding-top:7px;" class="text-left"><span t-esc="time.strftime('%d-%m-%Y',time.strptime(o.get_date_po(),'%Y-%m-%d %H:%M:%S'))"/>  
+				                    </td>
+				                </tr>
+				                <tr>    
+				                    <td width="330" class="text-left"></td>
+				                    <td width="3" class="text-left"></td>
+				                    <td width="200" style="font-size:11px; padding-top:7px;" class="text-left"><span t-esc="time.strftime('%d-%m-%Y',time.strptime(o.get_schedule_date_po(),'%Y-%m-%d %H:%M:%S'))"/>
+				                    </td>
+				                </tr>
+				          	</table>
+				  		</div>
+				  		
+				  		<div class="col-xs-5 col-xs-offset-1">
+				  			<table>  
+				          		<tr> 
+				          			<td width="70"></td>
+				          			<td width="3"></td> 
+				          			<t t-if="o.source_partner_id">
+					                    <td width="280" style="font-size:11px" class="text-left">
+					                    	<span t-field="o.source_partner_id" 
+					                    		t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/><br/>
+					                    	<span t-field="o.source_partner_id.street"/><br/>
+					                    	<span t-field="o.source_partner_id.street2"/> - <span t-field="o.source_partner_id.city"/> 
+					                  	</td>
+				                  	</t>
+				                  	<t t-if="not o.source_partner_id">
+					                    <td width="280" style="font-size:11px" class="text-left">
+					                    	<span t-field="o.partner_id" 
+					                    		t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/><br/>
+					                    	<span t-field="o.partner_id.street"/><br/>
+					                    	<span t-field="o.partner_id.street2"/> - <span t-field="o.partner_id.city"/> 
+					                  	</td>
+				                  	</t>
+				                </tr>
+				         	</table>
+				  		</div>
+					</div>
+				</div>
+				
+				<br></br>
+				
+				<div class="page" style="font-family: Dotrice;">
+					<t t-set="idx" t-value="0"/>
+					<t t-foreach="range(o.max_array)" t-as="i_array">
+		            <table style="margin-top:50px; max-height: 20px; border: 1px white;" class="table table-bordered"> 
+		                <thead>
+		                    <tr>
+		                        <th style="padding: 35px; border: 1px white;" width="15%" class="text-center"></th>
+		                        <th style="padding: 35px; border: 1px white;" width="42%" class="text-left"></th>
+		                        <th style="padding: 35px; border: 1px white;" width="13%" class="text-center"></th>
+		                        <th style="padding: 35px; border: 1px white;" width="15%" class="text-center"></th>
+		                        <th style="padding: 35px; border: 1px white;" width="15%" class="text-center"> </th>
+		                    </tr>
+		                </thead>
+		                
+		                <tbody>
+		                    <tr t-foreach="o.get_rows()[idx]" t-as="line">
+		                    	<td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;" class="text-center">
+		                    		<t t-if="line['code'] != '-'">
+		                    			<div style="min-height:19px"><span t-esc="line['code']"/></div>
+		                    		</t>
+		                    		<t t-if="line['code'] == '-'">
+		                    			<div style="min-height:19px; color: white;"><span t-esc="line['code']"/></div>
+		                    		</t>
+		                    	</td>
+		                        <td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;" class="text-left">
+		                        	<t t-if="line['name'] != '-'">
+			                        	<div style="min-height:19px">
+			                        		<span t-esc="line['name']"/> <br/>
+											<span t-esc="line['description']"/>		                        		
+			                        	</div>
+		                        	</t>
+		                        	<t t-if="line['name'] == '-'">
+			                        	<div style="min-height:19px; color: white;">
+			                        		<span t-esc="line['name']"/> <br/>
+											<span t-esc="line['description']"/>		                        		
+			                        	</div>
+		                        	</t>
+		                        </td>
+		                        <td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;" class="text-right">
+		                        	<t t-if="line['qty'] != '-'">
+		                        		<div style="min-height:19px">
+			                        		<span t-esc="'{0:,.2f}'.format(float(line['qty'])).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+			                        		<span t-esc="line['uom']" groups="product.group_uom"/>
+		                        		</div>
+		                        	</t>
+		                        	<t t-if="line['qty'] == '-'">
+		                        		<div style="min-height:19px; color: white;">
+			                        		<span t-esc="line['qty']"/>
+			                            	<span t-esc="line['uom']" groups="product.group_uom"/>
+			                            </div>
+		                        	</t>
+		                        </td>
+		                        <td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;" class="text-right">
+		                        	<t t-if="line['price_unit'] != '-'">
+			                        	<div style="min-height:19px">
+				                            <span t-esc="'{0:,.2f}'.format(float(line['price_unit'])).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+			                            </div>
+		                            </t>
+		                            <t t-if="line['price_unit'] == '-'">
+			                        	<div style="min-height:19px; color: white;">
+				                            <span t-esc="line['price_unit']"/>
+			                            </div>
+		                            </t>
+		                        </td>
+		                        <td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;" class="text-right">
+		                        	<t t-if="line['subtotal'] != '-'">
+			                        	<div style="min-height:19px">
+			                            	<span t-esc="'{0:,.2f}'.format(float(line['subtotal'])).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+			                            </div>
+		                            </t>
+		                            <t t-if="line['subtotal'] == '-'">
+			                        	<div style="min-height:19px; color: white;">
+		                            		<t t-if="line['subtotal'] == '-'"><span t-esc="line['subtotal']"/></t>
+			                            </div>
+		                            </t>
+								</td>
+		                    </tr>
+		                    <tr>
+		                    	<td style="padding-bottom:3px; padding-top:8px; font-size:10px; border: 1px white; color: white;" class="text-center">-</td>
+		                    	<td style="padding-bottom:3px; padding-top:8px; font-size:10px; border: 1px white; color: white;" class="text-left">-</td>
+		                    	<td style="padding-bottom:3px; padding-top:8px; font-size:10px; border: 1px white; color: white;" class="text-right">-</td>
+		                    	<td style="padding-bottom:3px; padding-top:8px; font-size:10px; border: 1px white; color: white;" class="text-right">-</td>
+		                    	<td style="padding-bottom:3px; padding-top:8px; font-size:10px; border: 1px white; color: white;" class="text-right">-</td>
+		                    </tr>
+		                
+			                <t t-if="idx == o.max_array-1">
+			            		 <tr>
+			                        <td style="font-size:11px; border: 1px white;" class="text-right" colspan="5">
+			                        	<div style="min-height:19px">
+			                            <span t-esc="'{0:,.2f}'.format(float(o.amount_total)).replace('.', '%').replace(',', '.').replace('%', ',')"/></div> 	
+									</td>
+								</tr>
+			            	</t>
+		            	
+			            	<t t-if="idx != o.max_array-1" style="padding: 20px; class=text-right">
+			            		 <tr>
+			                        <td style="font-size:11px; border: 1px white; color: white;" class="text-right" colspan="5">	
+			                        	<div style="min-height: 19px"><span>-</span></div>
+									</td>
+								</tr>
+			            	</t>
+		                </tbody>
+		            </table>
+
+		            <table style="margin-top:50px; max-height: 20px; border: 1px white;" class="table table-bordered"> 
+		                <thead>
+		                    <tr>
+		                        <th style="padding: 20px; border: 1px white;" width="15%" class="text-center"></th>
+		                        <th style="padding: 20px; border: 1px white;" width="55%" class="text-left"></th>
+		                        <th style="padding: 20px; border: 1px white;" width="15%" class="text-center"></th>
+		                        <th style="padding: 20px; border: 1px white;" width="15%" class="text-center"></th>
+		                    </tr>
+		                </thead>
+
+		                <tbody>
+		                    <tr t-foreach="o.get_rows_denda()[idx]" t-as="line">
+		                    	<td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;" class="text-center">
+		                    		<t t-if="line['code'] != '-'">
+			                    		<div style="min-height: 18px">
+			                    			<span t-esc="line['code']"/>
+			                    		</div>
+			                    	</t>
+			                    	<t t-if="line['code'] == '-'">
+			                    		<div style="min-height: 18px; color: white;">
+			                    			<span t-esc="line['code']"/>
+			                    		</div>
+			                    	</t>
+		                    	</td>
+		                        <td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;">
+		                        	<t t-if="line['product'] != '-'">
+			                        	<div style="min-height: 18px">
+			                        		<span t-esc="line['product']"/><br/>
+			                        		<span t-esc="line['description']"/>
+			                        	</div>
+			                        </t>
+			                        <t t-if="line['product'] == '-'">
+			                        	<div style="min-height: 18px; color: white;">
+			                        		<span t-esc="line['product']"/><br/>
+			                        		<span t-esc="line['description']"/>
+			                        	</div>
+			                        </t>
+		                        </td>
+		                        <td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;" class="text-right">
+		                        	<t t-if="line['tgl_penyerahan'] != '-'">
+			                        	<div style="min-height: 18px">
+			                           		<span t-esc="line['tgl_penyerahan']"/>
+		                           		</div>
+	                           		</t>
+	                           		<t t-if="line['tgl_penyerahan'] != '-'">
+			                        	<div style="min-height: 18px; color: white;">
+			                           		<span t-esc="line['tgl_penyerahan']"/>
+		                           		</div>
+	                           		</t>
+		                        </td>
+		                        <td style="padding-bottom:3px; padding-top:3px; font-size:11px; border: 1px white;" class="text-right">
+	                        		<t t-if="line['denda'] != '-'">
+	                        			<div style="min-height: 18px"> 
+	                        				<span t-esc="'{0:,.2f}'.format(float(line['denda'])).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+	                        			</div>
+	                        		</t>
+	                        		<t t-if="line['denda'] == '-'">
+	                        			<div style="min-height: 18px; color: white;"> 
+	                        				<span t-esc="line['denda']"/>
+	                        			</div>
+	                        		</t>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td style="padding-bottom:0px; padding-top:0px; font-size:10px; border: 1px white; color: white;" class="text-center"> - </td>
+		                        <td style="padding-bottom:0px; padding-top:0px; font-size:10px; border: 1px white; color: white;" class="text-left"> - </td>
+		                        <td style="padding-bottom:0px; padding-top:0px; font-size:10px; border: 1px white; color: white;" class="text-right"> - </td>
+		                        <td style="padding-bottom:0px; padding-top:0px; font-size:10px; border: 1px white; color: white;" class="text-right"> - </td>
+		                    </tr>
+		                
+			                <t t-if="idx == o.max_array-1">
+			            		 <tr>
+			                        <td style="font-size:11px; border: 1px white;" class="text-right" colspan="5">
+			                        	<div style="min-height:20px">
+			                            <span t-esc="'{0:,.2f}'.format(float(o.amount_penalty)).replace('.', '%').replace(',', '.').replace('%', ',')"/></div> 	
+									</td>
+								</tr>
+								<tr>
+			                        <td style="font-size:11px; border: 1px white;" class="text-right" colspan="5">
+			                        	<div style="min-height:15px">
+			                            <span t-esc="'{0:,.2f}'.format(float(o.amount_total - o.amount_penalty)).replace('.', '%').replace(',', '.').replace('%', ',')"/></div> 	
+									</td>
+								</tr>
+			            	</t>
+			            	
+			            	<t t-if="idx != o.max_array-1" >
+			            		 <tr>
+			                        <td style="font-size:11px; border: 1px white; color: white;" class="text-right" colspan="5">
+			                        	<div style="min-height:26px"><span>-</span></div> 
+									</td>
+								</tr>
+								<tr>
+			                        <td style="font-size:11px; border: 1px white; color: white;" class="text-right" colspan="5">
+			                        	<div style="min-height:26px"><span>-</span></div> 
+									</td>
+								</tr>
+			            	</t>
+		                </tbody>
+		            </table>
+		            <t t-set="idx" t-value="idx+1"/>
+		            </t>
+				</div> 	
+			     
+			  	<div class="footer" style="font-family: Dotrice;">
+	            	<div class="col-xs-6">
+			    		<table class="below_table">  
+			          		<tr>    
+			                    <td width="150" class="text-left"></td>
+			                    <td width="3" class="text-left"></td>
+			                    <td style="font-size:10px" width="300" class="text-left"></td>
+			                </tr>
+			          	</table>
+			  		</div> 
+
+			  		<div class="col-xs-4 col-xs-offset-1">
+			  			<table class="table">  
+			          		<tr>    
+			                    <td style="text-align: right; padding: 0px; font-size:11px; border: 1px white;"><span t-esc="time.strftime('%d-%m-%Y',time.strptime(o.date_invoice,'%Y-%m-%d'))"/></td>
+			                </tr>
+		                	<tr>    
+			                    <td style="text-align:center; padding: 10px; border: 1px white;"></td>
+			                </tr>
+			                <tr>    
+			                    <td style="padding: 47px; border: 1px white;"></td>
+			                </tr>
+			                <tr>    
+			                    <td style="text-align: right; padding: 15px; font-size:12px; border: 1px white;"><span t-field="user.company_id.dept_dirut.manager_id.name"/></td>
+			                </tr>
+			         	</table>
+			         </div>
+		     	</div>
+
+			</t>
+		</template>
+	</data>
+</odoo>

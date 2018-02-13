@@ -1,0 +1,40 @@
+<odoo>
+	<data>
+		<record id="view_spm_merge_dbf_form" model="ir.ui.view">
+			<field name="name">Update DBF</field>
+			<field name="model">wizard.spm.merge.dbf</field>
+			<field name="arch" type="xml">
+				<form string="Pembatalan SPM">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <group attrs="{'invisible':[('state', '!=', 'input')]}">
+                        <field name="pengajuan_ids" widget="many2many_tags" default_focus="1"/>
+                    </group>
+					<group attrs="{'invisible':[('state', '!=', 'input')]}" string="Pilih File DBF yang akan di Update">
+						<field name="file_input_header" filename="filename"/>
+						<field name="file_input_detail"/>
+					</group>
+					<group attrs="{'invisible':[('state', '!=', 'output')]}" string="Download File Dibawah ini">
+						<field name="file_output_header" filename="file_name_header"/>
+						<field name="file_output_detail"/>
+					</group>
+					<footer>
+						<button name="action_process" string="Kirim File" state="input" type="object" class="oe_button oe_form_button_save oe_highlight"/>
+						or
+						<button string="Batal" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_wizard_merge_dbf" model="ir.actions.act_window">
+			<field name="name">Update DBF File(SPM Lokal)</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.spm.merge.dbf</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+        </record>
+    </data>
+</odoo>

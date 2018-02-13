@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_move_daily_bagasse_tree" model="ir.ui.view">
+            <field name="name">move.daily.bagasse.tree</field>
+            <field name="model">stock.move.daily.bagasse</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name" readonly="1"/>  
+                	<field name="manufacture_daily_id_bagasse"/>                    
+                    <field name="date"/>  
+                    <field name="product_id"/>
+                    <field name="product_uom"/>
+                    <field name="product_qty"/>
+                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                    <field name="state"/> 
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_move_daily_bagasse_form" model="ir.ui.view">
+            <field name="name">move.daily.bagasse.form</field>
+            <field name="model">stock.move.daily.bagasse</field>
+            <field name="arch" type="xml">
+                <form class="oe_form_configuration">
+                    <header>
+                        <button name="propose_daily_bagasse_transaction" states="draft" type="object" class="oe_highlight" string="Propose"/>
+                        <button name="set_draft_daily_bagasse_transaction" states="proposed" type="object" string="Set to Draft"/>
+                        <button name="validate_daily_bagasse_transaction" states="proposed" type="object" class="oe_highlight" string="Validate"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box_long" name="button_box">
+                            <button type="object" string="Transfers" name="action_view_stock_picking" class="oe_stat_button"
+                                icon="fa-bars" attrs="{'invisible': [('state','!=','done')]}"/>
+                            <button name="print_laporan_harian_ampas" string="Laporan Harian" type="object" class="oe_stat_button" 
+                                icon="fa-print" attrs="{'invisible': [('state','!=','done')]}" />
+                        </div>
+
+                        <div class="oe_title">
+                            <h1><field name="name" attrs="{'readonly': True}"/></h1>
+                        </div>
+
+                        <group>
+                            <group>
+                            	<field name="manufacture_daily_id_bagasse" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="date" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="product_id" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="product_uom" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="product_qty" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="move_ids" invisible="1"/>                      
+                                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_daily_bagasse" model="ir.actions.act_window">
+            <field name="name">Produksi Ampas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.move.daily.bagasse</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="stock_move_daily_bagasse_tree"/>
+        </record>
+
+        <menuitem 
+            action="action_open_daily_bagasse"
+            id="menu_stock_move_daily_bagasse" 
+            name="Produksi Ampas" 
+            parent="ka_stock.menu_transaksi_harian"
+            sequence="13"/>
+    </data>
+</odoo>

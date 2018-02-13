@@ -1,0 +1,35 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="wizard_config_form">
+			<field name="name">SDM - Setting Presensi</field>
+			<field name="model">ka_hr_attendance.config.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="SDM - Setting Presensi">
+					<group>
+						<field name="company_id" groups="base.group_multi_company"/>
+						<field name="hr_attendance_daily"/>
+						<field name="hr_attendance_max_hour"/>
+						<field name="hr_attendance_weekly_report_send"/>
+						<field name="hr_attendance_weekly_check"/>
+						<field name="hr_attendance_sp_late_weekly"/>
+						<field name="hr_attendance_sp_late_monthly"/>
+					</group>
+					<footer>
+						<button name="save_data" string="Simpan Data" type="object" class="btn-primary"/>
+						<button string="Batal" class="btn-default" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window
+			id="action_wizard_config"
+			name="Setting Presensi"
+			res_model="ka_hr_attendance.config.wizard"
+			view_mode="form"
+			target="new"/>
+
+		<menuitem action="action_wizard_config" id="menu_wizard_config" parent="hr_attendance.menu_hr_attendance_settings" groups="hr_attendance.group_hr_attendance_manager" sequence="3"/>
+	</data>
+</odoo>

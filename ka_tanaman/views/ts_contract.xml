@@ -1,0 +1,274 @@
+<odoo>
+	<data>
+		<record id="action_show_petak_ts_contract" model="ir.actions.act_window">
+            <field name="name">Data Lahan TS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_plantation.area</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,areamap</field>
+            <field name="view_id" ref="view_tree_area"/>
+            <field name="target">current</field>
+        </record>
+
+		<record model="ir.ui.view" id="view_ka_plantation_ts_contract_filter">
+			<field name="name">ka_plantation.ts.contract.filter</field>
+			<field name="model">ka_plantation.ts.contract</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Pencarian">
+					<field name="code" string="Nomor"/>
+					<field name="date_contract"/>
+					<field name="pemilik"/>
+					<field name="name" string="Nama Kebun"/>
+					<field name="contract_duration"/>
+					<field name="date_start"/>
+					<field name="date_end"/>
+					<field name="luas"/>
+					<field name="taks_produksi"/>
+					<field name="employee_id"/>
+					<field name="company_id" groups="base.group_multi_company"/>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_form_ts_contract">
+			<field name="name">Form Kontrak TS</field>
+			<field name="model">ka_plantation.ts.contract</field>
+			<field name="arch" type="xml">
+				<form string="Form Kontrak Tebu Sendiri">
+					<sheet>
+						<div class="oe_title" style="float:left;">
+	                        <h2>
+	                            RENCANA KERJASAMA PENGGUNAAN LAHAN TEBU
+	                        </h2>
+	                    </div>					
+						<div class="oe_button_box" name="button_box">
+	                        <!-- <button class="oe_stat_button" type="object" name="open_list_jadwal" icon="formfa-calendar">
+	                            <field string="Realformisasi Biaya" widget="statinfo"/>
+	                        </button> -->
+	                    	<button class="oe_stat_button" type="object" name="open_list_petak" icon="fa-map-o" string="Petak Kebun">
+                            	<!-- <field string="Lokasi Kebun" widget="statinfo"/> -->
+                        	</button>
+	                    </div>
+						<group col="4">
+							<field name="code" string="No. Proposal"/>
+							<field name="company_id" groups="base.group_multi_company"/>
+							<field name="nomor"/>
+							<field name="date_contract"/>
+							<field name="manager_id" domain="[('company_id', '=', company_id)]"/>
+							<field name="employee_id" domain="[('company_id', '=', company_id)]"/>
+						</group>
+						<notebook>
+							<page string="A. DATA PENGAJUAN">
+								<group>
+									<group>
+										<field name="pemilik"/>
+										<field name="status_lahan"/>
+										<field name="name" string="Nama Kebun"/>
+										<field name="desa_id"/>
+										<label for="kecamatan_id" string="Kecamatan"/>
+										<div>
+											<field name="kecamatan_id" class="oe_inline"/><b>   -   </b>
+											<field name="kabupaten_id" class="oe_inline"/>
+										</div>
+										<label for="luas" string="Luas Lahan"/>
+										<div>
+											<field name="luas" class="oe_inline"/> Ha / 
+											<field name="count_area" class="oe_inline"/> Petak
+										</div>
+									</group>
+									<group>
+										<field name="area_ids" colspan="2" widget="one2many_widget" domain="[('desa_id', '=', desa_id)]">
+											<tree>
+												<field name="code"/>
+												<field name="luas" sum='Total Luas'/>
+												<field name="owner"/>
+												<field name="status_polygon" invisible="1"/>										
+											</tree>
+										</field>
+									</group>
+								</group>
+							</page>
+							<page string="B. DATA TEKNIS">
+								<group>
+									<group>
+										<field name="area_type"/>
+										<field name="kesuburan"/>
+										<field name="pengairan"/>
+										<field name="kemiringan"/>
+										<field name="jalan_tebang"/>
+										<field name="jalan_kampung"/>
+										<field name="rawan_kering"/>
+										<field name="rawan_banjir"/>								
+										<field name="eks_tanaman"/>
+										<field name="taks_produksi"/>
+									</group>
+									<group>
+										<field name="tanggal_buka_lahan"/>
+										<field name="tanggal_rencana_tebang"/>
+										<field name="buka_lahan_dengan"/>
+										<field name="varietas_id"/>
+										<field name="tenaga_kerja"/>								
+										<field name="kondisi_sosial"/>								
+										<label for="date_start" string="Masa Kerja Sama"/>
+										<div>
+											<field name="date_start" placeholder="Mulai........" class="oe_inline"/><b> S/D </b> 							
+											<field name="date_end" placeholder="Sampai Dengan" class="oe_inline"/> <br/>
+											(<field name="contract_duration" class="oe_inline"/>) Tahun							
+										</div>
+									</group>
+								</group>
+							</page>
+							<page string="C. ANALISA EKONOMI/BIAYA">
+								<!-- <field name="total_produksi" invisible="1"/> -->
+								<field name="contract_line_ids" nolabel="1" context="{'default_varietas_id':varietas_id}">
+									<tree>
+										<field name="mtt_id"/>																	
+										<field name="intensifikasi_id"/>																	
+										<!-- <field name="register_id" readonly="1"/> -->
+										<button name="open_create_register" string="Buat Register" icon="fa-sticky-note-o" type="object"/>
+										<field name="cost_total"/>																	
+										<field name="taks_produksi"/>																	
+										<field name="cost_ku"/>																	
+										<field name="cost_ta" invisible="1"/>																	
+										<field name="cost_ku_ta" invisible="1"/>																	
+									</tree>
+									<form>
+										<group col="4">
+											<field name="mtt_id"/>
+											<newline/>
+											<field name="intensifikasi_id" domain="[('type', '=', 'ts')]"/>
+											<field name="taks_produksi"/>																	
+											<field name="cost_line_ids" colspan="4">
+												<tree editable="bottom" delete="false" create="false">
+													<field name="cost_template_id" readonly="1"/>
+													<field name="luas"/>
+													<!-- <field name="taks_produksi"/> -->
+													<field name="harga"/>
+													<field name="uom_id"/>
+													<field name="cost_amount"/>
+													<field name="account_id" invisible="1"/>
+													<field name="account_id" invisible="1"/>												
+												</tree>
+											</field>
+											<field name="varietas_id" invisible="1"/>
+										</group>
+									</form>
+								</field>
+							</page>
+							<page string="REGISTER">
+								<field name="register_ids" nolabel="1" context="{'default_varietas_id':varietas_id}">
+									<tree create="false">
+										<field name="mtt_id"/>
+										<field name="no_register"/>
+										<field name="name"/>
+										<field name="farmer_id"/>
+										<field name="luas"/>
+										<field name="taks_produksi"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+						<group colspan="2">	
+							<field name="description" placeholder="Catatan............." nolabel="1"/>
+						</group>	
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tree_ts_contract">
+			<field name="name">Data Kontrak Tebu Sendiri</field>
+			<field name="model">ka_plantation.ts.contract</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="code" string="Nomor"/>
+					<field name="date_contract"/>
+					<field name="pemilik"/>
+					<field name="name" string="Nama Kebun"/>
+					<field name="contract_duration"/>
+					<field name="date_start"/>
+					<field name="date_end"/>
+					<field name="luas"/>
+					<field name="taks_produksi"/>
+					<field name="employee_id"/>
+					<field name="company_id" groups="base.group_multi_company"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_ts_contract">
+			<field name="name">Kontrak Tebu Sendiri</field>
+			<field name="res_model">ka_plantation.ts.contract</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data kontrak tebu sendiri masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+		<!-- View Definition Register TS-->
+		<record model="ir.ui.view" id="view_form_register_ts">
+			<field name="name">ka_plantation.register.form.ts</field>
+			<field name="sequence" eval="10"/>
+			<field name="model">ka_plantation.register</field>
+			<field name="arch" type="xml">
+				<form string="Form Register">
+					<sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="no_register" default_focus="1" placeholder="No Register"/>
+                            </h1>
+                        </div>
+						<group>
+							<group>
+								<field name="contract_id" readonly="1"/>
+								<field name="name" readonly="1"/>
+								<field name="farmer_id"/>
+								<field name="mandor_id"/>
+								<field name="plpg_id"/>
+								<field name="manager_id" readonly="1"/>
+							</group>
+							<group>
+								<field name="company_id" groups="base.group_multi_company"/>
+								<field name="mtt_id" readonly="1"/>
+								<field name="session_id"/>
+								<field name="register_type" invisible="1"/>
+								<field name="luas" invisible="1"/>
+								<field name="taks_produksi" invisible="1"/>
+								<field name="tergiling_ku" invisible="1"/>
+								<field name="sisa_ku" invisible="1"/>
+							</group>
+						</group>
+						<notebook>
+							<page string="Daftar Petak">
+								<field name="register_line_ids">
+									<tree create="false" editable="buttom">
+										<field name="area_id"/>
+										<field name="luas" sum="Total Luas"/>
+										<field name="taks_produksi" sum="Total Taks. Produksi"/>
+										<field name="varietas_id"/>
+										<field name="intensifikasi_id"/>
+										<field name="tanam_periode_id"/>
+										<field name="tebang_periode_id"/>
+									</tree>
+	 							</field>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+					<footer>
+						<button name="action_propose" string="Simpan" type="object" class="oe_highlight"/>
+						<button string="Batal" class="btn-default" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>		
+	</data>
+</odoo>

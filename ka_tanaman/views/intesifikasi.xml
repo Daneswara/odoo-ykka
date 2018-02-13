@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+		<record model="ir.ui.view" id="intensifikasi_search_view">
+            <field name="name">ka_plantation.intensifikasi.search</field>
+            <field name="model">ka_plantation.intensifikasi</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+					<field name="name"/>
+					<filter name="intensifikasi_ts" string="Intensifikasi TS" domain="[('type', '=', 'ts')]"/>
+					<filter name="intensifikasi_tr" string="Intensifikasi TR" domain="[('type', '=', 'tr')]"/>
+                </search>
+            </field>
+        </record>
+
+      <record model="ir.ui.view" id="view_form_intesifikasi">
+      <field name="name">Form Intensifikasi</field>
+      <field name="model">ka_plantation.intensifikasi</field>
+      <field name="arch" type="xml">
+        <form string="Form Intesifikasi">
+          <sheet>
+            <group col="4">
+              <field name="code"/>
+              <field name="name"/>
+			  <field name="description"/>
+              <field name="type"/>			  
+            </group>
+			<notebook attrs="{'invisible':[('type', '!=', 'ts')]}">
+				<page string='Komponen Biaya TS'>
+					<field name="cost_template_ids">
+						<tree editable="bottom">
+							<field name="name"/>
+              <field name="product_id"/>
+              <field name="uom_id"/>
+							<field name="account_code"/>
+							<field name="is_ta"/>
+						</tree>
+					</field>
+				</page>
+			</notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_tree_intesifikasi">
+      <field name="name">Data Intensifikasi</field>
+      <field name="model">ka_plantation.intensifikasi</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="code"/>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+        <record model="ir.actions.act_window" id="action_intesifikasi">
+            <field name="name">Intensifikasi</field>
+            <field name="res_model">ka_plantation.intensifikasi</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Data Intensifikasi masih kosong. Input terlebih dahulu.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

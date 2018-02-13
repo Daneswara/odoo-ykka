@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="template_mail_weekly_report" model="mail.template">
+			<field name="name">Laporan Presensi Mingguan</field>
+			<field name="email_from">${object.company_id.email or ''}</field>
+			<field name="subject">PRESENSI ${object.name}</field>
+			<field name="email_to"/>
+			<field name="email_cc"/>
+			<field name="model_id" ref="ka_hr_attendance.model_ka_hr_attendance_report_weekly"/>
+			<field name="auto_delete" eval="False"/>
+			<field name="lang"/>
+			<field name="copyvalue"/>
+			<field name="body_html">
+<![CDATA[
+<p>
+	Yth.
+	<br/>
+	Staf/Karyawan
+	<br/>
+	${object.company_id.name},
+</p>
+<p>
+	Berikut ini kami kirimkan laporan presensi mingguan.
+</p>
+<br/>
+<p>Terima Kasih.</p>
+]]>
+			</field>
+		</record>
+	</data>
+</odoo>

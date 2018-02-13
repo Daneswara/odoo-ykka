@@ -1,0 +1,157 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="area_pivot_view">
+            <field name="name">ka.plantation.pivot.area.</field>
+            <field name="model">ka_plantation.area</field>
+            <field name="arch" type="xml">
+                <pivot string="Pivot Area" type="pivot">
+                    <field name="kecamatan_id" type="row"/>
+                    <field name="luas" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+		<record model="ir.ui.view" id="area_search_view">
+            <field name="name">ka_plantation.area.search</field>
+            <field name="model">ka_plantation.area</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+					<field name="owner"/>
+					<field name="kabupaten_id"/>
+					<field name="kecamatan_id"/>
+					<field name="desa_id"/>
+					<field name="company_id"/>
+					<field name="upload_by"/>
+					<filter name="status_polygon_false" string="Petak Draft" domain="[('status_polygon', '=', 'draft')]"/>
+					<filter name="status_polygon_true" string="Petak Valid" domain="[('status_polygon', '=', 'valid')]"/>
+                </search>
+            </field>
+        </record>
+
+		<record model="ir.ui.view" id="view_form_area">
+			<field name="name">Form Area Lahan Kebun</field>
+			<field name="model">ka_plantation.area</field>
+			<field name="arch" type="xml">
+				<form string="Form Area Lahan Kebun">
+					<field name="desa_name" invisible="1"/>
+					<field name="kecamatan_name" invisible="1"/>
+					<field name="kabupaten_name" invisible="1"/>
+					<header>
+						<button name="action_valid" groups="ka_tanaman.group_biro" type="object" string="Validasi" class="oe_highlight oe_read_only" attrs="{'invisible':[('status_polygon', '=', 'valid')]}"/>
+						<button name="action_draft" groups="ka_tanaman.group_biro" type="object" string="Set ke draft" class="oe_highlight oe_read_only" attrs="{'invisible':[('status_polygon', '=', 'draft')]}"/>
+					</header>
+					<sheet>
+						<div class="oe_title" style="float:left;">
+	                        <h2>
+	                            DATA REGISTER KEBUN
+	                        </h2>
+	                    </div>										
+						<div class="oe_button_box" style="width:550px;" name="button_box">
+	                        <button class="oe_stat_button" type="object" name="export_to_gpx" string="Export GPX" icon="fa-download"/>
+	                        <!-- <button class="oe_stat_button" type="action" name="%(action_view_print_polygon)d" string="Print Polgon" icon="fa-print"/> -->
+	                        <button class="oe_stat_button" type="object" name="action_rehabilitation" string="Rehabilitasi" icon="fa-wrench"/>
+	                        <button class="oe_stat_button" name="open_register" type="object" icon="fa-th-list">
+                                <field name="register_count" string="Data Register" widget="statinfo"/>
+                            </button>
+	                    </div>
+						<group col="2">
+							<group>
+								<field name="code"/>
+								<label for="desa_id" string="Nama Desa" />
+								<div>
+									<field name="desa_id" class="oe_inline" attrs="{'readonly':[('status_polygon', '=', 'valid')]}"/>&#x2063;
+									<field name="code_urut" class="oe_inline oe_create_only" nolabel="1" placeholder="Kode Lahan / Petak..." attrs="{'invisible':[('status_polygon', '=', 'valid')]}"/>
+								</div>
+								<field name="owner"/>
+								<field name="luas"/>
+								<field name="rehabilitation_ok"/>
+								<field name="farmer_id" readonly="1"/>
+							</group>
+							<group>
+								<field name="kecamatan_id"/>
+								<field name="kabupaten_id"/>
+								<field name="provinsi_id"/>
+								<field name="company_id" groups="base.group_multi_company" string="Unit/PG"  attrs="{'readonly':[('status_polygon', '=', 'valid')]}"/>
+								<field name="status_polygon" invisible="1"/>
+								<field name="area_intersect_id" invisible="1"/>
+								<field name="compute_map_address"/>
+							</group>
+						</group>
+						<notebook colspan="4">
+							<page string="Maps">
+								<field name="gps_mirror" widget="areamap" attrs="{'readonly':[('status_polygon', '=', 'valid')]}"/>
+							</page>
+							<page string="Data GPX">
+								<field name="gps_polygon" attrs="{'readonly':[('status_polygon', '=', 'valid')]}"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tree_area">
+			<field name="name">Data Area Lahan Kebun</field>
+			<field name="model">ka_plantation.area</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="code"/>
+					<field name="owner"/>
+					<field name="luas" sum='Total Luas'/>
+					<field name="kabupaten_id"/>
+					<field name="kecamatan_id"/>
+					<field name="desa_id"/>
+					<field name="farmer_id"/>
+					<field name="upload_by" string="Uploader"/>
+					<field name="company_id" groups="base.group_multi_company" string="Unit/PG"/>
+					<field name="status_polygon"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_custom_areamap_area">
+			<field name="name">Data Map Area Lahan</field>
+			<field name="model">ka_plantation.area</field>
+			<field name="arch" type="xml">
+				<areamap string="Area Maps">
+					<field name="code"/>   
+					<field name="owner"/>
+					<field name="farmer_id"/>
+					<field name="desa_name"/>
+					<field name="kecamatan_name"/>
+					<field name="kabupaten_name"/>
+					<field name="luas"/>
+					<field name="gps_polygon"/>
+					<field name="status_polygon"/>
+				</areamap>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_area">
+			<field name="name">Area Lahan Kebun</field>
+			<field name="res_model">ka_plantation.area</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,areamap,pivot</field>
+			<field name="domain">[('status_polygon', '=', 'valid')]</field>
+			<field name="context">{}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data lahan kebun masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_validasi_petak">
+			<field name="name">Validasi Petak</field>
+			<field name="res_model">ka_plantation.area</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,areamap,pivot</field>
+			<field name="domain">[('status_polygon', '=', 'draft')]</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_open_all_petak">
+			<field name="name">Data Semua Petak</field>
+			<field name="res_model">ka_plantation.area</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,areamap,pivot</field>
+		</record>
+	</data>
+</odoo>

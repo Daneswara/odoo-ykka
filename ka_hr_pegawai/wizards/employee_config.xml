@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="wizard_employee_config_form">
+			<field name="name">SDM - Setting Kepegawaian</field>
+			<field name="model">ka_hr_pegawai.config.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="SDM - Setting Kepegawaian">
+					<group>
+						<field name="company_id" groups="base.group_multi_company"/>
+						<field name="hr_pensiun_age"/>
+						<field name="hr_mpp_month"/>
+					</group>
+					<footer>
+						<button name="save_data" string="Simpan Data" type="object" class="btn-primary"/>
+						<button string="Batal" class="btn-default" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window
+			id="action_wizard_config"
+			name="Setting Kepegawaian"
+			res_model="ka_hr_pegawai.config.wizard"
+			view_mode="form"
+			target="new"/>
+
+		<menuitem action="action_wizard_config" id="menu_wizard_config" parent="sub_menu_config" sequence="4" groups="hr.group_hr_user"/>
+	</data>
+</odoo>

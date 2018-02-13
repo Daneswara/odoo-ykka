@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data> 
+		 
+		<!--      Action Invoice        -->
+											
+		<template id="template_report_confirmed_payment">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_account.report_confirmed_payment_document"/>
+				</div>
+			</t>
+		</template>  
+		<template id="report_confirmed_payment_document">
+			<t t-call="report.html_container">				
+				<div class="header" 
+					style="padding:0px 0px 3px 0px; margin:0px; font-family: 'Courier New', Courier, monospace; font-size: 12px;text-align: center;">
+					<table width="100%">
+						<tr>
+							<td class="text-left"><span t-field="o.confirm_date" t-field-options='{"format": "dd-MM-YYYY"}'/></td>
+							<td class="text-right"><ul class="list-inline"><li>HAL.</li><li><span class="page"/></li></ul></td>
+						</tr>
+					</table>					
+					<div>PT KEBON AGUNG</div>
+					<div>DAFTAR PEMBAYARAN KEPADA REKANAN</div>
+					<div>NO. <span t-field="o.name"/></div>
+					<hr style="background-color: #fff;border-top:1px dashed #000"/>
+					<div class="row">
+						<div class="col-xs-12" style="margin-top:-25px;">
+							<table width="100%" style="border-top: 1px dashed #000; border-bottom: 1px dashed #000; ">
+								<tr>
+									<td class="text-center" width="5%" style="padding-top:15px">NO.</td>
+									<td class="text-left" width="30%" style="padding-top:15px">NAMA</td>
+									<td width="20%" style="padding-top:15px"></td>
+									<td width="17%" style="padding-top:15px"></td>
+									<td width="3%" style="padding-top:15px"></td>
+									<td width="25%" style="padding-top:15px"></td>
+								</tr>
+								<tr>
+									<td class="text-center" width="5%">URT</td>
+									<td class="text-left" width="30%">ALAMAT</td>
+									<td width="20%"></td>
+									<td class="text-center" width="17%">JUMLAH</td>
+									<td width="3%"></td>
+									<td class="text-left">NO DAN TANGGAL KUITANSI</td>
+								</tr>
+								<tr>
+									<td class="text-center" width="5%" style="padding-bottom:15px"></td>
+									<td class="text-left" width="30%" style="padding-bottom:15px">NAMA BANK</td>
+									<td class="text-left" width="20%" style="padding-bottom:15px">NOMOR REKENING</td>
+									<td class="text-center" width="17%" style="padding-bottom:15px">(Rp)</td>
+									<td width="3%" style="padding-bottom:15px"></td>
+									<td width="25%" style="padding-bottom:15px"></td>
+								</tr>
+							</table>
+						</div>
+					</div>			
+				</div>
+				<!-- END OF HEADER -->
+				
+				<div class="page" style="font-family: 'Courier New', Courier, monospace; font-size: 12px;text-align: center"> 
+					<div class="row">
+						<div class="col-xs-12" style="margin:25px 0px 0px 0px; padding:0px 10px;">
+							<table width="100%">
+								<tbody>
+									<t t-set="no" t-value="1"/>
+			                    	<t t-foreach="o.get_partners()" t-as="partner">
+										<tr height="19px">
+											<td class="text-center" width="5%"><span t-esc="no"/> <t t-set="no" t-value="no+1"/></td>
+											<td class="text-left" style="text-transform:uppercase" colspan="5"><span t-esc="partner.name"></span></td>
+										</tr>
+										<tr height="19px">
+											<td class="text-center" width="5%"></td>
+											<td class="text-left" style="text-transform:uppercase" colspan="5"><span t-esc="partner.street"/><span t-esc="partner.street2"/>
+												<span t-esc="partner.city"/> <span t-esc="partner.state_id.name"/>							
+									      	</td>
+										</tr>
+										<t t-set="subtotal" t-value="0"/>
+										<t t-set="partner_bank" t-value="False"/>
+										<t t-set="account_number" t-value="False"/>		
+										<t t-foreach="o.get_vouchers(partner)" t-as="voucher">
+											<t t-foreach="voucher.voucher_lines" t-as="line">
+												<tr height="19px">							
+													<td class="text-center" width="5%"></td>
+													<t t-if="partner.bank == partner_bank">
+														<td width="30%">s.d.a</td>
+													</t>
+													<t t-if="voucher.partner_bank_id != partner_bank">
+														<td style="text-transform:uppercase" width="30%"><span t-esc="voucher.partner_bank_id.bank_id.name"/></td>
+													</t>
+													<t t-if="voucher.partner_bank_acc == account_number">
+														<td width="20%">s.d.a</td>
+													</t>
+													
+													<t t-if="voucher.partner_bank_acc != account_number">
+														<td style="text-transform:uppercase" width="20%">AC. <span t-esc="voucher.partner_bank_acc"/></td>
+													</t>
+													<td class="text-right" width="17%"><t t-esc="str('{0:,.2f}'.format(float(line.amount))).replace('.', '%').replace(',', '.').replace('%', ',')"/></td>
+													<td class="text-right" width="3%"></td>
+													 
+													<t t-set="description" t-value="line.name"/>
+													<t t-if="line.ka_payment_id and line.account_id.user_type_id.name == 'Payable'">
+														<t t-set="description" t-value="'DPP: ' + line.ka_payment_id.no_kwitansi + '; ' + line.ka_payment_id.vendor_invoice_date"/>
+													</t>
+													<td class="text-left" style="text-transform:uppercase" width="25%"><span t-esc="description"/></td>
+												</tr>
+											<t t-set="subtotal" t-value="subtotal+line.amount"/>						
+											<t t-set="partner_bank" t-value="voucher.partner_bank_id"/>
+											<t t-set="account_number" t-value="voucher.partner_bank_acc"/>
+											</t>	
+										</t>
+
+										<tr height="19px">
+											<td colspan="6"></td>
+										</tr>
+										<tr height="19px">
+											<td class="text-center" colspan="6">SUB JUMLAH.....	 <t t-esc="str('{0:,.2f}'.format(float(subtotal))).replace('.', '%').replace(',', '.').replace('%', ',')"/></td>
+										</tr>
+										<tr height="19px">
+											<td colspan="6"></td>
+										</tr>
+										<tr height="19px">
+											<td class="text-center"></td>
+											<td class="text-left" colspan="5">Terbilang (<span t-esc="o.amount_to_text_id(subtotal)"/> )</td>
+										</tr>
+										<tr height="25px">
+											<td colspan="6"></td>
+										</tr>
+									</t>
+								</tbody>
+							</table>
+
+							<table width="100%">
+								<tbody>
+									<tr height="19px">
+										<td colspan="3" class="text-center">JUMLAH SEMUA.....	<t t-esc="str('{0:,.2f}'.format(float(o.amount_total))).replace('.', '%').replace(',', '.').replace('%', ',')"/></td>
+									</tr>
+									<tr height="19px">
+										<td colspan="3"></td>
+									</tr>
+									<tr height="19px">
+										<td colspan="3" style="padding-left:43px">Terbilang (<span t-esc="o.amount_to_text_id(o.amount_total)"/> )</td>
+									</tr>
+									<tr height="120px">
+										<td colspan="3"></td>
+									</tr>
+									<tr height="19px">
+								    	<td class="text-center" width="30%"><span t-field="o.ttd_dir"/></td>
+								    	<td width="40%"></td>
+								    	<td class="text-center" width="30%"><span t-field="o.ttd_tuk"/></td>
+								  	</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

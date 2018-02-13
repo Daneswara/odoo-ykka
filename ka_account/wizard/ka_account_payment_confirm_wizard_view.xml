@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record id="ka_account_payment_confirm__wizard_form" model="ir.ui.view">
+            <field name="name">ka_account.payment.confirm.wizard.form</field>
+            <field name="model">ka_account.payment.confirm.wizard</field>
+            <field name="arch" type="xml">
+            	<form string="Confirm Payments">
+            		<h3><field name="name" nolabel="1" readonly="1"/></h3>
+	            	<footer>
+	            		<button name="action_generate_bukti_kas" string="Tranfer Bukti Kas" type="object" class="oe_highlight"/>
+	                    <button string="Cancel" class="oe_link" special="cancel"/>
+	            	</footer>
+            	</form>
+            </field>
+        </record>
+	</data>
+</odoo>

@@ -1,0 +1,721 @@
+id,parent_id/id,code,name,user_type_id/id,reconcile,company_ids/id,chart_template_id/id
+kaBS,,BS,NERACA,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka100000U00,kaBS,100000.U00,ASET,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka110000U00,ka100000U00,110000.U00,ASET LANCAR,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka111000U00,ka110000U00,111000.U00,KAS & SETARA KAS,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka111100U00,ka111000U00,111100.U00,KAS,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1000U00,ka111100U00,1000.U00,Kas Jakarta,account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1001U00,ka111100U00,1001.U00,Kas Surabaya,account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1000U00X,ka111100U00,1000.U00X,Kas Malang,account.data_account_type_liquidity,FALSE,base.pg_kebonagung,ka_configurable_chart_template
+ka1000U00XX,ka111100U00,1000.U00XX,Kas Trangkil,account.data_account_type_liquidity,FALSE,base.pg_trangkil,ka_configurable_chart_template
+ka111200U00,ka111000U00,111200.U00,BANK,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1021U00,ka111200U00,1021.U00,Bank Mandiri Margorejo Surabaya,account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1029U00,ka111200U00,1029.U00,Bank Mandiri Margorejo Surabaya (USD),account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1027U00,ka111200U00,1027.U00,Bank Mandiri Margorejo Surabaya (Yen),account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1020U00,ka111200U00,1020.U00,Bank BRI Kaliasin Surabaya,account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1020U0X,ka111200U00,1020.U0X,Bank CIMB Niaga Surabaya,account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1020U0XX,ka111200U00,1020.U0XX,Bank Pembangunan Daerah Jawa Timur,account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1014U00,ka111200U00,1014.U00,Bank Mandiri Jakarta,account.data_account_type_liquidity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1052U00,ka111200U00,1052.U00,Bank Mandiri Malang,account.data_account_type_liquidity,FALSE,base.pg_kebonagung,ka_configurable_chart_template
+ka1055U00,ka111200U00,1055.U00,BNI 46 Malang,account.data_account_type_liquidity,FALSE,base.pg_kebonagung,ka_configurable_chart_template
+ka1050U00,ka111200U00,1050.U00,BRI Malang,account.data_account_type_liquidity,FALSE,base.pg_kebonagung,ka_configurable_chart_template
+ka1054U00,ka111200U00,1054.U00,Bank Bukopin Malang,account.data_account_type_liquidity,FALSE,base.pg_kebonagung,ka_configurable_chart_template
+ka1051U00,ka111200U00,1051.U00,BRI Pati,account.data_account_type_liquidity,FALSE,base.pg_trangkil,ka_configurable_chart_template
+ka1052U00X,ka111200U00,1052.U00X,BPD Jateng,account.data_account_type_liquidity,FALSE,base.pg_trangkil,ka_configurable_chart_template
+ka1054U00X,ka111200U00,1054.U00X,"BNI 1946, Pati",account.data_account_type_liquidity,FALSE,base.pg_trangkil,ka_configurable_chart_template
+ka1055U00X,ka111200U00,1055.U00X,"Bank Mandiri, Pati",account.data_account_type_liquidity,FALSE,base.pg_trangkil,ka_configurable_chart_template
+ka111300U00,ka111000U00,111300.U00,DEPOSITO,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1110U00,ka111300U00,1110.U00,Deposito Berjangka,account.data_account_type_liquidity,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka112000U00,ka110000U00,112000.U00,PIUTANG ,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka111210U00,ka112000U00,111210.U00,Piutang Usaha,account.data_account_type_receivable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka111220U00,ka112000U00,111220.U00,Pemasaran,account.data_account_type_receivable,TRUE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka112100U00,ka112000U00,112100.U00,GULA KONTRAK A YANG BLM DIAMB.,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1210U00,ka112100U00,1210.U00,Gula kontrak A yg blm diambil,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka112200U00,ka112000U00,112200.U00,PENJUALAN GULA K/PIHAK III,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1213U00,ka112200U00,1213.U00,Penjualan kpd BI - Semarang,account.data_account_type_receivable,TRUE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1216U00,ka112200U00,1216.U00,Piutang Usaha/Penjualan gula,account.data_account_type_receivable,TRUE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1217U00,ka112200U00,1217.U00,Piutang Usaha/Penjualan tetes,account.data_account_type_receivable,TRUE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka112300U00,ka112000U00,112300.U00,PIUTANG LAIN-LAIN,ka_account.data_account_type_view,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1600U00,ka112300U00,1600.U00,Piutang Petani Tebu Rakyat,account.data_account_type_receivable,TRUE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1430U00,ka112300U00,1430.U00,Piutang Karyawan,account.data_account_type_current_assets,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1434U00,ka112300U00,1434.U00,Piutang Lain-lain,account.data_account_type_current_assets,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1431U00,ka112300U00,1431.U00,Hutang piutang pekerja tetap,account.data_account_type_current_assets,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka112400U00,ka112000U00,112400.U00,PIUTANG R/K,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka11126U01,ka112400U00,11126.U01,Piutang R/K Direksi,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka11126U02,ka112400U00,11126.U02,Piutang R/K Pabrik,account.data_account_type_current_assets,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka113000U00,ka110000U00,113000.U00,UANG MUKA,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka113100U00,ka113000U00,113100.U00,UANG MUKA PEMBELIAN,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1310U00,ka113100U00,1310.U00,Uang muka Pembelian ,account.data_account_type_prepayments,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1320U00,ka113100U00,1320.U00,Uang Muka Lain-lain,account.data_account_type_prepayments,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1330U00,ka113100U00,1330.U00,Asuransi,account.data_account_type_prepayments,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka113200U00,ka113000U00,113200.U00,UANG MUKA PAJAK,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1828U00,ka113200U00,1828.U00,PPN Masukan,account.data_account_type_prepayments,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1801U00,ka113200U00,1801.U00,PPh 25,account.data_account_type_prepayments,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka114000U00,ka110000U00,114000.U00,PERSEDIAAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka114100U00,ka114000U00,114100.U00,BAHAN PRODUKSI,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7006U00,ka114100U00,7006.U00,Tebu,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7007U00,ka114100U00,7007.U00,Bahan Pembantu,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7008U00,ka114100U00,7008.U00,Gula,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7010U00,ka114100U00,7010.U00,Tetes,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3900U00,ka114100U00,3900.U00,Ampas,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7000U00,ka114100U00,7000.U00,Gula Milik Pabrik,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7001U00,ka114100U00,7001.U00,Gula Kontrak A,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7002U00,ka114100U00,7002.U00,Gula Sisan,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7003U00,ka114100U00,7003.U00,Gula Gudang Kecil,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7005U00,ka114100U00,7005.U00,Persediaan Gula Retail,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7010U00X,ka114100U00,7010.U00X,Tetes Milik Pabrik,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka7099U00,ka114100U00,7099.U00,Persediaan yang masih dalam proses pengiriman,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka114200U00,ka114000U00,114200.U00,BAHAN DAN PERLENGKAPAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3000U00,ka114200U00,3000.U00,Perlengkapan umum/bhn bangunan,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3100U00,ka114200U00,3100.U00,Alat listrik,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3200U00,ka114200U00,3200.U00,Suku cadang mesin pabrik,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3300U00,ka114200U00,3300.U00,"Suku cadang loko,lori,draisin",account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3400U00,ka114200U00,3400.U00,Suku cadang kend. bermotor,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3500U00,ka114200U00,3500.U00,Suku cadang alat pertanian,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3600U00,ka114200U00,3600.U00,Bahan operasi,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3700U00,ka114200U00,3700.U00,Barang modal,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3801U00,ka114200U00,3801.U00,Selisih Penghitungan fisik,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3802U00,ka114200U00,3802.U00,Barang Rusak,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3803U00,ka114200U00,3803.U00,Barang kelebihan,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3804U00,ka114200U00,3804.U00,Barang bekas,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3805U00,ka114200U00,3805.U00,Suku Cadang Non Pabrikasi,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3806U00,ka114200U00,3806.U00,Perlengkapan Kantor,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka3809U00,ka114200U00,3809.U00,Persediaan yang masih dalam proses penerimaan,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka115000U00,ka110000U00,115000.U00,BEBAN DITANGGUHKAN KATAGORI ASET LANCAR,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U58,ka115000U00,6000.U58,Tebu,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U58,ka115000U00,5000.U58,Tehnik dan Administrasi,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka116000U00,ka110000U00,116000.U00,REKENING TRANFER,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka120000U00,ka100000U00,120000.U00,ASET TIDAK LANCAR,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka12100U00,ka120000U00,12100.U00,ASET TETAP,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka121100U00,ka12100U00,121100.U00,TANAH,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0000U00,ka121100U00,0000.U00,Tanah,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0010U00,ka121100U00,0010.U00,Hak Atas Tanah,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka121200U00,ka12100U00,121200.U00,BANGUNAN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0021U00,ka121200U00,0021.U00,Bangunan & Prasarana,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0033U00,ka121200U00,0033.U00,"Mesin, Instalasi dan Peralatan",account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0041U00,ka121200U00,0041.U00,"Jalan, Jembatan dan Terminal Tebu",account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka121300U00,ka12100U00,121300.U00,KENDARAAN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0053U00,ka121300U00,0053.U00,Alat Angkutan,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka121400U00,ka12100U00,121400.U00,PERALATAN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0063U00,ka121400U00,0063.U00,Alat Pertanian,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0073U00,ka121400U00,0073.U00,Inventaris Kantor & Pabrik,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka121500U00,ka12100U00,121500.U00,ASET DALAM PELAKSANAAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka121510U00,ka121500U00,121510.U00,Proyek dalam Pelaksanaan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2991U00,ka121510U00,2991.U00,Proyek dalam pelaksanaan SP-Direksi,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2992U00,ka121510U00,2992.U00,Proyek dalam pelaksanaan SP-Pabrik,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2993U00,ka121510U00,2993.U00,Proyek dalam pelaksanaan oleh Pabrik,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2994U00,ka121510U00,2994.U00,Proyek dalam pelaksanaan Proyek Luar Biasa,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2995U00,ka121510U00,2995.U00,Proyek dalam pelaksanaan Inventaris Kantor,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka121520U00,ka121500U00,121520.U00,Pengembangan Varitas Tebu Unggul,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2996U61,ka121520U00,2996.U61,Bibit,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2996U89,ka121520U00,2996.U89,Biaya lain-lain,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2996U95,ka121520U00,2996.U95,Pemakaian bibit/penangkaran,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka2996U,ka121520U00,2996.U,Pengembangan Varitas Tebu Unggul,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka121600U00,ka12100U00,121600.U00,LAINNYA,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0083U00,ka121600U00,0083.U00,Aset Tetap Lainnya,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka122000U00,ka120000U00,122000.U00,AKUMULASI PENYUSUTAN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka122100U00,ka122000U00,122100.U00,TANAH,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0310U00,ka122100U00,0310.U00,Hak Atas Tanah,account.data_account_type_fixed_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka122200U00,ka122000U00,122200.U00,BANGUNAN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0321U00,ka122200U00,0321.U00,Bangunan & Prasarana,account.data_account_type_fixed_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0333U00,ka122200U00,0333.U00,"Mesin, Instalasi dan Peralatan",account.data_account_type_fixed_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0341U00,ka122200U00,0341.U00,"Jalan, Jembatan dan Terminal Tebu",account.data_account_type_fixed_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka122300U00,ka122000U00,122300.U00,ALAT ANGKUT,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0353U00,ka122300U00,0353.U00,Alat Angkutan,account.data_account_type_fixed_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka122400U00,ka122000U00,122400.U00,PERALATAN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0363U00,ka122400U00,0363.U00,Alat Pertanian,account.data_account_type_fixed_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0373U00,ka122400U00,0373.U00,Inventaris Kantor & Pabrik,account.data_account_type_fixed_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka122500U00,ka122000U00,122500.U00,LAINNYA,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0383U00,ka122500U00,0383.U00,Aset Tetap Lainnya,account.data_account_type_fixed_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka123000U00,ka120000U00,123000.U00,UANG MUKA,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1580U00,ka123000U00,1580.U00,Uang Muka,account.data_account_type_non_current_assets,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka12400U00,ka120000U00,12400.U00,INVESTASI,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1120U00,ka12400U00,1120.U00,Saham,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1320U00X,ka12400U00,1320.U00X,Properti,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka125000U00,ka120000U00,125000.U00,BEBAN DITANGUHKAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6900U00,ka125000U00,6900.U00,Tebu,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5900U00,ka125000U00,5900.U00,Tehnik dan Administrasi,account.data_account_type_non_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka126000U00,ka120000U00,126000.U00,ASET PAJAK TANGGUHAN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka3230U01,ka126000U00,3230.U01,Perbedaan Perhitungan Fiskal dan komersial,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka200000U00,kaBS,200000.U00,LIABILITAS DAN EKUITAS,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka210000U00,ka200000U00,210000.U00,LIABILITAS,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211000U00,ka210000U00,211000.U00,LIABILITAS JANGKA PENDEK,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211100U00,ka211000U00,211100.U00,HUTANG USAHA,ka_account.data_account_type_view,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1310400,ka211100U00,1310400,Kontrak Pemborongan Pekerjaan,account.data_account_type_payable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1320100,ka211100U00,1320100,Barang modal,account.data_account_type_payable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1321U00,ka211100U00,1321.U00,Pembelian bahan pabriksi/kimia,account.data_account_type_payable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1322U00,ka211100U00,1322.U00,Kemasan,account.data_account_type_payable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1323U00,ka211100U00,1323.U00,Pembelian bahan bakar,account.data_account_type_payable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1324U00,ka211100U00,1324.U00,Pembelian Perlengkapan dll.,account.data_account_type_payable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1325U00,ka211100U00,1325.U00,Perbaikan  dan Pemeliharaan,account.data_account_type_payable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1329U00,ka211100U00,1329.U00,Pembelian tunai,account.data_account_type_payable,TRUE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211200U00,ka211000U00,211200.U00,HUTANG LAIN-LAIN,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211210U00,ka211200U00,211210.U00,GAJI/UPAH KARYAWAN,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1411U00,ka211210U00,1411.U00,Gaji/upah pekerja tetap,account.data_account_type_current_liabilities,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1412U00,ka211210U00,1412.U00,Gaji/upah pekerja kampanye,account.data_account_type_current_liabilities,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1413U00,ka211210U00,1413.U00,Gaji/upah pekerja tidak tetap,account.data_account_type_current_liabilities,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211300U00,ka211000U00,211300.U00,BEBAN YANG MASIH HARUS DIBAYA,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211310U00,ka211300U00,211310.U00,PIMPINAN DAN ADMINISTRASI,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1940U00,ka211310U00,1940.U00,Pimpinan dan Administrasi,account.data_account_type_current_liabilities,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1942U00,ka211310U00,1942.U00,Poliklinik,account.data_account_type_current_liabilities,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1960U00,ka211310U00,1960.U00,Tanaman biaya lain-2,account.data_account_type_current_liabilities,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211400U00,ka211000U00,211400.U00,HUTANG PAJAK,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1811U00,ka211400U00,1811.U00,PPh 21,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1800U00,ka211400U00,1800.U00,PPh 22,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1803U00,ka211400U00,1803.U00,PPh 23,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1801U00X,ka211400U00,1801.U00X,PPh 25,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1824U00,ka211400U00,1824.U00,PPN - Keluaran ,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka211500U00,ka211000U00,211500.U00,HUTANG KEPADA PIHAK YANG BERELASI,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1590U00,ka211500U00,1590.U00,Aneka hutang/uang titipan,account.data_account_type_current_liabilities,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1590U00X,ka211500U00,1590.U00X,Hutang YKKBI,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1592U00,ka211500U00,1592.U00,Aneka Hutang/Garansi,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1591U00,ka211500U00,1591.U00,UT K.U.D,account.data_account_type_current_liabilities,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1594U00,ka211500U00,1594.U00,UT Angkutan Truk,account.data_account_type_current_liabilities,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1593U00,ka211500U00,1593.U00,Kredit Kemitraan,account.data_account_type_current_liabilities,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1600U00X,ka211500U00,1600.U00X,Hutang Piutang Petani TR,account.data_account_type_current_liabilities,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1601U00,ka211500U00,1601.U00,UM TR Bagi Hasil,account.data_account_type_current_liabilities,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka1604U00,ka211500U00,1604.U00,Pola Kemitraan,account.data_account_type_current_liabilities,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211600U00,ka211000U00,211600.U00,PENDAPATAN DITERIMA DIMUKA,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka211601U00,ka211600U00,211601.U00,Uang Muka Penjualan,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka211700U00,ka211000U00,211700.U00,HUTANG DEVIDEN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka211701U00,ka211700U00,211701.U00,Hutang  deviden,account.data_account_type_current_liabilities,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka211800U00,ka211000U00,211800.U00,HUTANG R/K,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211801U00,ka211800U00,211801.U00,Hutang R/K Direksi,account.data_account_type_current_liabilities,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka211802U00,ka211800U00,211802.U00,Hutang R/K Pabrik,account.data_account_type_current_liabilities,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka212000U00,ka210000U00,212000.U00,LIABILITAS JANGK PANJANG,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka212100U00,ka212000U00,212100.U00,LIABILITAS IMBALAN KERJA,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1422U00,ka212100U00,1422.U00,Liabilitas Imbalan Kerja,account.data_account_type_non_current_assets,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka220000U00,ka200000U00,220000.U00,EKUITAS,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka221000U00,ka220000U00,221000.U00,MODAL,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka221100U00,ka221000U00,221100.U00,MODAL DISETOR,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0900U00,ka221100U00,0900.U00,Modal saham,account.data_account_type_equity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka221200U00,ka221000U00,221200.U00,CADANGAN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0910U00,ka221200U00,0910.U00,Cadangan umum,account.data_account_type_equity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0913U00,ka221200U00,0913.U00,Cadangan tujuan,account.data_account_type_equity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka221300U00,ka221000U00,221300.U00,SALDO LABA,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0920U00,ka221300U00,0920.U00,Saldo laba ditahan,account.data_account_type_equity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0921U00,ka221300U00,0921.U00,Laba tahun berjalan,account.data_account_type_equity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka0922U00,ka221300U00,0922.U00,OCI (Other Comprehensive Income),account.data_account_type_equity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka221400U00,ka221000U00,221400.U00,DEVIDEN,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka221401U00,ka221400U00,221401.U00,Deviden,account.data_account_type_equity,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka221500U00,ka221000U00,221500.U00,REKENING ANTAR KANTOR,ka_account.data_account_type_view,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka1540U00,ka221500U00,1540.U00,R/K Antar Kantor,account.data_account_type_current_liabilities,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+kaLR,,LR,LABA RUGI ,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka300000U00,kaLR,300000.U00,PENJUALAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka310000U00,ka300000U00,310000.U00,PENJUALAN PRODUK UTAMA,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka311000U00,ka310000U00,311000.U00,Gula,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8000U00,ka311000U00,8000.U00,Gula ,account.data_account_type_revenue,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8005U01,ka311000U00,8005.U01,Gula Ritel,account.data_account_type_revenue,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8200U00,ka310000U00,8200.U00,Tetes,account.data_account_type_revenue,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka312000U00,ka310000U00,312000.U00,PENJUALAN PRODUK SAMPINGAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka312100U00,ka312000U00,312100.U00,Ampas,account.data_account_type_revenue,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8300U00,ka312000U00,8300.U00,Ampas kaur,account.data_account_type_revenue,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8302U00,ka312000U00,8302.U00,Ampas ball,account.data_account_type_revenue,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8301U00,ka312000U00,8301.U00,Pellet ampas,account.data_account_type_revenue,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka400000U00,kaLR,400000.U00,BEBAN POKOK PENJUALAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka410000U00,ka400000U00,410000.U00,PEMAKAIAN BAHAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka411000U00,ka410000U00,411000.U00,Tebu,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka412000U00,ka410000U00,412000.U00,Bahan Pembantu,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka420000U00,ka300000U00,420000.U00,BEBAN PABRIKASI,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421000U00,ka420000U00,421000.U00,TANAMAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421100U00,ka421000U00,421100.U00,Stasiun Tanaman - Tanpa Tebu Tergiling,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421110U00,ka421100U00,421110.U00,Biaya Umum Tanaman,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U00,ka421110U00,6000.U00,Gaji Staf,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U01,ka421110U00,6000.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U02,ka421110U00,6000.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U03,ka421110U00,6000.U03,Upah Pekerja tidak tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U04,ka421110U00,6000.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U05,ka421110U00,6000.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U53,ka421110U00,6000.U53,Pengamatan Percobaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U56,ka421110U00,6000.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6000U89,ka421110U00,6000.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421120U00,ka421100U00,421120.U00,Bimbingan Petani TR,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U01,ka421120U00,6002.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U02,ka421120U00,6002.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U03,ka421120U00,6002.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U04,ka421120U00,6002.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U05,ka421120U00,6002.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U43,ka421120U00,6002.U43,Bahan bakar LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U45,ka421120U00,6002.U45,Pelumas LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U59,ka421120U00,6002.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U81,ka421120U00,6002.U81,Penyuluhan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U89,ka421120U00,6002.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6002U90,ka421120U00,6002.U90,Restitusi penyemprotan ZPK,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421130U00,ka421100U00,421130.U00,Laboratorium,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6003U01,ka421130U00,6003.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6003U03,ka421130U00,6003.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6003U04,ka421130U00,6003.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6003U05,ka421130U00,6003.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6003U56,ka421130U00,6003.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6003U89,ka421130U00,6003.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421140U00,ka421100U00,421140.U00,Kendaraan - Traktor,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U01,ka421140U00,6004.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U02,ka421140U00,6004.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U03,ka421140U00,6004.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U04,ka421140U00,6004.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U05,ka421140U00,6004.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U34,ka421140U00,6004.U34,Asuransi,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U38,ka421140U00,6004.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U50,ka421140U00,6004.U50,Bahan bakar,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U51,ka421140U00,6004.U51,Pelumas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U52,ka421140U00,6004.U52,B a n,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U59,ka421140U00,6004.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U89,ka421140U00,6004.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6004U90,ka421140U00,6004.U90,Restitusi jasa trakt. d/petani,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421200U00,ka421000U00,421200.U00,Stasiun Tanaman - TS & Bibit,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421210U00,ka421200U00,421210.U00,Penelitian dan Pengembangan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U60,ka421210U00,6001.U60,Kerja Sama Penggunaan Lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U61,ka421210U00,6001.U61,Pembelian dan pembebanan Bibit,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U62,ka421210U00,6001.U62,Kebutuhan pupuk,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U63,ka421210U00,6001.U63,Pengolahan lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U70,ka421210U00,6001.U70,Tebang & angkut,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U80,ka421210U00,6001.U80,Penelitian/pengembangan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U89,ka421210U00,6001.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U95,ka421210U00,6001.U95,Pemakaian bibit/penangkaran,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6001U96,ka421210U00,6001.U96,Tebu digiling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421220U00,ka421200U00,421220.U00,KBP,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6010U60,ka421220U00,6010.U60,Kerja Sama Penggunaan Lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6010U61,ka421220U00,6010.U61,Pembelian dan pembebanan Bibit,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6010U62,ka421220U00,6010.U62,Kebutuhan pupuk,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6010U63,ka421220U00,6010.U63,Pengolahan lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6010U70,ka421220U00,6010.U70,Tebang & angkut,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6010U94,ka421220U00,6010.U94,Penjualan bibit k/petani TR,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6010U95,ka421220U00,6010.U95,Pemakaian bibit/penangkaran,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6010U96,ka421220U00,6010.U96,Bibit digiling (onderenden),account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421230U00,ka421200U00,421230.U00,KBN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6011U60,ka421230U00,6011.U60,Kerja Sama Penggunaan Lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6011U61,ka421230U00,6011.U61,Pembelian dan pembebanan Bibit,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6011U62,ka421230U00,6011.U62,Pupuk,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6011U63,ka421230U00,6011.U63,Pengolahan Kebun,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6011U70,ka421230U00,6011.U70,Tebang & angkut,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6011U94,ka421230U00,6011.U94,Penjualan bibit k/petani TR,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6011U95,ka421230U00,6011.U95,Pemakaian bibit/penangkaran,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6011U96,ka421230U00,6011.U96,Bibit digiling (onderenden),account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421240U00,ka421200U00,421240.U00,KBI,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6012U60,ka421240U00,6012.U60,Kerja Sama Penggunaan Lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6012U61,ka421240U00,6012.U61,Pembelian dan pembebanan Bibit,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6012U62,ka421240U00,6012.U62,Kebutuhan pupuk,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6012U63,ka421240U00,6012.U63,Pengolahan lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6012U70,ka421240U00,6012.U70,Tebang & angkut,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6012U94,ka421240U00,6012.U94,Penjualan bibit k/petani TR,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6012U95,ka421240U00,6012.U95,Pemakaian bibit/penangkaran,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6012U96,ka421240U00,6012.U96,Bibit digiling (onderenden),account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421250U00,ka421200U00,421250.U00,KBD,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6013U60,ka421250U00,6013.U60,Kerja Sama Penggunaan Lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6013U61,ka421250U00,6013.U61,Pembelian dan pembebanan Bibit,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6013U62,ka421250U00,6013.U62,Kebutuhan pupuk,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6013U63,ka421250U00,6013.U63,Pengolahan lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6013U70,ka421250U00,6013.U70,Tebang & angkut,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6013U94,ka421250U00,6013.U94,Penjualan bibit k/petani TR,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6013U95,ka421250U00,6013.U95,Pemakaian bibit/penangkaran,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6013U96,ka421250U00,6013.U96,Bibit digiling (onderenden),account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421260U00,ka421200U00,421260.U00,Pengenalan Jenis,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6014U60,ka421260U00,6014.U60,Kerja Sama Penggunaan Lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6014U61,ka421260U00,6014.U61,Pembelian dan pembebanan Bibit,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6014U62,ka421260U00,6014.U62,Kebutuhan pupuk,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6014U63,ka421260U00,6014.U63,Pengolahan lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6014U70,ka421260U00,6014.U70,Tebang & angkut,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6014U94,ka421260U00,6014.U94,Penjualan bibit k/petani TR,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6014U95,ka421260U00,6014.U95,Pemakaian bibit/penangkaran,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6014U96,ka421260U00,6014.U96,Bibit digiling (onderenden),account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421270U00,ka421200U00,421270.U00,TGTS,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6009U60,ka421270U00,6009.U60,Kerja Sama Penggunaan Lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6009U61,ka421270U00,6009.U61,Pembelian dan pembebanan Bibit,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6009U62,ka421270U00,6009.U62,Kebutuhan pupuk,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6009U63,ka421270U00,6009.U63,Pengolahan lahan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6009U70,ka421270U00,6009.U70,Tebang & angkut,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6009U94,ka421270U00,6009.U94,Penjualan bibit k/petani TR,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6009U95,ka421270U00,6009.U95,Pemakaian bibit/penangkaran,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6009U96,ka421270U00,6009.U96,Tebu digiling (onderenden),account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421300U00,ka421000U00,421300.U00,Stasiun Tanaman - TR,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421310U00,ka421300U00,421310.U00,Tebu MBS,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U01,ka421310U00,6005.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U02,ka421310U00,6005.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U03,ka421310U00,6005.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U04,ka421310U00,6005.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U05,ka421310U00,6005.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U43,ka421310U00,6005.U43,Bahan bakar LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U45,ka421310U00,6005.U45,Pelumas LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U59,ka421310U00,6005.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U81,ka421310U00,6005.U81,Penyuluhan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U89,ka421310U00,6005.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6005U90,ka421310U00,6005.U90,Restitusi penyemprotan ZPK,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421320U00,ka421300U00,421320.U00,Tebangan Tebu,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U00,ka421320U00,6020.U00,Gaji Staf,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U01,ka421320U00,6020.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U02,ka421320U00,6020.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U03,ka421320U00,6020.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U04,ka421320U00,6020.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U05,ka421320U00,6020.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U06,ka421320U00,6020.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U70,ka421320U00,6020.U70,Tebang & angkut,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U71,ka421320U00,6020.U71,Perkakas tebangan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U89,ka421320U00,6020.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6020U90,ka421320U00,6020.U90,Restitusi tebangan d/petani,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka421330U00,ka421300U00,421330.U00,Angkutan Tebu,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U00,ka421330U00,6030.U00,Gaji Staf,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U01,ka421330U00,6030.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U02,ka421330U00,6030.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U03,ka421330U00,6030.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U04,ka421330U00,6030.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U05,ka421330U00,6030.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U34,ka421330U00,6030.U34,Asuransi,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U56,ka421330U00,6030.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U89,ka421330U00,6030.U89,Perbaikan /Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U90,ka421330U00,6030.U90,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka6030U92,ka421330U00,6030.U92,Restitusi biaya derek,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422010U00,ka420000U00,422010.U00,Instalasi,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U00,ka422010U00,5000.U00,Gaji Staf,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U01,ka422010U00,5000.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U02,ka422010U00,5000.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U03,ka422010U00,5000.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U04,ka422010U00,5000.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U05,ka422010U00,5000.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U29,ka422010U00,5000.U29,Biaya pengujian,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U34,ka422010U00,5000.U34,Asuransi,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U38,ka422010U00,5000.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U56,ka422010U00,5000.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U57,ka422010U00,5000.U57,Pemadam kebakaran,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U59,ka422010U00,5000.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5000U89,ka422010U00,5000.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422020U00,ka420000U00,422020.U00,Stasiun Gilingan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U01,ka422020U00,5002.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U02,ka422020U00,5002.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U03,ka422020U00,5002.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U04,ka422020U00,5002.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U05,ka422020U00,5002.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U38,ka422020U00,5002.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U40,ka422020U00,5002.U40,Bahan kimia,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U46,ka422020U00,5002.U46,Pelumas DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U58,ka422020U00,5002.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5002U59,ka422020U00,5002.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422030U00,ka420000U00,422030.U00,Stasiun Ketel Uap - Tanpa Bahan Bakar,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U01,ka422030U00,5010.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U02,ka422030U00,5010.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U03,ka422030U00,5010.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U04,ka422030U00,5010.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U05,ka422030U00,5010.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U29,ka422030U00,5010.U29,Biaya Pengujian,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U38,ka422030U00,5010.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U40,ka422030U00,5010.U40,Bahan kimia,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U44,ka422030U00,5010.U44,Bahan bakar DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U46,ka422030U00,5010.U46,Pelumas DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U49,ka422030U00,5010.U49,Pengelolaan lingkungan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U56,ka422030U00,5010.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U58,ka422030U00,5010.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5010U59,ka422030U00,5010.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422040U00,ka420000U00,422040.U00,Stasiun Listrik - Tanpa PLN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U01,ka422040U00,5011.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U02,ka422040U00,5011.U02,Upah Pekerja Musiman,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U03,ka422040U00,5011.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U04,ka422040U00,5011.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U05,ka422040U00,5011.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U26,ka422040U00,5011.U26,Listrik PLN LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U38,ka422040U00,5011.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U39,ka422040U00,5011.U39,Listrik PLN DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U43,ka422040U00,5011.U43,Bahan bakar LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U44,ka422040U00,5011.U44,Bahan bakar DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U46,ka422040U00,5011.U46,Pelumas DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U56,ka422040U00,5011.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U58,ka422040U00,5011.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5011U59,ka422040U00,5011.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422050U00,ka420000U00,422050.U00,Bengkel dan Instrumentasi,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U01,ka422050U00,5012.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U02,ka422050U00,5012.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U03,ka422050U00,5012.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U04,ka422050U00,5012.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U05,ka422050U00,5012.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U38,ka422050U00,5012.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U45,ka422050U00,5012.U45,Pelumas DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U56,ka422050U00,5012.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U58,ka422050U00,5012.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5012U59,ka422050U00,5012.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5013U01,ka422050U00,5013.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5013U02,ka422050U00,5013.U02,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5013U03,ka422050U00,5013.U03,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5013U04,ka422050U00,5013.U04,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5013U05,ka422050U00,5013.U05,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5013U58,ka422050U00,5013.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5013U59,ka422050U00,5013.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422060U00,ka420000U00,422060.U00,Fabrikasi,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U00,ka422060U00,5020.U00,Gaji Staf,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U01,ka422060U00,5020.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U02,ka422060U00,5020.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U03,ka422060U00,5020.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U04,ka422060U00,5020.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U05,ka422060U00,5020.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U06,ka422060U00,5020.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U26,ka422060U00,5020.U26,Retribusi Air,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U29,ka422060U00,5020.U29,Biaya pengujian,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U38,ka422060U00,5020.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U40,ka422060U00,5020.U40,Bahan kimia,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U56,ka422060U00,5020.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U58,ka422060U00,5020.U58,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U89,ka422060U00,5020.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5020U90,ka422060U00,5020.U90,Restitusi analisa contoh TRI,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422070U00,ka420000U00,422070.U00,Stasiun Penerimaan Tebu,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5021U01,ka422070U00,5021.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5021U02,ka422070U00,5021.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5021U03,ka422070U00,5021.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5021U04,ka422070U00,5021.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5021U05,ka422070U00,5021.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5021U38,ka422070U00,5021.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5021U58,ka422070U00,5021.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5021U59,ka422070U00,5021.U59,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422080U00,ka420000U00,422080.U00,Stasiun Pemurnian ,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U01,ka422080U00,5023.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U02,ka422080U00,5023.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U03,ka422080U00,5023.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U04,ka422080U00,5023.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U05,ka422080U00,5023.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U06,ka422080U00,5023.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U38,ka422080U00,5023.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U40,ka422080U00,5023.U40,Bahan kimia,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U46,ka422080U00,5023.U46,Pelumas DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U58,ka422080U00,5023.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5023U59,ka422080U00,5023.U59,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422090U00,ka420000U00,422090.U00,Stasiun Penguapan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U01,ka422090U00,5024.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U02,ka422090U00,5024.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U03,ka422090U00,5024.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U04,ka422090U00,5024.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U05,ka422090U00,5024.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U38,ka422090U00,5024.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U06,ka422090U00,5024.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U40,ka422090U00,5024.U40,Bahan kimia,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U46,ka422090U00,5024.U46,Pelumas DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U58,ka422090U00,5024.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5024U59,ka422090U00,5024.U59,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422100U00,ka420000U00,422100.U00,Stasiun Masakan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U01,ka422100U00,5025.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U02,ka422100U00,5025.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U03,ka422100U00,5025.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U04,ka422100U00,5025.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U05,ka422100U00,5025.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U06,ka422100U00,5025.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U38,ka422100U00,5025.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U40,ka422100U00,5025.U40,Bahan kimia,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U46,ka422100U00,5025.U46,Pelumas DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U58,ka422100U00,5025.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5025U59,ka422100U00,5025.U59,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422110U00,ka420000U00,422110.U00,Stasiun Puteran,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U01,ka422110U00,5027.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U02,ka422110U00,5027.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U03,ka422110U00,5027.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U04,ka422110U00,5027.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U05,ka422110U00,5027.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U06,ka422110U00,5027.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U38,ka422110U00,5027.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U46,ka422110U00,5027.U46,Pelumas DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U58,ka422110U00,5027.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5027U59,ka422110U00,5027.U59,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422120U00,ka420000U00,422120.U00,Stasiun Pembungkusan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U01,ka422120U00,5028.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U02,ka422120U00,5028.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U03,ka422120U00,5028.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U05,ka422120U00,5028.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U06,ka422120U00,5028.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U38,ka422120U00,5028.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U42,ka422120U00,5028.U42,Kemasan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U58,ka422120U00,5028.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U59,ka422120U00,5028.U59,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5028U90,ka422120U00,5028.U90,Restitusi karung dari petani,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422130U00,ka420000U00,422130.U00,Stasiun Pengelolaan Lingkungan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U01,ka422130U00,5029.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U02,ka422130U00,5029.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U03,ka422130U00,5029.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U04,ka422130U00,5029.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U05,ka422130U00,5029.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U06,ka422130U00,5029.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U29,ka422130U00,5029.U29,Biaya Pengujian,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U38,ka422130U00,5029.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U40,ka422130U00,5029.U40,Bahan Kimia,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U55,ka422130U00,5029.U55,Pemakaian bahan/barang,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U58,ka422130U00,5029.U58,Persiapan giling,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U59,ka422130U00,5029.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5029U89,ka422130U00,5029.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422140U00,ka420000U00,422140.U00,"Stasiun Gudang Gula, Tetes, Ampas",ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U01,ka422140U00,4004.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U02,ka422140U00,4004.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U03,ka422140U00,4004.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U04,ka422140U00,4004.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U05,ka422140U00,4004.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U06,ka422140U00,4004.U06,Upah borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U34,ka422140U00,4004.U34,Asuransi,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U38,ka422140U00,4004.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U59,ka422140U00,4004.U59,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4004U89,ka422140U00,4004.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422150U00,ka420000U00,422150.U00,Stasiun Gudang Perlengkapan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U01,ka422150U00,4005.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U02,ka422150U00,4005.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U03,ka422150U00,4005.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U04,ka422150U00,4005.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U05,ka422150U00,4005.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U06,ka422150U00,4005.U06,Upah Borongan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U34,ka422150U00,4005.U34,Asuransi,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U38,ka422150U00,4005.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U56,ka422150U00,4005.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U59,ka422150U00,4005.U59,Perbaikan/pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4005U89,ka422150U00,4005.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422160U00,ka420000U00,422160.U00,Stasiun Bangunan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U01,ka422160U00,5040.U01,Upah Pekerja Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U02,ka422160U00,5040.U02,Upah Pekerja Kampanye,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U03,ka422160U00,5040.U03,Upah Pekerja Tidak Tetap,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U04,ka422160U00,5040.U04,Lembur LMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U05,ka422160U00,5040.U05,Lembur DMG,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U34,ka422160U00,5040.U34,Asuransi,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U38,ka422160U00,5040.U38,Penyusutan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U36,ka422160U00,5040.U36,Pajak Bumi dan Bangunan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U56,ka422160U00,5040.U56,Perkakas,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U59,ka422160U00,5040.U59,Perbaikan/Pemeliharaan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5040U89,ka422160U00,5040.U89,Biaya lain-lain,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka422170U00,ka420000U00,422170.U00,Stasiun Gula Ritel,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U83,ka422170U00,4007.U83,Pengemasan dan Penyimpanan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U42,ka422170U00,4007.U42,Kemasan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U59,ka422170U00,4007.U59,Pemeliharaan & Perbaikan,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U89,ka422170U00,4007.U89,Biaya Operasional lainnya,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U38,ka422170U00,4007.U38,Penyusutan Stasiun,account.data_account_type_direct_costs,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka430000U00,ka300000U00,430000.U00,PERSEDIAAN BAHAN JADI,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka431000U00,ka430000U00,431000.U00,Awal Tahun,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka432000U00,ka430000U00,432000.U00,Akhir Tahun,account.data_account_type_current_assets,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka500000U00,kaLR,500000.U00,BEBAN PENJUALAN,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka510000U00,ka500000U00,510000.U00,PROMOSI,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4609U05,ka510000U00,4609.U05,Promosi,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka520000U00,ka500000U00,520000.U00,BIAYA OPERASIONAL,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4010U06,ka520000U00,4010.U06,Distribusi,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka600000U00,kaLR,600000.U00,BEBAN UMUM ADMINISTRASI,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka610000U00,ka600000U00,610000.U00,PIMPINAN DAN ADMINISTRASI,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka611000U00,ka610000U00,611000.U00,Pimpinan dan Administrasi BOD dan BOC,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka611100U00,ka611000U00,611100.U00,Biaya Direksi dan Komisaris,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4010U00,ka611100U00,4010.U00,Gaji,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U09,ka611100U00,4010.U09,Representasi Direksi,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U10,ka611100U00,4010.U10,Tantiem,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U12,ka611100U00,4010.U12,Tunjangan Cuti,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U14,ka611100U00,4010.U14,Perawatan kesehatan,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U16,ka611100U00,4010.U16,Iuran Pensiun/ASTEK,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U19,ka611100U00,4010.U19,Tunjangan lain-lain,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U21,ka611100U00,4010.U21,Pengiriman berita,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U27,ka611100U00,4010.U27,Perjalanan dinas,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U28,ka611100U00,4010.U28,Pakaian dinas,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U31,ka611100U00,4010.U31,Biaya Dekom,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka4010U89,ka611100U00,4010.U89,Biaya lain-lain,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka612000U00,ka610000U00,612000.U00,Pimpinan dan Administrasi Umum,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U00,ka612000U00,4000.U00,Gaji Staf,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U01,ka612000U00,4000.U01,Upah Pekerja Tetap,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U02,ka612000U00,4000.U02,Upah pekerja kampanye,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U03,ka612000U00,4000.U03,Upah Pekerja Tidak Tetap,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U04,ka612000U00,4000.U04,Lembur LMG,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U05,ka612000U00,4000.U05,Lembur DMG,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U07,ka612000U00,4000.U07,Honorarium,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U08,ka612000U00,4000.U08,Upah pekerja ????,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U20,ka612000U00,4000.U20,Biaya bank/meterai,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U21,ka612000U00,4000.U21,Pengiriman berita,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U22,ka612000U00,4000.U22,Perawatan mesin kantor,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U23,ka612000U00,4000.U23,Alat tulis/barang cetakan,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U24,ka612000U00,4000.U24,"Buku, koran dan majalah",account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U25,ka612000U00,4000.U25,Biaya Akomodasi,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U26,ka612000U00,4000.U26,Listrik dan air,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U27,ka612000U00,4000.U27,Perjalanan dinas,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U28,ka612000U00,4000.U28,Pakaian Kerja,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U30,ka612000U00,4000.U30,Biaya Direksi,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U31,ka612000U00,4000.U31,Biaya Dekom,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U32,ka612000U00,4000.U32,Biaya Akuntan/Konsultan,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U33,ka612000U00,4000.U33,Iuran BP3G/AGI,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U34,ka612000U00,4000.U34,Asuransi,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U38,ka612000U00,4000.U38,Penyusutan ?????,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U54,ka612000U00,4000.U54,Pendapatan/beban pjk Tangguhan,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U56,ka612000U00,4000.U56,Perkakas,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U82,ka612000U00,4000.U82,Selamatan Persiapan Giling,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U87,ka612000U00,4000.U87,Biaya khusus,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U88,ka612000U00,4000.U88,Biaya prasarana,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U89,ka612000U00,4000.U89,Biaya lain-lain,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka613000U00,ka610000U00,613000.U00,Perawatan Kesehatan,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U01,ka613000U00,4002.U01,Upah Pekerja Tetap,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U02,ka613000U00,4002.U02,Upah pekerja kampanye,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U03,ka613000U00,4002.U03,Upah Pekerja Tidak Tetap,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U04,ka613000U00,4002.U04,Lembur LMG,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U05,ka613000U00,4002.U05,Lembur DMG,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U07,ka613000U00,4002.U07,Honorarium,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U13,ka613000U00,4002.U13,Obat-obatan ,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U14,ka613000U00,4002.U14,Kesehatan staf,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U15,ka613000U00,4002.U15,Kesehatan non-staf,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U56,ka613000U00,4002.U56,Perkakas,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4002U89,ka613000U00,4002.U89,Biaya lain-lain,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka614000U00,ka610000U00,614000.U00,Mess,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U01,ka614000U00,4003.U01,Upah Pekerja Tetap,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U02,ka614000U00,4003.U02,Upah Pekerja Kampanye,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U03,ka614000U00,4003.U03,Upah Pekerja Tidak Tetap,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U04,ka614000U00,4003.U04,Lembur LMG,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U05,ka614000U00,4003.U05,Lembur DMG,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U07,ka614000U00,4003.U07,Honorarium,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U25,ka614000U00,4003.U25,Biaya Akomodasi,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U56,ka614000U00,4003.U56,Perkakas,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4003U89,ka614000U00,4003.U89,Biaya lain-lain,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka615000U00,ka610000U00,615000.U00,Bangunan Kantor,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U01,ka615000U00,5042.U01,Upah Pekerja Tetap,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U02,ka615000U00,5042.U02,Upah Pekerja Kampanye,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U03,ka615000U00,5042.U03,Upah Pekerja Tidak Tetap,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U04,ka615000U00,5042.U04,Lembur LMG,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U05,ka615000U00,5042.U05,Lembur DMG,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U32,ka615000U00,5042.U32,Pelayanan dan Kebersihan Kantor,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U59,ka615000U00,5042.U59,Perbaikan/pemeliharaan,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U56,ka615000U00,5042.U56,Perkakas,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5042U89,ka615000U00,5042.U89,Biaya lain-lain,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka616000U00,ka610000U00,616000.U00,Keamanan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U01,ka616000U00,4006.U01,Upah Pekerja Tetap,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U02,ka616000U00,4006.U02,Upah Pekerja Kampanye,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U03,ka616000U00,4006.U03,Upah Pekerja Tidak Tetap,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U04,ka616000U00,4006.U04,Lembur LMG,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U05,ka616000U00,4006.U05,Lembur DMG,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U07,ka616000U00,4006.U07,Honorarium,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U20,ka616000U00,4006.U20,Upah Pekerja,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U28,ka616000U00,4006.U28,Pakaian  Kerja,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U56,ka616000U00,4006.U56,Perkakas,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4006U89,ka616000U00,4006.U89,Biaya lain-lain,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka617000U00,ka610000U00,617000.U00,Kendaraan,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U00,ka617000U00,5030.U00,Gaji Staf,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U01,ka617000U00,5030.U01,Upah Pekerja Tetap,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U02,ka617000U00,5030.U02,Upah Pekerja Kampanye,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U03,ka617000U00,5030.U03,Upah Pekerja Tidak Tetap,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U04,ka617000U00,5030.U04,Lembur LMG,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U05,ka617000U00,5030.U05,Lembur DMG,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U27,ka617000U00,5030.U27,Perjalanan dinas,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U56,ka617000U00,5030.U56,Perkakas,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U34,ka617000U00,5030.U34,Asuransi,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U50,ka617000U00,5030.U50,Bahan bakar,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U51,ka617000U00,5030.U51,Pelumas,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U52,ka617000U00,5030.U52,B a n,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U59,ka617000U00,5030.U59,Perbaikan/pemeliharaan,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka5030U89,ka617000U00,5030.U89,Biaya lain-lain,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka620000U00,ka600000U00,620000.U00,JAMINAN SOSIAL,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka621000U00,ka620000U00,621000.U00,Beban imbalan kerja,ka_account.data_account_type_view,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U11,ka621000U00,4001.U11,Pendidikan dan olah raga,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U12,ka621000U00,4001.U12,Tunjangan Cuti,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U16,ka621000U00,4001.U16,Iuran Pensiun/ASTEK,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U18,ka621000U00,4001.U18,Manfaat Karyawan,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U19,ka621000U00,4001.U19,Tunjangan masa kerja,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U20,ka621000U00,4001.U20,KMKL,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U21,ka621000U00,4001.U21,Iuran Pensiun/ASTEK,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4000U86,ka621000U00,4000.U86,Jasa Prestasi,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U10,ka621000U00,4001.U10,Jasa produksi/pesangon giling,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4001U22,ka621000U00,4001.U22,Biaya lain-lain,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka622000U00,ka620000U00,622000.U00,KMKL,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka622000U01,ka622000U00,622000.U01,KMKL,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka630000U00,ka600000U00,630000.U00,PENYUSUTAN,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U31,ka630000U00,4007.U31,Gedung dan Penataran,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U32,ka630000U00,4007.U32,Mesin dan Instalasi ????,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U33,ka630000U00,4007.U33,"Jalan,Jembatan Terminal Tebu ????",account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U34,ka630000U00,4007.U34,Alat Pengangkutan ?????,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka4007U35,ka630000U00,4007.U35,Alat Pertanian ?????,account.data_account_type_expenses,FALSE,"base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka700000U00,kaLR,700000.U00,PENDAPATAN DAN BEBAN LAIN-LAIN :,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka710000U00,ka700000U00,710000.U00,PENDAPATAN LAIN-LAIN :,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8400U00,ka710000U00,8400.U00,Penjualan Aset Tetap,account.data_account_type_other_income,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8403U00,ka710000U00,8403.U00,Pendapatan Bunga ,account.data_account_type_other_income,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8406U00,ka710000U00,8406.U00,Pendapatan Sewa Gedung,account.data_account_type_other_income,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka8404U00,ka710000U00,8404.U00,Pendapatan Denda,account.data_account_type_other_income,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8409U00,ka710000U00,8409.U00,Pendapatan Lain-lain,account.data_account_type_other_income,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka720000U00,ka700000U00,720000.U00,BEBAN LAIN-LAIN :,ka_account.data_account_type_view,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8501U00,ka720000U00,8501.U00,Beban Bunga,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8502U00,ka720000U00,8502.U00,Selisih kurs,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template
+ka8503U00,ka720000U00,8503.U00,Beban Properti Investasi,account.data_account_type_expenses,FALSE,base.kantor_direksi,ka_configurable_chart_template
+ka8509U00,ka720000U00,8509.U00,Beban Lain-lain,account.data_account_type_expenses,FALSE,"base.kantor_direksi,base.pg_kebonagung,base.pg_trangkil",ka_configurable_chart_template

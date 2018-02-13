@@ -1,0 +1,87 @@
+<odoo>
+    <data>
+    	<record id="view_ka_account_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+            <field name="arch" type="xml">
+            	<field name="number" position="replace">
+            		<field name="ka_number" string="Nomor NTB"/>
+            	</field>
+            </field>
+        </record>
+    	
+    	<record id="view_ka_account_invoice_form" model="ir.ui.view">
+            <field name="name">ka.account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+            	<field name="number" position="replace">
+            		<field name="ka_number" class="oe_inline" required="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+            	</field>
+            	
+            	<xpath expr="//form/sheet/div[1]" position="before">
+                	<div class="oe_button_box" name="button_box"> 
+                         <button type="object" name="view_related_payments" class="oe_stat_button"
+                         icon="fa-bars" attrs="{'invisible': [('ka_payment_ids','=',[])]}">
+                         	<field name="payment_count" widget="statinfo" string="Payments" help="Vendor Payments"/>
+                		 	<field name="ka_payment_ids" invisible="1"/>
+                         </button>
+                    </div> 
+                </xpath>
+            	
+              	<field name="partner_id"  position="attributes">
+                    <attribute name="attrs">{'invisible': [('intercompany_invoice_type', '=', 'rkin')]}</attribute>  
+                </field>
+                
+                <field name="reference" position="before">
+                    <field name="source_partner_id" attrs="{'invisible': [('intercompany_invoice_type', '!=', 'rkin')]}"/>  
+                </field> 
+                
+               	<field name="origin" position="after">
+              		<field name="operating_unit_id"  required ="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+              		<field name="intercompany_invoice_type"/>
+                </field> 
+                
+                <field name="reference" position="after">
+	            	<field name="purchase_category_id" required="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+	            	<field name="source_invoice_id" invisible="1"/>
+	            	<field name="dest_invoice_id" invisible="1"/>
+	            </field> 
+	            
+	            <xpath expr="//field[@name='invoice_line_ids']" position="attributes">
+	            	<attribute name="context">{'type': type, 'journal_id': journal_id, 'operating_unit_id': operating_unit_id}</attribute>
+	            </xpath>   
+	              
+	            <xpath expr="//form/sheet/notebook/page[1]" position="after">
+                	<page string="Denda">
+                		<field name="penalty_ids" attrs="{'readonly': ['|',('state','=','paid'),('intercompany_invoice_type','=','rkin')]}"> 
+                			<tree string="Penalty lines" editable="bottom">
+	                            <field name="product_id" options="{'no_create': True}" string="Produk"/>
+								<field name="due_date"/>
+	                            <field name="penalty_date"/>	                            
+	                            <field name="amount"/>
+	                 		</tree>
+	                 	</field>
+	                 	<group class="oe_subtotal_footer oe_right">
+	                 		 <field name="amount_penalty" class="oe_subtotal_footer_separator" string="Total Denda"/>
+	                 	</group>	                       
+                	</page>
+                </xpath> 
+                             
+            </field> 	
+        </record>
+        
+        <!-- Update account invoice search view!-->
+        <record id="view_account_invoice_filter_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.filter.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='number']" position="before">
+                    <field name="ka_number" string="Nomor NTB"/>
+                </xpath>   
+            </field>
+        </record>
+    </data>
+</odoo>

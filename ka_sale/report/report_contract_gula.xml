@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <report 
+            id="report_contract_gula" 
+            model="sale.order.contract"
+            string="Kontrak Gula" 
+            report_type="qweb-pdf"
+            name="ka_sale.template_report_contract_gula"
+            file="ka_sale.template_report_contract_gula"
+			menu="False"       
+        /> 
+         <record id="paperformat_contract_report" model="report.paperformat">
+            <field name="name">contract_report</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">33</field>
+            <field name="margin_right">20</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+		<record id="ka_sale.report_contract_gula" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="ka_sale.paperformat_contract_report" />
+		</record>
+
+        <template id="template_report_contract_gula">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.html_container">
+                    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                    <div class="page">
+                        <div class ="row">
+                            <div class="col-xs-12" style="padding-top:125px; font-family: Times New Roman, Times, serif;">
+                                <div style="font-size: 18px;">No. <span t-field="o.name"/></div>
+                                <br></br>
+                                <div style="font-size: 18px;">Kepada yth</div>
+                                <div style="font-size: 18px;">
+                                    <span t-field="o.partner_id.name"/><br></br>
+                                    <span t-field="o.partner_id.street"/><br></br>
+                                    <span t-field="o.partner_id.street2"/><br></br>
+                                    <span t-field="o.partner_id.city"/><br></br>
+                                    <t t-if="o.partner_id.vat"><span t-field="o.partner_id.vat"/></t>
+                                </div>
+                                <br></br>
+                                <div style="text-align: center;font-size: 18px">
+                                    <strong>Perihal : Penetapan Penjualan Gula Pasir</strong></div>
+                                <br></br>
+                                <div style="text-indent: 65px; font-size: 18px;text-align: justify">
+                                    Sesuai hasil pembicaraan antara pihak kami dengan saudara pada tanggal <span t-field="o.sale_date" t-field-options='{"format": "d MMMM Y"}'/>,
+                                    dengan ini diberitahukan bahwa saudara ditetapkan sebagai Pembeli gula pasir <span t-field="o.operating_unit_id"/> - 
+                                    <span t-field="o.operating_unit_id.city"/> tahun produksi <span t-field="o.sale_date" 
+                                    t-field-options='{"format": "YYYY"}'/>
+                                </div>
+                                <br></br>
+                                <table>
+                                    <tr height="55px" style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">    
+                                        <td width="150px" class="text-left" style="vertical-align:top">Jumlah</td>
+                                        <td width="30px" class="text-left" style="vertical-align:top">:</td>
+                                        <td width="300px" style="vertical-align:top"><strong><span t-esc="o.quantity / 1000"/> ton</strong> dalam kemasan
+                                            karung plastik @ 50 kg produksi dari <span t-field="o.operating_unit_id"/> tahun 
+                                                <span t-field="o.sale_date" t-field-options='{"format": "YYYY"}'/></td>
+                                    </tr>
+                                    <tr height="55px" style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">    
+                                        <td width="150px" class="text-left" style="vertical-align:top">Harga</td>
+                                        <td width="30px" class="text-left" style="vertical-align:top">:</td>
+                                        <td width="300px" style="vertical-align:top"><strong>Rp <span t-esc="'{0:,.2f}'.format(float(o.price_unit * 1000)).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong> per ton
+                                            (termasuk PPN 10%), loco gudang <span t-field="o.operating_unit_id"/></td>
+                                    </tr>
+                                    <tr style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">    
+                                        <td width="150px" class="text-left" style="vertical-align:top">Pembayaran</td>
+                                        <td width="30px" class="text-left" style="vertical-align:top">:</td>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td class="text-left" width="10px" style="vertical-align:top; font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">a. </td>
+                                                    <td class="text-left" width="2900px" style="vertical-align:top; font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">
+                                                        Harga gula disetor ke Rekening <strong>PT Kebon Agung</strong> di 
+                                                        <span t-field="o.bank_name"/> No <strong>A/C. <span t-field="o.account_number"/></strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left" width="10px" style="vertical-align:top; font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">b.</td>
+                                                    <td class="text-left" width="290px" style="vertical-align:top; font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">
+                                                        50 % dari harga dibayar tanggal <strong><span t-field="o.down_payment_date" t-field-options='{"format": "dd MMMM yyyy"}'/></strong>, 
+                                                        sedangkan sisanya sebesar 50 % dibayar pada saat penebusan dan dilakukan paling lambat tanggal
+                                                        <strong><span t-field="o.final_payment_date" t-field-options='{"format": "dd MMMM yyyy"}'/></strong>
+                                                        <br></br>
+                                                        <br></br>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">    
+                                        <td width="150px" class="text-left" style="vertical-align:top">Pengambilan</td>
+                                        <td width="30px" class="text-left" style="vertical-align:top">:</td>
+                                        <td width="300px" style="vertical-align:top">Pengambilan gula paling lambat tanggal <strong><span t-field="o.date_expected" t-field-options='{"format": "dd MMMM yyyy"}'/></strong>
+                                            dan apabila melampaui maka dikenakan biaya penyimpanan secara progresif sesuai ketentuan perusahaan                             
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br></br>
+                                <div style="text-indent: 65px; font-family: Times New Roman, Times, serif; font-size: 18px;text-align: justify">
+                                    Demikian surat penetapan penjualan ini untuk dilaksanakan secara bertanggung jawab sebagaimana mestinya dan atas kerja
+                                    sama saudara disampaikan terima kasih. 
+                                </div>
+                                <br></br>
+                                <table width="100%">
+                                    <tr>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" width="40%"></td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" colspan="2">
+                                            Surabaya, <span t-field="o.contract_date" t-field-options='{"format": "dd MMMM yyyy"}'/></td></tr>
+                                    <tr>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" width="40%"></td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" colspan="2">
+                                            Direksi PT Kebon Agung,</td></tr>
+                                    <tr>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center; vertical-align:top" width="40%">Menyetujui,</td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" colspan="2"></td></tr>
+                                    <tr>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" width="40%" height="100px"></td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" width="30%" height="100px"></td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" width="30%" height="100px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" width="40%"><u><span t-esc="o.ttd_customer.name"/></u></td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" width="30%"><u><span t-field="o.company_id.dept_dirut.manager_id.name" /></u></td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center" width="30%"><u><span t-field="o.company_id.dept_dirkeu.manager_id.name" /></u></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center; vertical-align:top" width="40%"><span t-esc="o.ttd_customer.function"/></td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center; vertical-align:top" width="30%">Direktur Utama</td>
+                                        <td style="font-family: Times New Roman, Times, serif; font-size: 18px;text-align: center; vertical-align:top" width="30%">Direktur Keuangan</td>
+                                    </tr>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>  
+	</data>
+</odoo>
+
+

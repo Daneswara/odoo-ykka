@@ -1,0 +1,97 @@
+<odoo>
+	<data>
+
+  <report
+        id="report_stock_product"
+        model="stock.picking"
+        string="Report Stock Receive"
+        name="ka_stock_account.report_stock_product_receive"
+        file="ka_stock_account.report_stock_product_receive"
+        report_type="qweb-pdf" 
+        menu="False"/>
+  
+    <template id="report_stock_product_receive">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <!-- <h2 t-field="doc.name"/> -->
+                        <table style="width:100%;">
+                        	<tr style="text-align:center;">
+                        		<td>DAFTAR BARANG YANG DISERAHKAN OLEH REKANAN</td>
+                        	</tr>
+                        	<tr style="text-align:center;">
+                        		<td>NOMOR : <span t-field ="doc.origin"/></td>
+                        	</tr>
+                        	<tr>
+                        		<td>Sesuai dengan prosedur, hendaknya barang-barang ini sudah di periksa selambat-lambatnya tanggal
+                                    <span t-field="doc.date_due_testing" t-field-options="{'format': 'dd-MM-yyyy'}"/>
+                                </td>
+                        	</tr>
+                        </table>
+                        <table style="width:100%; border: 1px solid black;">
+                        	<theader style="text-align: center;">
+                                    <tr style="border:1px solid black;">
+                                        <td width="5%" rowspan="2" style="font-size:12px;text-align: center; border:1px solid black; padding: 5px; vertical-align:middle;"> URT </td>
+                                        <td width="12%" rowspan="2" style="font-size:12px;text-align: center; border:1px solid black; padding: 5px; vertical-align:middle;"> NO/TGL TERIMA </td>
+                                        <td width="12%" rowspan="2" style="font-size:12px;text-align: center; border:1px solid black; padding: 5px; vertical-align:middle;"> KD.BARANG </td>
+                                        <td width="35%" rowspan="2" style="font-size:12px;text-align: center; border:1px solid black; padding: 5px; vertical-align:middle;">NAMA DAN SPESIFIKASI BARANG </td>
+                                        <td width="10%" rowspan="2" style="font-size:12px;text-align: center; border:1px solid black; padding: 5px;vertical-align:middle;"> JUMLAH </td>
+                                        <td colspan="2" style="font-size:12px;text-align: center; border:1px solid black; padding: 5px;"> DITOLAK </td>
+                                        <td style="font-size:12px;text-align: center; border:1px solid black; padding: 5px;"> DITERIMA </td>
+                                        <td rowspan="2" style="font-size:12px;text-align: center; border:1px solid black; padding: 5px;"> PARAF </td>
+                                    </tr>
+                                    <tr>
+								        <td scope="col" style="font-size:12px;text-align: center; border:1px solid black;padding: 5px;">JUMLAH</td>
+								        <td scope="col" style="font-size:12px;text-align: center; border:1px solid black;padding: 5px;">PENJELASAN</td>
+								        <td scope="col" style="font-size:12px;text-align: center; border:1px solid black;padding: 5px;">JUMLAH</td>
+								    </tr>
+                                </theader>
+                                <tbody>
+                                	<t t-set="i" t-value="1"/>
+                                	<t t-foreach="doc.move_lines" t-as="line">
+                                		<tr style="border:1px solid black;">
+                                            <td style="text-align: center;border:1px solid black;padding: 5px;"><span t-esc="i"/></td>
+                                            <td style="text-align: center;border:1px solid black;padding: 5px;">
+                                            	<span t-field="doc.date_transfer" t-field-options="{'format': 'dd-MM-yyyy'}" /></td>
+                                            <td style="text-align: center;border:1px solid black;padding: 5px;"><span t-field="line.product_id.default_code"/></td>
+                                            <td style="border:1px solid black;padding: 5px;">
+                                            	<span t-field="line.product_id.name"/>
+                                            	<t t-if="line.product_id.description">
+                                            		<br/>
+                                            		<span t-field="line.product_id.description"/>
+                                            	</t>
+                                            </td>
+                                            <td style="text-align: center;border:1px solid black;"><span t-field="line.product_uom_qty"/> <span t-field="line.product_uom.name"/></td>
+                                            <td style="text-align: center;border:1px solid black;padding: 5px;"></td>
+                                            <td style="text-align: center;border:1px solid black;padding: 5px;"></td>
+                                            <td style="text-align: center;border:1px solid black;padding: 5px;"></td>
+                                            <td style="text-align: center;border:1px solid black;padding: 5px;"></td>
+                                        </tr>
+                                         <t t-set="i" t-value="i+1"/>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <table width="100%" style="margin-top:200px;">
+                                <tfooter>
+                                	<tr>
+                                		<td colspan="2">Keterangan :</td>
+                						<t t-set="doc" t-value="doc.with_context({'lang': doc.partner_id.lang})"/>
+                                		<td style="text-align:center;"><span t-field="user.company_id.city"/>, <span t-field="doc.date_printed" t-field-options="{&quot;format&quot;: &quot;dd MMMM yyyy&quot;}" /></td>
+                                	</tr>
+                                	<tr>
+                                		<td>- Dicetak menurut No SPM.</td>
+                                		<td style="text-align:left;">Manajer ybs.</td>
+                                		<td style="text-align:center;">Kepala Gudang:</td>
+                                	</tr>
+                                </tfooter>
+                        	</table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+	</data>
+</odoo>

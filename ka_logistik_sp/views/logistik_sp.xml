@@ -1,0 +1,152 @@
+<odoo>
+	<data>
+		<record id="logistik_sp_search" model="ir.ui.view">
+			<field name="name">logistik.sp.search</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="payment_term_id"/>
+				</field>
+			</field>
+		</record>
+
+		<!-- modify tree view -->
+		<record id="logistik_sp_tree" model="ir.ui.view">
+			<field name="name">logistik.sp.tree</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_planned']" position="replace"/>
+				<xpath expr="//field[@name='origin']" position="replace"/>
+				<xpath expr="//field[@name='amount_untaxed']" position="replace"/>
+				<xpath expr="//field[@name='date_order']" position="replace">
+					<field name="date_order" widget="date"/>
+					<field name="date_planned" invisible="context.get('quotation_only', False)"/>
+					<!-- <field name="tgl_serah"/> -->
+				</xpath>
+				<xpath expr="//field[@name='amount_total']" position="after">
+					<field name="payment_term_id"/>
+				</xpath>
+			</field>
+		</record>
+
+		<!-- modify form view -->
+		<record id="logistik_sp_form" model="ir.ui.view">
+			<field name="name">logistik.sp.form</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="arch" type="xml">
+				<!-- <xpath expr="//button[@string='Bid Received']" position="replace"/> -->
+				<xpath expr="//button[@name='action_rfq_send']" position="replace"/>
+				<!-- <xpath expr="//button[@string='Re-Send RFQ by Email']" position="replace"/> -->
+				<xpath expr="//button[@name='print_quotation']" position="replace"/>
+				<!-- <xpath expr="//button[@string='Re-Print RFQ']" position="replace"/> -->
+
+				<xpath expr="//div[@class='oe_title']" position="replace">
+					<div class="oe_title">
+						<label string="Konsep SP " attrs="{'invisible': [('state','not in',('draft','sent','bid'))]}"/>
+						<label string="Surat Pesanan " attrs="{'invisible': [('state','in',('draft','sent','bid'))]}"/>
+						<h1>
+							<field name="name" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+						</h1>
+					</div>
+				</xpath>
+				
+				<xpath expr="/form/sheet/group/group/field[@name='partner_ref']" position="replace">
+					<field name="partner_ref" invisible="1"/>
+					<field name="spm_id"/>
+					<field name="golongan"/>
+					<field name="pengadaan"/>
+				</xpath>
+
+				<field name="order_type" position="attributes">
+					<attribute name="attrs">{'invisible':1}</attribute>
+				</field>
+
+				<xpath expr="//page[2]//div" position="replace"/>
+				<xpath expr="//page[2]//label[@for='date_planned']" position="replace"/>
+				<xpath expr="//page[2]//field[@name='incoterm_id']" position="before">
+					<field name="company_id"/>
+					<field name="is_shipped"/>
+				</xpath>
+
+				<field name="date_order" position="replace">
+					<field name="date_order" widget="date"/>
+					<field name="date_planned" widget="date"/>
+				</field>
+
+				<field name="company_id" position="replace"/>
+
+				<xpath expr="//button[@name='button_draft']" position="replace">
+					<button name="action_cancel_draft" states="cancel,sent,confirmed" string="Set to Draft" type="object" groups="account.group_account_manager"/>
+				</xpath>
+				<xpath expr="//button[@name='button_cancel']" position="replace">
+					<button name="%(action_call_wizard_cancel)d" states="draft,confirmed,sent,bid,approved,except_picking,except_invoice" string="Batalkan SP" type="action" />
+				</xpath>
+
+				<xpath expr="//field[@name='order_line']" position="replace">
+					<field name="order_line">
+						<tree string="Detail Pesanan" create="false">
+							<field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,False,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+							<!-- <field name="product_id"/> -->
+							<field name="name" invisible="1"/>
+							<!-- <field name="date_planned"/> -->
+							<field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" invisible="1"/>
+							<field name="lst_price"/>
+							<!-- <button name="%(ka_logistik_master.action_product_update_hps)d" groups="logistik_pengadaan.group_logistik_logistik" type="action" string="Update HPS" icon="fa-refresh"/> -->
+							<button name="%(ka_logistik_master.action_product_update_hps)d" type="action" string="Update HPS" icon="fa-refresh"/>
+							<field name="account_analytic_id" groups="purchase.group_analytic_accounting" domain="[('type','not in',('view','template'))]"/>
+							<!-- <field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/> -->
+							<field name="product_qty"/>
+							<!-- <field name="product_uom" groups="product.group_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/> -->
+							<field name="product_uom" groups="product.group_uom"/>
+							<field name="price_unit"/>
+							<field name="taxes_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>
+							<field name="price_subtotal"/>
+							<field name="state" invisible="1"/>
+						</tree>	
+						<form>
+							<group>
+								<field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,False,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+								<!-- <field name="product_id"/> -->
+								<field name="name" invisible="1"/>
+								<field name="spesifikasi"/>
+								<field name="keterangan"/>
+								<!-- <field name="date_planned"/> -->
+								<field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" invisible="1"/>
+								<field name="account_analytic_id" groups="purchase.group_analytic_accounting" domain="[('type','not in',('view','template'))]"/>
+								<!-- <field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/> -->
+								<field name="product_qty"/>
+								<!-- <field name="product_uom" groups="product.group_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/> -->
+								<field name="product_uom" groups="product.group_uom"/>
+								<field name="price_unit"/>
+								<field name="taxes_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>
+								<field name="price_subtotal"/>
+								<field name="state" invisible="1"/>	
+							</group>
+						</form>
+					</field>
+				</xpath>
+				<!-- <xpath expr="//page[@string='RFQ &amp; Bid']" position="attributes">
+					<attribute name="attrs">{'invisible':1}</attribute>
+				</xpath> -->
+				<xpath expr="//page[1]" position="after">
+					<page string="Tanda Tangan">
+						<group col="4">
+							<field name="ttd_dir"/>
+							<field name="ttd_keu"/>
+							<field name="ttd_div"/>
+							<field name="ttd_log"/>
+						</group>
+					</page>
+					<page string="Infomasi">
+						<group>
+							<field name="partner_ref"/>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

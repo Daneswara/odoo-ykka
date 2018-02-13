@@ -1,0 +1,85 @@
+<odoo> 
+	<data>
+		<record id="module_tanaman_category" model="ir.module.category">
+            <field name="name">Tanaman</field>
+        </record>
+
+        <record id="group_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_tanaman_category"/>
+        </record>
+
+        <record id="group_tr" model="res.groups">
+            <field name="name">Tebu Rakyat</field>
+            <field name="category_id" ref="module_tanaman_category"/>
+			<field name="implied_ids" eval="[(4, ref('ka_tanaman.group_user'))]"/>
+        </record>
+
+        <record id="group_ts" model="res.groups">
+            <field name="name">Tebu Sendiri</field>
+            <field name="category_id" ref="module_tanaman_category"/>
+			<field name="implied_ids" eval="[(4, ref('ka_tanaman.group_user'))]"/>
+        </record>
+
+        <record id="group_ta" model="res.groups">
+            <field name="name">Tebang Angkut</field>
+            <field name="category_id" ref="ka_tanaman.module_tanaman_category"/>
+			<field name="implied_ids" eval="[(4, ref('ka_tanaman.group_user'))]"/>
+        </record>
+
+        <record id="group_biro" model="res.groups">
+            <field name="name">Biro</field>
+            <field name="category_id" ref="module_tanaman_category"/>
+			<field name="implied_ids" eval="[(4, [ref('ka_tanaman.group_ts'),ref('ka_tanaman.group_tr'),ref('ka_tanaman.group_ta')])]"/>
+        </record>
+
+        <record id="group_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_tanaman_category"/>
+			<field name="implied_ids" eval="[(4, ref('ka_tanaman.group_biro'))]"/>
+        </record>
+		<!--Multicompanies rules-->
+	  	<record model="ir.rule" id="ka_plantation_area_rule">
+	        <field name="name">Tanaman-Area Company Rule</field>
+	        <field name="model_id" ref="model_ka_plantation_area"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_plantation_farmer_rule">
+	        <field name="name">Tanaman-Petani Company Rule</field>
+	        <field name="model_id" ref="model_ka_plantation_farmer"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_plantation_kud_rule">
+	        <field name="name">Tanaman-KUD Company Rule</field>
+	        <field name="model_id" ref="model_ka_plantation_kud"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_plantation_rehabilitation_rule">
+	        <field name="name">RehabilitasiCompany Rule</field>
+	        <field name="model_id" ref="model_ka_plantation_area_rehabilitation"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_plantation_register_rule">
+	        <field name="name">Rehabilitasi Multicompanies Rule</field>
+	        <field name="model_id" ref="model_ka_plantation_register"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_plantation_register_rule">
+	        <field name="name">Kontrak TS Multicompanies Rule</field>
+	        <field name="model_id" ref="model_ka_plantation_ts_contract"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_plantation_zona_rehabilitation_rule">
+	        <field name="name">Zoba Rehabilitasi Company Rule</field>
+	        <field name="model_id" ref="model_ka_plantation_zona_rate"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>	    
+	</data>
+</odoo>

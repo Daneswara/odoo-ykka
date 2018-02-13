@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="action_split_ka_picking" model="ir.actions.act_window">
+            <field name="name">Split Picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking.split.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    	 
+        <record id="stock_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//form/sheet/div[@class='oe_button_box']" position="attributes">
+            		<attribute name="style">width: 500px;</attribute>
+            	</xpath>
+                <button name="action_see_move_scrap" position="after">
+                    <button name="%(delivery_slip_ka)d" string="Surat Jalan (Retail)" type="action"
+                        class="oe_stat_button" icon="fa-print" style="width: 160px !important;"
+                        attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/> 
+					 <button name='print_bukti_pengeluaran' string='Bukti Pengeluaran' type='object'
+                        class='oe_stat_button' icon='fa-print' style="width: 160px !important;" 
+                        attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/> 
+<!--                    <button name="%(delivery_slip_molasses)d" string="Surat Jalan" type="action"-->
+<!--                        class="oe_stat_button" icon="fa-print"-->
+<!--                        attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>               -->                   
+<!--                    <button name="%(bukti_keluar_gula)d" string="Pengeluaran Gula" type="action"-->
+<!--                        class="oe_stat_button" icon="fa-print"-->
+<!--                        attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>-->
+<!--					<button name="%(bukti_keluar_gula_natura)d" string="Bukti Pengeluaran Gula (Natura)" type="action"-->
+<!--                        class="oe_stat_button" icon="fa-print" style="width: 170px !important;" -->
+<!--                        attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>                    -->
+                </button>
+                <field name="origin" position="after">
+                    <field name="so_categ_id" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')], 'readonly': [('state', '!=', 'draft')]}"/>   
+                </field>
+                <xpath expr="//form/sheet/notebook/page[@name='extra']" position="after">
+                	<page string="Delivery Info" name="do_info" attrs="{'invisible': [('picking_type_code','!=','outgoing')]}">
+                        <group>
+                            <group>
+                                <field name="delivery_number" attrs="{'readonly': [('state','=','done')]}"/>
+                                <field name="timbangan_id" attrs="{'readonly': [('state','=','done')]}"/>
+                            </group>
+                            <group>
+                                <field name="agent_partner_id" attrs="{'readonly': [('state','=','done')]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <button name="do_new_transfer" position="after">
+            		<button name="%(action_split_ka_picking)d" type="action" class="oe_highlight" string="Split"
+            			attrs="{'invisible': ['|',('picking_type_code','!=','outgoing'),('state','in',('cancel','done'))]}"/>
+            	</button>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,10 @@
+<odoo>
+	<data>
+    	<record id="logistik_res_partner_comp_rule" model="ir.rule">
+    	    <field name="name" >Multicompany Partner</field>
+    	    <field name="model_id" ref="model_res_partner"/>
+    	    <field name="global" eval="True"/>
+    	    <field name="domain_force"> ['|',('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
+	    </record>
+	</data>
+</odoo>

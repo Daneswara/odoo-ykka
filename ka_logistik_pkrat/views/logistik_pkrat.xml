@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- <menuitem 
+			id="menu_log6000" 
+			name="LOG6 - SP Kontrak/PKRAT"
+			parent="ka_logistik_master.logistik_root" 
+			groups="logistik_pkrat.group_manager"
+			sequence="6"/> -->
+
+		<menuitem 
+			id="menu_log6000" 
+			name="LOG6 - SP Kontrak/PKRAT"
+			parent="ka_logistik_master.logistik_root" 
+			sequence="6"/>
+
+		<menuitem 
+			id="menu_log6100" 
+			name="Transaksi"
+			parent="menu_log6000" 
+			sequence="1"/>
+
+		<!--menuitem 
+			id="menu_log6800" 
+			name="Tabel-Tabel"
+			parent="menu_log6000" 
+			sequence="8"/-->
+
+		<!-- Filter Tree -->	
+		<record model="ir.ui.view" id="view_logistik_pkrat_filter">
+			<field name="name">logistik.pkrat.filter</field>
+			<field name="model">logistik.pkrat</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Pencarian Investasi">
+					<field name="code" string="No. Investasi"/>
+					<field name="name" string="Nama Proyek"/>
+					<field name="company_id"/>
+					<field name="stasiun_id"/>
+					<field name="fiscal_year"/>
+				</search>
+			</field>
+		</record>
+
+		<!-- Form - Transaksi Investasi(PKRAT) -->
+		<record model="ir.ui.view" id="view_logistik_pkrat_tree">
+			<field name="name">logistik.pkrat.tree</field>
+			<field name="model">logistik.pkrat</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Investasi"  toolbar="1">
+					<field name="code"/>
+					<field name="stasiun_id"/>
+					<field name="department_id" invisible="1"/>
+					<field name="name"/>
+					<!-- <field name="nilai" groups="logistik_pkrat.group_manager"/> -->
+					<field name="nilai"/>
+					<field name="pkrat_state"/>
+					<!-- <field name="company_id" groups="base.group_multi_company" string="Unit/PG"/> -->
+					<field name="company_id" string="Unit/PG"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form - Transaksi Perijijnan(PKRAT) -->
+		<record model="ir.ui.view" id="view_logistik_pkrat_ijin_tree">
+			<field name="name">logistik.pkrat.ijin.tree</field>
+			<field name="model">logistik.pkrat</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Perijinan"  colors="grey:pkrat_state=='confirm';blue:pkrat_state=='draft'">
+					<field name="code"/>
+					<field name="stasiun_id"/>
+					<field name="department_id" invisible="1"/>
+					<field name="name"/>
+					<!-- <field name="nilai" groups="logistik_pkrat.group_manager"/> -->
+					<field name="nilai"/>
+					<field name="account_id"/>
+					<field name="no_ijin"/>
+					<field name="tgl_ijin"/>
+					<field name="pkrat_state" invisible="1"/>
+					<!-- <field name="company_id" groups="base.group_multi_company"/> -->
+					<field name="company_id" groups="base.group_multi_company"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form - Transaksi Persetujua(PKRAT) -->
+		<record model="ir.ui.view" id="view_logistik_pkrat_setuju_tree">
+			<field name="name">logistik.pkrat.setuju.tree</field>
+			<field name="model">logistik.pkrat</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Perijinan"  colors="grey:pkrat_state=='approved';blue:pkrat_state=='confirm'">
+					<field name="code" string="No.Investasi" />
+					<field name="stasiun_id" string="Stasiun"/>
+					<field name="department_id" invisible="1"/>
+					<field name="name" string="Nama Proyek"/>
+					<!-- <field name="nilai" groups="logistik_pkrat.group_manager"/> -->
+					<field name="nilai"/>
+					<field name="account_id"/>
+					<field name="no_setuju"/>
+					<field name="tgl_setuju"/>
+					<field name="pkrat_state" invisible="1"/>
+					<!-- <field name="company_id" groups="base.group_multi_company" string="Unit/PG"/> -->
+					<field name="company_id" groups="base.group_multi_company"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_pkrat_form">
+			<field name="name">logistik.pkrat.form</field>
+			<field name="model">logistik.pkrat</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Investasi">
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="code" default_focus="1" placeholder="No. Investasi" required="1" style="width:50%%"/>
+								<field name="name" placeholder="Nama Proyek"/>
+							</h1>
+						</div>
+
+						<group>
+							<group>
+								<field name="pkrat_type" required="1"/>
+								<field name="operating_unit_id" options="{'no_create': True}" required="1"/>
+								<field name="fiscal_year"/>
+								<field name="stasiun_id" string="Stasiun"/>
+								<field name="spesifikasi"/>
+								<!-- <field name="nilai" groups="logistik_pkrat.group_manager"/> -->
+								<field name="nilai"/>
+							</group>
+							<group>
+								<field name="company_id" groups="base.group_multi_company" string="Company"/>
+								<field name="account_id"/>
+								<field name="product_id"/>
+								<field name="tahap"/>
+								<field name="department_id" string="Bagian/Devisi"/>
+							</group>
+						</group>
+						<!-- <notebook colspan="4" groups="ka_logistik_pkrat.group_manager"> -->
+						<notebook>
+<!-- 							<page string="Realisasi SP" name="realisasi_sp">
+								<field name="purchase_line_ids">
+									<tree>
+										<field name="order_id" string="Nomor SP"/>
+										<field name="product_id" string="Produk/Jasa"/>
+										<field name="name" string="Deskripsi"/>
+										<field name="product_qty" string="Kuantum"/>
+										<field name="product_uom" string="Satuan"/>
+										<field name="price_unit" string="Harga Satuan"/>
+										<field name="price_subtotal" string="Total Harga" sum="Total"/>
+									</tree>
+								</field>
+							</page>
+ -->							<page string="Realisasi Fisik" name="realisasi_fisik" invisible="1">
+								<field name="fisik_ids" colspan="6">
+									<tree>
+										<field name="nomor"/>
+										<field name="tanggal"/>
+										<field name="progress" sum='Total'/>
+										<field name="keterangan"/>
+									</tree>
+									<form>
+										<group>
+											<field name="nomor" style="width: 30%%"/>
+											<newline/>
+											<field name="tanggal"/>
+											<newline/>
+											<field name="progress" sum='Total'/>
+											<newline/>
+											<field name="keterangan" colspan="4"/>
+										</group>
+									</form>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<!-- LOG6100 Action or Menu Definition-->
+		<record model="ir.actions.act_window" id="action_pkrat_b_tree">
+			<field name="name">Investasi Baru</field>
+			<field name="res_model">logistik.pkrat</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_pkrat_tree"/>
+			<field name="search_view_id" ref="view_logistik_pkrat_filter"/>
+			<field name="domain">[('pkrat_type', '=', '1')]</field>
+			<field name="context">{'default_pkrat_type':'1', 'default_pkrat_state':'draft'}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log6100" 
+			name="Investasi Baru"
+			id="menu_log6110" 
+			action="action_pkrat_b_tree"
+			sequence="1"/>
+
+		<record model="ir.actions.act_window" id="action_pkrat_p_tree">
+			<field name="name">Perbaikan Luar Biasa</field>
+			<field name="res_model">logistik.pkrat</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_pkrat_tree"/>
+			<field name="search_view_id" ref="view_logistik_pkrat_filter"/>
+			<field name="domain">[('pkrat_type', '=', '2')]</field>
+			<field name="context">{'default_pkrat_type':'2'}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log6100" 
+			name="Perbaikan Luar Biasa"
+			id="menu_log6120" 
+			action="action_pkrat_p_tree"
+			sequence="2"/>
+
+		<record model="ir.actions.act_window" id="action_pkrat_i_tree">
+			<field name="name">Inventaris</field>
+			<field name="res_model">logistik.pkrat</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_pkrat_tree"/>
+			<field name="search_view_id" ref="view_logistik_pkrat_filter"/>
+			<field name="domain">[('pkrat_type', '=', '3')]</field>
+			<field name="context">{'default_pkrat_type':'3'}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log6100" 
+			name="Inventaris"
+			id="menu_log6130" 
+			action="action_pkrat_i_tree"
+			sequence="3"/>
+
+		<record model="ir.actions.act_window" id="action_pkrat_all_tree">
+			<field name="name">Semua Proyek</field>
+			<field name="res_model">logistik.pkrat</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,graph</field>
+			<field name="view_id" ref="view_logistik_pkrat_tree"/>
+			<field name="search_view_id" ref="view_logistik_pkrat_filter"/>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log6100" 
+			name="Semua Proyek"
+			id="menu_log6140" 
+			action="action_pkrat_all_tree"
+			sequence="4"/>
+
+		<!-- LOG6200 Perijinan - Action or Menu Definition-->
+		<record model="ir.actions.act_window" id="action_pkrat_ijin_tree">
+			<field name="name">Perijinan</field>
+			<field name="res_model">logistik.pkrat</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_pkrat_ijin_tree"/>
+			<field name="search_view_id" ref="view_logistik_pkrat_filter"/>
+			<field name="domain">[('pkrat_type', '=', '1'), ('pkrat_state', '!=', 'approved')]</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log6000" 
+			name="Perijinan"
+			id="menu_log6200" 
+			action="action_pkrat_ijin_tree"
+			sequence="2"/>
+
+		<!-- LOG6200 Persetujuan - Action or Menu Definition-->
+		<record model="ir.actions.act_window" id="action_pkrat_setuju_tree">
+			<field name="name">Persetujuan</field>
+			<field name="res_model">logistik.pkrat</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_pkrat_setuju_tree"/>
+			<field name="search_view_id" ref="view_logistik_pkrat_filter"/>
+			<field name="domain">[('pkrat_type', '=', '1'), ('pkrat_state', '!=', 'draft')]</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log6000" 
+			name="Persetujuan"
+			id="menu_log6300" 
+			action="action_pkrat_setuju_tree"
+			sequence="3"/>
+
+	</data>
+</odoo>

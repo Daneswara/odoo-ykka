@@ -1,0 +1,26 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_logistik_sp_partner_tree">
+			<field name="name">logistik.sp.partner.tree</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree"/>
+			<field name="arch" type="xml">
+				<field name="phone" position="before">
+					<field name="status_transaksi"/>
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_sp_partner_form">
+			<field name="name">logistik.sp.partner.form</field>
+			<field name="model">res.partner</field>
+			<field name="priority" eval="30"/>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<field name="alias" position="after">
+					<button name="action_convert_calon_partner" type="object" class="oe_button btn-primary" string="Jadikan Calon Rekanan" attrs="{'invisible': ['|', '|', ('no_acc', '!=', False), ('is_calon', '=', True), ('purchase_order_count', '&gt;', 0)]}"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</odoo>

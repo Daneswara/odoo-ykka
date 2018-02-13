@@ -1,0 +1,15 @@
+<odoo>
+	<data>
+		<record id="ka_stock_move_picking_form" model="ir.ui.view">
+		    <field name="name">stock.move.inherit.form</field>
+		    <field name="model">stock.move</field>
+		    <field name="inherit_id" ref="stock.view_move_picking_form"/>
+		    <field name="arch" type="xml">
+	        	<field name="name" position="after">
+	        		<field name="spm_stasiun_id" attrs="{'invisible': [('spm_stasiun_id','=',False)]}"/>
+	        		<field name="spm_user_id" attrs="{'invisible': [('spm_user_id','=',False)]}"/>
+	        	</field>
+		    </field>
+	    </record>
+	</data>
+</odoo>

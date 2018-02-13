@@ -1,0 +1,76 @@
+<odoo>
+    <data>
+    	<record id="action_import_bank_statement" model="ir.actions.act_window">
+            <field name="name">Import Transactions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.statement.line.import.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <record id="view_ka_bank_statement_line_form" model="ir.ui.view">
+            <field name="name">bank.statement.line.form</field>
+            <field name="model">account.bank.statement.line</field>
+            <field name="inherit_id" ref="account.view_bank_statement_line_form"/>
+            <field name="arch" type="xml">
+            	<field name="sequence" position="after">
+            		<field name="journal_voucher_id"/>
+            		<field name="payment_confirm_id"/>
+            	</field>
+            </field>
+        </record>
+        
+        <record id="view_bank_statement_form_inherit" model="ir.ui.view">
+            <field name="name">account.bank.statement.form.inherit</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header/button[1]" position="after">
+                	<!--
+                	  <button name="action_reconcile_all_statement_lines" string="Reconcile All" type="object" class="oe_highlight"
+                	  	attrs="{'invisible': ['|','|',('all_lines_reconciled','=',True),('line_ids','=',[]),('state','!=','open')]}" confirm="Apakah Anda yakin ingin reconcile semua?"/>
+                	-->  
+                	<button name="%(action_import_bank_statement)d" string="Import Transactions" type="action" 
+                	  	attrs="{'invisible':['|',('state','=','confirm'),('journal_type','=','cash')]}"/>
+                	<button name="action_pull_bukti_kas" string="Pull Bukti Kas" type="object" 
+                	  	attrs="{'invisible':[('state','=','confirm')]}"/>
+                </xpath>         
+                 <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='name']" position="after"> 
+                    <field name="journal_voucher_id" options="{'no_create': True}" domain="[('state','=','approved')]" 
+                    	attrs="{'readonly': ['|',('payment_confirm_id','!=',False),('journal_entry_ids','!=',[])]}"/>
+                	<field name="payment_confirm_id" options="{'no_create': True}" domain="[('state','=','confirm')]" 
+                		 attrs="{'readonly': ['|',('journal_voucher_id','!=',False),('journal_entry_ids','!=',[])]}"/>
+                 </xpath>   
+                 <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='partner_id']" position="attributes">
+                 	<attribute name="attrs">{'readonly': ['|',('payment_confirm_id','!=',False),('journal_entry_ids','!=',[])]}</attribute>
+                 </xpath>   
+               	<xpath expr="//form/sheet/group[1]/group[2]/div[1]/button[1]" position="replace"> 
+              		 <button class="oe_inline oe_link oe_edit_only" name="open_cashbox_start" string="&#8594; Count" type="object"
+                        attrs="{'invisible':['|','|',('state','!=','open'),('journal_type','!=','cash')]}"/>
+              	</xpath>
+             	<xpath expr="//form/sheet/group[1]/group[2]/div[1]/button[2]" position="replace"> 
+              	</xpath>
+              	<xpath expr="//form/sheet/group[1]/group[2]/div[2]/button[1]" position="replace"> 
+              		<button class="oe_inline oe_link oe_edit_only" name="open_cashbox_end" string="&#8594; Count" type="object"
+                    	attrs="{'invisible':['|',('state','!=','open'),('journal_type','!=','cash')]}"/> 
+             	</xpath>
+             	<xpath expr="//form/sheet/group[1]/group[2]/div[2]/button[2]" position="replace"> 
+              	</xpath>
+            </field> 
+		</record>
+		
+		<record id="ka_bank_statement_cancel_form_inherit" model="ir.ui.view">
+            <field name="name">bank.statement.cancel.form.inherit</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account_cancel.bank_statement_cancel_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_cancel_reconciliation']" position="after">
+                    <button name="reconcile_proposed_payment"
+                    	string="Reconcile" type="object" icon="fa fa-check" 
+                    	attrs="{'invisible': ['|','|',('journal_entry_ids','!=',[]),('state','=','confirm'),('payment_confirm_id','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>	

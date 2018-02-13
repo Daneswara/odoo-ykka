@@ -1,0 +1,5 @@
+<odoo>
+	<data>
+		<function id="ka_hr_holidays_cleaning_field" model="ka_hr.holidays.clean.field" name="do_clean_field"/>
+	</data>
+</odoo>

@@ -1,0 +1,100 @@
+<odoo>
+	<data>
+		<template id="report_tender_spp">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="ka_report_layout.ka_external_layout">
+						<div class="page" style="font-family: 'Arial'; font-size:16px;margin-top:10px;">
+							<h3 class="text-center" style="color:#0086b3"><b>SURAT PERMINTAAN PENAWARAN HARGA</b></h3>
+							<div class="row text-center">
+								Nomor: <b><span t-field="o.nomor"/></b>
+							</div>
+								
+							<div class="row">
+								<div class="col-xs-12">
+									<p>Kepada Yth :</p>
+
+									<table class="table" width="100%" style="margin-top: 5px; border: none">
+										<t t-foreach="o.spp_ids.sorted(key=lambda b: b.partner_id.code)" t-as="s">
+											<tr>
+												<td style="border:none; padding:2px" width="3%"><span t-esc="s_index+1"/></td>
+												<td style="border:none; padding:2px" width="5%"><span t-field="s.partner_id.code"/></td>
+												<td style="border:none; padding:2px" width="32%"><span t-field="s.partner_id.name"/></td>
+												<td style="border:none; padding:2px" width="15%"><span t-field="s.partner_id.fax"/></td>
+												<td style="border:none; padding:2px" width="25%"><span t-field="s.partner_id.email"/></td>
+											</tr>
+										</t>
+									</table>
+										
+								</div>
+							</div>
+							<br/>
+							<br/>
+							<div class="row">
+								<div class="col-xs-12">
+									<p>Mohon penawaran harga untuk barang-barang / jasa sebagai berikut : </p>
+									<table class="table" width="100%">
+										<t t-foreach="o.line_ids.sorted(key=lambda b: b.product_id.default_code)" t-as="l">
+											<tr>
+												<td style="border:none; padding:2px" width="5%"><b><span t-esc="l_index+1"/></b></td>
+												<td style="border:none; padding:2px" width="50%"><b><span t-field="l.product_id"/></b></td>
+												<td style="border:none; padding:2px" width="20%"><b><span t-field="l.kuantum"/> <span t-field="l.unit_id.name"/></b></td>
+												
+												<t t-set="last_sp" t-value="l.get_last_sp(l.product_id.id,o.tanggal)"/>
+												<t t-if="last_sp">
+													<td style="border:none; padding:2px">
+														<span t-field="last_sp[0].date_order" t-field-options='{"format": "dd-MM-y"}'/> | <span t-field="last_sp[0].price_unit"/>
+													</td>
+												</t>
+											</tr>
+											<tr>
+												<td style="border:none; padding:2px"></td>
+												<td style="border:none; padding:2px" colspan="2">
+													<span t-field="l.spesifikasi"/><br/>
+													<span t-field="l.spm_line_id.catatan"/>
+												</td>
+											</tr>
+										</t>
+									</table>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12" style="line-height:1.5;">
+									<span t-field="o.note"/><br/><br/>
+									<p>Surat penawaran dikirim ke <b>PT KEBON AGUNG - SURABAYA</b>, Fax: <b><span t-field="o.company_id.fax"/></b><br/>
+									atau email : <b>logistik.ptkba@gmail.com</b><br/>
+									Penyerahan penawaran harga paling lambat tanggal : <b><span t-field="o.max_penawaran" t-field-options='{"format": "d MMMM y"}'/></b></p>
+								</div>
+							</div>
+
+							<div class="row" style="margin-top:125px">
+								<div class="col-xs-5 col-xs-offset-7 text-center">
+									<p><span t-field="o.company_id.city"/>, <span t-field="o.tanggal" t-field-options='{"format": "d MMMM y"}'/></p>
+									<p style="margin-top:100px"><strong><u><span t-field="o.company_id.manager_log.manager_id.name"/></u></strong><br/>
+										<span>Kepala Bagian Logistik</span></p>
+								</div>
+							</div>
+ 							<div class="row" style="position:absolute; bottom:-1090;">
+								<div class="col-xs-12" style="line-height:1.5;">
+									<strong>Keterangan:</strong><br/>
+									- Harga yang ditawarkan adalah Franco Gudang :  <b><span t-field="o.delivery_to.name"/> - <span t-field="o.delivery_to.city"/> </b><br/>
+									- Diharapkan barang datang paling lambat tanggal :  <b><span t-field="o.tgl_serah" t-field-options='{"format": "d MMMM y"}'/></b><br/><br/>
+								</div>
+							</div>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+
+		<report
+			id="action_report_tender_spp"
+			model="logistik.tender"
+			string="SPP Rekap"
+			report_type="qweb-pdf"
+			file="ka_logistik_pengadaan.report_tender_spp"
+			name="ka_logistik_pengadaan.report_tender_spp"
+			menu="False"
+		/>
+	</data>
+</odoo>

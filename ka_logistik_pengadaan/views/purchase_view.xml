@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="view_purchase_order_line_spm_form" model="ir.ui.view">
+            <field name="name">ka.purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="ka_purchase.view_ka_purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[1]/field[@name='account_analytic_id']" position="after">
+                    <field name="spm_line_id" string="Sumber SPM" readonly="1"/>
+                </xpath> 
+            </field>    
+        </record>
+    </data>
+</odoo>

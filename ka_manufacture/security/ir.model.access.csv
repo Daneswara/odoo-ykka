@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ka_manufacture_daily_manager,ka_manufacture.daily,model_ka_manufacture_daily,stock.group_stock_manager,1,1,1,1
+access_ka_manufacture_daily_user,ka_manufacture.daily,model_ka_manufacture_daily,stock.group_stock_user,1,0,1,0
+access_ka_manufacture_session_manager,ka_manufacture.session,model_ka_manufacture_session,stock.group_stock_manager,1,1,1,1
+access_ka_manufacture_session_user,ka_manufacture.session,model_ka_manufacture_session,stock.group_stock_user,1,0,1,0
+access_ka_manufacture_closing_priod_manager,ka_manufacture.closing.period,model_ka_manufacture_closing_period,stock.group_stock_manager,1,1,1,1
+access_ka_manufacture_closing_priod_user,ka_manufacture.closing.period,model_ka_manufacture_closing_period,stock.group_stock_user,1,0,1,0

@@ -1,0 +1,45 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_form_ts_category_cost">
+			<field name="name">Form Biaya Kategori Tebu Sendiri</field>
+			<field name="model">ka_plantation.ts.category.cost</field>
+			<field name="arch" type="xml">
+				<form string="Form Biaya Kategori Tebu Sendiri">
+					<sheet>
+						<group>
+							<field name="code" style="width:35%%"/>
+							<field name="name"/>
+							<field name="category_id" style="width:50%%"/>
+							<field name="property_account_id" style="width:50%%"/>
+							<field name="company_id" groups="base.group_multi_company"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tree_ts_category_cost">
+			<field name="name">Data Biaya Kategori Tebu Sendiri</field>
+			<field name="model">ka_plantation.ts.category.cost</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="code"/>
+					<field name="name"/>
+					<field name="category_id"/>
+					<field name="property_account_id"/>
+					<field name="company_id" groups="base.group_multi_company"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_ts_category_cost">
+			<field name="name">Biaya Kategori Area</field>
+			<field name="res_model">ka_plantation.ts.category.cost</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data Biaya Kategori Area masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+	</data>
+</odoo>

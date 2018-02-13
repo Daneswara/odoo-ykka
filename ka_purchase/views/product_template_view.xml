@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+        <record id="product_template_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="supplier_taxes_id"  position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </field>
+                
+            </field> 	
+        </record>
+        
+        <record id="view_logistik_product_sp_tree" model="ir.ui.view">
+			<field name="name">logistik.product.sp.tree</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="ka_logistik_master.view_logistik_product_template_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//tree/field[@name='ref_pabrik']" position="after">
+					<field name="last_order"/>
+					<field name="last_order_id"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="view_logistik_product_sp_form" model="ir.ui.view">
+			<field name="name">logistik.product.sp.form</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="stock.view_template_property_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='route_from_categ_ids']" position="after">
+					<field name="last_order" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
+					<field name="last_order_id" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
+					<field name="last_consume_date" attrs="{'invisible': [('purchase_ok','=',False)]}"/>
+				</xpath>
+			</field>
+		</record>
+		
+		 <record model="ir.ui.view" id="product_template_form_view_edit_uom_button">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button string="Edit Satuan Barang"
+                        type="action"
+                        name="%(act_open_product_uom_edit_wizard)d" 
+                        attrs="{'invisible': [('type', '!=', 'product')]}"
+                    	groups="purchase.group_purchase_manager"/>
+                </header>
+            </field>
+        </record>
+		
+		<record model="ir.ui.view" id="product_form_view_edit_uom_button">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button string="Edit Satuan Barang"
+                        type="action"
+                        name="%(act_open_product_uom_edit_wizard)d" 
+                        attrs="{'invisible': [('type', '!=', 'product')]}"
+                    	groups="purchase.group_purchase_manager"/>
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_confirm_merge_ntb" model="ir.ui.view">
+            <field name="name">confirm.merge.ntb</field>
+            <field name="model">account.invoice.merge.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Merge Request Confirmation Form">
+                    <h2>Are you sure to merge selected NTB?</h2>
+                    <footer>
+                        <button name="do_merge_ntb" string="Merge" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+	</data>
+</openerp>

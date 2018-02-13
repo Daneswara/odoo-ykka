@@ -1,0 +1,10 @@
+<odoo>
+	<data>
+		<template id="assets_backend" name="financial_report_assets" inherit_id="web.assets_backend">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href="/ka_account/static/src/css/style.css" />
+				<script type="text/javascript" src="/ka_account/static/src/js/script.js" />
+			</xpath>
+		</template>
+	</data>
+</odoo>

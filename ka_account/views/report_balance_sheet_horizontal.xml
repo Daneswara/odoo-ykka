@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_balansheet_horizontal">
+        <a href="#" class="btn btn-primary" id="ka-print-report" download="financial_report.pdf"><span class="fa fa-print"></span> Print</a>
+        
+        <script type="text/javascript">
+            var link = window.location.href;
+            link = link.replace('html', 'pdf');
+            var element = document.getElementById('ka-print-report');
+            element.setAttribute('href', link);
+        </script>
+        
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <h3 style="text-align:center">
+                            UNIT <span t-esc="data['company_name']"/><br/>
+                            <span t-esc="data['account_report_id'][1]"/>
+                            <t t-if="data['date_to']">
+                                BULAN <span t-esc="datetime.datetime.strptime(data['date_to'],'%Y-%m-%d').strftime('%B %Y').upper()"/>
+                            </t>
+                        </h3> <br/>
+
+                        <div style="width:49%;float:left;font-size:10px;">
+                        <table class="table table-condensed" t-if="not data['enable_filter'] and not data['debit_credit']" >
+                            <thead>
+                                <tr class="info">
+                                    <th class="text-center" style="border:1px solid #000">U R A I A N</th>
+                                    <th class="text-center" style="border:1px solid #000">
+                                        <span t-esc="(datetime.datetime.strptime(data['date_from'], '%Y-%m-%d') - datetime.timedelta(days=1)).strftime('%B').upper()"/>
+                                    </th>
+                                    <th class="text-center" style="border:1px solid #000">
+                                        <span t-esc="datetime.datetime.strptime(data['date_to'], '%Y-%m-%d').strftime('%B').upper()"/>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="get_account_lines" t-as="a">
+                                    <t t-if="a['level'] != 0">
+                                            <t t-if="a.get('level') &gt; 3"><t t-set="style" t-value="'font-weight: normal;'"/></t>
+                                            <t t-if="not a.get('level') &gt; 3"><t t-set="style" t-value="'font-weight: bold;'"/></t>
+
+                                        <t t-if="a['sequence'] &lt; 40000">
+                                            <t t-if="a.get('display_value')">
+                                                <t t-if="a.get('level') != 1">
+                                                    <td class="account-link" t-att-data-id="a.get('id')" t-att-data-datefrom="data['date_from']" t-att-data-dateto="data['date_to']" 
+                                                        style="cursor:pointer; color:#337AB7; border-left:1px solid #000; border-right:1px solid #000">
+                                                        <span style="color: white;" t-esc="'....' * a.get('level', 0)"/>
+                                                        <span t-att-style="style" t-esc="a.get('name')"/>
+                                                    </td>
+                                                </t>
+
+                                                <t t-if="a.get('level') == 1">
+                                                    <td class="account-link" t-att-data-id="a.get('id')" t-att-data-datefrom="data['date_from']" t-att-data-dateto="data['date_to']" 
+                                                        style="cursor:pointer; color:#337AB7; border-left:1px solid #000; border:1px solid #000">
+                                                        <span style="color: white;" t-esc="'....' * a.get('level', 0)"/>
+                                                        <span t-att-style="style" t-esc="a.get('name')"/>
+                                                    </td>
+                                                </t>
+
+                                                <t t-if="a.get('level') &gt; 3">
+                                                    <td class="text-right" style="border-right:1px solid #000">
+                                                        <span t-att-style="style" t-esc="a.get('balance_1')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                    </td>
+            
+<!--                                                     <td class="text-right" style="border-right:1px solid #000">
+                                                        <span t-att-style="style" t-esc="a.get('balance_2')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                    </td>
+ -->                                                    <td class="text-right" style="border-right:1px solid #000">
+                                                        <a href="#" class="child-link">
+                                                            <span t-att-style="style" t-esc="a.get('balance')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                        </a>
+                                                    </td>
+                                                </t>
+
+                                                <t t-if="not a.get('level') &gt; 3">
+                                                    <td class="text-right" style="border:1px solid #000">
+                                                        <span t-att-style="style" t-esc="a.get('balance_1')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                    </td>
+            
+ <!--                                                    <td class="text-right" style="border:1px solid #000">
+                                                        <span t-att-style="style" t-esc="a.get('balance_2')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                    </td>
+  -->                                                   <td class="text-right" style="border:1px solid #000">
+                                                        <a href="#" class="child-link">
+                                                            <span t-att-style="style" t-esc="a.get('balance')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                        </a>
+                                                    </td>
+                                                </t>
+                                            </t> 
+                                            <t t-if="not a.get('display_value')">  
+                                                <td class="account-link" t-att-data-id="a.get('id')" t-att-data-datefrom="data['date_from']" t-att-data-dateto="data['date_to']" 
+                                                    style="cursor:pointer; color:#337AB7; border-left:1px solid #000; border-right:1px solid #000">
+                                                    <span style="color: white;" t-esc="'....' * a.get('level', 0)"/>
+                                                    <span t-att-style="style" t-esc="a.get('name')"/>
+                                                </td>
+    	                                        <td class="text-right" style="border-right:1px solid #000"></td>
+    	                                        <td class="text-right" style="border-right:1px solid #000"></td>
+    	                                        <!-- <td class="text-right" style="border-right:1px solid #000"></td> -->
+                                            </t>
+                                        </t>
+                                    </t>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="width:49%;float:left;margin-left:10px;font-size: 10px;">
+                         <table class="table table-condensed" t-if="not data['enable_filter'] and not data['debit_credit']">
+                            <thead>
+                                <tr class="info">
+                                    <th class="text-center" style="border:1px solid #000">U R A I A N</th>
+                                    <th class="text-center" style="border:1px solid #000">
+                                        <span t-esc="(datetime.datetime.strptime(data['date_from'], '%Y-%m-%d') - datetime.timedelta(days=1)).strftime('%B').upper()"/>
+                                    </th>
+                                    <th class="text-center" style="border:1px solid #000">
+                                        <span t-esc="datetime.datetime.strptime(data['date_to'], '%Y-%m-%d').strftime('%B').upper()"/>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="get_account_lines" t-as="a">
+                                    <t t-if="a['level'] != 0">
+                                            <t t-if="a.get('level') &gt; 3"><t t-set="style" t-value="'font-weight: normal;'"/></t>
+                                            <t t-if="not a.get('level') &gt; 3"><t t-set="style" t-value="'font-weight: bold;'"/></t>
+
+                                        <t t-if="a['sequence'] &gt;= 40000">
+                                           <t t-if="a.get('display_value')">
+                                                <t t-if="a.get('level') != 1">
+                                                    <td class="account-link" t-att-data-id="a.get('id')" t-att-data-datefrom="data['date_from']" t-att-data-dateto="data['date_to']" 
+                                                        style="cursor:pointer; color:#337AB7; border-left:1px solid #000; border-right:1px solid #000">
+                                                        <span style="color: white;" t-esc="'....' * a.get('level', 0)"/>
+                                                        <span t-att-style="style" t-esc="a.get('name')"/>
+                                                    </td>
+                                                </t>
+
+                                                <t t-if="a.get('level') == 1">
+                                                    <td class="account-link" t-att-data-id="a.get('id')" t-att-data-datefrom="data['date_from']" t-att-data-dateto="data['date_to']" 
+                                                        style="cursor:pointer; color:#337AB7; border-left:1px solid #000; border:1px solid #000">
+                                                        <span style="color: white;" t-esc="'....' * a.get('level', 0)"/>
+                                                        <span t-att-style="style" t-esc="a.get('name')"/>
+                                                    </td>
+                                                </t>
+
+                                                <t t-if="a.get('level') &gt; 3">
+                                                    <td class="text-right" style="border-right:1px solid #000">
+                                                        <span t-att-style="style" t-esc="a.get('balance_1')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                    </td>
+<!--                                                     <td class="text-right" style="border-right:1px solid #000">
+                                                        <span t-att-style="style" t-esc="a.get('balance_2')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                    </td>
+ -->                                                    <td class="text-right" style="border-right:1px solid #000">
+                                                        <a href="#" class="child-link">
+                                                            <span t-att-style="style" t-esc="a.get('balance')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                        </a>
+                                                    </td>
+                                                </t>
+
+                                                <t t-if="not a.get('level') &gt; 3">
+                                                    <td class="text-right" style="border:1px solid #000">
+                                                        <span t-att-style="style" t-esc="a.get('balance_1')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                    </td>
+<!--                                                     <td class="text-right" style="border:1px solid #000">
+                                                        <span t-att-style="style" t-esc="a.get('balance_2')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                    </td>
+ -->                                                    <td class="text-right" style="border:1px solid #000">
+                                                        <a href="#" class="child-link">
+                                                            <span t-att-style="style" t-esc="a.get('balance')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                        </a>
+                                                    </td>
+                                                </t>
+                                           </t> 
+                                           <t t-if="not a.get('display_value')">  
+                                                <td class="account-link" t-att-data-id="a.get('id')" t-att-data-datefrom="data['date_from']" t-att-data-dateto="data['date_to']" 
+                                                    style="cursor:pointer; color:#337AB7; border-left:1px solid #000; border-right:1px solid #000">
+                                                    <span style="color: white;" t-esc="'....' * a.get('level', 0)"/>
+                                                    <span t-att-style="style" t-esc="a.get('name')"/>
+                                                </td>
+                                                <td class="text-right" style="border-right:1px solid #000"></td>
+                                                <td class="text-right" style="border-right:1px solid #000"></td>
+                                                <!-- <td class="text-right" style="border-right:1px solid #000"></td> -->
+                                           </t>
+                                       </t>
+                                    </t>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="clear:both;"></div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

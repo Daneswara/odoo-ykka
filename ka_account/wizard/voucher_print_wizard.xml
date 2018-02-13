@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record id="ka_account_voucher_print_wizard_form" model="ir.ui.view">
+            <field name="name">voucher.print.wizard.form</field>
+            <field name="model">ka_account.voucher.print.wizard</field>
+            <field name="arch" type="xml">
+            	<form string="Confirm Print Action">
+            		<h3><field name="next_act" nolabel="1" readonly="1"/></h3>
+	            	<footer>
+	            		<button name="do_print_selected_voucher" string="Print Now" type="object" class="oe_highlight"/>
+	                    <button string="Cancel" class="oe_link" special="cancel"/>
+	            	</footer>
+            	</form>
+            </field>
+        </record>
+	</data>
+</odoo>

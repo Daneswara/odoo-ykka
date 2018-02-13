@@ -1,0 +1,43 @@
+<odoo>
+	<data>
+		<record id="ka_account_voucher_sequence" model="ir.sequence">
+            <field name="name">KA Account Voucher</field>
+            <field name="code">ka_account.voucher</field>
+            <field name="prefix">KB-</field>
+            <field name="padding">4</field>
+            <field name="use_date_range">True</field>
+            <field name="number_increment">1</field>
+            <field eval="False" name="company_id"/>
+       </record>
+       
+       <record id="ka_account_payment_confirm_sequence" model="ir.sequence">
+            <field name="name">KA Confirmed Payment</field>
+            <field name="code">ka_account.payment.confirm</field>
+            <field name="suffix">/BK/%(range_year)s</field>
+            <field name="padding">4</field>
+            <field name="use_date_range">True</field>
+            <field name="number_increment">1</field>
+            <field eval="False" name="company_id"/>
+       </record>
+
+       <record id="ka_account_payment_sequence" model="ir.sequence">
+            <field name="name">KA Account Payment</field>
+            <field name="code">ka_account.payment</field>
+            <field name="prefix">SUPP.OUT/%(range_year)s/</field>
+            <field name="padding">4</field>
+            <field name="use_date_range">True</field>
+            <field name="number_increment">1</field>
+            <field eval="False" name="company_id"/>
+       </record>
+       
+       <record id="ka_account_move_periodic_sequence" model="ir.sequence">
+            <field name="name">KA Account Move Periodic</field>
+            <field name="code">ka_account.move.periodic</field>
+            <field name="prefix">LOG/%(range_year)s/</field>
+            <field name="padding">4</field>
+            <field name="use_date_range">True</field>
+            <field name="number_increment">1</field>
+            <field eval="False" name="company_id"/>
+       </record>
+	</data>
+</odoo>

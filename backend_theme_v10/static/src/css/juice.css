@@ -1,0 +1,13 @@
+.app-drawer-icon-close,
+.app-drawer-icon-close:hover {
+	color: #fff;
+}
+
+li.dropdown-header {
+	padding: 3px 10px !important;
+	font-size: 115%;
+}
+
+.navbar-nav .dropdown-menu li a {
+	padding: 3px 25px !important;
+}

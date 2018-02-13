@@ -1,0 +1,5 @@
+<odoo>
+	<data>
+		<function id="ka_hr_attendance_cleaning_db" model="ka_hr_attendance.clean.db" name="do_clean_db"/>
+	</data>
+</odoo>

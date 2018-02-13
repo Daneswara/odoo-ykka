@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+	<t t-name="AreamapWidget">
+		<div id="areamap-container"></div>
+	</t>
+
+	<t t-name="AreamapContainer">
+		<div id="view-areamap"></div>
+	</t>
+
+	<t t-name="FormAreamapWidget">
+		<div id="form-areamap" style="margin-top:10px; margin-bottom:10px">
+			<div style="width:40%; float:left">
+				<table class="o_group o_inner_group o_group_col_6">
+					<tbody>
+						<tr>
+							<td colspan="1" class="o_td_label">
+								<label for="input_latitude" class="o_form_label">
+									Koordinat Latitude
+								</label>
+							</td>
+							<td colspan="1" style="width: 100%;">
+								<input class="o_form_input o_form_field" id="input_latitude" type="text"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="width:40%; float:left">
+				<table class="o_group o_inner_group o_group_col_6">
+					<tbody>
+						<tr>
+							<td colspan="1" class="o_td_label">
+								<label for="input_longitude" class="o_form_label">
+									Koordinat Longitude
+								</label>
+							</td>
+							<td colspan="1" style="width: 100%;">
+								<input class="o_form_input o_form_field" id="input_longitude" type="text"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="float:left">
+				<button type="button" id="submit_input" class="btn btn-small btn-success">Cek Lokasi</button>
+			</div>
+		</div>
+	</t>
+
+	<t t-name="AreamapView">
+		<div id="form-areamap-all" class="o_control_panel">
+			<div style="width:40%; padding-top:5px; padding-right:10px">
+				<table class="o_group o_inner_group o_group_col_6">
+					<tbody>
+						<tr>
+							<td colspan="1" class="o_td_label">
+								<label for="input_latitude_all" class="o_form_label">
+									Koordinat Latitude
+								</label>
+							</td>
+							<td colspan="1" style="width:75%; padding-left:10px">
+								<input class="o_form_input o_form_field" id="input_latitude_all" type="text"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="width:40%; padding-top:5px; padding-left:10px;">
+				<table class="o_group o_inner_group o_group_col_6">
+					<tbody>
+						<tr>
+							<td colspan="1" class="o_td_label" style="margin-right:5px">
+								<label for="input_longitude_all" class="o_form_label">
+									Koordinat Longitude
+								</label>
+							</td>
+							<td colspan="1" style="width:75%; padding-left:10px">
+								<input class="o_form_input o_form_field" id="input_longitude_all" type="text"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="margin-bottom:10px">
+				<button type="button" id="submit_input_all" class="btn btn-small btn-success">Cek Lokasi</button>
+			</div>
+		</div>
+		<div id="areamap-all-container"></div>
+	</t>
+</templates>

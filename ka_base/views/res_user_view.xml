@@ -1,0 +1,13 @@
+<odoo>
+ 		<record model="ir.ui.view" id="view_opertaing_unit_users" >
+			<field name="name">operating.unit.user</field>
+			<field name="model">res.users</field>
+			<field name="inherit_id" ref="base.view_users_form"/>
+			<field name="arch" type="xml">
+				<field name="company_id" position="before">
+					<field name="operating_unit_ids" widget="many2many_tags" invisible="1"/>
+					<field name="default_operating_unit_id" invisible="1"/>
+				</field>
+			</field>
+		</record>
+</odoo>

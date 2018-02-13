@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <report 
+            id="ntb_report_ka" 
+            model="account.invoice"
+            string="Report NTB"
+            report_type="qweb-pdf"
+            name="ka_purchase.template_report_ntb"
+            file="ka_purchase.template_report_ntb"
+			menu="False"         
+        /> 
+         <record id="paperformat_ntb_report" model="report.paperformat">
+            <field name="name">ntb_report</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">64</field>
+            <field name="margin_bottom">46</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+		<record id="ka_purchase.ntb_report_ka" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="ka_purchase.paperformat_ntb_report" />
+		</record>	
+
+	</data>
+</odoo>
+
+

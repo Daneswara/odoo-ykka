@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_timbang_spta_filter" model="ir.ui.view">
+    		<field name="name">timbang.spta.list.select</field>
+	        <field name="model">ka_timbang.spta</field>
+        		<field name="arch" type="xml">
+            		<search string="S P T A">
+                			<filter icon="terp-document-new" name="in" string="Belum timbang keluar" domain="[('state','=','in')]" help="Kendaraan yang belum keluar"/>
+                			<filter icon="terp-check" name="out" string="Sudah keluar" domain="[('state','=','out')]" help="Kendaraan yang sudah selasai timbang"/>
+                			<separator/>
+                			<field name="spta_id"/>
+                			<!-- <field name="no_penerimaan"/> -->
+                			<field name="register"/>
+                			<field name="truck_id"/>
+                			<field name="user_in"/>
+                			<field name="user_out"/>
+                			<group expand="0" string="Group By...">
+                    			<filter string="Register" icon="terp-partner" domain="[]" context="{'group_by':'register'}"/>
+                    			<filter string="No. Polisi" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'truck_id'}"/>
+                    			<filter string="Hari" icon="terp-go-month" domain="[]" context="{'group_by':'day'}"/>
+                			</group>
+            		</search>
+        		</field>
+    	</record>
+
+    	<record id="timbang_spta_tree_view" model="ir.ui.view">
+            <field name="name">timbang.spta.tree</field>
+            <field name="model">ka_timbang.spta</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+               <tree string="Surat Perintah Tebang Angkut">
+					<field name="name"/>
+					<!-- <field name="no_penerimaan"/> -->
+					<field name="register"/>
+					<field name="truck_id"/>
+					<!--field name="lori_id"/-->
+					<field name="weight_in" sum="Total Tara"/>
+					<field name="weight_out" sum="Total Bruto"/>
+					<field name="weight_net" sum="Total Netto"/>
+					<field name="weight_kw" sum="Total Kw"/>
+					<field name="mbs"/>
+					<!--field name="date_in"/-->
+					<field name="date_in_web"/>
+					<!--field name="date_out"/-->
+					<field name="date_out_web"/>
+					<field name="day"/>
+				</tree>
+            </field>
+        </record> 
+
+        <record id="timbang_spta_form_view" model="ir.ui.view">
+			<field name="name">timbang.spta.form</field>
+			<field name="model">ka_timbang.spta</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Surat Perintah Tebang Angkut">
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<label for="name"/>
+								<field name="name" class="oe_inline"/>
+							</h1>
+						</div>
+						<group col="2" colspan="2" string="Data Pokok">
+							<!-- <field name="no_penerimaan"/> -->
+							<field name="register"/>
+							<field name="tebang_by"/>							
+							<field name="truck_id"/>							
+							<field name="mbs"/>
+						</group>
+						<group string="Data Penimbangan">
+							<group>
+								<field name="weight_in"/> 
+								<field name="weight_out"/>
+								<field name="weight_net"/>
+								<field name="weight_kw" class="oe_subtotal_footer_separator"/>
+							</group>
+							<group>
+								<field name="date_in"/>
+								<field name="date_out"/>
+								<field name="user_in" options="{'no_create': True}"/>
+								<field name="user_out" options="{'no_create': True}"/>
+							</group>
+							<field name="state" invisible="1"/>
+						</group>
+                	</sheet>
+					<div class="oe_chatter">
+						<field name="log_note"/>
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_timbang_material_filter" model="ir.ui.view">
+        		<field name="name">timbang.material.list.select</field>
+		        <field name="model">ka_timbang.material</field>
+            		<field name="arch" type="xml">
+                		<search string="S P T A">
+                    			<filter icon="terp-document-new" name="in" string="Belum timbang keluar" domain="[('state','=','in')]" help="Kendaraan yang belum keluar"/>
+                    			<filter icon="terp-check" name="out" string="Sudah keluar" domain="[('state','=','out')]" help="Kendaraan yang sudah selasai timbang"/>
+                    			<separator/>
+                    			<field name="product_id"/>
+                    			<field name="date_out"/>                    			
+								<field name="name"/>
+                    			<field name="reference"/>
+                    			<field name="partner_id"/>
+                    			<field name="truck_id"/>
+                    			<field name="user_in"/>
+                    			<field name="user_out"/>
+                    			<group expand="0" string="Group By...">
+                        			<filter string="Reference" icon="terp-partner" domain="[]" context="{'group_by':'reference'}"/>
+                        			<filter string="Rekanan" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'partner_id'}"/>
+                        			<filter string="Material" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'product_id'}"/>
+                        			<filter string="No. Polisi" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'truck_id'}"/>
+                        			<filter string="Tanggal" icon="terp-go-month" domain="[]" context="{'group_by':'date_out'}"/>
+                    			</group>
+                		</search>
+            		</field>
+        	</record>
+
+		<record id="timbang_material_form_view" model="ir.ui.view">
+			<field name="name">timbang.material.form</field>
+			<field name="model">ka_timbang.material</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Timbang Material">
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<label for="name"/>
+								<field name="name" class="oe_inline" readonly="1"/>
+							</h1>
+						</div>
+						<group string="Data Penimbangan">
+							<group>
+								<field name="truck_id"/>
+								<field name="product_id" options="{'no_create': True}"/>
+								<field name="weight_in"/> 
+								<field name="weight_out"/>
+								<field name="weight_net"/>
+							</group>
+							<group>
+								<field name="partner_id" options="{'no_create': True}"/>
+								<field name="reference"/>
+								<field name="date_in"/>
+								<field name="date_out"/>
+								<field name="user_in" options="{'no_create': True}"/>
+								<field name="user_out" options="{'no_create': True}"/>
+							</group>
+							<field name="state" invisible="1"/>
+						</group>
+						<group string="Info Lainnya">
+							<field name="no_do" options="{'no_create': True}"/>
+							<field name="tetes_brix_qty"/>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="log_note"/>
+					</div>
+				</form>
+			</field>
+		</record>
+
+        <record id="timbang_material_tree_view" model="ir.ui.view">
+            <field name="name">timbang.material.tree</field>
+            <field name="model">ka_timbang.material</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Timbang Material">
+					<field name="name"/>
+					<field name="partner_id"/>
+					<field name="reference"/>
+					<field name="truck_id"/>
+					<field name="product_id"/>
+					<field name="weight_in" sum="Total Tara"/>
+					<field name="weight_out" sum="Total Bruto"/>
+					<field name="weight_net" sum="Total Netto"/>
+					<field name="date_in"/>
+					<field name="date_out"/>
+				</tree>
+            </field>
+        </record> 
+
+        <record id="timbang_spta_menu_action" model="ir.actions.act_window">
+            <field name="name">Timbang Tebu</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_timbang.spta</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="timbang_material_menu_action" model="ir.actions.act_window">
+            <field name="name">Timbang Non-Tebu</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_timbang.material</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Timbangan" 
+        	id="menu_timbang_root"
+        	groups="ka_timbang.ka_timbang_group_guest,ka_timbang.ka_timbang_group_manager,ka_timbang.ka_timbang_group_user"
+        	web_icon="ka_timbang,static/description/icon.png"
+        	sequence="30"/>
+        <menuitem id="menu_data_timbang" 
+        	name="Data Timbang" 
+        	parent="menu_timbang_root" 
+        	sequence="2"/>
+        <menuitem 
+            action="timbang_spta_menu_action"
+            id="menu_timbang_spta" 
+            name="Tebu" 
+            parent="menu_data_timbang"
+            sequence="1"/>
+        <menuitem 
+            action="timbang_material_menu_action"
+            id="menu_timbang_material" 
+            name="Non-Tebu" 
+            parent="menu_data_timbang"
+            sequence="1"/>
+    </data>
+</odoo>

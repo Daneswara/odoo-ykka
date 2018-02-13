@@ -1,0 +1,264 @@
+<odoo>
+    <data>
+        <record id="ka_purchase_order_search" model="ir.ui.view">
+            <field name="name">ka_purcase.search</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="payment_term_id" string="Termin"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- modify tree view -->
+        <record id="ka_purhcase_order_tree" model="ir.ui.view">
+            <field name="name">ka_purchase.oder.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="date_planned" position="replace"/>
+                <field name="origin" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="amount_untaxed" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="date_order" position="replace">
+                    <field name="date_order" widget="date"/>
+                    <field name="date_planned" invisible="context.get('quotation_only', False)"/>
+                </field>
+                <field name="partner_id" position="after">
+                    <field name="operating_unit_id"/>
+                </field>
+                <field name="amount_total" position="after">
+                    <field name="payment_term_id" string="Termin"/>
+                </field>
+            </field>
+        </record>       
+    
+        <record id="view_ka_purchase_order_form" model="ir.ui.view">
+            <field name="name">ka.purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <button name="button_done" position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </button>
+                <button name="action_rfq_send" position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </button>
+                <button name="print_quotation" position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </button>
+                <xpath expr="//button[@name='button_cancel']" position="replace">
+            		<button type="action" string="Cetak PO" 
+						name="%(ka_purchase.action_report_ka_purchase_order)d" class="oe_highlight"
+                        icon="fa-print" attrs="{'invisible':[('order_type', '!=', 'lokal')]}"/>				
+                    <button name="%(ka_purchase.action_call_wizard_cancel)d"
+                        states="draft,confirmed,sent,to approve,purchase" 
+                        string="Batalkan SP" type="action"/>
+                </xpath>
+                <xpath expr="/form/sheet/div/button[@name='action_view_picking']" position="replace">
+                    <button type="object"
+                        name="action_view_picking"
+                        class="oe_stat_button"
+                        icon="fa-truck" 
+                        attrs="{'invisible':['|',('state', 'in', ('draft','sent','to approve')),('is_direct_purchase', '=', True)]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>                
+                </xpath>
+                <xpath expr="/form/sheet/div/button[@name='action_view_invoice']" position="replace">
+                    <button type="object"  name="action_view_invoice"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o" attrs="{'invisible':['|', ('state', 'in', ('draft','sent','to approve')), ('is_direct_purchase', '=', True)]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button> 
+                </xpath>
+                
+                <xpath expr="/form/sheet/notebook/page[2]/group/group[1]/label" position="replace"></xpath>
+                <xpath expr="/form/sheet/notebook/page[2]/group/group[1]/div" position="replace"></xpath>
+
+                <field name="name" position="replace">
+                    <field name="name" attrs="{'readonly': [('state','!=','draft')]}"/>
+                </field>
+                <field name="partner_id" position="attributes">
+                    <attribute name="attrs">{'invisible': [('order_type', '=', 'rkin')]}</attribute>  
+                </field>
+                <field name="partner_ref" position="replace">
+                    <field name="source_partner_id" attrs="{'invisible': [('order_type', '!=', 'rkin')]}"/>  
+                    <field name="partner_ref" attrs="{'invisible':[('order_type', '!=', 'lokal')]}"/>
+                    <field name="golongan" attrs="{'readonly': [('state','!=','draft')]}"/>
+                    <field name="order_type"/>
+                </field>
+                <field name="date_order" position="after">
+                	<label for="date_planned"/>
+                    <div>
+                    	<field class="oe_inline" name="date_planned" widget="date" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                    	<button class="oe_inline oe_link" name="%(ka_purchase.act_edit_purchase_wizard)d" string="→ Edit" type="action" 
+                        	groups="purchase.group_purchase_manager" attrs="{'invisible': [('state','!=','purchase')]}"/> 
+                    </div>
+                    
+                    <field name="purchase_category_id" string="Kategori Pembelian" required="1" attrs="{'readonly': [('state','!=','draft')]}" options="{'no_create': True}"/>
+                    <field name="is_direct_purchase" invisible="1"/>
+                    <field name="operating_unit_id" required="1" options="{'no_create': True}"/>
+                </field>
+                <field name="order_line"  position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>  
+                    <attribute name="context">{'purchase_date_planned': date_planned}</attribute>
+                </field>
+                <field name="taxes_id"  position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </field>
+                <field name="amount_untaxed"  position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </field>
+                <field name="amount_tax"  position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </field>
+                <field name="fiscal_position_id" position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </field>
+                <field name="incoterm_id" position="attributes">
+                    <attribute name="invisible">1</attribute>  
+                </field> 
+                <field name="partner_id"  position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </field>              
+                <field name="product_id"  position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </field>              
+                <field name="account_analytic_id"  position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </field>             
+                <field name="product_uom"  position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </field>
+                <field name="incoterm_id"  position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </field>
+                <field name="fiscal_position_id"  position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </field>
+                <xpath expr="//page[1]" position="after">
+                    <page string="Tanda Tangan">
+                        <group col="4">
+                            <field name="ttd_dir" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="keu_ttd" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="ttd_div" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="ttd_log" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        </group>
+                    </page>
+                    <page string="Informasi">
+                        <group>
+                            <field name="ref_investasi"/>
+                            <field name="is_extended" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="alasan"/>
+                        </group>
+                    </page>
+                </xpath>
+<!--                <xpath expr="//form/sheet/group/group[1]/label[@for='product_qty']" position="before">
+                    <field name="lst_price"/>
+                    <field name="spesifikasi"/>
+                    <field name="keterangan"/>
+                </xpath> 
+ -->              
+                
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/tree" position="attributes">
+                    <attribute name="editable"></attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/tree/field[@name='analytic_tag_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>       
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/tree/field[@name='qty_received']" position="after">
+                    <field name="qty_received_unit"/>
+                </xpath>      
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/tree/field[@name='qty_received']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>     
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/tree/field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>  
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/tree/field[@name='date_planned']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="widget">date</attribute>
+                </xpath>  
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/tree/field[@name='product_id']" position="after">
+                    <field name="lst_price"/>
+                    <button name="%(ka_logistik_master.action_product_update_hps)d" groups="ka_logistik_pengadaan.group_logistik" type="action" string="Update HPS" icon="fa-repeat"/>
+                </xpath> 
+                
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[2]/field[@name='account_analytic_id']" position="replace"/>
+<!--                 <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[2]/field[@name='date_planned']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+ -->                            
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[1]/field[@name='product_id']" position="after">
+                    <field name="spesifikasi" colspan="2"/>
+                    <field name="keterangan" colspan="2"/>
+                    <field name="state" invisible="1"/>
+                </xpath> 
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[1]/field[@name='price_unit']" position="after">
+                    <field name="account_analytic_id"/>
+                </xpath> 
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[2]/field[@name='taxes_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>                
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[1]/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[1]/div/field[@name='product_uom']" position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </xpath>
+                 <xpath expr="//form/sheet/notebook/page[1]/field[1]/form/sheet/group/group[1]/field[@name='account_analytic_id']" position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </xpath>
+            </field>    
+        </record>
+        
+        <menuitem id="menu_po_logistik_sp" 
+            name="Logistik" 
+            parent="purchase.menu_purchase_root"  
+            sequence="2"/>
+		<!-- Update existing action with domain=[] -->
+		<record model="ir.actions.act_window" id="purchase.action_purchase_line_product_tree">
+            <field name="domain">[('product_id.product_tmpl_id','in',active_ids)]</field>
+        </record>
+        
+        <record id="action_open_logistik_sp_kontrak" model="ir.actions.act_window">
+            <field name="name">SP Kontrak</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="context">{'default_golongan': 'kontrak'}</field>
+            <field name="domain">[('golongan', '=', 'kontrak')]</field>
+        </record>
+        
+        <record id="action_open_logistik_sp_nonkontrak" model="ir.actions.act_window">
+            <field name="name">SP Non-Kontrak</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="context">{'default_golongan': 'agen'}</field>
+            <field name="domain">['|',('golongan','=',False),('golongan','!=','kontrak')]</field>
+        </record>
+        
+        <menuitem id="menu_logistik_sp_kontrak" 
+            action="action_open_logistik_sp_kontrak" 
+            name="SP Kontrak" 
+            parent="ka_purchase.menu_po_logistik_sp"
+            sequence="1"/>
+        
+        <menuitem id="menu_logistik_sp_nonkontrak" 
+            action="action_open_logistik_sp_nonkontrak" 
+            name="SP Non-Kontrak" 
+            parent="ka_purchase.menu_po_logistik_sp"
+            sequence="1"/>
+    </data>
+</odoo>

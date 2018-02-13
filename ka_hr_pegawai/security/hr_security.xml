@@ -1,0 +1,26 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="access_security_category">
+			<field name="name">SDM</field>
+			<field name="description">Divisi Sumber Daya Manusia</field>
+		</record>
+
+		<record model="res.groups" id="ka_hr_pegawai.group_user">
+			<field name="name">User</field>
+			<field name="category_id" ref="access_security_category"/>
+		</record>
+
+		<!--
+			group dibawah menggunakan implied_ids sehingga hasil dari group berupa dropdown
+			jika tidak menggunakan implied_ids, hasil berupa checkbox.
+			implied_ids (id yg ter-implikasi) harus mempunyai ->
+			eval="[(4, id)] yg artinya seperti add data to existing record ->
+			see https://www.odoo.com/documentation/10.0/reference/orm.html for info"
+		-->
+		<record model="res.groups" id="ka_hr_pegawai.group_manager">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="access_security_category"/>
+			<field name="implied_ids" eval="[(4, ref('ka_hr_pegawai.group_user'))]"/>
+		</record>
+	</data>
+</odoo>

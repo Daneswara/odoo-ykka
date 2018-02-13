@@ -1,0 +1,129 @@
+<odoo>
+	<data>
+		<report id="weekly_report"
+			model="ka_hr_attendance.report.weekly"
+			string="Laporan Presensi Mingguan Pegawai"
+			report_type="qweb-pdf"
+			name="ka_hr_attendance.weekly_report_view"
+			file="ka_hr_attendance.weekly_report"
+			menu="False"/>
+
+		<record model="report.paperformat" id="paperformat_weekly_report">
+			<field name="name">Laporan Presensi Mingguan Pegawai</field>
+			<field name="default" eval="True" />
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Landscape</field>
+			<field name="margin_top">30</field>
+			<field name="margin_right">5</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">5</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">20</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="ka_hr_attendance.weekly_report" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="ka_hr_attendance.paperformat_weekly_report"/>
+		</record>
+
+		<template id="weekly_report_view">
+			<div class="header" style="border-bottom: 2px solid black">
+				<h4 class="text-center"><strong>REKAPITULASI PRESENSI KARYAWAN STAF MINGGUAN</strong></h4>
+							
+				<h5 class="text-center">BULAN: <strong><span t-esc="monthname"/> <span t-esc="year"/></strong></h5>
+				<h5 class="text-center">TANGGAL: <strong><span t-esc="strdate_awal"/></strong> S/D <strong><span t-esc="strdate_akhir"/></strong></h5>
+			</div>
+
+			<div class="page" style="font-family:'Arial'">
+				<style type="text/css">
+					table.table-bordered>thead>tr>th,
+					table.table-bordered>tbody>tr>td {
+						vertical-align: middle !important;
+						border: 1px solid black !important;
+					}
+					.red-block{
+						background-color: red;
+						color: white;
+					}
+				</style>
+
+				<table class="table table-condensed table-bordered" style="width:100%; font-size:11px">
+					<thead style="@media print {thead {display: table-header-group;}};">
+						<tr>
+							<th rowspan="3" style="width:3%" class="text-center">No.</th>
+							<th rowspan="3" style="width:20%" class="text-center">Nama</th>
+							<th colspan="15" style="width:65%" class="text-center">Absensi</th>
+							<th rowspan="3" style="width:12%" class="text-center">Keterangan</th>
+						</tr>
+						<tr>
+							<t t-foreach="date_list" t-as="date">
+								<th colspan="3" style="border:1px solid black" class="text-center"><span t-esc="date"/></th>
+								</t>
+						</tr>
+						<tr>
+							<t t-foreach="range(5)" t-as="i">
+								<th style="width:4%" class="text-center">Hadir</th>
+								<th style="width:4%" class="text-center">Pulang</th>
+								<th style="width:5%" class="text-center">Ijin</th>
+							</t>
+						</tr>
+					</thead>
+					<tbody>
+						<t t-foreach="docs" t-as="doc">
+							<tr>
+								<td class="text-center"><span t-esc="doc_index+1"/></td>
+								<td><span t-esc="doc['employee_name']"/></td>
+								<t t-foreach="doc['activity']" t-as="act">
+									<t t-if="act['is_telat']">
+										<td class="text-center red-block">
+											<strong><span t-esc="act['check_in']"/></strong>
+										</td>
+									</t>
+									<t t-else="">
+										<td class="text-center"><span t-esc="act['check_in']"/></td>
+									</t>
+									<t t-if="act['is_pulang_cepat']">
+										<td class="text-center red-block">
+											<strong><span t-esc="act['check_out']"/></strong>
+										</td>
+									</t>
+									<t t-else="">
+										<td class="text-center"><span t-esc="act['check_out']"/></td>
+									</t>
+									<td class="text-center"><span t-esc="act['holiday_status']"/></td>
+								</t>
+								<td></td>
+							</tr>
+						</t>
+					</tbody>
+				</table>
+
+				<div class="row">
+					<div class="col-xs-3 col-xs-offset-9 text-center">
+						<span>Kadiv. SDM</span>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<span t-esc="kadiv_sdm"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer">
+				<div class="row text-center" style="border-top: 1px solid black;">
+					<div class="col-xs-3 col-xs-offset-9 text-right">
+						<ul class="list-inline" style="margin-top:10px;">
+							<li>Hal:</li>
+							<li><span class="page"/></li>
+							<li>/</li>
+							<li><span class="topage"/></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</template>
+	</data>
+</odoo>

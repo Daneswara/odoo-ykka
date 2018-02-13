@@ -1,0 +1,44 @@
+<odoo> 
+	<data>
+        <record model="res.groups" id="group_real_qty">
+            <field name="name">See Real Quantity</field>
+        </record>
+		
+	    <record model="ir.rule" id="stock_move_daily_sugar_comp_rule">
+	        <field name="name">stock move daily sugar company rule</field>
+	        <field name="model_id" ref="model_stock_move_daily_sugar"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	    
+	 	<record model="ir.rule" id="stock_move_daily_sugar_retail_comp_rule">
+	        <field name="name">stock move daily sugar retail company rule</field>
+	        <field name="model_id" ref="model_stock_move_daily_sugar_retail"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+		
+	    <!--
+	    <record model="ir.rule" id="stock_move_daily_sugarpremium_comp_rule">
+	        <field name="name">stock move daily sugar premium company rule</field>
+	        <field name="model_id" ref="model_stock_move_daily_sugar_premium"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	    -->
+
+	    <record model="ir.rule" id="stock_move_daily_molasses_comp_rule">
+	        <field name="name">stock move daily molasses company rule</field>
+	        <field name="model_id" ref="model_stock_move_daily_molasses"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+
+	    <record model="ir.rule" id="stock_move_daily_bagasse_comp_rule">
+	        <field name="name">stock move daily bagasse company rule</field>
+	        <field name="model_id" ref="model_stock_move_daily_bagasse"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	</data>
+</odoo>

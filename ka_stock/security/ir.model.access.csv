@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_move_employee,stock.move employee,model_stock_move,base.group_user,1,0,0,0
+access_stock_warehouse_orderpoint_employee,stock.warehouse.orderpoint employee,stock.model_stock_warehouse_orderpoint,base.group_user,1,0,0,0
+access_stock_move_daily_sugar_manager,stock.move.daily.sugar,model_stock_move_daily_sugar,stock.group_stock_manager,1,1,1,1
+access_stock_move_daily_sugar_user,stock.move.daily.sugar,model_stock_move_daily_sugar,stock.group_stock_user,1,0,0,0
+access_stock_move_daily_molasses_manager,stock.move.daily.molasses,model_stock_move_daily_molasses,stock.group_stock_manager,1,1,1,1
+access_stock_move_daily_molasses_user,stock.move.daily.molasses,model_stock_move_daily_molasses,stock.group_stock_user,1,0,1,0
+access_stock_move_daily_molasses_line_manager,stock.move.daily.molasses.line,model_stock_move_daily_molasses_line,stock.group_stock_manager,1,1,1,1
+access_stock_move_daily_molasses_line_user,stock.move.daily.molasses.line,model_stock_move_daily_molasses_line,stock.group_stock_user,1,0,1,0
+access_stock_move_daily_molasses_circulation_manager,stock.move.daily.molasses.circulation,model_stock_move_daily_molasses_circulation,stock.group_stock_manager,1,1,1,1
+access_stock_move_daily_molasses_circulation_user,stock.move.daily.molasses.circulation,model_stock_move_daily_molasses_circulation,stock.group_stock_user,1,0,1,0
+access_stock_move_daily_bagasse_manager,stock.move.daily.bagasse,model_stock_move_daily_bagasse,stock.group_stock_manager,1,1,1,1
+access_stock_move_daily_bagasse_user,stock.move.daily.bagasse,model_stock_move_daily_bagasse,stock.group_stock_user,1,0,1,0
+access_stock_tank_manager,stock.tank,model_stock_tank,stock.group_stock_manager,1,1,1,1
+access_stock_tank_user,stock.tank,model_stock_tank,stock.group_stock_user,1,0,1,0
+access_stock_move_daily_sugar_retail_manager,stock.move.daily.sugar.retail,model_stock_move_daily_sugar_retail,stock.group_stock_manager,1,1,1,1
+access_stock_move_daily_sugar_retail_user,stock.move.daily.sugar.retail,model_stock_move_daily_sugar_retail,stock.group_stock_user,1,0,0,0

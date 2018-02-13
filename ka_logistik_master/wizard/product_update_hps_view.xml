@@ -1,0 +1,31 @@
+<odoo>
+      <data>
+		<record id="view_product_update_hps" model="ir.ui.view">
+            <field name="name">Update HPS</field>
+            <field name="model">product.product.update.hps</field>
+            <field name="arch" type="xml">
+                <form string="Update HPS">
+                    <group>
+                        <field name="product_id" readonly="1"/>
+                        <field name="lst_price" data-inputmask="'alias': 'decimal', 'groupSeparator': '.', 'radixPoint':',', 'autoGroup': true"/>
+                    </group>
+                    <footer>
+                        <button name="do_update" string="Update HPS" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Batal" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_product_update_hps" model="ir.actions.act_window">
+               <field name="name">Update HPS Barang</field>
+               <field name="type">ir.actions.act_window</field>
+               <field name="res_model">product.product.update.hps</field>
+               <field name="view_type">form</field>
+               <field name="view_mode">form</field>
+               <field name="context">{'record_id' : active_id}</field>
+               <field name="target">new</field>
+        </record>
+	</data>
+</odoo>

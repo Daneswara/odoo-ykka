@@ -1,0 +1,222 @@
+<odoo>
+	<data>
+		<template id="report_sp_konsep">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<!-- <t t-call="ka_report_layout.external_layout"> -->
+					<t t-call="ka_report_layout.ka_layout_no_header">
+					
+						<div class="page" style="font-family:'Arial';font-size:14px;margin-top:25px;">
+							<h3 class="text-center" style="color:#0086b3"><b>KONSEP SURAT PESANAN</b></h3>
+							<div class="row text-left" style="margin-top:50px;">
+								<div class="col-xs-6">
+									<div class="row">
+										<div class="col-xs-3" style="padding-right:0px">
+											<b>Nomor SP</b><br/>
+											Tanggal<br/>
+											Untuk<br/>
+											Tgl.Serah
+										</div>
+										<div class="col-xs-9">
+											: <b><span t-field="o.name"/></b><br/>
+											: <span t-field="o.date_order" t-field-options='{"format": "dd-MM-y"}'/><br/>
+											: <span t-field="o.company_id.name"/><br/>
+											: <span t-field="o.date_planned" t-field-options='{"format": "dd-MM-y"}'/>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="row">
+										<div class="col-xs-3 text-right" style="padding-right:0px">
+											<b>Rekanan :</b>
+										</div>
+										<div class="col-xs-9">
+											<span t-field="o.partner_id.name"/> ( <span t-field="o.partner_id.code"/> ) <br/>
+											<span t-field="o.partner_id.street"/> 
+											<span t-field="o.partner_id.street2"/> <br/>
+											<span t-field="o.partner_id.city"/> 
+											<span t-field="o.partner_id.zip"/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<table class="table table-condensed" style="margin-top:20px; border-top: 1px solid">
+								<thead>
+									<tr style="border-bottom: 1px solid">
+										<th class="text-center" style="vertical-align:text-top;">No</th>
+										<th class="text-center" style="vertical-align:text-top;">Kode Barang<br/>No.Investasi</th>
+										<th class="text-center" style="vertical-align:text-top;">Nama dan Spesifikasi Barang</th>
+										<th class="text-center" style="vertical-align:text-top;">Jumlah <br/>Satuan</th>
+										<th class="text-center" style="vertical-align:text-top;">Harga Satuan<br/>(Rp.)</th>
+										<th class="text-center" style="vertical-align:text-top;">Jumlah Harga<br/>(Rp.)</th>
+									</tr>
+								</thead>
+
+								<t t-foreach="o.order_line.sorted(key=lambda b:b.product_id.default_code)" t-as="l">
+									<tr style="border-color:black">
+										<td width="5%" class="text-center">
+											<span t-esc="l_index+1"/>
+										</td>
+										<td width="15%" class="text-left">
+											<b><span t-field="l.product_id.default_code"/></b><br/>
+											<t t-if="l.account_analytic_id">
+												<span style="font-size:85%" t-field="l.account_analytic_id.code"/><br/>
+											</t>
+										</td>
+										<td width="30%">
+											<span t-field="l.product_id.name"/><br/>
+											<t t-if="l.product_id.description">
+												<span t-field="l.product_id.description"/><br/>
+											</t>
+											<t t-if="l.keterangan">
+												<span t-field="l.keterangan"/><br/>
+											</t>
+											<font color="blue">HPS : <span t-field="l.lst_price"/></font>
+										</td>
+										<td width="15%" class="text-right">
+											<span t-field="l.product_qty"/> <span t-field="l.product_uom.name"/>
+										</td>
+										<td width="17%" class="text-right">
+											<span t-field="l.price_unit"/>
+										</td>
+										<td width="18%" class="text-right">
+											<span t-field="l.price_subtotal"/>
+										</td>
+
+										<t t-if="l.get_last_sp(l.product_id.id, o.date_order, o.id)">
+											<tr style="border:none;font-size:85%">
+												<td colspan="2" style="border:none; padding-top: 0; padding-bottom:0"></td>
+												<td colspan="2" style="border:none; padding-top: 0; padding-bottom:0">Informasi Harga Sebelumnya:</td>
+											</tr>
+
+											<t t-set="last_sp" t-value="l.get_last_sp(l.product_id.id, o.date_order, o.id)"/>
+											<t t-foreach="last_sp" t-as="ls">
+												<tr style="border-left:none;font-size:85%">
+													<td colspan="2" style="border:none; padding-top: 0; padding-bottom:0"></td>
+													<td style="border:none; padding-top: 0; padding-bottom:0">
+														- <span t-field="ls.order_id.name"/> | <span t-field="ls.date_order" t-field-options='{"format": "dd-MM-y"}'/>
+													</td>
+													<td class="text-right" style="border:none; padding-top: 0; padding-bottom:0">
+														<span t-field="ls.price_unit"/>
+													</td>
+												</tr>
+											</t>
+										</t>
+									</tr>
+								</t>
+
+								<tr style="margin-top:10px;">
+									<td colspan="4" style="border-color:black">
+										<t t-if="o.payment_term_id">
+											<t t-if="o.payment_term_id.note">
+												<span t-field="o.payment_term_id.note"/><br/>
+											</t>
+										</t>
+										<span t-field="o.notes"/>
+									</td>
+									<td class="text-right" style="border-color:black"><b>TOTAL HARGA : </b></td>
+									<td class="text-right" style="border-color:black"><b><span t-field="o.amount_total"/></b></td>
+								</tr>
+							</table>
+
+							<div class="row" style="margin-top:40px">
+								<div class="col-xs-9 text-center">
+									Disetujui :
+								</div>
+								<div class="col-xs-3 text-left" style="padding:0px">
+									<p>Surabaya, <span t-field="o.date_order" t-field-options='{"format": "d MMMM y"}'/></p>
+								</div>
+							</div>
+
+							<div class="row text-center" style="margin-top:70px">
+								<t t-if="o.amount_total &gt; 100000000">
+									<div class="col-xs-3">
+										<t t-if="o.ttd_dir">
+											<u><span t-field="o.ttd_dir"/></u><br/>
+											<span t-field="o.ttd_dir.job_id"/>
+										</t>
+										<t t-if="not o.ttd_dir">
+											<u><span t-field="o.company_id.parent_id.dept_dirut.manager_id.name"/></u><br/>
+											<span t-field="o.company_id.parent_id.dept_dirut.manager_id.job_id.name"/>
+										</t>
+									</div>
+									<div class="col-xs-3">
+										<t t-if="o.ttd_keu">
+											<u><span t-field="o.ttd_keu"/></u><br/>
+											<span t-field="o.ttd_keu.job_id"/>
+										</t>
+										<t t-if="not o.ttd_keu">
+											<u><span t-field="o.company_id.parent_id.dept_dirkeu.manager_id.name"/></u><br/>
+											<span t-field="o.company_id.parent_id.dept_dirkeu.manager_id.job_id.name"/>	
+										</t>
+									</div>
+									<div class="col-xs-3">
+										<t t-if="o.ttd_div">
+											<u><span t-field="o.ttd_div"/></u><br/>
+											<span t-field="o.ttd_div.job_id"/>
+										</t>
+										<t t-if="not o.ttd_div">
+											<u>JOJON SUPRIJANTO</u><br/>
+											Kadiv. Teknik &amp; Teknologi
+										</t>
+									</div>
+									<div class="col-xs-3">
+										<t t-if="o.ttd_log">
+											<u><span t-field="o.ttd_log"/></u><br/>
+											<span t-field="o.ttd_log.job_id"/>
+										</t>
+										<t t-if="not o.ttd_log">
+											<u><span t-field="o.company_id.parent_id.dept_log.manager_id.name"/></u><br/>
+											<span>Kepala Bagian Logistik</span>
+										</t>
+									</div>
+								</t>
+								<t t-if="o.amount_total &lt; 100000001">
+									<div class="col-xs-4">
+										<t t-if="o.ttd_keu">
+											<u><span t-field="o.ttd_keu"/></u><br/>
+											<span t-field="o.ttd_keu.job_id"/>
+										</t>
+										<t t-if="not o.ttd_keu">
+											<u><span t-field="o.company_id.parent_id.dept_dirkeu.manager_id.name"/></u><br/>
+											<span t-field="o.company_id.parent_id.dept_dirkeu.manager_id.job_id.name"/>
+										</t>
+									</div>
+									<div class="col-xs-4">
+										<t t-if="o.ttd_div">
+											<u><span t-field="o.ttd_div"/></u><br/>
+											<span t-field="o.ttd_div.job_id"/>
+										</t>
+										<t t-if="not o.ttd_div">
+											<u>JOJON SUPRIJANTO</u><br/>
+											Kadiv. Teknik &amp; Teknologi
+										</t>
+									</div>
+									<div class="col-xs-4">
+										<t t-if="o.ttd_log">
+											<u><span t-field="o.ttd_log"/></u><br/>
+											<span t-field="o.ttd_log.job_id"/>
+										</t>
+										<t t-if="not o.ttd_log">
+											<u><span t-field="o.company_id.parent_id.dept_log.manager_id.name"/></u><br/>
+											<span>Kepala Bagian Logistik</span>
+										</t>
+									</div>
+								</t>
+							</div>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+
+		<report
+			id="action_report_sp_konsep"
+			model="purchase.order"
+			string="Konsep SP"
+			report_type="qweb-pdf"
+			file="ka_logistik_sp.report_sp_konsep"
+			name="ka_logistik_sp.report_sp_konsep"
+			menu="True"/>
+	</data>
+</odoo>

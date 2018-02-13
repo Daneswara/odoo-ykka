@@ -1,0 +1,9 @@
+<odoo>
+	<data>
+		<template id="ka_layout_footer_logistik">
+			<div class="footer">
+				<div style="height:200px; background-color:#ff0000"></div>
+			</div>
+		</template>
+	</data>
+</odoo>

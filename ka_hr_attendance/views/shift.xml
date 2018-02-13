@@ -1,0 +1,57 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_shift_tree">
+			<field name="name">Data Shift Pegawai Tree</field>
+			<field name="model">hr.attendance.shift</field>
+			<field name="arch" type="xml">
+				<tree string="Data Shift Pegawai Form">
+					<field name="name"/>
+					<field name="time_in" widget="float_time"/>
+					<field name="time_out" widget="float_time"/>
+					<!-- <field name="tolerance"/> -->
+					<field name="company_id" groups="base.group_multi_company"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_shift_form">
+			<field name="name">Data Shift Pegawai Form</field>
+			<field name="model">hr.attendance.shift</field>
+			<field name="arch" type="xml">
+				<form string="Data Shift Pegawai Form">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="time_in" widget="float_time"/>
+							<field name="time_out" widget="float_time"/>
+							<!-- <field name="tolerance"/> -->
+							<field name="company_id" groups="base.group_multi_company"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_shift_search">
+			<field name="name">Data Shift Pegawai Search</field>
+			<field name="model">hr.attendance.shift</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_view_shift">
+			<field name="name">Data Shift Pegawai</field>
+			<field name="res_model">hr.attendance.shift</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Input Data Shift Pegawai</p>
+			</field>
+		</record>
+
+		<menuitem action="action_view_shift" id="menu_view_shift" parent="hr_attendance.menu_hr_attendance_settings" groups="hr_attendance.group_hr_attendance_manager" sequence="1"/>
+	</data>
+</odoo>

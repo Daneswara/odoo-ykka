@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record id="view_stock_tank_tree" model="ir.ui.view">
+            <field name="name">stock.tank.tree</field>
+            <field name="model">stock.tank</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="capacity"/>  
+                    <field name="current_brix"/> 
+                    <field name="current_temperature"/> 
+                </tree>
+            </field>
+        </record>
+        
+         <record id="view_stock_tank_form" model="ir.ui.view">
+            <field name="name">stock.tank.tree</field>
+            <field name="model">stock.tank</field>
+            <field name="arch" type="xml">
+                <form>         
+                    <sheet>
+                    	<group>
+                    		<group>
+	                    		<field name="name"/>
+			               		<field name="capacity"/>
+			               		<field name="current_brix"/>
+			               		<field name="current_temperature"/>
+			               	</group>
+                    	</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+     	<record id="action_open_stock_tank" model="ir.actions.act_window">
+            <field name="name">Tangki Tetes</field>
+            <field name="res_model">stock.tank</field>
+            <field name="view_type">form</field> 
+            <field name="view_mode">tree,form</field>             
+        </record>
+        
+        <menuitem id="menu_stock_tank" action="action_open_stock_tank" parent="stock.menu_stock_config_settings" sequence="1"/>
+        
+    </data>
+</odoo>
+        

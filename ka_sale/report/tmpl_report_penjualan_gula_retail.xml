@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report 
+            id="report_penjualan_gula_retail" 
+            model="sale.order"
+            string="Laporan Penjualan Gula Retail"
+            report_type="qweb-pdf"
+            name="ka_sale.template_report_penjualan_gula_retail"
+            file="ka_sale.template_report_penjualan_gula_retail"
+			menu="False"        
+        /> 
+
+		<template id="template_report_penjualan_gula_retail">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_sale.report_penjualan_gula_retail_document"/>
+				</div>
+			</t>
+		</template>
+
+		<template id="report_penjualan_gula_retail_document">
+			<t t-call="report.html_container">
+				<t t-set="o" t-value="o.with_context({'lang':o.lang})"/>
+				<div class="header">
+					<div class="row">			
+						<div class="col-xs-12">
+							<p class="text-center" style="font-size:18px">
+								<img src="ka_report_layout/static/src/img/logo-ptkebonagung.png" style="margin: 0 auto; height: 50px"/>
+								<br></br>
+								<strong>LAPORAN PENJUALAN GULA RETAIL BULANAN</strong>
+							</p>
+							<p class="text-center" style="font-size:16px"><strong>Periode <span t-field="o.date_from" t-field-options='{"format": "dd MMMM yyyy"}'/> sampai <span t-field="o.date_to" t-field-options='{"format": "dd MMMM yyyy"}'/></strong></p>
+            			</div>
+            		</div>
+				</div>
+
+				<div class="page" style="font-family: Arial, Helvetica, sans-serif;">
+					<div class="row">
+						<div class="col-xs-12" style="margin-top:0px; padding:0px 10px;">
+							<t t-set="no" t-value="1"/>
+							<table class="table" width="100%" style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;border-collapse: collapse">
+	                			<thead>
+									<tr height="25px">
+	                        			<th class="text-center" width="3%" style="padding:8px;vertical-align:middle;border:1px solid #000">No.</th>
+	                        			<th class="text-center" style="padding:8px;vertical-align:middle;border:1px solid #000">Nama Customer</th>
+	                        			<th class="text-center" style="padding:8px;vertical-align:middle;border:1px solid #000">Penanggung Jawab</th>
+	                        			<th class="text-center" style="padding:8px;vertical-align:middle;border:1px solid #000">Tanggal Transaksi</th>
+	                        			<th class="text-center" style="padding:8px;vertical-align:middle;border:1px solid #000">Jumlah Gula (Kg)</th>
+	                        			<th class="text-center" style="padding:8px;vertical-align:middle;border:1px solid #000">Nomor Surat Jalan</th>
+	                        			<th class="text-center" style="padding:8px;vertical-align:middle;border:1px solid #000">Nomor Kuitansi</th>
+	                        			<th class="text-center" style="padding:8px;vertical-align:middle;border:1px solid #000">Harga Satuan (Rp)</th>
+	                        			<th class="text-center" style="padding:8px;vertical-align:middle;border:1px solid #000">Harga Total (Rp)</th>
+	                    			</tr>
+								</thead>
+	                			<tbody>
+	                				<t t-set="total_weight" t-value="0"/>
+	                				<t t-set="total_subtotal" t-value="0"/>
+	                    			<tr t-foreach="get_sale_order_lines(o.date_from, o.date_to, o.sale_category_id)" t-as="so_line" height="25px">
+	                    				<t t-set="len_picking" t-value="len(get_picking_id(so_line))"/>
+										<t t-set="len_invoice" t-value="len(get_invoice_id(so_line))"/>			                    				
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="no"/></td>
+	                    				<td style="padding:3px;border:1px solid #000"><span t-esc="so_line.order_partner_id.name"/></td>
+	                    				<td style="padding:3px;border:1px solid #000"><span t-esc="so_line.order_id.agent_partner_id.name"/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-field="so_line.order_id.date_order" t-field-options='{"format": "dd-MM-yyyy"}'/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(so_line.product_uom_qty)).replace('.', '%').replace(',', '.').replace('%', ',')"/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000">
+	                    					<t t-set="idx" t-value="1"/>
+	                    					<t t-foreach="get_picking_id(so_line)" t-as="picking">
+	                    						<span t-field="picking.name"/>
+	                    						<t t-if="idx != len_picking"><br/><t t-set="idx" t-value="idx+1"/></t>
+	                    					</t>
+	                    				</td>
+	                    		
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000">
+	                    					<t t-set="idx" t-value="1"/>
+	                    					<t t-foreach="get_invoice_id(so_line)" t-as="invoice">
+	                    						<span t-field="invoice.number"/>
+	                    						<t t-if="idx != len_invoice"><br/><t t-set="idx" t-value="idx+1"/></t>
+	                    					</t>
+	                    				</td>
+	                    				
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(so_line.price_unit)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(so_line.price_subtotal)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    				<t t-set="no" t-value="no+1"/>
+	                    				<t t-set="total_weight" t-value="total_weight + so_line.product_uom_qty"/>
+		                				<t t-set="total_subtotal" t-value="total_subtotal + so_line.price_subtotal"/>
+	                    			</tr>
+	                    			<tr height="25px">
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td> 
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td> 
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(total_weight)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td> 
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td> 
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(total_subtotal)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    			</tr>
+	                    			<tr height="120px">
+	                    				<td colspan="7" style="border:0px"></td>
+	                    				<td colspan="2" class="text-center" style="padding:15px 0px 0px 0px;border:0px">
+	                    					Surabaya, <span t-esc="datetime.datetime.now().strftime('%d %B %Y')"/><br/>
+	                    					<br/>
+	                    					<br/>
+	                    					<br/>
+	                    					<br/>
+	                    					<br/>
+	                    					<u><span t-esc="user.company_id.dept_sales.manager_id.name"/></u><br/>
+	                    					Kepala Bagian Pemasaran
+	                    				</td>
+	                    			</tr>
+	                    		</tbody>
+	                    	</table>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

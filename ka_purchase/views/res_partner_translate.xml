@@ -1,0 +1,86 @@
+<odoo>
+	<data>
+		<record id="translate_res_partner_form" model="ir.ui.view">
+            <field name="name">translate.res.partner.form</field>
+            <field name="model">res.partner</field> 
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            	<field name="name" position="attributes">
+            		<attribute name="placeholder">Nama</attribute>
+            	</field>
+            	<field name="parent_id" position="attributes">
+            		<attribute name="placeholder">Perusahaan</attribute>
+            	</field>
+            	<xpath expr="//form/sheet/notebook/page[1]" position="attributes">
+            		<attribute name="string">Kontak</attribute>
+            	</xpath>
+            	<xpath expr="//form/sheet/notebook/page[2]" position="attributes">
+            		<attribute name="string">Catatan</attribute>
+            	</xpath>
+            	<xpath expr="//form/sheet/notebook/page[3]" position="attributes">
+            		<attribute name="string">Marketing &amp; Pembelian</attribute>
+            	</xpath>
+            	<field name="comment" position="attributes">
+            		<attribute name="placeholder">Catatan Internal...</attribute>
+            	</field>
+            	<group name="sale" position="attributes">
+            		<attribute name="string">Marketing</attribute>
+            	</group>
+            	<xpath expr="//form/sheet/notebook/page[3]/group/group[1]/field[1]" position="attributes">
+            		<attribute name="string">Sebagai Customer</attribute>
+            	</xpath>
+            	<group name="purchase" position="attributes">
+            		<attribute name="string">Pembelian</attribute>
+            	</group>
+            	<xpath expr="//form/sheet/notebook/page[3]/group/group[2]/field[1]" position="attributes">
+            		<attribute name="string">Sebagai Vendor</attribute>
+            	</xpath>
+            	<xpath expr="//form/sheet/notebook/page[3]/group/group[3]" position="attributes">
+            		<attribute name="string">Lain-lain</attribute>
+            	</xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="translate_partner_view_buttons">
+            <field name="name">translate.partner.view.buttons</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.partner_view_buttons" />
+            <field name="arch" type="xml">
+            	<group name="banks" position="attributes">
+            		<attribute name="string">Pembayaran</attribute>
+            	</group>
+            </field>
+        </record>
+        
+        <record id="view_translate_partner_property_form" model="ir.ui.view">
+            <field name="name">translate.res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+            	<group name="acc_sale" position="attributes">
+            		<attribute name="string">Marketing</attribute>
+            	</group>
+            	<group name="acc_purchase" position="attributes">
+            		<attribute name="string">Pembelian</attribute>
+            	</group>
+            	<field name="property_payment_term_id" position="attributes">
+            		<attribute name="string">Tenor</attribute>
+            	</field>
+            	<field name="trust" position="attributes">
+            		<attribute name="string">Tingkat Kepercayaan</attribute>
+            	</field>
+            	<field name="property_supplier_payment_term_id" position="attributes">
+            		<attribute name="string">Term Pembayaran</attribute>
+            	</field>
+            </field>
+        </record>
+        
+        <record id="base.action_partner_supplier_form" model="ir.actions.act_window">
+            <field name="name">Rekanan</field>
+       	</record>
+       	
+        <record id="purchase.menu_procurement_management_supplier_name" model="ir.ui.menu">
+            <field name="name">Rekanan</field>
+        </record>
+	</data>
+</odoo>

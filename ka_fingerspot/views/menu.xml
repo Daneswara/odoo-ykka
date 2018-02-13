@@ -1,0 +1,14 @@
+<odoo>
+	<data>
+		<menuitem id="menu_fingerspot" web_icon="ka_fingerspot,static/description/icon.png" name="Fingerspot"/>
+			<menuitem id="menu_list" parent="menu_fingerspot" name="Fingerspot" sequence="1"/>
+				
+				<menuitem id="menu_scanlog" parent="menu_list" name="Data Scan" sequence="1" action="scanlog_action"/>
+				<menuitem id="menu_user" parent="menu_list" name="User" action="user_action" sequence="2"/>
+				
+			<menuitem id="menu_setting" parent="menu_fingerspot" name="Setting" sequence="2"/>
+				<menuitem id="menu_server" parent="menu_setting" name="Server" sequence="1" action="action_fingerspot_server"/>
+				<menuitem id="menu_device" parent="menu_setting" name="Device" action="device_action" sequence="2"/>
+				<menuitem id="menu_action_log" parent="menu_setting" name="Action Log" action="action_log_action" sequence="3"/>
+	</data>
+</odoo>

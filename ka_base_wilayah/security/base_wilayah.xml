@@ -1,0 +1,44 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="base_wilayah_category">
+			<field name="name">Base Wilayah</field>
+			<field name="description">Data Base Wilayah Indonesia</field>
+		</record>
+
+		<record model="res.groups" id="ka_base_wilayah.group_user">
+			<field name="name">User</field>
+			<field name="category_id" ref="base_wilayah_category"/>
+		</record>
+
+		<record model="res.groups" id="ka_base_wilayah.group_manager">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="base_wilayah_category"/>
+			<field name="implied_ids" eval="[(4, ref('ka_base_wilayah.group_user'))]"/>
+		</record>
+		<!--Multicompanies rules-->
+	  	<record model="ir.rule" id="ka_base_provinsi_rule">
+	        <field name="name">Provinsi Rule</field>
+	        <field name="model_id" ref="model_res_provinsi"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_base_kabupaten_rule">
+	        <field name="name">Kabupaten Rule</field>
+	        <field name="model_id" ref="model_res_kab_kota"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_base_kecamatan_rule">
+	        <field name="name">Kecamatan Rule</field>
+	        <field name="model_id" ref="model_res_kecamatan"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	  	<record model="ir.rule" id="ka_base_desa_rule">
+	        <field name="name">Desa Rule</field>
+	        <field name="model_id" ref="model_res_desa_kelurahan"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	</data>
+</odoo>

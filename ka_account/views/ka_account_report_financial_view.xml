@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id='ka_view_account_financial_report_form' model='ir.ui.view'>
+            <field name="name">ka_account.financial.report.form</field>
+            <field name="model">account.financial.report</field>
+            <field name="inherit_id" ref="account.view_account_financial_report_form"/>            
+            <field name="arch" type="xml">
+                <field name="sign" position="after">
+                    <field name="is_cashflow"/>
+                    <field name="cashflow_type" attrs="{'invisible': [('is_cashflow', '!=', True)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

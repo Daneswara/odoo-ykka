@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_contractalty_manager,sale.order.contract,model_sale_order_contract,sales_team.group_sale_manager,1,1,1,1
+access_sale_order_contract_all_leads,sale.order.contract,model_sale_order_contract,sales_team.group_sale_salesman_all_leads,1,0,0,0
+access_sale_order_contract_user,sale.order.contract,model_sale_order_contract,sales_team.group_sale_salesman,1,0,0,0
+ka_sale_order_category_manager,ka_sale.order.category,model_ka_sale_order_category,sales_team.group_sale_manager,1,1,1,1
+ka_sale_order_category_all leads,ka_sale.order.category,model_ka_sale_order_category,sales_team.group_sale_salesman_all_leads,1,0,0,0
+ka_sale_order_category_user,ka_sale.order.category,model_ka_sale_order_category,sales_team.group_sale_salesman,1,0,0,0

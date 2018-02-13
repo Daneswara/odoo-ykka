@@ -1,0 +1,210 @@
+<odoo>
+	<data>
+		<template id="report_tender_result">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="ka_report_layout.ka_layout_no_header">
+						<div class="page" style="font-family: 'Arial';font-size:14px;line-height:1,5;">
+							<h3 class="text-center" style="color:#0086b3"><b>HASIL TENDER</b></h3>
+							<div class="row" style="margin-top:25px;">
+								<div class="col-xs-2" style="padding-right:0px">
+									<b>Nomor</b><br/>
+									Tanggal<br/>
+								</div>
+								<div class="col-xs-4" style="padding:0px">
+									: <b><span t-field="o.nomor"/></b><br/>
+									: <span t-field="o.tanggal" t-field-options='{"format": "d MMMM y"}'/><br/>
+								</div>
+								<div class="col-xs-3" style="padding:0px">
+									Tempat Penyerahan Barang<br/>
+									Paling lambat Tanggal
+								</div>
+								<div class="col-xs-3" style="padding:0px">
+									: <b><span t-field="o.delivery_to.name"/></b><br/>
+									: <span t-field="o.tgl_serah" t-field-options='{"format": "d MMMM y"}'/><br/>
+								</div>
+							</div>
+									
+							<div class="row">
+								<div class="col-xs-2">
+									Peserta Tender
+								</div>
+								<div class="col-xs-4" style="padding:0px">:</div>
+							</div>
+									
+							<div class="row">
+								<!-- <t t-set="list" t-value="o.get_spp_ids(o.id)"/> -->
+								<t t-foreach="[1, 2, 3]" t-as="i">
+									<div class="col-xs-4">
+										<t t-foreach="o.spp_ids.sorted(key=lambda b: b.partner_id.code)" t-as="spph">
+											<t t-if="spph_index &gt;= (3*(i-1)) and spph_index &lt; (3*i)">
+												<span t-field="spph.partner_id.code"/> - <span t-field="spph.partner_id.name"/>
+												<br/>
+											</t>
+										</t>
+									</div>
+								</t>
+							</div>
+
+							<table class="table" width="100%" style="font-size:85%; margin-top:10px">
+								<thead style="@media print {thead {display: table-header-group;}}">
+									<tr style="border-bottom: 1px solid;border-top: 1px solid;border-color:black;vertical-align:text-top;">
+										<th style="vertical-align:text-top;">No</th>
+										<th style="vertical-align:text-top;">Kode</th>
+										<th style="vertical-align:text-top;">Nama dan Spesifikasi</th>
+										<th style="vertical-align:text-top;">Kuan</th>
+										<th style="vertical-align:text-top;">Rek.</th>
+										<th style="vertical-align:text-top;" class="text-center">Penawaran</th>
+										<th style="vertical-align:text-top;" class="text-center">Negosiasi</th>
+										<th style="vertical-align:text-top;">Waktu (Hari)</th>
+										<th style="vertical-align:text-top;">Catatan</th>
+									</tr>
+								</thead>
+
+								<t t-foreach="o.line_ids.sorted(key=lambda b: b.product_id.default_code)" t-as="l">
+									<tr style="border-top:5px">
+										<t t-foreach="l.spp_line_ids" t-as="spp">
+											<tr>
+												<t t-if="spp_index == 0">
+													<td t-att-rowspan="spp_size" width="3%" class="text-center">
+														<span t-esc="l_index+1"/>
+													</td>
+													<td t-att-rowspan="spp_size" width="8%">
+														<b><span t-field="l.product_id.default_code"/></b><br/>
+														<small><span t-field="l.pkrat_id.code"/></small>
+													</td>
+													<td t-att-rowspan="spp_size" width="20%">
+														<span t-field="l.product_id.name"/><br/>
+														<span t-field="l.spesifikasi"/><br/>
+														<font color="blue">HPS : <span t-field="l.lst_price"/></font>
+													</td>
+													<td t-att-rowspan="spp_size" width="4%">
+														<span t-field="l.kuantum"/> <span t-field="l.unit_id.name"/>
+													</td>
+												</t>
+														
+												<t t-if="spp_index == 0">
+													<t t-if="spp.menang">
+														<td width="7%" class="text-center" style="background-color:#ffff00">
+															<b><span t-field="spp.partner_id.code"/></b>
+														</td>
+
+														<td width="15%" class="text-right" style="background-color:#ffff00">
+															<b><span t-field="spp.penawaran"/></b>
+														</td>
+
+														<td width="15%" class="text-right" style="background-color:#ffff00">
+															<b><span t-field="spp.harga"/></b>
+														</td>
+													</t>
+													<t t-if="not spp.menang">
+														<td width="7%" class="text-center">
+															<span t-field="spp.partner_id.code"/>
+														</td>
+
+														<td width="15%" class="text-right">
+															<span t-field="spp.penawaran"/>
+														</td>
+
+														<td width="15%" class="text-right">
+															<span t-field="spp.harga"/>
+														</td>
+													</t>
+
+													<td class="text-center" width="5%">
+														<span t-field="spp.waktu_kirim"/>
+													</td>
+													<td>
+														<span t-field="spp.keterangan"/>
+													</td>
+												</t>
+
+												<t t-if="not spp_index == 0">
+													<t t-if="spp.menang">
+														<td width="7%" class="text-center" style="border:none; background-color:#ffff00">
+															<b><span t-field="spp.partner_id.code"/></b>
+														</td>
+
+														<td width="15%" class="text-right" style="border:none; background-color:#ffff00">
+															<b><span t-field="spp.penawaran"/></b>
+														</td>
+
+														<td width="15%" class="text-right" style="border:none; background-color:#ffff00">
+															<b><span t-field="spp.harga"/></b>
+														</td>
+													</t>
+
+													<t t-if="not spp.menang">
+														<td width="7%" class="text-center" style="border:none;">
+															<span t-field="spp.partner_id.code"/>
+														</td>
+
+														<td width="15%" class="text-right" style="border:none;">
+															<span t-field="spp.penawaran"/>
+														</td>
+
+														<td width="15%" class="text-right" style="border:none;">
+															<span t-field="spp.harga"/>
+														</td>
+													</t>
+
+													<td class="text-center" width="5%" style="border:none">
+														<span t-field="spp.waktu_kirim"/>
+													</td>
+													<td style="border:none">
+														<span t-field="spp.keterangan"/>
+													</td>
+												</t>
+											</tr>
+										</t>
+									</tr>
+
+									<t t-set="last_sp" t-value="l.get_last_sp(l.product_id.id, o.tanggal)"/>
+									<t t-if="last_sp">
+										<tr style="border:none">
+											<td colspan="2" style="border:none; padding-top: 0; padding-bottom:0"></td>
+											<td colspan="4" style="border:none; padding-top: 0; padding-bottom:0">History Harga:</td>
+										</tr>
+
+										<t t-foreach="last_sp" t-as="ls">
+											<t t-if="ls">
+												<tr style="font-family:'Arial';font-size:12px;border-left:none">
+													<td colspan="2" style="border:none; padding-top: 0; padding-bottom:0"></td>
+													<td colspan="3" style="border:none; padding-top: 0; padding-bottom:0">
+														<span t-field="ls.order_id.name"/> | <span t-field="ls.date_order" t-field-options='{"format": "dd-MM-y"}'/>
+													</td>
+													<td class="text-right" style="border:none; padding-top: 0; padding-bottom:0">
+														<span t-field="ls.price_unit"/>
+													</td>
+												</tr>
+											</t>
+										</t>
+									</t>
+								</t>
+							</table>
+
+							<div class="row" style="margin-top:125px">
+								<div class="col-xs-5 col-xs-offset-7 text-center">
+									<p><span t-field="o.company_id.city"/>, <span t-field="o.tanggal" t-field-options='{"format": "d MMMM y"}'/></p>
+									<p style="margin-top:100px"><u><span t-field="o.company_id.manager_log.manager_id.name"/></u><br/>
+										<span>Kepala Bagian Logistik</span></p>
+								</div>
+							</div>
+									
+						</div>
+					</t>
+				</t>
+			</t>
+	   </template>
+		   
+		<report
+			id="action_report_tender_result"
+			model="logistik.tender"
+			string="Hasil Tender"
+			report_type="qweb-pdf"
+			file="ka_logistik_pengadaan.report_tender_result"
+			name="ka_logistik_pengadaan.report_tender_result"
+			paperformat="ka_report_layout.A4_no_header"
+			menu="False"/>
+	</data>
+</odoo>

@@ -1,0 +1,26 @@
+<odoo>
+	<data>
+		<record id="account_journal_dashboard_kanban_view_inherit" model="ir.ui.view">
+			<field name="name">account.journal.dashboard.kanban</field>
+			<field name="model">account.journal</field>
+			<field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//div[@class='o_kanban_card_header_title']" position="after">
+					<t t-if="journal_type == 'bank'">
+						<div>
+							<button name="action_bank_masuk" type="object" class="btn btn-warning btn-kas btn-kas-masuk" string="Jurnal Bank - Kas Masuk"><i class="fa fa-sign-in"></i></button>
+							<button name="action_bank_keluar" type="object" class="btn btn-primary btn-kas btn-kas-keluar" string="Jurnal Bank - Kas Keluar"><i class="fa fa-sign-out"></i></button>
+						</div>
+					</t>
+
+					<t t-if="journal_type == 'cash'">
+						<div>
+							<button name="action_cash_masuk" type="object" class="btn btn-warning btn-kas btn-kas-masuk" string="Jurnal Cash - Kas Masuk"><i class="fa fa-sign-in"></i></button>
+							<button name="action_cash_keluar" type="object" class="btn btn-primary btn-kas btn-kas-keluar" string="Jurnal Cash - Kas Keluar"><i class="fa fa-sign-out"></i></button>
+						</div>
+					</t>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

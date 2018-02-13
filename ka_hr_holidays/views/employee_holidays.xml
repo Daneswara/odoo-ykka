@@ -1,0 +1,46 @@
+<odoo>
+	<data>
+		<!-- modify default tree in hr_holidays -->
+		<record model="ir.ui.view" id="view_hr_holidays_tree_inherit">
+			<field name="name">hr.holidays.tree.inherit</field>
+			<field name="model">hr.holidays</field>
+			<field name="inherit_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="arch" type="xml">
+				<tree position="attributes">
+					<attribute name="decoration-bf">state=='draft'</attribute>
+					<attribute name="decoration-info">state=='confirm'</attribute>
+					<attribute name="decoration-success">state=='validate'</attribute>
+				</tree>
+				<field name="type" invisible="1"/>
+				<field name="holiday_status_id" position="replace">
+					<field name="holiday_status_id" invisible="1"/>
+				</field>
+			</field>
+		</record>
+		<!-- end of modify default tree in hr_holidays -->
+
+		<!-- modify default filter search in hr_holidays -->
+		<record model="ir.ui.view" id="view_hr_holidays_filter_inherit">
+			<field name="name">hr.holidays.filter.inherit</field>
+			<field name="model">hr.holidays</field>
+			<field name="inherit_id" ref="hr_holidays.view_hr_holidays_filter"/>
+			<field name="arch" type="xml">
+				<xpath expr="//filter[@name='my_leaves']" position="after">
+					<separator/>
+					<filter string="Cuti" name="status_cuti" domain="[('holiday_status_id.leave_type', '=', 'cuti')]"/>
+					<filter string="Ijin" name="status_ijin" domain="[('holiday_status_id.leave_type', '=', 'ijin')]"/>
+					<filter string="Dinas" name="status_dinas" domain="[('holiday_status_id.leave_type', '=', 'dinas')]"/>
+					<filter string="Sakit" name="status_sakit" domain="[('holiday_status_id.leave_type', '=', 'sakit')]"/>
+					<filter string="Mangkir" name="status_mangkir" domain="[('holiday_status_id.leave_type', '=', 'mangkir')]"/>
+				</xpath>
+
+				<xpath expr="//filter[@name='allocations']" position="after">
+					<filter string="Alokasi Periode Ini" name="allocations_now" domain="[('is_active', '=', True)]"/>
+					<filter string="Flush" name="flush" domain="[('type', '=', 'flush')]"/>
+				</xpath>
+			</field>
+		</record>
+
+		<menuitem id="menu_hr_holidays_all_leaves" name="Absensi Semua Karyawan" parent="hr_holidays.menu_hr_holidays_root" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" sequence="3"/>
+	</data>
+</odoo>

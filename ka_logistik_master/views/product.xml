@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<menuitem 
+			parent="menu_log1100" 
+			name="Barang Gudang"
+			id="menu_logistik_master_product_and_category" 
+			sequence="1"/>
+
+		<!-- Tree structure Product Category -->
+		<record id="product_category_tree_view" model="ir.ui.view">
+			<field name="name">product.category.tree</field>
+			<field name="model">product.category</field>
+			<field name="field_parent">child_id</field>
+			<field name="arch" type="xml">
+				<tree toolbar="True" string="Product Categories">
+					<field name="code"/>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_product_category_tree" >
+			<field name="name">logistik.product.category.tree</field>
+			<field name="model">product.category</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="code"/>
+					<field name="name"/>
+					<field name="specification"/>
+					<field name="type"/>
+				</tree>
+			</field>
+		</record>
+			
+		<!-- Form Product category-->
+		<record model="ir.ui.view" id="view_logistik_product_category_form">
+			<field name="name">logistik.product.category.form</field>
+			<field name="model">product.category</field>
+			<field name="inherit_id" ref="product.product_category_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//h1" position="after">
+					<group>
+						<field name="code" style="width:50%%"/>
+					</group>
+				</xpath>
+			</field>
+		</record>
+		
+		<!--Search Barang-->
+		<record model="ir.ui.view" id="view_logistik_product_template_search">
+			<field name="name">logistik.product.template.search</field>
+			<field name="model">product.template</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Pencarian Barang">
+					<field name="name" String="Nama"/>
+					<field name="default_code" string="Kode"/>
+					<field name="old_code" string="Kode Lama"/>
+					<field name="description" string="Spesifikasi"/>
+					<field name="pabrikan"/>
+					<field name="ref_pabrik"/>
+					<filter string="Kode Barang Sama" icon="terp-partner" domain="[('state', '=', 'end')]"/>
+				</search>
+			</field>
+		</record>
+		
+		<!-- List Barang Product -->
+		<record model="ir.ui.view" id="view_logistik_product_template_tree">
+			<field name="name">logistik.product.template.tree</field>
+			<field name="model">product.template</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="default_code" string="Kode"/>
+					<field name="old_code"/>
+					<field name="name"/>
+					<field name="description" string="Spesifikasi"/>
+					<field name="uom_id" string="Satuan"/>
+					<field name="pabrikan"/>
+					<field name="ref_pabrik"/>
+				</tree>
+			</field>
+		</record>
+		
+		<!-- <record model="ir.ui.view" id="view_logistik_product_template_form">
+			<field name="name">logistik.product.template.form</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+			<field name="arch" type="xml">
+				<field name="image_medium" position="replace"/>
+				<field name="categ_id" position="replace"/>
+				<field name="default_code" position="replace"/>
+
+				<xpath expr="//div[@class='oe_title']" position="replace">
+					<group>
+						<field name="categ_id" string="Kelompok Barang" style="width:50%%"/>
+						<field name="default_code" string="Kode" style="width:50%%"/>
+						<field name="old_code" style="width:50%%"/>
+						<field name="name" string="Nama Barang" class="oe_text_upper" style="width:50%%"/>
+						<field name="sale_ok" string="Dapat dijual"/>
+						<field name="purchase_ok" string="Dapat dibeli"/>
+					</group>
+				</xpath>
+
+				<xpath expr="//notebook" position="before">
+					<group col="2">
+						<group>
+							<field name="description"/>
+							<field name="uom_id"/>
+							<field name="jenis"/>
+							<field name="pabrikan" class="oe_text_upper"/>
+							<field name="ref_pabrik" class="oe_text_upper"/>
+							<field name="pengadaan"/>
+						</group>
+						<group>
+							<field name="image" string="Contoh Gambar" widget="image" height="200" width="200"/>
+						</group>
+					</group>
+				</xpath>
+			</field>
+		</record> -->
+
+		<record model="ir.ui.view" id="view_logistik_product_template_form">
+			<field name="name">logistik.product.template.form</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+			<field name="arch" type="xml">
+				<field name="categ_id" position="replace"/>
+				<field name="default_code" position="replace"/>
+
+				<field name="type" position="before">
+					<field name="categ_id" string="Kelompok Barang"/>
+					<field name="default_code" string="Kode"/>
+					<field name="old_code"/>
+					<field name="description"/>
+<!--					<field name="uom_id"/-->
+				</field>
+
+				<field name="list_price" position="before">
+					<field name="jenis"/>
+					<field name="pabrikan" class="oe_text_upper"/>
+					<field name="ref_pabrik" class="oe_text_upper"/>
+					<field name="pengadaan"/>
+				</field>
+			</field>
+		</record>
+		
+		<record id="view_product_template_purchase_buttons_from_inherit" model="ir.ui.view">
+            <field name="name">product.template.purchase.button.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="purchase.view_product_template_purchase_buttons_from"/>
+            <field name="arch" type="xml">
+                 <button name="%(purchase.action_purchase_line_product_tree)d" position="replace">
+                       <button class="oe_stat_button" name="%(purchase.action_purchase_line_product_tree)d" string="Purchases" type="action" icon="fa-shopping-cart"/>
+                </button>
+            </field>
+        </record>
+        
+        <record id="product_template_form_view_sale_order_button_inherit" model="ir.ui.view">
+            <field name="name">product.template.sale.order.button.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="sale.product_template_form_view_sale_order_button"/>
+            <field name="arch" type="xml">
+                 <button name="action_view_sales" position="replace">
+                       <button class="oe_stat_button" name="action_view_sales" string="Sales" type="object" icon="fa-usd"/>
+                </button>
+            </field>
+        </record>
+		
+		<record model="ir.actions.act_window" id="action_logistik_product_category">
+			<field name="name">Kategori Barang</field>
+			<field name="res_model">product.category</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Buat data kategori barang terlebih dahulu!</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window.view" id="action_logistik_product_category_tree">
+			<field name="view_id" ref="view_logistik_product_category_tree"/>
+			<field name="view_mode">tree</field>
+			<field name="act_window_id" ref="action_logistik_product_category"/>
+		</record>
+		
+		<record model="ir.actions.act_window.view" id="action_logistik_product_category_form">
+			<field name="view_id" ref="view_logistik_product_category_form"/>
+			<field name="view_mode">form</field>
+			<field name="act_window_id" ref="action_logistik_product_category"/>
+		</record>
+
+		<record id="action_product_category_treeview" model="ir.actions.act_window">
+			<field name="name">Pengelompokan Kategori Barang</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">product.category</field>
+			<field name="domain">[('parent_id','=', False)]</field>
+			<field name="view_type">tree</field>
+			<field name="view_id" ref="product_category_tree_view"/>
+			<field name="help" type="html">
+				<p>
+					Pengelompokan Kategori Barang.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_child_product_category_open" model="ir.actions.act_window">
+				<field name="name">Kategori Barang</field>
+				<field name="res_model">product.template</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+				<field name="domain">[('categ_id','=',[active_id])]</field>
+		</record>
+
+		<record id="action_open_product_category" model="ir.values">
+            <field eval="'tree_but_open'" name="key2"/>
+            <field eval="'product.category'" name="model"/>
+            <field name="name">Kategori Barang</field>
+            <field eval="'ir.actions.act_window,%d'%action_child_product_category_open" name="value"/>
+        </record>
+		
+
+		<record model="ir.actions.act_window" id="action_logistik_product">
+			<field name="name">Daftar Barang</field>
+			<field name="res_model">product.template</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,kanban</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Buat barang terlebih dahulu</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window.view" id="action_logistik_product_template_tree">
+			<field name="view_id" ref="view_logistik_product_template_tree"/>
+			<field name="view_mode">tree</field>
+			<field name="act_window_id" ref="action_logistik_product"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_logistik_product_template_form">
+			<field name="view_id" ref="view_logistik_product_template_form"/>
+			<field name="view_mode">form</field>
+			<field name="act_window_id" ref="action_logistik_product"/>
+		</record>
+	
+		<menuitem 
+			parent="menu_logistik_master_product_and_category" 
+			id="menu_action_logistik_product" 
+			action="action_logistik_product"
+			sequence="1"/>
+			
+		<menuitem 
+			parent="menu_logistik_master_product_and_category" 
+			id="menu_action_logistik_product_category" 
+			action="action_logistik_product_category"
+			sequence="2"/>
+
+		<menuitem 
+			name="Kelompok Barang"
+			parent="menu_logistik_master_product_and_category" 
+			id="menu_action_logistik_product_by_category" 
+			action="action_product_category_treeview"
+			sequence="3"/>
+
+		<menuitem 
+			name="Satuan/UoM"
+			parent="menu_logistik_master_product_and_category" 
+			id="menu_action_logistik_product_uom" 
+			action="product.product_uom_form_action"
+			sequence="4"/>
+			
+		<menuitem 
+			name="Kategori Satuan"
+			parent="menu_logistik_master_product_and_category" 
+			id="menu_action_logistik_product_uom_category" 
+			action="product.product_uom_categ_form_action"
+			sequence="5"/>
+			
+	</data>
+</odoo>

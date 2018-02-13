@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ka_account_payment_purchase_manager,ka_account_payment_purchase_manager,ka_account.model_ka_account_payment,purchase.group_purchase_manager,1,1,1,1
+access_ka_account_payment_purchase_user,ka_account_payment_purchase_user,ka_account.model_ka_account_payment,purchase.group_purchase_user,1,1,1,1
+access_payable_category_purchase_user,ka_account.payable.category,model_ka_account_payable_category,purchase.group_purchase_user,1,0,0,0

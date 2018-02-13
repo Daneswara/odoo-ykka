@@ -1,0 +1,144 @@
+<odoo>
+	<data>
+		<record id="action_show_intensifikasi" model="ir.actions.act_window">
+            <field name="name">Intensifikasi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_plantation.intensifikasi</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_tree_intesifikasi"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="action_show_varietas" model="ir.actions.act_window">
+            <field name="name">Varietas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_plantation.varietas</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_tree_varietas"/>
+            <field name="target">new</field>
+        </record>
+
+       	<record id="action_show_agronomi" model="ir.actions.act_window">
+            <field name="name">Data Agronomi Lahan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_plantation.area.agronomi</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_tree_area_agronomi"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="action_show_pivot_desember" model="ir.actions.act_window">
+            <field name="name">Pivot Table</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_plantation.area.agronomi</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,pivot</field>
+            <field name="view_id" ref="agronomi_pivot_view"/>
+            <field name="target">current</field>
+        </record>
+
+        <record id="action_show_pivot_maret" model="ir.actions.act_window">
+            <field name="name">Pivot Table</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_plantation.register.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,pivot</field>
+            <field name="view_id" ref="hasil_taksasi_pivot_view"/>
+            <field name="target">current</field>
+        </record>
+
+		<record model="ir.ui.view" id="view_form_area_sampling">
+			<field name="name">Form Area Sampling</field>
+			<field name="model">ka_plantation.sampling</field>
+			<field name="arch" type="xml">
+				<form string="Form Area Lahan Kebun">
+					<header>
+						<button name="action_draft" type="object"
+                                string="Reset to draft"
+                                states="valid"/>
+                        <button name="action_valid" type="object"
+                                string="Validasi" states="draft"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar"/>
+						<!-- <button name="action_create_line_ids" type="object" class="oe_highlight" string="Calculate"/> -->
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button class="oe_stat_button" type="object" name="cetak_estimasi" icon="fa-print" string="Estimasi Perolehan" context="{'default_sampling_id': active_id,'default_model':active_model}" attrs="{'invisible':['|',('state', '!=', 'valid'),('taks_periode', '!=', 'maret')]}"/>
+							<button class="oe_stat_button" type="action" name="%(action_wizard_hasil_taksasi)d" icon="fa-print" string="Cetak Hasil Taksasi" context="{'default_sampling_id': active_id,'default_model':active_model}" attrs="{'invisible':[('state', '!=', 'valid')]}"/>
+	                    	<button class="oe_stat_button" type="object" name="open_pivot_table" icon="fa-table" string="Hasil Taksasi" attrs="{'invisible':[('state', '!=', 'valid')]}"/>
+                        	<button name="action_create_line_ids" type="object" class="oe_stat_button" icon="fa-refresh" string="Proses" attrs="{'invisible':[('state', '=', 'valid')]}"/>
+	                    </div>
+						<group>
+							<field name="mtt_id" attrs="{'readonly':[('state', '=', 'valid')]}"/>
+							<field name="taks_periode"/>
+							<field name="tanggal" attrs="{'readonly':[('state', '=', 'valid')]}"/>
+							<field name="jumlah_kebijakan" attrs="{'readonly':[('state', '=', 'valid')]}"/>
+							<field name="jumlah_sampling"/>
+							<field name="company_id"/>
+						</group>
+						<notebook>
+							<page String="Data Line" autofocus="autofocus">
+								<field name="line_ids" context="{'default_sampling_id' : active_id}" attrs="{'readonly':[('state', '=', 'valid')]}">
+									<tree>
+										<field name="kecamatan_id"/>
+										<field name="luas_petak"/>
+										<field name="jumlah_petak"/>
+										<field name="jumlah_intensifikasi"/>
+										<button name="open_list_intensifikasi" string="List Intensifikasi" icon="fa-expand" class="oe_highlight" type="object"/>
+										<field name="jumlah_varietas"/>
+										<button name="open_list_varietas" string="List Varietas" icon="fa-arrows-alt" class="oe_highlight" type="object"/>
+										<field name="rata_produktivitas"/>
+										<button name="open_list_petak" string="List Petak" icon="fa-map" class="oe_highlight" type="object"/>
+										<field name="taks_produksi"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tree_area_sampling">
+			<field name="name">Data Area Sampling</field>
+			<field name="model">ka_plantation.sampling</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="taks_periode"/>
+					<field name="tanggal"/>
+					<field name="jumlah_kebijakan"/>
+					<field name="mtt_id"/>
+					<field name="company_id"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_area_sampling">
+			<field name="name">Area Sampling Maret</field>
+			<field name="res_model">ka_plantation.sampling</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('taks_periode', '=', 'maret')]</field>
+			<field name="context">{'default_taks_periode':'maret'}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data lahan kebun masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_area_sampling_des">
+			<field name="name">Area Sampling Desember</field>
+			<field name="res_model">ka_plantation.sampling</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('taks_periode', '=', 'desember')]</field>
+			<field name="context">{'default_taks_periode':'desember'}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data lahan kebun masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+	</data>
+</odoo>

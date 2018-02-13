@@ -1,0 +1,207 @@
+<odoo>
+	<data>
+		<template id="report_stock_return_supplier_tmpl">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="report.html_container">
+						<div class="header" style="font-family: Dotrice;"> 
+							<br/><br/><br/>
+							<div class="container" position="fixed" style="font-size: 12px;">
+				            	<div class="col-xs-12" style="text-align:center;">
+				            		<p style="margin-left: 40px"><span t-field="o.name"/></p>
+				            	</div>
+				            </div>	
+							<div class="row" style="font-size: 12px;">                        
+				            	<div class="col-xs-6">
+						    		<table>  
+						          		<tr>    
+						                    <td width="420" class="text-left"></td>
+						                    <td width="3" class="text-left"></td>
+						                    <td width="200" class="text-left" style="padding-bottom:15px; padding-top:5px;">
+						                    	<span t-esc="o.get_purchase_id().name"/>
+						                    </td>
+						                </tr>
+						                <tr>    
+						                    <td width="420" class="text-left"></td>
+						                    <td width="3" class="text-left"></td>
+						                    <td width="200" class="text-left" style="padding-bottom:15px; padding-top:5px;">
+						                    	<span t-esc="time.strftime('%d-%m-%Y',time.strptime(o.get_purchase_id().date_order,'%Y-%m-%d %H:%M:%S'))"/>
+						                    </td>
+						                </tr>
+						                <tr>    
+						                    <td width="420" class="text-left"></td>
+						                    <td width="3" class="text-left"></td>
+						                    <td width="200" class="text-left" style="padding-bottom:15px; padding-top:5px;">
+						                    	<span t-esc="time.strftime('%d-%m-%Y',time.strptime(o.get_purchase_id().date_planned,'%Y-%m-%d %H:%M:%S'))"/>
+						                    </td>
+						                </tr>
+						          	</table>
+						  		</div>
+						  		
+						  		<div class="col-xs-5 col-xs-offset-1" style="font-size: 12px;">
+						  			<table>  
+						          		<tr> 
+						          			<td width="190"></td>
+						          			<td width="3"></td> 
+						          			<t t-if="o.get_purchase_id().source_partner_id" style="padding-bottom:5px;">
+							                    <td width="300" class="text-left">
+							                    	<span t-esc="o.get_purchase_id().source_partner_id" 
+							                    		t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/><br/>
+							                    	<span t-esc="o.get_purchase_id().source_partner_id.street"/><br/>
+							                    	<span t-esc="o.get_purchase_id().source_partner_id.street2"/> - <span t-field="o.get_purchase_id().source_partner_id.city"/> 
+							                  	</td>
+						                  	</t>
+						                  	<t t-if="not o.get_purchase_id().source_partner_id">
+							                    <td width="300" class="text-left" style="padding-bottom:5px;">
+							                    	<span t-esc="o.get_purchase_id().partner_id" 
+							                    		t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/><br/>
+							                    	<span t-esc="o.get_purchase_id().partner_id.street"/><br/>
+							                    	<span t-esc="o.get_purchase_id().partner_id.street2"/> - <span t-field="o.get_purchase_id().partner_id.city"/> 
+							                  	</td>
+						                  	</t>
+						                </tr>
+						         	</table>
+						  		</div>
+							</div>
+						</div>
+						
+						<br/><br/>
+						
+						<div class="page" style="font-family: Dotrice; font-size: 12px;">
+							<t t-set="idx" t-value="0"/>
+				            <table style="margin-top:70px; max-height: 20px;" class="table table-bordered"> 
+				                <thead>
+				                    <tr>
+				                        <th style="padding: 20px;" width="15%" class="text-center"></th>
+				                        <th style="padding: 20px;" width="55%" class="text-left"></th>
+				                        <th style="padding: 20px;" width="15%" class="text-center"></th>
+				                        <th style="padding: 20px;" width="15%" clakss="text-center"></th>
+				                    </tr>
+				                </thead>
+				                
+				                <tbody>
+				                	<tr>
+				                    	<td style="padding-bottom:3px;padding-top:3px;"></td>
+				                        <td style="padding-bottom:3px;padding-top:3px;"></td>
+				                        <td style="padding-bottom:3px;padding-top:3px;"></td>
+				                        <td style="padding-bottom:3px;padding-top:3px;"></td>
+				                    </tr>
+				                    <tr t-foreach="o.get_rows_return_supplier()[idx]" t-as="line">
+				                    	<td style="padding-bottom:3px;padding-top:3px;" class="text-center">
+				                    		<div style="min-height:19px"><span t-esc="line['code']"/></div></td>
+				                        <td style="padding-bottom:3px;padding-top:3px;" class="text-left">
+				                        	<div style="min-height:19px">
+				                        		<span t-esc="line['name']"/> <br/>
+												<span t-esc="line['description']"/>		                        		
+				                        	</div>
+				                        </td>
+				                        <td style="padding-bottom:3px;padding-top:3px;" class="text-center">
+					                        <span t-esc="line['uom']" groups="product.group_uom"/>
+				                        </td>
+				                        <td style="padding-bottom:3px;padding-top:3px;" class="text-center">
+				                        	<div style="min-height:19px">
+					                        	<t t-if="line['qty'] != '-'"><span t-esc="'{0:,.2f}'.format(float(line['qty'])).replace('.', '%').replace(',', '.').replace('%', ',')"/></t>
+					                        	<t t-if="line['qty'] == '-'"><span t-esc="line['qty']"/></t>
+				                            </div>
+				                        </td>
+				                    </tr>
+				                </tbody>
+				            </table>
+				            
+				            <table style="margin-top:75px; max-height: 20px;" class="table table-bordered"> 
+				                <thead>
+				                    <tr>
+				                        <th style="padding: 19px;" width="15%" class="text-center"></th>
+				                        <th style="padding: 19px;" width="85%" class="text-left"></th>
+				                    </tr>
+				                </thead>
+		
+				                <tbody>
+				                	<t t-set="max_rows" t-value="11"/>
+				                    <tr t-foreach="o.get_rows_return_supplier()[idx]" t-as="line">
+				                    	<td style="padding-bottom:3px;padding-top:3px;" class="text-center">
+				                    		<div style="min-height: 18px">
+				                    			<span t-esc="line['code']"/>
+				                    		</div>
+				                    	</td>
+				                        <td style="padding-bottom:3px;padding-top:3px;">
+				                        	<div style="min-height: 18px">
+				                        		<span t-esc="line['note']"/>
+				                        	</div>
+				                        </td>
+				                        <t t-set="max_rows" t-value="max_rows - line['row_note']"/>
+				                    </tr>
+				                    <tr t-foreach="range(int(max_rows))" t-as="res_line">
+				                    	<td style="padding-bottom:3px;padding-top:3px;" class="text-center"> - </td>
+				                        <td style="padding-bottom:3px;padding-top:3px;"> - </td>
+				                    </tr>
+				                </tbody>
+				            </table>
+				            <t t-set="idx" t-value="idx+1"/>
+						</div> 	
+					     
+					  	<div class="footer" style="font-family: Dotrice; font-size: 12px;">
+			            	<div class="col-xs-6">
+					    		<table class="below_table">  
+					          		<tr>    
+					                    <td width="250" class="text-left"></td>
+					                    <td width="3" class="text-left"></td>
+					                    <td width="200" class="text-left"></td>
+					                </tr>
+					          	</table>
+					  		</div> 
+		
+					  		<div class="col-xs-5 col-xs-offset-1">
+					  			<table class="table">  
+					          		<tr>    
+					                    <td style="padding: 15px;"> 
+					                    	<p style="margin-left: 180px"><span t-esc="time.strftime('%d-%m-%Y')"/></p>
+					                    </td>
+					                </tr>
+				                	<tr>    
+					                    <td style="text-align:center;padding: 10px"></td>
+					                </tr>
+					                <tr>    
+					                    <td style="padding: 30px"></td>
+					                </tr>
+					                <tr>    
+					                    <td style="text-align:center;padding: 10px"></td>
+					                </tr>
+					         	</table>
+					         </div>
+				     	</div>
+			     	</t>
+				</div>
+			</t>
+		</template>
+		
+		<report
+	        id="report_stock_return_supplier"
+	        model="stock.picking"
+	        string="Report Stock Return Supplier"
+	        name="ka_stock_account.report_stock_return_supplier_tmpl"
+	        file="ka_stock_account.report_stock_return_supplier_tmpl"
+	        report_type="qweb-pdf" 
+	        menu="False"/>
+		
+	    <record id="paperformat_report_stock_return_supplier" model="report.paperformat">
+            <field name="name">Report Stock Return Supplier</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">320</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">95</field>
+            <field name="margin_bottom">62</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">6</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">50</field>
+            <field name="dpi">90</field>
+        </record>
+        
+		<record id="ka_stock_account.report_stock_return_supplier" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="ka_stock_account.paperformat_report_stock_return_supplier" />
+		</record>
+	</data>
+</odoo>

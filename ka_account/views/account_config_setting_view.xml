@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record id="view_account_config_settings_inherit" model="ir.ui.view">
+            <field name="name">account.config.settings.inherit</field>
+            <field name="model">account.config.settings</field>
+            <field name="inherit_id" ref="account.view_account_config_settings"/>
+            <field name="arch" type="xml">
+            	<field name="group_warning_account" position="after">
+            		<field name="penalty_account_id"/>
+					<field name="default_pph_account_id"/>
+					<field name="default_bail_account_id"/>
+					<field name="default_account_internal_transfer"/>            		
+            	</field> 
+            </field> 	
+        </record>
+	</data>
+</odoo>

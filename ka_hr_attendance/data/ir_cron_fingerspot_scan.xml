@@ -1,0 +1,17 @@
+<odoo>
+	<data noupdate="1">
+		<record model="ir.cron" id="ir_cron_fingerspot_scan">
+			<field name="name">Periodic Fingerspot Get Scan Data</field>
+			<field eval="True" name="active"/>
+			<field name="user_id" ref="base.user_root"/>
+			<field name="priority">1</field>
+			<field name="interval_number">1</field>
+			<!-- <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 00:01:00')"/> -->
+			<field name="interval_type">hours</field>
+			<field name="numbercall">-1</field>
+			<field eval="'hr.attendance'" name="model"/>
+			<field eval="'cron_fingerspot_scan_all'" name="function"/>
+			<field eval="'()'" name="args"/>
+		</record>
+	</data>
+</odoo>

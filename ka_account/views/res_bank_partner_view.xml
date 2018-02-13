@@ -1,0 +1,14 @@
+<odoo>
+	<data>
+		<record id="view_res_partner_bank_form_inherit" model="ir.ui.view">
+	        <field name="name">ka_account.res.partner.bank.form</field>
+	        <field name="model">res.partner.bank</field>
+	        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+	        <field name="arch" type="xml">
+	            <field name="partner_id" position="after">
+	                <field name="priority"/>                 
+	            </field>
+	        </field>
+        </record>
+	</data>
+</odoo>

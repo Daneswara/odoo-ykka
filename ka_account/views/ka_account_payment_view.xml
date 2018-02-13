@@ -1,0 +1,264 @@
+<odoo>
+	<data>
+		
+		<!-- Edit Base Menu Payments on Sales -->   
+        <record id="account.menu_action_account_payments_receivable" model="ir.ui.menu">
+		    <field name="groups_id" eval="[(6,0,[ref('base.group_no_one')])]"/>
+		</record>
+		
+		<!-- Edit Base Menu Payments on Purchases -->   
+        <record id="account.menu_action_account_payments_payable" model="ir.ui.menu">
+		    <field name="groups_id" eval="[(6,0,[ref('base.group_no_one')])]"/>
+		</record>	
+		
+		<record model="ir.ui.view" id="view_ka_account_payment_pivot">
+            <field name="name">ka.account.payment.pivot</field>
+            <field name="model">ka_account.payment</field>
+            <field name="arch" type="xml">
+                <pivot string="Pivot Tagihan" type="pivot">
+                    <field name="partner_id" type="row"/>
+                    <field name="amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+		<record id="view_ka_account_payment_tree" model="ir.ui.view">
+            <field name="name">ka.account.payment.tree</field>
+            <field name="model">ka_account.payment</field>
+            <field name="arch" type="xml">
+                <tree> 
+                    <field name="proposed_number" string="No. Pengajuan"/>
+                    <field name="payment_date"/>
+                    <field name="partner_id"/>
+                    <field name="invoice_id"/>
+                    <field name="no_kwitansi"/>
+                    <field name="tax_number"/>
+                    <field name="tax_date"/>
+                    <field name="amount_dpp"/>
+                    <field name="amount_ppn"/>
+                    <field name="amount_pph"/>
+            		<field name="currency_id" invisible="1"/>               
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+		
+		<record id="view_ka_account_bail_payment_tree" model="ir.ui.view">
+            <field name="name">ka.account.payment.tree</field>
+            <field name="model">ka_account.payment</field>
+            <field name="arch" type="xml">
+                <tree decoration-danger="state != 'paid' and date_due and date_due &lt; current_date"> 
+                    <field name="name"/>
+                    <field name="proposed_number" string="No. Pengajuan"/>
+                    <field name="payment_date"/>
+					<field name="date_due"/>  
+                    <field name="partner_id"/>
+                    <field name="invoice_id"/>
+                    <field name="no_kwitansi"/>
+                    <field name="amount_dpp"/>
+                    <field name="amount_invoice"/>
+            		<field name="currency_id" invisible="1"/>                  
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_ka_account_bail_payment_filter" model="ir.ui.view">
+            <field name="name">ka_account.payment.select</field>
+            <field name="model">ka_account.payment</field>
+            <field name="arch" type="xml">
+                <search string="Search Payment">
+                    <field name="proposed_number" string="Nomor Aju"/>
+                    <field name="partner_id" string="Partner"/>
+                    <field name="purchase_id" string="Nomor SP"/>
+					<field name="ntb_number" string="Nomor NTB"/>                    
+                    <filter name="late" string="Jatuh Tempo" domain="['&amp;', ('state', '!=', 'paid'), ('date_due', '&lt;', time.strftime('%%Y-%%m-%%d'))]" help="Overdue Payment, maturity date passed"/>
+					<group expand="0" string="Status">
+						<filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+						<filter name="proposed" string="Propose" domain="[('state','=','proposed')]"/>
+						<filter name="validate" string="Validate" domain="[('state','=','validate')]"/>
+						<filter name="confirmed" string="Confirm" domain="[('state','=','confirmed')]"/>
+						<filter name="paid" string="Paid" domain="[('state','=','paid')]"/>
+					</group>
+               </search>   
+            </field>
+        </record>
+
+        <record id="view_ka_account_payment_form" model="ir.ui.view">
+        	<field name="name">ka.account.payment.form</field>
+            <field name="model">ka_account.payment</field>
+            <field name="arch" type="xml">
+            	<form string="KA Payment">
+            		<header>
+                        <button name="propose_payment" class="oe_highlight" states="draft" type="object" string="Propose"/>
+						<button name="action_validate_payment" class="oe_highlight" states="proposed" type="object" string="Validate" groups="account.group_account_user"/>	
+                        <button name="set_draft_payment" type="object" string="Set to Draft" 
+                            attrs="{'invisible': ['|',('state','!=', 'proposed'),('journal_voucher_id','!=',False)]}"/>
+            			<field name="state" widget="statusbar"/>
+            		</header>
+            		<sheet>
+						<div class="oe_title" style="float:center;">
+	                        <h2>PENGAJUAN PEMBAYARAN</h2>
+	                    </div>					
+                        <div class="oe_button_box" name="button_box"> 
+                             <button type="object" string="Cetak Pengajuan" name="do_print_selected_document" class="oe_stat_button"
+                             icon="fa-print" attrs="{'invisible': [('state','=', 'draft')]}"/>
+                             <button type="object" string="Bukti Kas" name="action_view_journal_voucher" class="oe_stat_button"
+                             icon="fa-bars" attrs="{'invisible': [('journal_voucher_id','=', False)]}"/>
+                        </div>  
+            			<field name="id" invisible="1"/>
+                        <div class="oe_title">
+                            <h1><field name="name" required="1" readonly="0" invisible="1"/></h1>
+                        </div>
+                        <div class="oe_title">
+							<h2>
+								<label for="proposed_number"/>
+								<field name="proposed_number" class="oe_inline" readonly="1"/>
+							</h2>
+						</div>
+                        <group>
+                            <field name="efaktur_url" attrs="{'readonly': [('state','!=','draft')], 'invisible': [('is_bail_payment','=',True)]}"/>
+                        	<group>
+                        		<field name="payment_date" required="True" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        		<field name="type" invisible="1"/>
+                        		<field name="is_bail_payment" invisible="1"/>
+                        		<field name="partner_id" required="True" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        		<!-- <field name="purchase_id" required="True" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}"
+                        			domain="[('partner_id', '=',partner_id),('state','not in',('draft','cancel','done'))]"/>  -->
+                        		<field name="purchase_id" options="{'no_create': True}" 
+                                    attrs="{'readonly': [('state','!=','draft')]}"
+                                    required="not context.get('action_validate', False)" 
+                        			domain="[('partner_id', '=',partner_id),('state','not in',('draft','cancel','done'))]"/> 
+                        		<field name="invoice_id" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}" 
+                        			domain="[('type','=',context.get('invoice_type')), ('state','=','open'), '|', ('partner_id', '=',partner_id), ('source_partner_id', '=',partner_id)]"/>
+                          		<!-- <field name="account_id" options="{'no_create': True}" attrs="{'required': [('state','=','draft'),('invoice_id','=',False)], 'readonly': [('state','!=','draft')], 'invisible': [('invoice_id','!=',False)]}"/> -->
+                         		<field name="account_id" options="{'no_create': True}" 
+                                        invisible="not context.get('action_validate', False)"
+                                        attrs="{'readonly': [('state', 'not in', ('draft',  'proposed'))]}"/>
+                        		<field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"
+                        			 attrs="{'readonly': [('state','!=','draft')]}"/>
+                        		<field name="no_kwitansi" attrs="{'readonly': [('state','!=','draft')]}" required="1"/>
+                        		<field name="vendor_invoice_date" attrs="{'readonly': [('state','!=','draft')]}" required="1"/>
+                        		<field name="amount" widget="monetary" attrs="{'invisible': [('invoice_id','=',False)], 'readonly': [('state','!=','draft')]}"/>
+                        		<field name="description" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        	</group>
+
+                        	<group>
+                        		<field name="currency_id" invisible="1" options="{'no_create': True}"/>
+                        		<field name="tax_number" attrs="{'readonly': [('state','!=','draft')], 'invisible': [('is_bail_payment','=',True)]}"/>
+                        		<field name="tax_date" attrs="{'readonly': [('state','!=','draft')], 'invisible': [('is_bail_payment','=',True)]}"/>
+                        		<!-- <field name="amount_dpp" attrs="{'readonly': [('state','!=','draft')]}" widget="mask" data-inputmask="'alias': 'decimal', 'groupSeparator': '.', 'radixPoint':',', 'autoGroup': true"/> -->
+                        		<field name="amount_dpp" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        		<field name="amount_ppn" attrs="{'readonly': [('state','!=','draft')], 'invisible': [('is_bail_payment','=',True)]}"/>
+                        		<field name="amount_invoice" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        		<field name="percent_pph" attrs="{'readonly': [('state','not in',('draft','proposed'))], 'invisible': [('is_bail_payment','=',True)]}"/>
+                        		<field name="amount_pph" attrs="{'readonly': [('state','not in',('draft','proposed'))], 'invisible': [('is_bail_payment','=',True)]}"/>
+                        		<field name="amount_penalty" attrs="{'readonly': [('state','!=','draft')], 'invisible': [('is_bail_payment','=',True)]}"/>
+                        		<field name="amount_bail" attrs="{'readonly': [('state','!=','draft')], 'invisible': [('is_bail_payment','=',True)]}"/>
+                                <field name="date_bail_end" attrs="{'readonly': [('state','!=','draft')], 'required': [('amount_bail','!=',0)], 'invisible': ['|',('amount_bail','=',0),('is_bail_payment','=',True)]}"/>
+                        		<field name="no_npwp" invisible="1"/>
+                                <field name="printed" readonly="1"/>
+								<field name="ntb_number" invisible="1"/>                                
+                                <field name="date_due" attrs="{'readonly': [('state','!=','draft')], 'invisible': [('is_bail_payment','=',False)]}"/>
+                                <field name="date_paid" readonly="1" attrs="{'invisible': [('state','!=','paid')]}"/>
+                        		<field name="journal_voucher_id" options="{'no_create': True}" invisible="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        	</group>
+                        </group>
+                        <group>
+                        	<group string="Informasi SP">
+                        		<field name="purchase_order_date"/>
+                        		<field name="purchase_date_planned"/>
+                        		<field name="purchase_amount_total"/>
+                        		<field name="purchase_amount_paid"/>
+                        		<field name="purchase_amount_unpaid"/>
+                        	</group>
+                        </group>
+            		</sheet>
+            		<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+            	</form>
+            </field>
+        </record>
+		<!-- Purchase Menu -->
+		<record id="action_open_payment" model="ir.actions.act_window">
+            <field name="name">Tagihan Supplier</field>
+            <field name="res_model">ka_account.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="view_id" ref="ka_account.view_ka_account_payment_tree"/>
+            <field name="domain">[('type','=','outbound'),('is_bail_payment','=',False)]</field>
+            <field name="context">{'default_type': 'outbound', 'default_is_bail_payment': False, 'invoice_type': 'in_invoice'}</field>
+        </record>
+        
+		<!-- Accounting Menu -->		
+		<record id="action_open_account_payment" model="ir.actions.act_window">
+            <field name="name">Tagihan Supplier</field>
+            <field name="res_model">ka_account.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="view_id" ref="ka_account.view_ka_account_payment_tree"/>
+            <field name="domain">[('type','=','outbound')]</field>
+            <field name="context">{'action_validate':1, 'default_type': 'outbound', 'search_default_proposed':1, 'default_is_bail_payment': False, 'invoice_type': 'in_invoice'}</field>
+        </record>
+        
+        <record id="action_open_bail_payment" model="ir.actions.act_window">
+            <field name="name">Tagihan Garansi</field>
+            <field name="res_model">ka_account.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="ka_account.view_ka_account_bail_payment_tree"/>
+            <field name="domain">[('type','=','outbound'),('is_bail_payment','=',True)]</field>
+            <field name="context">{'default_type': 'outbound', 'default_is_bail_payment': True, 'invoice_type': 'in_invoice'}</field>
+        </record>
+
+		<menuitem id="menu_payment" 
+			name="Tagihan Supplier" 
+			parent="purchase.menu_purchase_control" 
+			action="action_open_payment" 
+			sequence="13"/>
+		
+		<menuitem id="menu_bail_payment" 
+			name="Tagihan Garansi" 
+			parent="purchase.menu_purchase_control" 
+			action="action_open_bail_payment"  
+			sequence="14"/>
+			
+		<act_window
+            id="action_confirm_vendor_payments_ka" 
+            name="Generate Bukti Kas" 
+            src_model="ka_account.payment"
+            res_model="ka_account.payment.confirm.wizard"
+            view_mode="form"
+            multi="True"
+            target="new"
+            key2="client_action_multi"/> 
+
+        <act_window
+            id="action_confirm_print_payments" 
+            name="Print Selected Payments" 
+            src_model="ka_account.payment"
+            res_model="ka_account.print.payment.wizard"
+            view_mode="form"
+            multi="True"
+            target="new"
+            key2="client_action_multi"/> 
+
+        <act_window
+            id="action_export_faktur_pajak" 
+            name="Export Pajak" 
+            src_model="ka_account.payment"
+            res_model="ka_account.payment.export.faktur.pajak.wiz"
+            view_mode="form"
+            multi="True"
+            target="new"
+            key2="client_action_multi"/>
+					
+		<menuitem id="menu_account_payment" 
+			name="Tagihan Supplier" 
+			parent="account.menu_finance_payables" 
+			action="action_open_account_payment" 
+			sequence="2"/>
+	</data>
+</odoo>

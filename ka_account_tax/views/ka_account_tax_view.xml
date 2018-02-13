@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_tax_inherit_view" model="ir.ui.view">
+            <field name="name">account.tax.inherit.form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <field name="tax_adjustment" position="after">
+                    <field name="is_pph"/>
+                    <field name="formulir_ref"/>
+                </field>
+            </field>
+        </record> 
+    
+    	<record id="view_ka_account_pph_periode_filter" model="ir.ui.view">
+    		<field name="name">ka_account.pph.periode.filter</field>
+	        <field name="model">ka_account.pph.periode</field>
+        		<field name="arch" type="xml">
+            		<search string="PPh">
+                			<field name="name"/>
+                			<field name="year"/>
+                			<field name="month"/>
+                			<field name="tax_id"/>
+                			<group expand="0" string="Group By...">
+                    			<filter string="Tahun" icon="terp-partner" domain="[]" context="{'group_by':'year'}"/>
+                    			<filter string="Jenis Pajak" icon="terp-partner" domain="[]" context="{'group_by':'tax_id'}"/>
+                			</group>
+            		</search>
+        		</field>
+    	</record>
+
+   	<record id="view_ka_account_pph_periode_filter" model="ir.ui.view">
+    		<field name="name">ka_account.pph.periode.filter</field>
+	        <field name="model">ka_account.pph.periode</field>
+        		<field name="arch" type="xml">
+            		<search string="PPh">
+                			<field name="name"/>
+                			<field name="year"/>
+                			<field name="month"/>
+                			<field name="tax_id"/>
+                			<group expand="0" string="Group By...">
+                    			<filter string="Tahun" icon="terp-partner" domain="[]" context="{'group_by':'year'}"/>
+                    			<filter string="Jenis Pajak" icon="terp-partner" domain="[]" context="{'group_by':'tax_id'}"/>
+                			</group>
+            		</search>
+        		</field>
+    	</record>
+
+        <record model="ir.ui.view" id="ka_account_pph_buktipotong_pivot_view">
+            <field name="name">Pivot Bukti Potong PPh</field>
+            <field name="model">ka_account.pph.buktipotong</field>
+            <field name="arch" type="xml">
+                <pivot string="Pivot PPh" type="pivot">
+                    <field name="partner_id" type="row"/>
+                    <field name="amount_dpp" type="measure"/>
+                    <field name="amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        
+    	<record id="view_ka_account_pph_buktipotong_filter" model="ir.ui.view">
+    		<field name="name">ka_account.pph.buktipotong.filter</field>
+	        <field name="model">ka_account.pph.buktipotong</field>
+        		<field name="arch" type="xml">
+            		<search string="Bukti Potong">
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="payment_id"/>
+                        <field name="partner_ref"/>
+                        <group expand="0" string="Group By...">
+                            <filter string="Rekanan" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                        </group>
+            		</search>
+        		</field>
+    	</record>
+
+    	<record id="view_ka_account_pph_periode_tree" model="ir.ui.view">
+            <field name="name">ka_account.pph.periode.tree</field>
+            <field name="model">ka_account.pph.periode</field>
+            <field name="arch" type="xml">
+               <tree string="Periode PPh">
+					<field name="name"/>
+					<field name="tax_id"/>
+					<field name="sequence"/>
+					<field name="suffix"/>
+					<field name="count" sum="Jumlah"/>
+					<field name="amount_total" sum="Total"/>
+				</tree>
+            </field>
+        </record> 
+
+        <record id="view_ka_account_pph_buktipotong_tree" model="ir.ui.view">
+            <field name="name">ka_account.pph.buktipotong.tree</field>
+            <field name="model">ka_account.pph.buktipotong</field>
+            <field name="arch" type="xml">
+               <tree string="Bukti Potong PPh" create="false">
+					<field name="name"/>
+					<field name="partner_id"/>
+					<field name="no_npwp"/>
+					<field name="partner_ref"/>
+					<field name="date_paid"/>
+					<field name="amount_dpp" sum="Total DPP"/>
+					<field name="amount" sum="Total PPh"/>
+					<field name="rate"/>
+					<field name="state" invisible="1"/>
+				</tree>
+            </field>
+        </record> 
+
+        <record id="view_ka_account_pph_periode_form" model="ir.ui.view">
+            <field name="name">ka_account.pph.periode.form</field>
+            <field name="model">ka_account.pph.periode</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Periode PPh">
+                    <header>
+                        <button string="Import PPh dari Jurnal" name="generate_pph" type="object" attrs="{'invisible':[('state', '=', 'validate')]}"/>
+                        <button string="Set to Draft" name="action_draft" type="object" attrs="{'invisible':[('state', '=', 'draft')]}" groups="account.group_account_manager"/>
+                        <button string="Validate" class="oe_highlight" name="action_validate" type="object" attrs="{'invisible':['|',('count', '=', 0),('state', '=', 'validate')]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+					<sheet>
+                        <div class="oe_button_box" name="button_box"> 
+                             <button type="object"
+                                string="Bukti Potong"
+                                name="action_open_buktipotong" 
+                                class="oe_stat_button"
+                                attrs="{'invisible':[('count', '=', 0)]}"
+                                icon="fa-list"/>
+                             <button type="object" 
+                                string="Download CSV" 
+                                name="action_download_csv" 
+                                class="oe_stat_button" 
+                                attrs="{'invisible':[('state', '=', 'draft')]}"
+                                icon="fa-download"/>
+                             <button type="action" 
+                                string="Cetak Amplop" 
+                                name="%(action_report_pph_buktipotong_envelope)d" 
+                                class="oe_stat_button" 
+                                attrs="{'invisible':[('state', '=', 'draft')]}"
+                                icon="fa-print"/>
+                        </div>
+                        <div class="oe_title">
+	                        <h2>BUKTI POTONG PPH</h2>
+	                    </div>					
+                        <group>
+                            <group string="Periode">
+                                <field name="year" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="month" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="tax_id" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="sequence" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="suffix" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group string="Jumlah">
+                                <field name="count" readonly="1"/>
+                                <field name="amount_total" readonly="1"/>
+                            </group>
+                        </group>
+                	</sheet>
+				</form>
+			</field>
+		</record>
+
+        <record id="view_ka_account_pph_buktipotong_form" model="ir.ui.view">
+            <field name="name">ka_account.pph.buktipotong.form</field>
+            <field name="model">ka_account.pph.buktipotong</field>
+			<field name="type">form</field>
+            <field name="arch" type="xml">
+               <form string="Form Bukti Potong PPh" create="false">
+                    <sheet>
+                        <group>
+                            <field name="periode_id" readonly="1"/>
+                            <field name="name" readonly="1"/>
+                            <field name="move_id" readonly="1"/>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="partner_ref" readonly="1"/>
+                            <field name="amount_dpp" attrs="{'readonly':[('state', '=', 'validate')]}"/>
+                            <field name="amount" attrs="{'readonly':[('state', '=', 'validate')]}"/>
+                            <field name="state" invisible="1"/>
+                        </group>
+                    </sheet>
+				</form>
+            </field>
+        </record> 
+
+        <record id="action_ka_account_pph_periode_open" model="ir.actions.act_window">
+            <field name="name">Periode PPh</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_account.pph.periode</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_ka_account_pph_buktipotong_open" model="ir.actions.act_window">
+            <field name="name">Bukti Potong PPh</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_account.pph.buktipotong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+        
+        <menuitem name="Pajak" 
+        	id="menu_tax_root"
+        	groups="account.group_account_user"
+        	web_icon="ka_account_tax,static/description/icon.png"
+        	sequence="31"/>
+
+        <menuitem id="menu_pph_periode" 
+        	name="Potongan PPh" 
+        	parent="menu_tax_root" 
+        	sequence="10"/>
+        <menuitem 
+            action="action_ka_account_pph_periode_open"
+            id="menu_ka_Account_pph_periode_open_tree" 
+            name="Periode PPh" 
+            parent="menu_pph_periode"
+            sequence="11"/>
+            
+        <menuitem id="menu_ka_account_tax_setting" 
+        	name="Setting" 
+        	parent="menu_tax_root" 
+        	sequence="20"/>
+        <menuitem 
+            action="account.action_tax_form"
+            id="menu_ka_account_tax_setting_tax" 
+            name="Jenis Pajak" 
+            parent="menu_ka_account_tax_setting"
+            sequence="21"/>
+    </data>
+</odoo>

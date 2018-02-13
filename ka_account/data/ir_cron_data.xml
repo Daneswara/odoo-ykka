@@ -1,0 +1,16 @@
+<odoo>
+	<data>
+		<record id="ir_cron_periodic_entries" model="ir.cron">
+    		<field name="name">Periodic Journal Entries</field>
+    		<field eval="True" name="active"/>
+    		<field name="user_id" ref="base.user_root"/>
+    		<field name="priority">1</field>
+    		<field name="interval_number">1</field>
+    		<field name="interval_type">days</field>
+    		<field name="numbercall">-1</field>
+    		<field eval="'ka_account.move.periodic'" name="model"/>
+    		<field eval="'post_periodic_entries'" name="function"/>
+    		<field eval="'()'" name="args"/>
+		</record>
+	</data>
+</odoo>

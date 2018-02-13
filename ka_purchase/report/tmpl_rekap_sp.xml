@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="template_report_rekap_sp">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_purchase.rekap_sp_document"/>
+				</div>
+			</t>
+		</template>
+		
+		<template id="rekap_sp_document">
+			<t t-foreach="docs" t-as="o">
+			<t t-call="report.html_container">
+
+				<t t-set="unit_id" t-value="o.operating_unit_id"/>
+				<t t-set="date_start" t-value="o.date_start"/>
+				<t t-set="date_end" t-value="o.date_end"/>
+
+				<div class="header" style="margin:0px 10px 0px 5px; padding-bottom:0px;">
+					<div class="container" position="fixed" style="font-family: Dotrice; font-size:14px;">
+						<div class="row">
+							<div class="col-xs-5" style="padding:0px;"></div>
+							<div class="col-xs-4" style="padding:0px;">
+								<p style="padding:5px; margin:0px">
+									REKAP SURAT PESANAN<br></br>
+									<span t-field="o.date_start" t-field-options='{"format": "dd-MM-yyyy"}'/> sd. <span t-field="o.date_end" t-field-options='{"format": "dd-MM-yyyy"}'/><br></br>
+									UNTUK : <span t-field="o.operating_unit_id"/><br></br>
+								</p>
+							</div>
+							<div class="col-xs-1" style="padding:0px;">
+								<p class="text-left"><span t-esc="o.get_print_date()"/></p>
+							</div>
+							<div class="col-xs-2" style="padding:0px;">
+								<p class="text-right">
+									<span t-esc="o.get_print_time()"/> <br></br>
+									<br></br>
+									<br></br>
+									Halaman <span class="page"/>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page">
+					<div class="row">
+						<div class="col-xs-12" style="font-family: Dotrice; font-size:12px; padding-top:50px;">
+							<table width="100%" style="margin-top:0px;table-layout:fixed;">
+								<thead style="@media print {thead div {display: table-header-group;}};">
+									<tr min-height="30px" style="border-top:1px dashed #000; border-bottom:1px dashed #000;">
+										<th width="4%" style="padding: 3px 5px; vertical-align:middle; border-right:1px dashed #000;" class="text-center">No</th>
+										<th width="20%" style="padding: 3px 5px; vertical-align:middle; border-right:1px dashed #000;" class="text-left">No/Tgl SP<br></br>Tmp/Tgl Serah</th>
+										<th width="15%" style="padding: 3px 5px; vertical-align:middle; border-right:1px dashed #000;" class="text-left">KODE / NAMA REKANAN<br></br>dan<br></br>No SURAT PENAWARAN</th>
+										<th style="padding: 3px 5px; vertical-align:middle; border-right:1px dashed #000;" class="text-left">KODE / NAMA / SPESIFIKASI BARANG</th>
+										<th width="7%" style="padding: 3px 5px; vertical-align:middle; border-right:1px dashed #000;" class="text-center">SATUAN</th>
+										<th width="10%" style="padding: 3px 5px; vertical-align:middle; border-right:1px dashed #000;" class="text-center">DIPESAN</th>
+										<th width="10%" style="padding: 3px 5px; vertical-align:middle; border-right:1px dashed #000;" class="text-center">HARGA SATUAN</th>
+										<th width="13%" style="padding: 3px 5px; vertical-align:middle; border-right:1px dashed #000;" class="text-center">NILAI</th>
+									</tr>
+								</thead>
+								<tbody>
+									<t t-set="no" t-value="1"/>
+									<t t-set="amount_all_po" t-value="0"/>
+                    				<t t-foreach="get_rekap_sp(unit_id, date_start, date_end)" t-as="po">
+                    					<tr min-height="15px">
+                    						<td width="4%" style="padding: 3px 5px;"><span t-esc="no"/><t t-set="no" t-value="no+1"/></td>
+                    						<td width="20%" style="padding: 5px 10px 3px 15px;">
+                    							<div class="row">
+													<div class="col-xs-12" style="margin: 0px;">
+														<p>
+															<span t-esc="po.name"/> / <span t-field="po.date_order" t-field-options='{"format": "dd-MM-yyyy"}'/><br></br>
+															<span t-esc="po.operating_unit_id.name"/> / <span t-field="po.date_planned" t-field-options='{"format": "dd-MM-yyyy"}'/><br></br>
+														</p>
+													</div>	
+												</div>
+                    						</td>
+                    						<td width="15%" style="padding: 5px 10px 3px 15px;">
+                    							<div class="row">
+													<div class="col-xs-12" style="margin: 0px;">
+														<p>
+															<span t-esc="po.partner_id.code"/> <span t-esc="po.partner_id.name"/><br></br>
+															Agen
+														</p>
+													</div>	
+												</div>
+                    						</td>
+                    						<td style="padding: 5px 10px 3px 15px;">
+                    							<t t-foreach="po.order_line" t-as="po_line">
+	                    							<div class="row">
+														<div class="col-xs-12" style="margin: 0px;">
+															<p>
+																<span t-field="po_line.product_id.default_code"/> ,<span t-field="po_line.product_id.name"/><br></br>
+																<span style="padding-left:20px"></span><span t-field="po_line.product_id.description_purchase"/>
+															</p>
+														</div>	
+													</div>
+                    							</t>
+                    						</td>
+                    						<td width="7%" style="vertical-align:middle;padding: 5px 10px 3px 15px;" class="text-right">
+                    							<t t-foreach="po.order_line" t-as="po_line">
+                    							<div class="row">
+													<div class="col-xs-12" style="margin: 0px;">
+														<p><span t-field="po_line.product_uom.name"/></p>
+													</div>	
+												</div>
+												</t>
+                    						</td>
+                    						<td width="10%" style="vertical-align:middle;padding: 5px 10px 3px 15px;" class="text-right">
+                    							<t t-foreach="po.order_line" t-as="po_line">
+                    							<div class="row">
+													<div class="col-xs-12" style="margin: 0px;">
+														<p><span t-field="po_line.product_qty"/></p>
+													</div>	
+												</div>
+												</t>
+                    						</td>
+                    						<td width="10%" style="vertical-align:middle;padding: 5px 10px 3px 15px;" class="text-right">
+                    							<t t-foreach="po.order_line" t-as="po_line">
+                    							<div class="row">
+													<div class="col-xs-12" style="margin: 0px;">
+														<p><span t-field="po_line.price_unit"/></p>
+													</div>	
+												</div>
+												</t>
+                    						</td>
+                    						<td width="13%" style="vertical-align:middle;padding: 5px 10px 3px 15px;" class="text-right">
+                    							<t t-foreach="po.order_line" t-as="po_line">
+                    							<div class="row">
+													<div class="col-xs-12" style="margin: 0px;">
+														<p><span t-field="po_line.price_subtotal"/></p>
+													</div>	
+												</div>
+												</t>
+                    						</td>
+                    					</tr>
+                    					<tr>
+                    						<td colspan="7" class="text-right" style="padding: 5px 10px 3px 15px;">JUMLAH :</td>
+                    						<td class="text-right" width="22px" style="padding: 5px 10px 3px 15px; border-top: 1px dashed #000;"><span t-esc="'{0:,.2f}'.format(float(po.amount_untaxed)).replace('.', '%').replace(',', '.').replace('%', ',')"/> Rp</td>
+                    					</tr>
+                    					<t t-set="amount_all_po" t-value="amount_all_po+po.amount_untaxed"/>
+                    				</t>
+                    					<tr>
+                    						<td colspan="8" class="text-right" style="padding: 3px 5px; border-top: 1px dashed #000;">
+                    							<span t-esc="'{0:,.2f}'.format(float(amount_all_po)).replace('.', '%').replace(',', '.').replace('%', ',')" />
+                    						</td>
+                    					</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</t>
+			</t>
+		</template>
+	</data>
+</odoo>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report 
+            id="report_piutang_retail" 
+            model="account.invoice" 
+            string="Laporan Piutang Retail"
+            report_type="qweb-pdf"
+            name="ka_sale.template_report_piutang_retail"
+            file="ka_sale.template_report_piutang_retail"
+			menu="False"        
+        /> 
+
+		<template id="template_report_piutang_retail">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_sale.report_piutang_retail_document"/>
+				</div>
+			</t>
+		</template>
+
+		<template id="report_piutang_retail_document">
+			<t t-call="report.html_container">
+				<t t-set="o" t-value="o.with_context({'lang':o.lang})"/>
+				<div class="header">
+					<div class="row">			
+						<div class="col-xs-12">
+							<p class="text-center" style="font-size:18px">
+								<img src="ka_report_layout/static/src/img/logo-ptkebonagung.png" style="margin: 0 auto; height: 50px"/>
+								<br></br>
+								<strong>LAPORAN PIUTANG (AR) &amp; KELUHAN PELANGGAN RETAIL BULANAN</strong>
+							</p>
+							<p class="text-center" style="font-size:16px"><strong>Tanggal <span t-field="o.date_limit" t-field-options='{"format": "dd MMMM yyyy"}' /></strong></p>
+            			</div>
+            		</div>
+				</div>
+
+				<div class="page" style="font-family: Arial, Helvetica, sans-serif;">
+					<div class="row">
+						<div class="col-xs-12" style="margin-top:0px; padding:0px 10px;">
+							<t t-set="no" t-value="1"/>
+							<table class="table" width="100%" style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;border-collapse: collapse">
+	                			<thead>
+									<tr height="25px">
+	                        			<th class="text-center" width="3%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">No.</th>
+	                        			<th class="text-center" width="12%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Nama Customer</th>
+	                        			<th class="text-center" width="12%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Penanggung Jawab</th>
+	                        			<th class="text-center" width="13%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Nomor Surat Jalan</th>
+	                        			<th class="text-center" width="13%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Nomor Kwitansi</th>
+	                        			<th class="text-center" width="9%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Harga Total (Rp)</th>
+	                        			<th class="text-center" width="6%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Tanggal Transaksi</th>
+	                        			<th class="text-center" width="6%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Tanggal Kirim</th>
+	                        			<th class="text-center" colspan="3" style="padding:8px;border:1px solid #000">Pelunasan</th>
+	                        			<th class="text-center" width="8%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Keterangan</th>
+	                    			</tr>
+	                    			<tr height="25px">
+	                    				<th class="text-center" width="9%" style="padding:8px;border:1px solid #000">Kurang Bayar</th>
+	                    				<th class="text-center" width="8%" style="padding:8px;border:1px solid #000">Status</th>
+	                    				<th class="text-center" width="6%" style="padding:8px;border:1px solid #000">Tanggal</th>
+	                    			</tr>
+								</thead>
+	                			<tbody>
+	                				<t t-set="total_amount" t-value="0"/>
+	                				<t t-set="total_residual" t-value="0"/>
+	                    			<tr t-foreach="get_invoice_ids(o.sale_category_id.id, o.date_limit)" t-as="invoice" height="25px">
+	                    				<t t-set="len_picking" t-value="len(get_picking_id(invoice))"/>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="no"/></td>
+	                    				<td style="padding:3px;border:1px solid #000"><span t-field="invoice.partner_id.name"/></td>
+	                    				<td style="padding:3px;border:1px solid #000"><span t-field="invoice.agent_partner_id.name"/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000">
+	                    					<t t-set="idx" t-value="1"/>
+	                    					<t t-foreach="get_picking_id(invoice)" t-as="picking">
+	                    						<span t-field="picking.name"/>
+	                    						<t t-if="idx != len_picking"><br/><t t-set="idx" t-value="idx+1"/></t>
+	                    					</t>
+	                    				</td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-field="invoice.number"/></td>
+	                    				<td class="text-right" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(invoice.amount_total)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-field="invoice.date_invoice" t-field-options='{"format": "dd-MM-yyyy"}'/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000">
+	                    					<t t-set="idx" t-value="1"/>
+	                    					<t t-foreach="get_picking_id(invoice)" t-as="picking">
+	                    						<span t-field="picking.date_transfer" t-field-options='{"format": "dd-MM-yyyy"}'/>
+	                    						<t t-if="idx != len_picking"><br/><t t-set="idx" t-value="idx+1"/></t>
+	                    					</t>
+	                    				</td>
+	                    				<td class="text-right" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(invoice.residual)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000">Belum Lunas</td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-field="invoice.date_due" t-field-options='{"format": "dd-MM-yyyy"}'/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td>
+	                    				<t t-set="no" t-value="no+1"/>
+		                				<t t-set="total_amount" t-value="total_amount + invoice.amount_total"/>
+		                				<t t-set="total_residual" t-value="total_residual + invoice.residual"/>
+	                    			</tr>
+	                    			<tr height="25px">
+	                    				<td colspan="5" style="padding:3px;border:1px solid #000"></td>
+	                    				<td class="text-right" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(total_amount)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    				<td colspan="2" style="padding:3px;border:1px solid #000"></td>
+	                    				<td class="text-right" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(total_residual)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    				<td colspan="3" style="padding:3px;border:1px solid #000"></td>
+	                    			</tr>
+	                    			
+	                    			<tr height="40px">
+	                    				<td colspan="12" style="padding:15px 0px 0px 0px;border:0px">Keterangan :</td>
+	                    			</tr>
+	                    			<tr>
+	                    				<td colspan="8" style="border:0px">
+	                    					<t t-foreach="get_notes(o.sale_category_id.id, o.date_limit)" t-as="note">
+	                    						<span t-esc="note"/><br/>
+	                    					</t>
+	                    				</td>
+	                    				<td colspan="3" class="text-center" style="padding:15px 0px 0px 0px;border:0px">
+	                    					Surabaya, <span t-esc="datetime.datetime.now().strftime('%d %B %Y')"/><br/>
+	                    					<br/>
+	                    					<br/>
+	                    					<br/>
+	                    					<br/>
+	                    					<br/>
+	                    					<u><span t-esc="user.company_id.dept_sales.manager_id.name"/></u><br/>
+	                    					Kepala Bagian Pemasaran
+	                    				</td>
+	                    			</tr>
+	                    		</tbody>
+	                    	</table>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

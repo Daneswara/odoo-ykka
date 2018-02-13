@@ -1,0 +1,60 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="kecamatan_search_view">
+            <field name="name">res.kecamatan.search</field>
+            <field name="model">res.kecamatan</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+					<field name="name"/>
+					<field name="kab_kota_id"/>
+                </search>
+            </field>
+        </record>
+
+		<record model="ir.ui.view" id="view_form_kecamatan">
+			<field name="name">Form Data Kecamatan</field>
+			<field name="model">res.kecamatan</field>
+			<field name="arch" type="xml">
+				<form string="Form Kecamatan">
+					<sheet>
+						<group>
+							<field name="code"/>
+							<field name="name"/>
+							<label for="kab_kota_id" string="Nama Kabupaten/Kota" />
+   							<div>
+								<field name="kab_kota_id" class="oe_inline"/>&#x2063;
+								<field name="code_urut" class="oe_inline oe_create_only oe_edit_only" nolabel="1" placeholder="Code Kecamatan..."/>
+							</div>
+							<field name="provinsi_id"/>
+							<field name="company_id" groups="base.group_multi_company" string="Unit/PG"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tree_kecamatan">
+			<field name="name">Data Kecamatan</field>
+			<field name="model">res.kecamatan</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="code"/>
+					<field name="name"/>
+					<field name="kab_kota_id"/>
+					<field name="provinsi_id"/>
+					<field name="company_id" groups="base.group_multi_company" string="Unit/PG"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_kecamatan">
+			<field name="name">Data kecamatan</field>
+			<field name="res_model">res.kecamatan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data Kecamatan masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+	</data>
+</odoo>

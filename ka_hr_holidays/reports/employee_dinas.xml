@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report id="report_ka_employee_dinas"
+			model="hr.holidays"
+			string="Surat Tugas"
+			report_type="qweb-pdf"
+			name="ka_hr_holidays.report_ka_employee_dinas_view"
+			file="ka_hr_holidays.report_ka_employee_dinas"
+			menu="False"/>
+
+		<record model="report.paperformat" id="paperformat_report_ka_employee_dinas">
+			<field name="name">Surat Tugas</field>
+			<field name="default" eval="True" />
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">35</field>
+			<field name="margin_right">10</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">10</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">30</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="ka_hr_holidays.report_ka_employee_dinas" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="ka_hr_holidays.paperformat_report_ka_employee_dinas"/>
+		</record>
+
+		<template id="report_ka_employee_dinas_view">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<t t-call="ka_report_layout.layout_header_internal"/>
+					<div class="page">
+						<style type="text/css">
+							th, td {
+								padding-top: 5px;
+								padding-bottom: 5px;
+							}
+
+							table, #nomor {
+								margin-bottom: 50px;
+							}
+
+							#ttd {
+								margin-top: 50px;
+							}
+						</style>
+
+						<h1 class="text-center">SURAT TUGAS</h1>
+						<h4 id="nomor" class="text-center">No. <span t-field="doc.nomor_dinas"/></h4>
+
+						<h4>Diberikan kepada:</h4>
+						<table style="width:100%; font-size:18px">
+							<tr>
+								<th style="width:25%">Nama</th>
+								<td style="width:2%">:</td>
+								<td style="width:73%" colspan="4"><span t-field="doc.employee_id.name"/></td>
+							</tr>
+							<tr>
+								<th>Jabatan</th>
+								<td>:</td>
+								<td colspan="4"><span t-field="doc.employee_id.job_id.name"/></td>
+							</tr>
+							<tr>
+								<th>Pergi ke</th>
+								<td>:</td>
+								<td colspan="4"><span t-field="doc.holiday_address"/></td>
+							</tr>
+							<tr>
+								<th>Keperluan / tugas</th>
+								<td>:</td>
+								<td colspan="4"><span t-field="doc.name"/></td>
+							</tr>
+							<tr>
+								<th>Berangkat tanggal</th>
+								<td>:</td>
+								<td style="width:45%"><span t-field="doc.date_from" t-options="{'format': 'dd-MM-yyyy'}"/></td>
+								<th style="width:10%">Pukul</th>
+								<td style="width:2%">:</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Kembali tanggal</th>
+								<td>:</td>
+								<td style="width:45%"><span t-field="doc.date_to" t-options="{'format': 'dd-MM-yyyy'}"/></td>
+								<th style="width:10%">Pukul</th>
+								<td style="width:2%">:</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Kendaraan</th>
+								<td>:</td>
+								<td colspan="4"></td>
+							</tr>
+							<tr>
+								<th>Keterangan lain</th>
+								<td>:</td>
+								<td colspan="4"></td>
+							</tr>
+						</table>
+
+						<h4>Untuk melaksanakan tugas tersebut dan yang bersangkutan diberikan penggantian perjalanan dinas sesuai dengan ketentuan yang berlaku.</h4>
+
+						<div id="ttd" class="row text-center" style="font-size:16px">
+							<div class="col-xs-4">
+								Bagian terkait,
+								<br/>
+								<br/>
+								<br/>
+								<br/>
+								<br/>
+								<u><span t-field="doc.employee_manager_id.name"/></u>
+								<br/>
+								<span t-field="doc.employee_manager_id.job_id.name"/>
+							</div>
+							<div class="col-xs-4 col-xs-offset-4">
+								Bagian SDM,
+								<br/>
+								<br/>
+								<br/>
+								<br/>
+								<br/>
+								<u><span t-field="doc.company_id.dept_sdm.manager_id.name"/></u>
+								<br/>
+								<span t-field="doc.company_id.dept_sdm.manager_id.job_id.name"/>
+							</div>
+						</div>
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

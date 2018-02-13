@@ -1,0 +1,842 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_hr_holidays_kompensasi_hutang_lines_form">
+			<field name="name">hr.holidays.kompensasi.hutang.lines.form</field>
+			<field name="model">hr.holidays.kompensasi.hutang.lines</field>
+			<field name="arch" type="xml">
+				<form>
+					<field name="kompensasi_reference_id" invisible="1"/>
+					<group>
+						<field name="hutang_reference_id"/>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_hr_holidays_lines_form">
+			<field name="name">hr.holidays.lines.form</field>
+			<field name="model">hr.holidays.lines</field>
+			<field name="arch" type="xml">
+				<form>
+					<field name="leave_type" invisible="1"/>
+					<group>
+						<group>
+							<field name="holiday_id" attrs="{'invisible': [('leave_type', '!=', 'cuti')]}"/>
+							<field name="holiday_date"/>
+							<field name="cuti_reference_id" attrs="{'invisible': [('leave_type', '!=', 'cuti')]}"/>
+						</group>
+						<group>
+							<field name="is_hutang" attrs="{'invisible': [('leave_type', '!=', 'cuti')]}"/>
+							<field name="kompensasi_reference_id" attrs="{'invisible': [('leave_type', '!=', 'cuti')]}"/>
+							<field name="is_inhaldagen" attrs="{'invisible': [('leave_type', '!=', 'dinas')]}"/>
+							<field name="inhaldagen_reference_id" attrs="{'invisible': [('leave_type', '!=', 'dinas')]}"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_hr_holidays_general_form">
+			<field name="name">hr.holidays.general.form</field>
+			<field name="model">hr.holidays</field>
+			<field name="arch" type="xml">
+				<form>
+					<field name="can_reset" invisible="1"/>
+					<field name="type" invisible="1"/>
+					<field name="holiday_status_help" invisible="1"/>
+					<field name="holiday_status_leave_type" invisible="1"/>
+					<field name="is_inhaldagen" invisible="1"/>
+					<field name="count_kompensasi" invisible="1"/>
+					<header>
+						<button string="Confirm" name="action_confirm" states="draft" type="object" class="oe_highlight"/>
+						<button string="Approve" name="action_approve" states="confirm" type="object" groups="hr_holidays.group_hr_holidays_user" class="oe_highlight"/>
+						<button string="Validate" name="action_validate" states="validate1" type="object" groups="hr_holidays.group_hr_holidays_manager" class="oe_highlight"/>
+						<button string="Refuse" name="action_refuse" states="confirm,validate,validate1" type="object" groups="hr_holidays.group_hr_holidays_user"/>
+						<button string="Reset to Draft" name="action_draft" type="object" attrs="{'invisible': ['|', ('can_reset', '=', False), ('state', 'not in', ['confirm', 'refuse'])]}"/>
+						<button class="btn-primary" type="action" name="%(report_ka_hr_employee_holidays)d" string="Cetak Pengajuan Cuti" attrs="{'invisible': ['|', ('type', '=', 'add'), ('holiday_status_leave_type', '!=', 'cuti')]}"/>
+						<button class="btn-primary" type="action" name="%(report_ka_employee_dinas)d" string="Cetak Surat Tugas" attrs="{'invisible': ['|', ('type', '=', 'add'), ('holiday_status_help', '!=', 'dinas')]}"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,validate"/>
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<h1><field name="display_name"/></h1>
+						</div>
+
+						<group>
+							<group>
+								<field name="employee_id"/>
+								<field name="holiday_status_id" attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('type', '=', 'flush')]}" domain="[('leave_type', '=', holiday_status_help), ('holiday_type', '=', type)]"/>
+								<field name="holiday_status_daily_type" attrs="{'invisible': [('type', '!=', 'remove')]}"/>
+								<label for="number_of_days_temp" string="Duration"/>
+								<div>
+									<div attrs="{'invisible': [('type', '!=', 'remove')]}">
+										<field name="date_from" attrs="{'required': [('type', '=', 'remove')]}" class="oe_inline"/> -
+										<field name="date_to" attrs="{'required': [('type', '=', 'remove')]}" class="oe_inline"/>
+									</div>
+									<div>
+										<field name="number_of_days_temp" class="oe_inline"/> hari
+									</div>
+								</div>
+								<field name="is_active" attrs="{'invisible': [('type', '!=', 'add')]}"/>
+								<field name="date_start" attrs="{'invisible': [('type', '!=', 'add')]}"/>
+								<field name="date_exp" attrs="{'invisible': [('type', '!=', 'add')]}"/>
+							</group>
+							<group>
+								<field name="name" required="1"/>
+								<field name="holiday_address" attrs="{'invisible': [('type', '!=', 'remove')], 'required': [('type', '=', 'remove')]}"/>
+								<field name="flush_reference_id" attrs="{'invisible': [('type', '!=', 'flush')]}"/>
+								<field name="dinas_reference_id" attrs="{'invisible': [('is_inhaldagen', '=', False)]}"/>
+								<field name="department_id"/>
+								<field name="company_id"/>
+							</group>
+
+							<notebook colspan="4">
+								<page string="Detail Cuti" attrs="{'invisible': ['|', ('holiday_status_help', '!=', 'cuti'), ('type', '!=', 'remove')]}">
+									<field name="cuti_line_ids">
+										<tree create="false" edit="false" delete="false">
+											<field name="holiday_date"/>
+											<field name="cuti_reference_id"/>
+											<field name="is_hutang"/>
+											<field name="kompensasi_reference_id"/>
+										</tree>
+									</field>
+								</page>
+								<page string="Detail Surat Tugas" attrs="{'invisible': ['|', ('holiday_status_help', '!=', 'dinas'), ('type', '!=', 'remove')]}">
+									<field name="dinas_line_ids">
+										<tree create="false" edit="false" delete="false">
+											<field name="holiday_date"/>
+											<field name="is_inhaldagen"/>
+											<field name="inhaldagen_reference_id"/>
+										</tree>
+									</field>
+								</page>
+								<page string="Detail Absensi" attrs="{'invisible': ['|', ('holiday_status_help', 'in', ['cuti', 'dinas']), ('type', '!=', 'remove')]}">
+									<field name="absensi_line_ids">
+										<tree create="false" edit="false" delete="false">
+											<field name="holiday_date"/>
+										</tree>
+									</field>
+								</page>
+								<page string="Detail Kompensasi Hutang" attrs="{'invisible': ['|', ('type', '!=', 'flush'), ('count_kompensasi', '&lt;=', 0)]}">
+									<field name="kompensasi_hutang_line_ids">
+										<tree create="false" edit="false" delete="false">
+											<field name="hutang_reference_id"/>
+										</tree>
+									</field>
+								</page>
+								<page string="Detail Pengambilan Cuti" attrs="{'invisible': [('type', '!=', 'add')]}">
+									<field name="remove_line_ids">
+										<tree create="false" edit="false" delete="false">
+											<field name="holiday_id"/>
+											<field name="holiday_date"/>
+											<field name="is_hutang"/>
+											<field name="kompensasi_reference_id"/>
+										</tree>
+									</field>
+								</page>
+							</notebook>
+
+							<field name="notes" nolabel="1" colspan="4" placeholder="Add a reason..." attrs="{'invisible': [('type', '=', 'remove')]}"/>
+							<div groups="hr_holidays.group_hr_holidays_manager" attrs="{'invisible':[('type','=','add')]}">
+								<separator string="Comment by Manager"/>
+								<field name="report_note" placeholder="e.g. Report to the next month..."/>
+							</div>
+						</group>
+					</sheet>
+
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+				</form>
+			</field>
+		</record>
+		<!-- end of modify default form in hr_holidays -->
+
+		<!-- ########################### Cuti Current User ########################### -->
+		<record model="ir.actions.act_window" id="action_view_cuti">
+			<field name="name">Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_cuti': 1,
+				'default_holiday_status_help': 'cuti',
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong. Buat cuti terlebih dahulu.</p>
+			</field>
+			<field name="domain">[('holiday_type','=', 'employee'), ('employee_user_id', '=', uid), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="ka_hr_holidays.view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_cuti_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_cuti"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_cuti_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_cuti"/>
+		</record>
+
+		<menuitem action="action_view_cuti" id="menu_view_cuti" parent="hr_holidays.menu_hr_holidays_my_leaves" sequence="1"/>
+		<!-- ########################### End of Cuti Current User ########################### -->
+
+		<!-- ########################### Cuti All Employee ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_cuti">
+			<field name="name">Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id"  ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_cuti': 1,
+				'default_holiday_status_help': 'cuti',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_cuti_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_cuti"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_cuti_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_cuti"/>
+		</record>
+		
+		<menuitem action="action_view_all_cuti" id="menu_view_all_cuti" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" parent="menu_hr_holidays_all_leaves" sequence="1"/>
+		<!-- ########################### End of Cuti All Employee ########################### -->
+
+		<!-- ########################### Cuti All Employee Approval ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_cuti_approval">
+			<field name="name">Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="context">{
+				'search_default_status_cuti': 1,
+				'search_default_approve': 1,
+				'default_holiday_status_help': 'cuti',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_cuti_approval_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_cuti_approval"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_cuti_approval_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_cuti_approval"/>
+		</record>
+
+		<menuitem action="action_view_all_cuti_approval" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_cuti_approval" parent="hr_holidays.menu_hr_holidays_approvals" sequence="1"/>
+		<!-- ########################### End of Cuti All Employee Approval ########################### -->
+
+		<!-- ============================================================================================================== -->
+
+		<!-- ########################### Ijin Current User ########################### -->
+		<record model="ir.actions.act_window" id="action_view_ijin">
+			<field name="name">Ijin</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_ijin': 1,
+				'default_holiday_status_help': 'ijin',
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong. Buat ijin terlebih dahulu.</p>
+			</field>
+			<field name="domain">[('holiday_type','=', 'employee'), ('employee_user_id', '=', uid), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_ijin_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_ijin"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_ijin_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_ijin"/>
+		</record>
+
+		<menuitem action="action_view_ijin" id="menu_view_ijin" parent="hr_holidays.menu_hr_holidays_my_leaves" sequence="2"/>
+		<!-- ########################### End of Ijin Current User ########################### -->
+
+		<!-- ########################### Ijin All Employee ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_ijin">
+			<field name="name">Ijin</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id"  ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_ijin': 1,
+				'default_holiday_status_help': 'ijin',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_ijin_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_ijin"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_ijin_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_ijin"/>
+		</record>
+		
+		<menuitem action="action_view_all_ijin" id="menu_view_all_ijin" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" parent="menu_hr_holidays_all_leaves" sequence="2"/>
+		<!-- ########################### End of Ijin All Employee ########################### -->
+
+		<!-- ########################### Ijin All Employee Approval ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_ijin_approval">
+			<field name="name">Ijin</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="context">{
+				'search_default_status_ijin': 1,
+				'search_default_approve': 1,
+				'default_holiday_status_help': 'ijin',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_ijin_approval_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_ijin_approval"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_ijin_approval_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_ijin_approval"/>
+		</record>
+
+		<menuitem action="action_view_all_ijin_approval" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_ijin_approval" parent="hr_holidays.menu_hr_holidays_approvals" sequence="2"/>
+		<!-- ########################### End of Ijin All Employee Approval ########################### -->
+
+		<!-- ============================================================================================================== -->
+
+		<!-- ########################### Dinas Current User ########################### -->
+		<record model="ir.actions.act_window" id="action_view_dinas">
+			<field name="name">Surat Tugas</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_dinas': 1,
+				'default_holiday_status_help': 'dinas',
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong. Buat ijin terlebih dahulu.</p>
+			</field>
+			<field name="domain">[('holiday_type','=', 'employee'), ('employee_user_id', '=', uid), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_dinas_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_dinas"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_dinas_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_dinas"/>
+		</record>
+
+		<menuitem action="action_view_dinas" id="menu_view_dinas" parent="hr_holidays.menu_hr_holidays_my_leaves" sequence="3"/>
+		<!-- ########################### End of Dinas Current User ########################### -->
+
+		<!-- ########################### Dinas All Employee ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_dinas">
+			<field name="name">Surat Tugas</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id"  ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_dinas': 1,
+				'default_holiday_status_help': 'dinas',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_dinas_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_dinas"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_dinas_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_dinas"/>
+		</record>
+		
+		<menuitem action="action_view_all_dinas" id="menu_view_all_dinas" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" parent="menu_hr_holidays_all_leaves" sequence="3"/>
+
+		<!-- tampilkan dinas di menu SDM -->
+		<menuitem action="action_view_all_dinas" id="menu_view_all_dinas_sdm" parent="ka_hr_pegawai.sub_menu_kepegawaian" sequence="1"/>
+		<!-- ########################### End of Dinas All Employee ########################### -->
+
+		<!-- ########################### Dinas All Employee Approval ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_dinas_approval">
+			<field name="name">Surat Tugas</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="context">{
+				'search_default_status_dinas': 1,
+				'search_default_approve': 1,
+				'default_holiday_status_help': 'dinas',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_dinas_approval_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_dinas_approval"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_dinas_approval_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_dinas_approval"/>
+		</record>
+
+		<menuitem action="action_view_all_dinas_approval" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_dinas_approval" parent="hr_holidays.menu_hr_holidays_approvals" sequence="3"/>
+		<!-- ########################### End of Dinas All Employee Approval ########################### -->
+
+		<!-- ============================================================================================================== -->
+
+		<!-- ########################### Sakit Current User ########################### -->
+		<record model="ir.actions.act_window" id="action_view_sakit">
+			<field name="name">Sakit</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_sakit': 1,
+				'default_holiday_status_help': 'sakit',
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong. Buat ijin terlebih dahulu.</p>
+			</field>
+			<field name="domain">[('holiday_type','=', 'employee'), ('employee_user_id', '=', uid), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_sakit_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_sakit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_sakit_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_sakit"/>
+		</record>
+
+		<menuitem action="action_view_sakit" id="menu_view_sakit" parent="hr_holidays.menu_hr_holidays_my_leaves" sequence="4"/>
+		<!-- ########################### End of Sakit Current User ########################### -->
+
+		<!-- ########################### Sakit All Employee ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_sakit">
+			<field name="name">Sakit</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id"  ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_sakit': 1,
+				'default_holiday_status_help': 'sakit',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_sakit_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_sakit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_sakit_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_sakit"/>
+		</record>
+		
+		<menuitem action="action_view_all_sakit" id="menu_view_all_sakit" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" parent="menu_hr_holidays_all_leaves" sequence="4"/>
+		<!-- ########################### End of Sakit All Employee ########################### -->
+
+		<!-- ########################### Sakit All Employee Approval ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_sakit_approval">
+			<field name="name">Sakit</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="context">{
+				'search_default_status_sakit': 1,
+				'search_default_approve': 1,
+				'default_holiday_status_help': 'sakit',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_sakit_approval_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_sakit_approval"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_sakit_approval_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_sakit_approval"/>
+		</record>
+
+		<menuitem action="action_view_all_sakit_approval" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_sakit_approval" parent="hr_holidays.menu_hr_holidays_approvals" sequence="4"/>
+		<!-- ########################### End of Sakit All Employee Approval ########################### -->
+
+		<!-- ============================================================================================================== -->
+
+		<!-- ########################### Mangkir Current User ########################### -->
+		<record model="ir.actions.act_window" id="action_view_mangkir">
+			<field name="name">Mangkir</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_mangkir': 1,
+				'default_holiday_status_help': 'mangkir',
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong. Buat ijin terlebih dahulu.</p>
+			</field>
+			<field name="domain">[('holiday_type','=', 'employee'), ('employee_user_id', '=', uid), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_mangkir_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_mangkir"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_mangkir_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_mangkir"/>
+		</record>
+
+		<menuitem action="action_view_mangkir" id="menu_view_mangkir" parent="hr_holidays.menu_hr_holidays_my_leaves" sequence="5"/>
+		<!-- ########################### End of Mangkir Current User ########################### -->
+
+		<!-- ########################### Mangkir All Employee ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_mangkir">
+			<field name="name">Mangkir</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_id"  ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_status_mangkir': 1,
+				'default_holiday_status_help': 'mangkir',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_mangkir_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_mangkir"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_mangkir_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_mangkir"/>
+		</record>
+		
+		<menuitem action="action_view_all_mangkir" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_mangkir" parent="menu_hr_holidays_all_leaves" sequence="5"/>
+		<!-- ########################### End of Mangkir All Employee ########################### -->
+
+		<!-- ########################### Mangkir All Employee Approval ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_mangkir_approval">
+			<field name="name">Mangkir</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="context">{
+				'search_default_status_mangkir': 1,
+				'search_default_approve': 1,
+				'default_holiday_status_help': 'mangkir',
+			}</field>
+			<field name="domain">[('holiday_type','=','employee'), ('type', '=', 'remove')]</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_mangkir_approval_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_mangkir_approval"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_mangkir_approval_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_mangkir_approval"/>
+		</record>
+
+		<menuitem action="action_view_all_mangkir_approval" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_mangkir_approval" parent="hr_holidays.menu_hr_holidays_approvals" sequence="5"/>
+		<!-- ########################### End of Mangkir All Employee Approval ########################### -->
+
+		<!-- ============================================================================================================== -->
+
+		<!-- ########################### Flush Cuti Current User ########################### -->
+		<record model="ir.actions.act_window" id="action_view_flush">
+			<field name="name">Penghapusan Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_flush': 1,
+				'default_type': 'flush'
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data penghapusan cuti masih kosong!</p>
+			</field>
+			<field name="domain">
+				[('holiday_type','=', 'employee'), ('employee_user_id', '=', uid), ('type', '=', 'flush')]
+			</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_flush_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_flush"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_flush_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_flush"/>
+		</record>
+
+		<menuitem action="action_view_flush" id="menu_view_flush" parent="hr_holidays.menu_hr_holidays_my_leaves" sequence="6"/>
+		<!-- ########################### End of Flush Cuti Current User ########################### -->
+
+		<!-- ########################### Flush Cuti All Employee ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_flush">
+			<field name="name">Penghapusan Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_flush': 1,
+				'default_type': 'flush'
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data penghapusan cuti masih kosong!</p>
+			</field>
+			<field name="domain">
+				[('holiday_type','=', 'employee'), ('type', '=', 'flush')]
+			</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_flush_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_flush"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_flush_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_flush"/>
+		</record>
+
+		<menuitem action="action_view_all_flush" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_flush" parent="menu_hr_holidays_all_leaves" sequence="6"/>
+		<!-- ########################### End of Flush Cuti All Employee ########################### -->
+
+		<!-- ########################### Flush Cuti All Employee Approval ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_flush_approval">
+			<field name="name">Penghapusan Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_flush': 1,
+				'search_default_approve': 1,
+				'default_type': 'flush',
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data penghapusan cuti masih kosong!</p>
+			</field>
+			<field name="domain">
+				[('holiday_type','=', 'employee'), ('type', '=', 'flush')]
+			</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_flush_approval_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_flush_approval"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_flush_approval_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_flush_approval"/>
+		</record>
+
+		<menuitem action="action_view_all_flush_approval" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_flush_approval" parent="hr_holidays.menu_hr_holidays_approvals" sequence="6"/>
+		<!-- ########################### End of Flush Cuti All Employee Approval ########################### -->
+
+		<!-- ============================================================================================================== -->
+
+		<!-- ########################### Alokasi Cuti Current User ########################### -->
+		<record model="ir.actions.act_window" id="action_view_allocation">
+			<field name="name">Alokasi Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_allocations': 1,
+				'default_type': 'add'
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data penghapusan cuti masih kosong!</p>
+			</field>
+			<field name="domain">
+				[('holiday_type','=', 'employee'), ('employee_user_id', '=', uid), ('type', '=', 'add')]
+			</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_allocation_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_allocation"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_allocation_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_allocation"/>
+		</record>
+
+		<menuitem action="action_view_allocation" id="menu_view_allocation" parent="hr_holidays.menu_hr_holidays_my_leaves" sequence="7"/>
+		<!-- ########################### End of Alokasi Cuti Current User ########################### -->
+
+		<!-- ########################### Alokasi Cuti All Employee ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_allocation">
+			<field name="name">Alokasi Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_allocations': 1,
+				'default_type': 'add'
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data penghapusan cuti masih kosong!</p>
+			</field>
+			<field name="domain">
+				[('holiday_type','=', 'employee'), ('type', '=', 'add')]
+			</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_allocation_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_allocation"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_allocation_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_allocation"/>
+		</record>
+
+		<menuitem action="action_view_all_allocation" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_allocation" parent="menu_hr_holidays_all_leaves" sequence="7"/>
+		<!-- ########################### End of Alokasi Cuti All Employee ########################### -->
+
+		<!-- ########################### Alokasi Cuti All Employee Approval ########################### -->
+		<record model="ir.actions.act_window" id="action_view_all_allocation_approval">
+			<field name="name">Alokasi Cuti</field>
+			<field name="res_model">hr.holidays</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="context">{
+				'search_default_allocations': 1,
+				'search_default_approve': 1,
+				'default_type': 'add',
+			}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data penghapusan cuti masih kosong!</p>
+			</field>
+			<field name="domain">
+				[('holiday_type','=', 'employee'), ('type', '=', 'add')]
+			</field>
+			<field name="search_view_id" ref="view_hr_holidays_filter_inherit"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_allocation_approval_tree">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="hr_holidays.view_holiday_simple"/>
+			<field name="act_window_id" ref="action_view_all_allocation_approval"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_view_all_allocation_approval_form">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_hr_holidays_general_form"/>
+			<field name="act_window_id" ref="action_view_all_allocation_approval"/>
+		</record>
+
+		<menuitem action="action_view_all_allocation_approval" groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user" id="menu_view_all_allocation_approval" parent="hr_holidays.menu_hr_holidays_approvals" sequence="7"/>
+		<!-- ########################### End of Alokasi Cuti All Employee Approval ########################### -->
+	</data>
+</odoo>

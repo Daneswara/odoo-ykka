@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="ka_sale_order_dashboard_assets"
+              inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/ka_sale/static/src/css/ka_sale_order_dashboard.css"/>
+            <script type="text/javascript" src="/ka_sale/static/src/js/ka_sale_dashboard.js"></script>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<!-- <menuitem 
+			id="menu_log2000" 
+			name="LOG2 - R A B"
+			parent="logistik_master.logistik_root" 
+			groups="logistik_rab.group_manager"
+			sequence="2"/> -->
+		<menuitem 
+			id="menu_log2000" 
+			name="LOG2 - R A B"
+			parent="ka_logistik_master.logistik_root" 
+			sequence="2"/>
+
+		<menuitem 
+			id="menu_log2100" 
+			name="Pemeliharaan File"
+			parent="menu_log2000" 
+			sequence="1"/>
+
+		<record id="view_logistik_rab_stasiun_filter" model="ir.ui.view">
+	    	<field name="name">logistik.rab.select</field>
+		    <field name="model">logistik.rab</field>
+	    	<field name="arch" type="xml">
+	       		<search string="Rencana Pengadaan">
+	      			<field name="stasiun_id"/>
+	       			<field name="account_id"/>
+	       			<field name="company_id"/>
+	       			<field name="tahun"/>
+	       			<group expand="0" string="Group By...">
+	           			<filter string="Tahun" icon="terp-partner" domain="[]" context="{'group_by':'tahun'}"/>
+	           			<filter string="Unit/PG" icon="terp-partner" domain="[]" context="{'group_by':'company_id'}"/>
+	           			<filter string="stasiun_id" icon="terp-partner" domain="[]" context="{'group_by':'stasiun_id'}"/>
+	       			</group>
+	       		</search>
+	    	</field>
+	    </record>
+
+		<!-- Form - Rencana Pemakaian(RAB) -->
+		<record model="ir.ui.view" id="view_logistik_rab_tree">
+			<field name="name">logistik.rab.tree</field>
+			<field name="model">logistik.rab</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Rencana Pemakaian">
+					<field name="company_id" groups="base.group_multi_company"/>
+					<field name="stasiun_id"/>
+					<field name="account_id"/>
+					<field name="total_rab"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_rab_form">
+			<field name="name">logistik.rab.form</field>
+			<field name="model">logistik.rab</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Rencana Pemakaian">
+					<group>
+						<group>
+							<!-- <field name="company_id" groups="base.group_multi_company"/> -->
+							<field name="company_id"/>
+							<field name="tahun" style="width:35%%"/>
+						</group>
+						<group>
+							<field name="account_id" style="width:50%%"/>
+							<field name="user_id" invisible="1"/>
+							<field name="stasiun_id"/>
+							<field name="department_id"/>
+							<!-- <field name="total_rab" string="Total RAB"/> -->
+						</group>
+					</group>
+					<notebook>
+						<page string="Detail Barang">
+							<field name="line_ids" colspan="6">
+								<tree editable="bottom">
+									<field name="product_id"/> <!--domain="[('company_id', '=', parent.company_id)]"/-->
+									<field name="spesifikasi"/>
+									<field name="pabrikan"/>
+									<field name="unit_id"/>
+									<field name="kuantum"/>
+									<field name="harga"/>
+									<field name="sub_total"/>
+								</tree>
+							</field>
+							<group class="oe_subtotal_footer oe_right">
+								<field name="total_rab" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+							</group>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<!-- Form - Rencana Pengadaan(RAP) -->
+		
+		<record id="view_logistik_rab_filter" model="ir.ui.view">
+	    	<field name="name">logistik.rab.lines.select</field>
+		    <field name="model">logistik.rab.lines</field>
+	    	<field name="arch" type="xml">
+	       		<search string="Rencana Pengadaan">
+	      			<field name="rab_id"/>
+	       			<field name="product_id"/>
+	       			<group expand="0" string="Group By...">
+	           			<filter string="Perkiraan" icon="terp-partner" domain="[]" context="{'group_by':'rab_id'}"/>
+	           			<filter name="groupby_product" string="Barang" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'product_id'}"/>
+	       			</group>
+	       		</search>
+	    	</field>
+	    </record>
+		
+		<record model="ir.ui.view" id="view_logistik_rap_tree">
+			<field name="name">logistik.rab.lines.tree</field>
+			<field name="model">logistik.rab.lines</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Rencana Pengadaan">
+					<field name="company_id" groups="base.group_multi_company"/>
+					<field name="rab_id"/>
+					<field name="product_id"/>
+					<field name="unit_id"/>
+					<field name="spesifikasi"/>
+					<field name="kuantum"/>
+					<field name="harga"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_rap_form">
+			<field name="name">logistik.rab.lines.form</field>
+			<field name="model">logistik.rab.lines</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Rencana Pengadaan">
+					<sheet>
+						<group>
+							<group>
+								<field name="harga"/>
+								<field name="rab_id"/>
+								<field name="company_id" groups="base.group_multi_company"/>
+								<field name="kuantum"/>
+								<field name="pabrikan"/>
+							</group>
+							<group>
+								<field name="product_id"/>
+								<field name="type"/>
+								<field name="unit_id"/>
+								<field name="stasiun_id"/>
+								<field name="spesifikasi"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- LOG2 Action or Menu Definition -->
+		<record model="ir.actions.act_window" id="action_logistik_rab_tree">
+			<field name="name">Rencana Pemakaian</field>
+			<field name="res_model">logistik.rab</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<!--field name="domain">[('user_id', '=', uid)]</field-->
+			<field name="view_id" ref="view_logistik_rab_tree"/>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log2100" 
+			name="Rencana Pemakaian"
+			id="menu_log2110" 
+			action="action_logistik_rab_tree"
+			sequence="1"/>
+
+		<record model="ir.actions.act_window" id="action_logistik_rap_tree">
+			<field name="name">Rencana Pengadaan</field>
+			<field name="res_model">logistik.rab.lines</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="search_view_id" ref="view_logistik_rab_filter"/>
+			<field name="context">{'search_default_groupby_product': 1}</field> 
+			<field name="view_id" ref="view_logistik_rap_tree"/>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log2100" 
+			name="Rencana Pengadaan"
+			id="menu_log2120" 
+			action="action_logistik_rap_tree"
+			sequence="1"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+	<data>    
+		<record id="view_move_note_picking_form" model="ir.ui.view">
+            <field name="name">stock.move.form</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_form"/>
+            <field name="arch" type="xml">
+            	<field name="product_tmpl_id" position="after">
+            		<field name="note"/>
+            	</field>
+        	</field>
+    	</record>
+		
+		<record id="ka_stock_move_picking_tree" model="ir.ui.view">
+		    <field name="name">stock.move.inherit.tree</field>
+		    <field name="model">stock.move</field>
+		    <field name="inherit_id" ref="stock.view_move_picking_tree"/>
+		    <field name="arch" type="xml">
+	        	<field name="product_id" position="before">
+	        		<field name="no_bukti_pengeluaran"
+	        			attrs="{'required': [('using_analytic_pkrat','=',True)], 'readonly': ['|',('using_analytic_pkrat','=',False),('state','=','done')]}"/>
+	        	</field>
+		    	<field name="name" position="after">
+		    		<field name="using_analytic_pkrat" invisible="1"/>
+		    		<field name="account_id" options="{'no_create':True}"
+		    			attrs="{'required': [('using_analytic_pkrat','=',True)], 'readonly': ['|',('using_analytic_pkrat','=',False),('state','=','done')]}"/> 
+		    		<field name="account_analytic_id" options="{'no_create':True}"
+		    			attrs="{'readonly': ['|',('using_analytic_pkrat','=',False),('state','=','done')]}"/>
+		    	</field>
+		    </field>
+	    </record>
+	    		    
+        <record id="view_move_quantity_io_tree" model="ir.ui.view">
+            <field name="name">stock.move.tree</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree"/>
+            <field name="arch" type="xml">
+            	<field name="product_uom_qty" position="after">
+            		<field name="quantity_io" string="Quantity"/>
+            	</field>
+            	<field name="product_uom_qty" position="attributes">
+            		<attribute name="invisible">1</attribute>
+            	</field>
+            </field>
+        </record>
+	</data>
+</odoo>

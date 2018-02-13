@@ -1,0 +1,18 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_company_form_inherit">
+			<field name="name">ka_hr_attendance.res.company.form</field>
+			<field name="model">res.company</field>
+			<field name="inherit_id" ref="ka_hr_holidays.view_company_form_inherit"/>
+			<field name="arch" type="xml">
+				<field name="hr_attendance_daily" position="after">
+					<field name="hr_attendance_max_hour"/>
+					<field name="hr_attendance_weekly_report_send"/>
+					<field name="hr_attendance_weekly_check"/>
+					<field name="hr_attendance_sp_late_weekly"/>
+					<field name="hr_attendance_sp_late_monthly"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</odoo>

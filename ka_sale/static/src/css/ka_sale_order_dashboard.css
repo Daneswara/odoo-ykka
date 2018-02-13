@@ -1,0 +1,18 @@
+.o_kanban_view .so-kanban-box {
+	min-width:40% !important;
+	height:300px !important;
+	overflow: hidden;
+}
+.o_kanban_view .to-hidden{
+	visibility: hidden;
+	display: inline-block !important;
+    width: 20px;
+}
+.so-kanban-add-section{
+	text-align: right;
+	vertical-align: top;
+	padding: 8px 26px 8px 16px !important;
+}
+.fa-new-so {
+	color: #7c7bad;
+}

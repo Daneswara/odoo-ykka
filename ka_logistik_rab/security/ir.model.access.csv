@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_logistik_rab_user,logistik.rab.user,model_logistik_rab,ka_logistik_rab.group_user,1,0,0,0
+access_logistik_rab_lines_user,logistik.rab.lines.user.lines,model_logistik_rab_lines,ka_logistik_rab.group_user,1,0,0,0
+access_account_account_user,account.account,account.model_account_account,ka_logistik_rab.group_user,1,0,0,0
+access_ka_account_fiscalyear_user,ka.account.fiscalyear,ka_account.model_ka_account_fiscalyear,ka_logistik_rab.group_user,1,0,0,0
+access_logistik_rab_manager,logistik.rab.manager,model_logistik_rab,ka_logistik_rab.group_manager,1,1,1,1
+access_logistik_rab_lines_manager,logistik.rab.lines.manager,model_logistik_rab_lines,ka_logistik_rab.group_manager,1,1,1,1

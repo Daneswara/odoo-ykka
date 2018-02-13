@@ -1,0 +1,190 @@
+<odoo>
+    <data>
+        <template id="ka_trial_balance_report_tmpl"> 
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.html_container">
+                    <div class="header" style="margin:0px 10px 0px 5px; padding-bottom:0px;">
+                        <div class="container" position="fixed" style="font-family: Dotrice; font-size:12px;">
+                            <div class="row">
+                                <div class="col-xs-4" style="padding:0px;">
+                                    <p class="text-left">
+                                        <strong>PT. KEBON AGUNG</strong><br/>
+                                        <strong><span t-esc="user.company_id.name"/></strong><br/>
+                                        <strong><span t-esc="user.company_id.city" style="text-transform: uppercase;"/></strong><br/>
+                                    </p>
+                                </div>
+                                <div class="col-xs-4" style="padding:0px;">
+                                    <p class="text-center">
+                                        <strong>
+                                        NERACA BULANAN <br/>
+                                        -------------- <br/>
+                                        s/d Tanggal <span t-field="o.date_to" t-field-options="{'format': 'dd-MM-yyyy'}"/>
+                                        </strong>
+                                    </p>
+                                </div>
+                                <div class="col-xs-2" style="padding:0px;"></div>
+                                <div class="col-xs-2" style="padding:0px;">
+                                    <p class="text-right">
+                                        <strong>Hal. <span class="page"/></strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-xs-12" style="font-family: Dotrice; font-size:10px; padding-top:30px;">
+                                <table width="100%" style="margin-top:0px;table-layout:fixed;">
+                                    <thead style="@media print {thead div {display: table-header-group;}};">
+                                        <tr min-height="30px" style="border-top:1px dashed #000; border-bottom:1px dashed #000; padding: 20px;">
+                                            <th width="9%" style="padding: 3px 5px; vertical-align:middle;" class="text-center">No. Perk</th>
+                                            <th width="21%" style="padding: 3px 5px; vertical-align:middle;" class="text-center">Nama Perkiraan</th>
+                                            <th width="17%" style="padding: 3px 5px; vertical-align:middle;" class="text-center">Saldo Awal</th>
+                                            <th width="13%" style="padding: 3px 5px; vertical-align:middle;" class="text-center">Debit</th>
+                                            <th width="13%" style="padding: 3px 5px; vertical-align:middle;" class="text-center">Kredit</th>
+                                            <th width="17%" style="padding: 3px 5px; vertical-align:middle;" class="text-center">Saldo Akhir</th>
+                                            <th width="10%" style="padding: 3px 5px; vertical-align:middle;" class="text-center">R.A.B.P. (1=1000)</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody> 
+                                        <t t-set="all_total_opening_balance" t-value="0.0"/>
+                                        <t t-set="all_total_debit" t-value="0.0"/>
+                                        <t t-set="all_total_credit" t-value="0.0"/>
+                                        <t t-set="all_total_ending_balance" t-value="0.0"/>
+                                        
+                                        <t t-foreach="get_trial_balance_data(o.account_report_id.id)" t-as="data">
+                                            <!-- initialize value -->
+                                            <t t-set="total_opening_balance" t-value="0.0"/>
+                                            <t t-set="total_debit" t-value="0.0"/>
+                                            <t t-set="total_credit" t-value="0.0"/>
+                                            <t t-set="total_ending_balance" t-value="0.0"/>
+                                            
+                                            <tr min-height="15px"> 
+                                                <td style="text-align: center; padding-bottom: 5px; padding-top: 15px;"></td> 
+                                                <td colspan="6" style="text-align: left; padding-bottom: 5px; padding-top: 15px; text-transform: uppercase;"> 
+                                                    <strong><span t-field="data.name"/></strong>
+                                                </td>
+                                            </tr>
+                                            
+                                            <t t-foreach="data.account_ids" t-as="account">
+                                                <t t-set="amount" t-value="get_amount(account.id, o.date_from, o.date_to)"/>
+                                                <tr min-height="15px"> 
+                                                    <td style="text-align: center;padding: 5px;"><strong><span t-esc="account.code"/></strong></td> 
+                                                    <td style="text-align: left;padding: 5px;"><strong><span t-esc="account.name"/></strong></td>
+                                                    <td style="text-align: right;padding: 5px;"> 
+                                                        <strong><span t-esc="str('{0:,.2f}'.format(float(amount['open_balance']))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                                    </td> 
+                                                    <td style="text-align: right;padding: 5px;"> 
+                                                        <strong><span t-esc="str('{0:,.2f}'.format(float(amount['debit']))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                                    </td> 
+                                                    <td style="text-align: right;padding: 5px;"> 
+                                                        <strong><span t-esc="str('{0:,.2f}'.format(float(amount['credit']))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                                    </td> 
+                                                    <td style="text-align: right;padding: 5px;"> 
+                                                        <strong><span t-esc="str('{0:,.2f}'.format(float(amount['end_balance']))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                                    </td> 
+                                                    <td style="text-align: center;padding: 5px;"><strong>-</strong></td> 
+                                                </tr>
+                                                
+                                                <!-- update total amount -->
+                                                <t t-set="total_opening_balance" t-value="total_opening_balance + amount['open_balance']"/>
+                                                <t t-set="total_debit" t-value="total_debit + amount['debit']"/>
+                                                <t t-set="total_credit" t-value="total_credit + amount['credit']"/>
+                                                <t t-set="total_ending_balance" t-value="total_ending_balance + amount['end_balance']"/>
+                                            </t>
+                                            
+                                            <tr min-height="20px"> 
+                                                <td style="text-align: center;padding: 5px;"></td> 
+                                                <td style="text-align: right;padding: 5px;"><strong>JUMLAH : </strong></td>
+                                                <td style="border-top:1px dashed #000; text-align: right;padding: 5px;"> 
+                                                    <strong><span t-esc="str('{0:,.2f}'.format(float(total_opening_balance))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                                </td> 
+                                                <td style="border-top:1px dashed #000; text-align: right;padding: 5px;">
+                                                    <strong><span t-esc="str('{0:,.2f}'.format(float(total_debit))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                                </td> 
+                                                <td style="border-top:1px dashed #000; text-align: right;padding: 5px;"> 
+                                                    <strong><span t-esc="str('{0:,.2f}'.format(float(total_credit))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                                </td> 
+                                                <td style="border-top:1px dashed #000; text-align: right;padding: 5px;"> 
+                                                    <strong><span t-esc="str('{0:,.2f}'.format(float(total_ending_balance))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                                </td> 
+                                                <td style="border-top:1px dashed #000; text-align: center;padding: 5px;"><strong>-</strong></td> 
+                                            </tr>
+                                            
+                                            <!-- update total all amount -->
+                                            <t t-set="all_total_opening_balance" t-value="all_total_opening_balance + total_opening_balance"/>
+                                            <t t-set="all_total_debit" t-value="all_total_debit + total_debit"/>
+                                            <t t-set="all_total_credit" t-value="all_total_credit + total_credit"/>
+                                            <t t-set="all_total_ending_balance" t-value="all_total_ending_balance + total_ending_balance"/>
+                                        </t>
+                                        
+                                        <tr min-height="5px">
+                                            <td colspan="7">
+                                                <hr style="border-top:1px dashed #000; margin-top:0px"/>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr min-height="20px"> 
+                                            <td style="text-align: center;padding: 5px;"></td> 
+                                            <td style="text-align: right;padding: 5px;"><strong>JUMLAH SEMUA : </strong></td>
+                                            <td style="text-align: right;padding: 5px;"> 
+                                                <strong><span t-esc="str('{0:,.2f}'.format(float(all_total_opening_balance))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                            </td> 
+                                            <td style="text-align: right;padding: 5px;">
+                                                <strong><span t-esc="str('{0:,.2f}'.format(float(all_total_debit))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                            </td> 
+                                            <td style="text-align: right;padding: 5px;"> 
+                                                <strong><span t-esc="str('{0:,.2f}'.format(float(all_total_credit))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                            </td> 
+                                            <td style="text-align: right;padding: 5px;"> 
+                                                <strong><span t-esc="str('{0:,.2f}'.format(float(all_total_ending_balance))).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong>
+                                            </td> 
+                                            <td style="text-align: center;padding: 5px;"><strong>-</strong></td> 
+                                        </tr>
+                                        
+                                        <tr min-height="5px">
+                                            <td colspan="7">
+                                                <hr style="border-top:1px dashed #000; margin-top:0px"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+        
+        <report
+            id="report_ka_trial_balance"
+            model="ka_trial.balance.report.wizard"
+            string="Neraca Bulanan"
+            name="ka_account.ka_trial_balance_report_tmpl"
+            file="ka_account.ka_trial_balance_report_tmpl"
+            report_type="qweb-pdf"
+            menu="False"/>
+        
+        <record id="paperformat_report_ka_trial_balance" model="report.paperformat">
+            <field name="name">Neraca Bulanan</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">280</field>
+            <field name="page_width">230</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">8</field>
+            <field name="margin_left">20</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">15</field>
+            <field name="dpi">90</field>
+        </record>
+        
+        <record id="ka_account.report_ka_trial_balance" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="ka_account.paperformat_report_ka_trial_balance"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_logistik_tender_user,logistik.tender.user,model_logistik_tender,ka_logistik_pengadaan.group_user,1,0,0,0
+access_logistik_tender_lines_user,logistik.tender.lines.user,model_logistik_tender_lines,ka_logistik_pengadaan.group_user,1,0,0,0
+access_logistik_tender_logistik,logistik.tender.logistik,model_logistik_tender,ka_logistik_pengadaan.group_logistik,1,1,1,0
+access_logistik_tender_lines_logistik,logistik.tender.lines.logistik,model_logistik_tender_lines,ka_logistik_pengadaan.group_logistik,1,1,1,1
+access_logistik_tender_manager,logistik.tender.manager,model_logistik_tender,ka_logistik_pengadaan.group_manager,1,1,1,1
+access_logistik_tender_lines_manager,logistik.tender.lines.manager,model_logistik_tender_lines,ka_logistik_pengadaan.group_manager,1,1,1,1
+access_logistik_spp_user,logistik.spp.user,model_logistik_spp,ka_logistik_pengadaan.group_user,1,0,0,0
+access_logistik_spp_lines_user,logistik.spp.lines.user,model_logistik_spp_lines,ka_logistik_pengadaan.group_user,1,0,0,0
+access_logistik_spp_logistik,logistik.spp.logistik,model_logistik_spp,ka_logistik_pengadaan.group_logistik,1,1,1,1
+access_logistik_spp_lines_logistik,logistik.spp.lines.logistik,model_logistik_spp_lines,ka_logistik_pengadaan.group_logistik,1,1,1,1
+access_logistik_payment_term,account.payment.term.logistik,account.model_account_payment_term,ka_logistik_pengadaan.group_logistik,1,1,1,1

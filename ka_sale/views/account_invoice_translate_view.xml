@@ -1,0 +1,95 @@
+<odoo>
+	<data>
+		<record id="invoice_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml"> 
+            	 <field name="partner_id" position="attributes">
+                    <attribute name="string">Rekanan</attribute>  
+                </field>  
+            	 <field name="payment_term_id" position="attributes">
+                    <attribute name="string">Tenor</attribute>  
+                </field>  
+            	<field name="date_invoice" position="attributes">
+                    <attribute name="string">Tanggal Tagihan</attribute>  
+                </field>
+              	<xpath expr="//form/sheet/notebook/page[1]" position="attributes">
+            		<attribute name="string">Daftar Tagihan</attribute> 
+            	</xpath>
+            	<field name="product_id" position="attributes">
+                    <attribute name="string">Produk</attribute>  
+                </field> 
+                <field name="origin" position="attributes">
+                    <attribute name="string">Pesanan Penjualan</attribute>  
+                </field>  
+             	<field name="quantity" position="attributes">
+                    <attribute name="string">Kuantum</attribute>  
+                </field> 
+            	<field name="uom_id" position="attributes">
+                    <attribute name="string">Satuan Ukuran</attribute>  
+                </field>  
+            	<field name="price_unit" position="attributes">
+                    <attribute name="string">Harga Satuan</attribute>  
+                </field>  
+              	<field name="discount" position="attributes">
+                    <attribute name="string">Diskon (%)</attribute>  
+                </field>  
+               	<field name="invoice_line_tax_ids" position="attributes">
+                    <attribute name="string">Pajak</attribute>  
+                </field>   
+            	<field name="amount_untaxed" position="attributes">
+                    <attribute name="string">Total Sebelum Pajak</attribute>  
+                </field>   
+            	<field name="amount_tax" position="attributes">
+                    <attribute name="string">Pajak</attribute>  
+                </field>    
+            	<field name="amount_total" position="attributes">
+                    <attribute name="string">Total</attribute>  
+                </field> 
+            	<xpath expr="//form/sheet/notebook/page[2]" position="attributes">
+            		<attribute name="string">Informasi Lainnya</attribute> 
+            	</xpath>   
+                <field name="journal_id" position="attributes">
+                    <attribute name="string">Jurnal</attribute>  
+                </field> 
+                <field name="date_due" position="attributes">
+                    <attribute name="string">Jatuh Tempo</attribute>  
+                </field> 
+                <xpath expr="//form/sheet/notebook/page[2]/field/tree/field[1]" position="attributes">
+            		<attribute name="string">Deskripsi Pajak</attribute> 
+            	</xpath> 
+            	<xpath expr="//form/sheet/notebook/page[2]/field/tree/field[7][@name='amount']" position="attributes">
+            		<attribute name="string">Jumlah</attribute> 
+            	</xpath> 
+            </field>
+     	</record>
+     	
+     	<record id="invoice_tree_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.tree.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml"> 
+            	 <field name="partner_id" position="attributes">
+                    <attribute name="string">Rekanan</attribute>  
+                </field> 
+             	<field name="date_invoice" position="attributes">
+                    <attribute name="string">Tanggal Tagihan</attribute>  
+                </field> 
+            	<field name="number" position="attributes">
+                    <attribute name="string">Nomor</attribute>  
+                </field>  
+              	<field name="date_due" position="attributes">
+                    <attribute name="string">Jatuh Tempo</attribute>  
+                </field>  
+                <field name="origin" position="attributes">
+                    <attribute name="string">Dokumen Asal</attribute>  
+                </field> 
+            	<field name="residual_signed" position="attributes">
+                    <attribute name="string">Belum Dibayar</attribute>  
+                </field>  
+            </field>
+     	</record>
+     	
+     </data>
+</odoo>

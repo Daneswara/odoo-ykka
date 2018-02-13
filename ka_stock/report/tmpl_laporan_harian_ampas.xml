@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="template_laporan_harian_ampas">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_stock.laporan_harian_ampas_document"/>
+				</div>
+			</t>
+		</template>
+
+		<template id="laporan_harian_ampas_document">
+			<t t-call="report.html_container">
+				<div class="page" style="font-family: Arial, Helvetica, sans-serif">
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:10px 0px; padding:0px;">
+							<p class="text-center" style="font-size: 20px;"> 
+								<strong>
+									LAPORAN HARIAN AMPAS TAHUN PANEN <span t-field="o.date" t-field-options='{"format": "YYYY"}'/><br></br>
+									Tanggal <span t-field="o.date" t-field-options='{"format": "dd-MM-YYYY"}'/><br></br>
+								</strong>
+							</p>
+							<p style="font-size: 16px;">
+								Nomor : <span t-field="o.name" />
+							</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:10px 0px; padding:3px 0px;border-top:1px solid #000; ">
+							<table width="100%" style="font-size: 14px;border-collapse:collapse;">
+								<tbody>
+									<tr height="30px">
+										<td width="" class="text-center" rowspan="2" style="vertical-align:middle;border-right:1px solid #000;border-bottom:1px solid #000;border-top:1px solid #000;">URAIAN</td>
+										<td class="text-center" colspan="3" style="padding:5px 0px;border:1px solid #000;">Jumlah Dalam</td>
+										<td class="text-center" style="padding:5px 0px;border-bottom:1px solid #000;border-top:1px solid #000;"></td>
+									</tr>
+									<tr height="30px">
+										<td width="17%" class="text-center" style="padding:5px 0px;border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">Bal</td>
+										<td width="17%" class="text-center" style="padding:5px 0px;border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">Kg</td>
+										<td width="17%" class="text-center" style="padding:5px 0px;border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">Kawur (Kg)</td>
+										<td width="17%" class="text-center" style="padding:5px 0px;border-bottom:1px solid #000;">T. Penimbunan</td>
+									</tr>
+									<tr height="25px">
+										<td style="padding:5px; border-right:1px solid #000;"><strong>A. PRODUKSI</strong></td>
+										<td style="padding:3px; border-right:1px solid #000"></td>
+										<td style="padding:3px; border-right:1px solid #000"></td>
+										<td style="padding:3px; border-right:1px solid #000"></td>
+										<td style="padding:3px;"></td>
+									</tr>
+									<tr height="25px">
+										<td style="padding-left:25px;border-right:1px solid #000">s/d hari yang lalu</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">
+											<span t-esc="'{0:,.2f}'.format(o.production_to_yesterday())"/>
+										</td>
+										<td class="text-right" style="padding:3px;"></td>
+									</tr>
+									<tr height="25px">
+										<td style="padding-left:25px;border-right:1px solid #000">Hari ini</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">
+											<span t-esc="'{0:,.2f}'.format(o.product_qty)"/>
+										</td>
+										<td class="text-right" style="padding:3pxborder-bottom:1px solid #000"></td>
+									</tr>
+									<tr height="25px">
+										<td style="padding-left:25px;border-right:1px solid #000">Jumlah s/d hari ini</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">
+											<span t-esc="'{0:,.2f}'.format(o.production_to_yesterday()+o.product_qty)"/>
+										</td>
+										<td class="text-right" style="padding:3px"></td>
+									</tr>
+									<tr height="25px">
+										<td style="padding:5px; border-right:1px solid #000;"><strong>B. PENGELUARAN</strong></td>
+										<td style="padding:3px; border-right:1px solid #000"></td>
+										<td style="padding:3px; border-right:1px solid #000"></td>
+										<td style="padding:3px; border-right:1px solid #000"></td>
+										<td style="padding:3px;"></td>
+									</tr>
+									<tr height="25px">
+										<td style="padding-left:25px;border-right:1px solid #000">s/d hari yang lalu</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000">
+											<span t-esc="'{0:,.2f}'.format(o.expense_to_yesterday())"/>
+										</td>
+										<td class="text-right" style="padding:3px"></td>
+									</tr>
+									<tr height="25px">
+										<td style="padding-left:25px;border-right:1px solid #000">Hari ini</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">
+											<span t-esc="'{0:,.2f}'.format(o.expense_today())"/>
+										</td>
+										<td class="text-right" style="padding:3px;border-bottom:1px solid #000"></td>
+									</tr>
+									<tr height="25px">
+										<td style="padding-left:25px;border-right:1px solid #000">Jumlah s/d hari ini</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">
+											<span t-esc="'{0:,.2f}'.format(o.expense_to_yesterday()+o.expense_today())"/>
+										</td>
+										<td class="text-right" style="padding:3px;border-bottom:1px solid #000"></td>
+									</tr>
+
+									<tr height="25px">
+										<td style="padding:5px; border-right:1px solid #000;"><strong>C. PERSEDIAAN</strong></td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">0</td>
+										<td class="text-right" style="padding:3px 5px; border-right:1px solid #000; border-bottom:1px solid #000">
+											<span t-esc="'{0:,.2f}'.format(o.production_to_yesterday() + o.product_qty - o.expense_to_yesterday() - o.expense_today())"/>
+										</td>
+										<td class="text-right" style="padding:3px;border-bottom:1px solid #000"></td>
+									</tr>
+									<tr height="25px">
+										<td colspan="5" style="padding:15px 5px 5px 5px;border-bottom:1px solid #000;">
+											<strong>D. RINCIAN PENGELUARAN AMPAS HARI INI (Kg)</strong>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table width="100%" style="font-size: 14px;border-col 5pxlapse:collapse;padding:0px;margin:0px">
+								<tbody>
+									<tr height="30 5pxpx">
+										<td colspan="2" style="vertical-align:middle;padding:5px;border-right:1px solid #000; border-bottom:1px solid #000">No. DO (Nama Pembeli/Pemakai)</td>
+										<td width="17%" class="text-center" style="vertical-align:middle;padding:3px; border-right:1px solid #000; border-bottom:1px solid #000">Kawur(Kg)</td>
+										<td width="17%" class="text-center" style="vertical-align:middle;padding:3px; border-right:1px solid #000; border-bottom:1px solid #000">Bal</td>
+										<td width="17%" class="text-center" style="vertical-align:middle;padding:3px; border-bottom:1px solid #000">Kg</td>
+									</tr>
+									<t t-set="sumExpense" t-value="0"/>
+									<t t-foreach="o.get_expense_details()" t-as="item">
+										<t t-if="item['qty_tod'] != 0">
+											<tr height="25px">
+												<td><span t-esc="item['customer']"/></td>
+												<td>(hari ini)</td>
+												<td class="text-right" style="padding:3px 20px;"><span t-esc="item['qty_tod']"/></td>
+												<td class="text-right" style="padding:3px 20px;">0</td>
+												<td class="text-right" style="padding:3px 20px;">0</td>
+											</tr>
+											<tr height="25px">
+												<td></td>
+												<td>(s/d yll)</td>
+												<td class="text-right" style="padding:3px 20px;"><span t-esc="item['qty_yes']"/>
+													<hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/>
+												</td>
+												<td class="text-right" style="padding:3px 20px;">0
+													<hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/>
+												</td>
+												<td class="text-right" style="padding:3px 20px;">0
+													<hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/>
+												</td>
+											</tr>
+											<tr height="25px">
+												<td colspan="2" class="text-right" style="padding: 3px"><strong>Subtotal</strong></td>
+												<td class="text-right" style="padding:3px 20px;"><strong><span t-esc="item['qty_tod']+item['qty_yes']"/></strong></td>
+												<td class="text-right" style="padding:3px 20px;"><strong>0</strong></td>
+												<td class="text-right" style="padding:3px 20px;"><strong>0</strong></td>
+											</tr>
+											<t t-set="sumExpense" t-value="sumExpense+item['qty_tod']+item['qty_yes']"/>
+										</t>
+										<t t-if="item['qty_tod'] == 0">
+											<tr height="25px">
+												<td><span t-esc="item['customer']"/></td>
+												<td>(s/d yll)</td>
+												<td class="text-right" style="padding:3px 20px;"><span t-esc="item['qty_yes']"/>
+													<hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/>
+												</td>
+												<td class="text-right" style="padding:3px 20px;">0
+													<hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/>
+												</td>
+												<td class="text-right" style="padding:3px 20px;">0
+													<hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/>
+												</td>
+											</tr>
+											<tr height="25px">
+												<td colspan="2" class="text-right" style="padding: 3px"><strong>Subtotal</strong></td>
+												<td class="text-right" style="padding:3px 20px;"><strong><span t-esc="item['qty_yes']"/></strong></td>
+												<td class="text-right" style="padding:3px 20px;"><strong>0</strong></td>
+												<td class="text-right" style="padding:3px 20px;"><strong>0</strong></td>
+											</tr>
+											<t t-set="sumExpense" t-value="sumExpense+item['qty_yes']"/>
+										</t>
+									</t>
+									<tr height="25px">
+										<td colspan="2" class="text-right" style="padding: 3px;border-bottom:1px solid #000;"><strong>Total</strong></td>
+										<td class="text-right" style="padding:3px 20px;border-bottom:1px solid #000;"><strong><hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/><span t-esc="sumExpense"/></strong></td>
+										<td class="text-right" style="padding:3px 20px;border-bottom:1px solid #000;"><strong><hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/>0</strong></td>
+										<td class="text-right" style="padding:3px 20px;border-bottom:1px solid #000;"><strong><hr style=" margin:0px;padding:0px;border-top: 1px dashed #000;"/>0</strong></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6" style="margin:10px 0px; padding:0px;">
+							<table width="100%" style="font-size: 14px;border-collapse:collapse;padding:0px;margin:0px">
+								<tbody>
+									<tr height="25px">
+										<td colspan="3"><strong>Catatan (Sisa DO) -Kg :</strong></td>
+									</tr>
+									<tr t-foreach="o.get_do_remaining()" t-as="item">
+										<td style="padding: 3px 5px"><span t-esc="item['customer']" /></td>
+										<td style="padding: 3px 5px">- Ampas Kawur :</td>
+										<td style="padding: 3px 5px"><span t-esc="'{0:,.2f}'.format(item['qty'])" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-xs-6" style="margin:10px 0px; padding:0px 15px;">
+							<table width="70%" style="font-size: 14px;border-collapse:collapse;padding:0px;margin:1px auto">
+								<tbody>
+									<tr height="25px">
+										<td class="text-center"><span t-field="o.company_id.city"/>, <span t-esc="datetime.datetime.now().strftime('%d-%m-%Y')"/></td>
+									</tr>
+									<tr height="50px">
+										<td></td>
+									</tr>
+									<tr height="25px">
+										<td></td>
+									</tr>
+									<tr height="25px" style="padding:0px 20px;">
+										<td class="text-center"><span style="padding:0px 5px;">_____________________</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

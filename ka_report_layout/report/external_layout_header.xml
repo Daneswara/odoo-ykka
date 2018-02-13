@@ -1,0 +1,31 @@
+<odoo>
+	<data>
+		<template id="external_layout_header_inherit" inherit_id="report.external_layout_header">
+			<xpath expr="//div[@class='header']" position="replace">
+				<div class="header">
+					<img src="ka_report_layout/static/src/img/icon-kebonagung.png" style="position: absolute; height: 45px"/>
+					
+					<t t-if="company.parent_id">
+						<div class="row text-center">
+							<img src="ka_report_layout/static/src/img/logo-ptkebonagung.png" style="margin: 0 auto; height: 20px"/>
+						</div>
+					</t>
+
+					<div class="row text-center">
+						<img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin: 3px auto 0 auto; height: 30px"/>
+					</div>
+					
+					<div class="row text-center" name="company_address" style="font-size: 16px">
+						<span t-field="company.street"/>. Telp: <span t-field="company.phone"/>. Fax: <span t-field="company.fax"/>. <span t-field="company.city"/>. <span t-field="company.zip"/>
+					</div>
+
+					<div class="row zero_min_height" style="margin-top: 10px">
+						<div class="col-xs-12">
+							<div style="border-bottom: 1px solid black;"/>
+						</div>
+					</div>
+				</div>
+			</xpath>
+		</template>
+	</data>
+</odoo>

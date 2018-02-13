@@ -1,0 +1,15 @@
+<odoo>
+	<data>
+		<record id="view_logistik_product_sp_tree" model="ir.ui.view">
+			<field name="name">logistik.product.sp.tree</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="ka_logistik_master.view_logistik_product_template_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//tree/field[@name='ref_pabrik']" position="after">
+					<field name="last_order"/>
+					<field name="last_order_id"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

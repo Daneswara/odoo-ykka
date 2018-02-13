@@ -1,0 +1,147 @@
+<odoo>
+	<data>
+		<report id="report_ka_hr_employee_holidays"
+			model="hr.holidays"
+			string="Cuti Pegawai"
+			report_type="qweb-pdf"
+			name="ka_hr_holidays.report_ka_hr_employee_holidays_view"
+			file="ka_hr_holidays.report_ka_hr_employee_holidays"
+			menu="False"/>
+
+		<record model="report.paperformat" id="paperformat_report_ka_hr_employee_holidays">
+			<field name="name">Cuti Pegawai</field>
+			<field name="default" eval="True" />
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">10</field>
+			<field name="margin_right">10</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">10</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">25</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="report_ka_hr_employee_holidays" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="paperformat_report_ka_hr_employee_holidays"/>
+		</record>
+
+		<template id="report_ka_hr_employee_holidays_view">
+			<t t-foreach="docs" t-as="doc">
+				<div class="page" style="font-size:18px">
+					<style type="text/css">
+						td {
+							padding-top:5px !important;
+						}
+						/*
+						td.td-dotted {
+							border-bottom: 1px dotted black !important;
+						}
+						*/
+					</style>
+
+					<div class="row">
+						<div class="col-xs-8">
+							Kepada Yth.<br/>
+							<!-- <t t-if="doc.employee_id.job_id.level &lt;= 3"> -->
+							<t t-if="doc.get_employee_job_level() &lt;= 3">
+								Direksi PT. Kebon Agung
+							</t>
+							<t t-else="">
+								Kepala Divisi SDM
+							</t>
+							<br/>
+							<span t-field="doc.company_id.street"/><br/>
+							<span t-field="doc.company_id.street2"/><br/>
+							<strong><span t-field="doc.company_id.city" style="text-decoration:underline"/></strong>
+						</div>
+						<div class="col-xs-4">
+							Surabaya, <span t-field="doc.date_request" t-options="{'format': 'dd-MM-yyyy'}"/>
+						</div>
+					</div>
+
+					<div class="row" style="margin-top:50px;">
+						<div class="col-xs-12">
+							<p>Dengan Hormat,</p>
+
+							<div style="margin-left:65px;">
+								Yang bertandatangan dibawah ini:<br/>
+								<table style="width:100%;">
+									<tr>
+										<td style="width:10%">Nama</td>
+										<td style="width:2%">:</td>
+										<td style="width:88%" class="td-dotted"><span t-field="doc.employee_id.name"/></td>
+									</tr>
+									<tr>
+										<td>Jabatan</td>
+										<td>:</td>
+										<!-- <td class="td-dotted"><span t-field="doc.employee_id.job_id.name"/></td> -->
+										<td class="td-dotted"><span t-esc="doc.get_employee_job_name()"/></td>
+									</tr>
+								</table>
+							</div>
+
+							<p style="margin-top:10px;margin-left:65px;">Dengan surat saya ini mengajukan permohonan cuti <strong><span t-field="doc.holiday_status_id.name"/></strong> untuk tahun <strong><span t-field="doc.date_request" t-options="{'format': 'yyyy'}"/></strong> selama <strong><span t-esc="len(doc._get_date_list())"/></strong> (<span t-esc="doc._get_terbilang(len(doc._get_date_list()))"/>) hari kerja terhitung mulai tanggal <strong><span t-field="doc.date_from" t-options="{'format': 'dd-MM-yyyy'}"/></strong> sd <strong><span t-field="doc.date_to" t-options="{'format': 'dd-MM-yyyy'}"/></strong></p>
+							<p>Selama menjalankan cuti tersebut, alamat saya di: <strong><span t-field="doc.holiday_address"/></strong></p>
+						</div>
+					</div>
+
+					<div class="row" style="margin-top:25px">
+						<div class="col-xs-5 col-xs-offset-7">
+							<p class="text-center">Hormat saya,</p>
+							<br/><br/><br/><br/>
+							<p class="text-center">(<span t-field="doc.employee_id.name"/>)</p>
+						</div>
+					</div>
+					<table style="width:100%; font-size:12px;">
+						<thead>
+							<tr style="border-top:1px solid black;">
+								<th rowspan="3" style="width:50%;font-size:18px;border-right:1px solid black;" ><u>Catatan oleh Divisi SDM dan Umum</u></th>
+								<th rowspan="3" style="width:50%;font-size:18px;" class="text-center"><u>Keputusan oleh Direksi</u></th>
+							</tr>
+						</thead>
+						<tbody style="font-size:18px;">
+							<tr>
+								<td style="border-right:1px solid black;">1. Agenda no. .................................</td>
+								<td class="text-center">(setuju / ditunda)</td>
+							</tr>
+
+							<tr>
+								<td style="border-right:1px solid black;">2. Cuti yang di ambil ini adalah sesuai/diluar</td>
+							</tr>
+
+							<tr>
+								<td style="border-right:1px solid black;padding-left:24px;">rencana cuti</td>
+							</tr>
+
+							<tr>
+								<td style="border-right:1px solid black;">3. Sisa hak cuti setelah diambil</td>
+							</tr>
+
+							<tr>
+								<td style="border-right:1px solid black;padding-left:24px;">- Cuti Tahunan = <strong><span t-field="doc.employee_id.count_holidays_yearly"/></strong> hari</td>
+							</tr>
+
+							<tr>
+								<td style="border-right:1px solid black;padding-left:24px;">- Cuti Besar = <strong><span t-field="doc.employee_id.count_holidays_big"/></strong> hari</td>
+							</tr>
+
+							<tr>
+								<td style="border-right:1px solid black;">4. Lain-lain :</td>
+								<td class="text-center">(...........................................)</td>
+							</tr>
+
+							<tr>
+								<td style="border-right:1px solid black;border-bottom:1px solid black;padding-left:24px;">.................................................</td>
+								<td style="border-bottom:1px solid black;"></td>
+							</tr>
+						</tbody>
+					</table>
+					<p> *) Coret yang tidak perlu</p>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

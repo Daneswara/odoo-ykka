@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates >
+    <t t-name="org_chart">
+        <div>
+            <div class="contentpanel" id="contentpanel">
+                <div class="container" style="padding: 5px;margin: inherit;position: fixed;z-index: 1;background: #dddddd;width:100%">
+	                <button id="toogl_button" class="btn btn-sm btn-primary" type="button">Vertical layout</button>
+	                <button id="toogl_expand" class="btn btn-sm btn-primary" type="button">Expand</button>
+	                <button id="print" class="btn btn-sm btn-primary" type="button">Print</button>
+	                <select id="type_of_dept"> 
+	                    <option value="0">All</option>
+	                    <t t-foreach="widget.dept_data" t-as="dept">
+	                        <option t-att-value="dept.id"><t t-esc="dept.name"/></option>
+	                    </t>
+	                </select>
+	                <span id="zoom">Zoom: <div id="slider" style="width: 200px; height: 8px; font-size: 62.5%;display: inline-block;z-index: 0;top: -2px;"></div></span>
+            	</div>
+            </div>
+        </div>
+    </t>
+</templates>

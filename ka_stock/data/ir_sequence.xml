@@ -1,0 +1,95 @@
+<odoo>
+	<data>
+		<!-- SEQUENCE PRODUKSI GULA CURAH -->
+		<record id="stock_move_daily_sugar_sequence_pgtk" model="ir.sequence">
+            <field name="name">Stock Move Daily Sugar</field>
+            <field name="code">stock.move.daily.sugar</field>
+            <field name="suffix">/SHS I/%(range_year)s</field>
+            <field name="padding">3</field>
+            <field name="use_data_range">True</field>
+            <field name="number_increment">1</field>
+            <field ref="base.pg_trangkil" name="company_id"/>
+       </record>
+		<record id="stock_move_daily_sugar_sequence_pgkba" model="ir.sequence">
+            <field name="name">Stock Move Daily Sugar</field>
+            <field name="code">stock.move.daily.sugar</field>
+            <field name="suffix">/SHS I/%(range_year)s</field>
+            <field name="padding">3</field>
+            <field name="use_data_range">True</field>
+            <field name="number_increment">1</field>
+            <field ref="base.pg_kebonagung" name="company_id"/>
+       </record>
+       
+       <!-- SEQUENCE PRODUKSI GULA RETAIL -->
+       <record id="stock_move_daily_sugar_retail_sequence_pgtk" model="ir.sequence">
+            <field name="name">Stock Move Daily Sugar Retail</field>
+            <field name="code">stock.move.daily.sugar.retail</field>
+            <field name="suffix">/%(range_year)s</field>
+            <field name="padding">3</field>
+            <field name="use_data_range">True</field>
+            <field name="number_increment">1</field>
+            <field ref="base.pg_trangkil" name="company_id"/>
+       </record>
+       <record id="stock_move_daily_sugar_retail_sequence_pgkba" model="ir.sequence">
+            <field name="name">Stock Move Daily Sugar Retail</field>
+            <field name="code">stock.move.daily.sugar.retail</field>
+            <field name="suffix">/%(range_year)s</field>
+            <field name="padding">3</field>
+            <field name="use_data_range">True</field>
+            <field name="number_increment">1</field>
+            <field ref="base.pg_kebonagung" name="company_id"/>
+       </record>
+		
+       <!--
+       <record id="stock_move_daily_sugarpremium_sequence" model="ir.sequence">
+            <field name="name">Stock Move Daily Sugar Premium</field>
+            <field name="code">stock.move.daily.sugar.premium</field>
+            <field name="suffix">/%(range_year)s</field>
+            <field name="padding">3</field>
+            <field name="use_data_range">True</field>
+            <field name="number_increment">1</field>
+            <field eval="False" name="company_id"/>
+       </record>
+       -->
+		
+       <!-- SEQUENCE PRODUKSI AMPAS -->
+       <record id="stock_move_daily_bagasse_sequence_pgtk" model="ir.sequence">
+            <field name="name">Stock Move Daily Bagasse</field>
+            <field name="code">stock.move.daily.bagasse</field>
+            <field name="suffix">/%(range_year)s</field>
+            <field name="padding">3</field>
+            <field name="use_data_range">True</field>
+            <field name="number_increment">1</field>
+            <field ref="base.pg_trangkil" name="company_id"/>
+       </record>
+       <record id="stock_move_daily_bagasse_sequence_pgkba" model="ir.sequence">
+            <field name="name">Stock Move Daily Bagasse</field>
+            <field name="code">stock.move.daily.bagasse</field>
+            <field name="suffix">/%(range_year)s</field>
+            <field name="padding">3</field>
+            <field name="use_data_range">True</field>
+            <field name="number_increment">1</field>
+            <field ref="base.pg_kebonagung" name="company_id"/>
+       </record>
+       
+       <!-- SEQUENCE PRODUKSI TETES -->
+	   <record id="stock_move_daily_molasses_sequence_pgtk" model="ir.sequence">
+       		<field name="name">Stock Move Daily Molasses</field>
+        	<field name="code">stock.move.daily.molasses</field>
+        	<field name="suffix">/%(range_year)s</field>
+        	<field name="padding">3</field>
+        	<field name="use_data_range">True</field>
+        	<field name="number_increment">1</field>
+        	<field ref="base.pg_trangkil" name="company_id"/>
+  	   </record>
+	   <record id="stock_move_daily_molasses_sequence_pgkba" model="ir.sequence">
+       		<field name="name">Stock Move Daily Molasses</field>
+        	<field name="code">stock.move.daily.molasses</field>
+        	<field name="suffix">/%(range_year)s</field>
+        	<field name="padding">3</field>
+        	<field name="use_data_range">True</field>
+        	<field name="number_increment">1</field>
+        	<field ref="base.pg_kebonagung" name="company_id"/>
+  	   </record>
+	</data>
+</odoo>

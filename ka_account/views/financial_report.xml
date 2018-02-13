@@ -1,0 +1,96 @@
+<odoo>
+	<data>
+		<record id="view_account_financial_report_form_inherit" model="ir.ui.view">
+			<field name="name">account.financial.report.form</field>
+			<field name="model">account.financial.report</field>
+			<field name="inherit_id" ref="account.view_account_financial_report_form"/>
+			<field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="code"/>
+                    <newline/>
+                </field>
+				<field name="name" position="after">
+					<field name="display_value" invisible="1"/>	
+                    <field name="is_cashflow"/>
+                    <field name="cashflow_type" attrs="{'invisible': [('is_cashflow', '!=', True)]}"/>
+				</field>
+				<field name="account_ids" position="replace">
+					<field name="account_ids" attrs="{'invisible': [('type', '!=', 'accounts')]}">
+						<tree>
+							<field name="code"/>	
+							<field name="name"/>	
+							<field name="user_type_id"/>
+						</tree>	
+					</field>	
+				</field>
+			</field>
+		</record> 
+
+        <record id="ka_view_account_financial_report_tree" model="ir.ui.view">
+            <field name="name">ka_account.financial.report.tree</field>
+            <field name="model">account.financial.report</field>
+			<field name="inherit_id" ref="account.view_account_financial_report_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="code"/>
+                </field>
+                <field name="account_report_id" position="after">
+                    <field name="sequence"/>
+                </field>
+            </field>
+        </record>
+				
+		 <record id="action_child_financial_report_open" model="ir.actions.act_window">
+				<field name="name">Financial Report</field>
+				<field name="res_model">account.financial.report</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+				<field name="domain">[('id','=',[active_id])]</field>
+		</record>
+
+		<record id="action_open_financial_report" model="ir.values">
+            <field eval="'tree_but_open'" name="key2"/>
+            <field eval="'account.financial.report'" name="model"/>
+            <field name="name">Financial Report</field>
+            <field eval="'ir.actions.act_window,%d'%action_child_financial_report_open" name="value"/>
+        </record>
+		
+		<record id="action_profit_loss_viewer" model="ir.actions.client">
+			<field name="name">Profit Loss Viewer</field>
+			<field name="tag">report.profit_loss_report</field>
+		</record>
+
+		<record id="action_profit_loss_by_stasiun_viewer" model="ir.actions.client">
+			<field name="name">Profit Loss Per Stasiun</field>
+			<field name="tag">report.profit_loss_report_by_stasiun</field>
+		</record>
+
+		<record id="action_balance_sheet_viewer" model="ir.actions.client">
+			<field name="name">Balance Sheet Viewer</field>
+			<field name="tag">report.balance_sheet_report</field>
+		</record>
+
+   		<record id="action_balance_sheet_horizontal_viewer" model="ir.actions.client">
+			<field name="name">Balance Sheet Viewer Horizontal</field>
+			<field name="tag">report.balance_sheet_horizontal_report</field>
+		</record>
+
+		<record id="action_cash_flow_viewer" model="ir.actions.client">
+			<field name="name">Direct Cash Flow</field>
+			<field name="tag">report.cash_flow_report</field>
+		</record>
+
+		<record id="action_arus_kas_viewer" model="ir.actions.client">
+			<field name="name">In-Direct Cash Flow</field>
+			<field name="tag">report.arus_kas_report</field>
+		</record>
+
+		<menuitem id="menu_financial_report_viewer" name="Laporan Keuangan" parent="account.menu_finance" sequence="1" groups="account.group_account_manager"/>
+		<menuitem id="menu_profit_loss_viewer" name="Laba Rugi Per Biaya" parent="menu_financial_report_viewer" action="action_profit_loss_viewer" sequence="1"/>
+		<menuitem id="menu_profit_loss_by_stasiun_viewer" name="Laba Rugi Per Stasiun" parent="menu_financial_report_viewer" action="action_profit_loss_by_stasiun_viewer" sequence="2"/>
+		<menuitem id="menu_balance_sheet_viewer" name="Neraca Vertical" parent="menu_financial_report_viewer" action="action_balance_sheet_viewer" sequence="3"/>
+		<menuitem id="menu_balance_sheet_horizontal_viewer" name="Neraca Horizontal" parent="menu_financial_report_viewer" action="action_balance_sheet_horizontal_viewer" sequence="4"/>
+		<menuitem id="menu_cash_flow_viewer" name="Cash Flow" parent="menu_financial_report_viewer" action="action_cash_flow_viewer" sequence="5"/>
+		<menuitem id="menu_arus_kas_viewer" name="Arus Kas" parent="menu_financial_report_viewer" action="action_arus_kas_viewer" sequence="6"/>
+	</data>
+</odoo>

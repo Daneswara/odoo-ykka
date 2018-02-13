@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>		
+
+		<report 
+            id="delivery_slip_molasses" 
+            model="stock.picking"
+            string="Surat Pengiriman Tetes"
+            report_type="qweb-pdf"
+            name="ka_sale.template_delivery_molasses"
+            file="ka_sale.template_delivery_molasses"
+			menu="False"        
+        /> 
+
+		<template id="template_delivery_molasses">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_sale.delivery_molasses_document"/>
+				</div>
+			</t>
+		</template>
+
+		<template id="delivery_molasses_document">
+			<t t-call="report.html_container">
+				<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+
+				<div class="page" style="font-family: Dotrice;">
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:100px 10px 0px 140px">
+							<table width="100%" style="margin:0px; padding: 0px; font-size: 16px;">
+								<tbody>
+									<tr height="30px">
+										<td colspan="2"><span t-field="o.min_date" t-field-options='{"format": "dd-MM-yyyy"}'/></td>
+									</tr>
+									<tr height="30px">
+										<td><span t-esc="o.timbangan_id.truck_id"/></td>
+										<td width="35%"><span t-esc="o.agent_partner_id.name"/></td>
+									</tr>
+									<tr height="30px">
+										<td colspan="2"><span t-esc="o.partner_id.name"/></td>
+									</tr>
+									<tr height="30px">
+										<td colspan="2"><span t-esc="o.partner_id.street"/> <span t-esc="o.partner_id.city"/><br></br></td>
+									</tr>
+									<tr height="30px">
+										<td colspan="2"><span t-esc="o.sale_id.name"/></td>
+									</tr>
+									<tr height="30px">
+										<td colspan="2"><span t-esc="o.timbangan_id.tetes_brix_qty"/>%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:80px 10px 0px 20px;">
+							<table width="100%" style="margin:0px; padding: 0px; font-size: 14px;">
+								<tbody>
+									<tr height="20px">
+										<td style="padding-left: 15px">Bruto</td>
+										<td width="17%" class="text-right" style="padding-right: 10px"></td>
+										<td width="17%" class="text-right" style="padding-right: 10px"></td>
+										<td width="17%" class="text-right" style="padding-right: 10px"><span t-esc="o.timbangan_id.weight_in"/></td>
+										<td></td>
+									</tr>
+									<tr height="20px">
+										<td style="padding-left: 15px">Tarra</td>
+										<td class="text-right" style="padding-right: 10px"></td>
+										<td class="text-right" style="padding-right: 10px"></td>
+										<td class="text-right" style="padding-right: 10px"><span t-esc="o.timbangan_id.weight_out"/></td>
+										<td></td>
+									</tr>
+									<tr height="20px">
+										<td style="padding-left: 15px">Netto</td>
+										<td class="text-right" style="padding-right: 10px"></td>
+										<td class="text-right" style="padding-right: 10px"></td>
+										<td class="text-right" style="padding-right: 10px"><span t-esc="o.timbangan_id.weight_net"/></td>
+										<td width="17%" class="text-right" style="padding-right: 10px"><span t-esc="o.timbangan_id.weight_net"/></td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:10px 10px 0px 10px;">
+							<table width="100%" style="margin:0px; padding: 0px; font-size: 12px;">
+								<tbody>
+									<tr height="20px">
+										<td width="" style="padding-left: 15px">Catatan :</td>
+										<td width="" class="text-center" style="">Kuantum DO</td>
+										<td width="" class="text-center" style="">Pengambilan</td>
+										<td width="17%" class="text-center" style="">Sisa DO</td>
+									</tr>
+									<tr t-foreach="o.move_lines" t-as="move" height="20px">
+										<td></td>
+										<td class="text-center" style=""><span t-esc="move.procurement_id.sale_line_id.product_uom_qty"/></td>
+										<td class="text-center" style=""><span t-esc="move.procurement_id.sale_line_id.qty_delivered"/></td>
+										<td class="text-center" style=""><span t-esc="move.procurement_id.sale_line_id.product_uom_qty - move.procurement_id.sale_line_id.qty_delivered"/></td>
+									</tr>
+									<tr height="20px">
+										<td></td>
+										<td class="text-center" style="">No. Timbang :</td>
+										<td class="text-center" style=""><span t-esc="o.timbangan_id.name"/></td>
+										<td></td>
+									</tr>
+									<tr height="20px">
+										<td></td>
+										<td class="text-center" style="">Masuk : <span t-esc="o.timbangan_id.date_in"/></td>
+										<td class="text-center" style="">Keluar : <span t-esc="o.timbangan_id.date_out"/></td>
+										<td></td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

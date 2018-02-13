@@ -1,0 +1,303 @@
+<odoo>
+	<data>
+		<template id="template_report_cash_bank"> 
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="header" style="margin:0px 10px 0px 5px; padding-bottom:0px;">
+						<div class="container" position="fixed" style="font-family: Dotrice; font-size:13px;">
+							<div class="row">
+								<div class="col-xs-12">
+									<table width="100%" style="table-layout:fixed;">
+										<tbody>
+											<tr min-height="20px">
+												<td style="vertical-align:bottom;"><span t-esc="get_company()"/></td>
+												<td width="50%" class="text-center" style="font-size:18px; vertical-align:bottom;"><strong>LAPORAN KAS / BANK</strong></td>
+												<td width="25%"></td>
+											</tr>
+											<tr height="18px">
+												<t t-set="d" t-value="o.with_context({'lang': user.company_id.partner_id.lang})"/>
+												<td style="padding-top:5px"><span t-esc="get_company_city()"/></td>
+												<td class="text-center" style="padding-top:5px; text-transform: uppercase;">Tanggal : 
+													<span t-field="d.report_date" t-field-options="{'format': 'dd MMMM yyyy'}"/>
+												</td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="page"  style="font-family: Dotrice;">
+						<div class="row">
+							<div class="col-xs-12" style="font-size:13px;">
+								<p class="text-center" style="padding-bottom:1px; margin-bottom:1px">
+									MUTASI KAS / BANK
+								</p>
+								<hr style="border-top:1px dashed #000; margin-top:0px" />
+								<hr style="border-top:1px dashed #000; margin-top:-24px" />
+							</div>
+
+							<div class="col-xs-12" style="font-size:13px; margin-top:-20px; padding-top:0px">
+								<table width="100%" style="table-layout:fixed;">
+									<tbody>
+										<tr min-height="30px" style="border-bottom:1px dashed #000; padding: 10px;">
+											<td width="13%" style="padding:8px; ">Perk</td>
+											<td width="29%" style="padding:8px; ">Nama Perkiraan</td>
+											<td width="5%"></td>
+											<td class="text-center" style="padding:8px; ">Penerimaan</td>
+											<td width="5%"></td>
+											<td class="text-center" style="padding:8px; ">Pengeluaran</td>
+										</tr>
+
+										<t t-set="sum_terima" t-value="0"/>
+										<t t-set="sum_keluar" t-value="0"/>
+										<tr t-foreach="get_rows1(o.report_date)" t-as="tab1" min-height="19px">
+											<td style="padding:5px; vertical-align:middle;"><span t-esc="tab1['no_perk']"/></td>
+											<td style="padding:5px; vertical-align:middle;"><span t-esc="tab1['perk']"/></td>
+											<td style="padding:5px; vertical-align:middle;">Rp</td>
+											<td class="text-right" style="padding:5px; vertical-align:middle;">
+												<span t-esc="str('{0:,.2f}'.format(float(tab1['sum_penerimaan']))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</td>
+											<td style="padding:5px; vertical-align:middle;">Rp</td>
+											<td class="text-right" style="padding:5px 10px; vertical-align:middle;">
+												<span t-esc="str('{0:,.2f}'.format(float(tab1['sum_pengeluaran']))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</td>
+											<t t-set="sum_terima" t-value="sum_terima + tab1['sum_penerimaan']"/>
+											<t t-set="sum_keluar" t-value="sum_keluar + tab1['sum_pengeluaran']"/>
+										</tr>
+
+										<tr min-height="19px">
+                    						<td></td>
+                    						<td style="padding: 3px 5px; vertical-align:middle"> Jumlah  :</td>
+                    						<td style="padding: 3px 5px;  vertical-align:middle; border-top: 1px dashed #000">Rp</td>
+                    						<td class="text-right" style=" vertical-align:middle; padding: 3px 5px; border-top: 1px dashed #000">
+                    							<span t-esc="str('{0:,.2f}'.format(float(sum_terima))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+                    						</td>
+                    						<td style="padding: 5px 10px;  vertical-align:middle; border-top: 1px dashed #000">Rp</td>
+                    						<td class="text-right" style="vertical-align:middle; padding:5px 10px; border-top: 1px dashed #000">
+                    							<span t-esc="str('{0:,.2f}'.format(float(sum_keluar))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+                    						</td>
+                    					</tr>
+
+                    					<tr min-height="10px">
+                    						<td colspan="2"></td>
+                    						<td colspan="4">
+                    							<hr style="border-top:1px dashed #000; margin-top:0px" />
+												<hr style="border-top:1px dashed #000; margin-top:-24px" />
+                    						</td>
+                    					</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="col-xs-7 col-xs-offset-5" style="font-size:13px; padding-top:0px">
+								<table width="91%" style="table-layout:fixed;margin-left:35px">
+									<tbody>
+										<tr min-height="30px">
+											<td width="50%" class="text-center" style="padding-bottom:10px">SISA KAS / BANK</td>
+											<td width="10%"></td>
+											<td></td>
+										</tr>
+										<tr min-height="5px">
+                    						<td colspan="3" style="margin-bottom:0px; padding-bottom:0;">
+                    							<hr style="border-top:1px dashed #000; margin-top:0px" />
+												<hr style="border-top:1px dashed #000; margin-top:-24px" />
+                    						</td>
+                    					</tr>
+
+                    					<t t-set="sum_sisa" t-value="0"/>
+                    					<tr t-foreach="get_rows1(o.report_date)" t-as="tab2" min-height="19px">
+                    						<td style="padding: 3px 5px;"><span t-esc="tab2['perk']"/></td>
+                    						<td style="padding: 3px 5px;">Rp</td>
+                    						<td class="text-right"  style="padding: 3px 5px;">
+                    							<span t-esc="str('{0:,.2f}'.format(float(tab2['end_balance']))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+                    						</td>
+                    						<t t-set="sum_sisa" t-value="sum_sisa + tab2['end_balance']"/>
+                    					</tr>
+                    					<tr height="25px">
+                    						<td style="padding: 3px 5px; vertical-align:middle;">
+                    							Jumlah  :
+                    						</td>
+                    						<td style="padding: 3px 5px; border-bottom: 1px dashed #000; border-top: 1px dashed #000">Rp</td>
+                    						<td class="text-right" style="vertical-align:middle; padding: 3px 5px; border-top: 1px dashed #000">
+                    							<span t-esc="str('{0:,.2f}'.format(float(sum_sisa))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+                    						</td>
+                    					</tr>
+                    					<tr min-height="5px">
+                    						<td colspan="3">
+                    							<hr style="border-top:1px dashed #000; margin-top:0px" />
+												<hr style="border-top:1px dashed #000; margin-top:-24px" />
+                    						</td>
+                    					</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="col-xs-12" style="font-size:13px; padding-top:0px">
+								<table width="100%" style="table-layout:fixed;">
+									<tbody>
+										<tr height="25px">
+											<td width="5%"></td>
+											<td width="19%"></td>
+											<td colspan="2" class="text-center" style="padding-top:10px; vertical-align:middle;">______Lembar______</td>
+											<td width="5%"></td>
+											<td width="23%"></td>
+											<td width="5%"></td>
+											<td width="23%"></td>
+										</tr>
+										<tr height="25px">
+											<td colspan="2" style="border-bottom: 1px dashed #000; vertical-align:middle;">Rincian Uang Kas</td>
+											<td class="text-center" style="border-bottom: 1px dashed #000; vertical-align:middle;">Kasir</td>
+											<td class="text-center" style="border-bottom: 1px dashed #000; vertical-align:middle;">P. Buku</td>
+											<td colspan="2" style="border-bottom: 1px dashed #000;vertical-align:middle;">Kas Kasir</td>
+											<td colspan="2" style="border-bottom: 1px dashed #000;vertical-align:middle;">Kas Pemegang Buku</td>
+										</tr>
+										<t t-set="sum_kasir" t-value="0"/>
+										<t t-set="sum_pbuku" t-value="0"/>
+										<tr t-foreach="get_rincian_kas(o.report_date)" t-as="tab3" min-height="19px">
+											<t t-if="tab3['lbr_kasir'] != 0 or tab3['lbr_pbuku'] != 0">
+												<t t-if="tab3['is_cash']">
+													<td style="padding:3px 5px; vertical-align:middle;">Rp</td>
+		                    						<td class="text-right" style="padding: 3px 5px; vertical-align:middle;">
+		                    							<span t-esc="str('{0:,.2f}'.format(float(tab3['coin_value']))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+		                    						</td>
+												</t>
+												<t t-if="not tab3['is_cash']">
+													<td style="padding:3px 5px; vertical-align:middle;"></td>
+		                    						<td class="text-right" style="padding: 3px 5px; vertical-align:middle;">
+		                    							<span t-esc="tab3['cash_nominal_id']"/>
+		                    						</td>
+												</t>
+	                    						<td class="text-right" style="padding:3px 5px; vertical-align:middle;">
+	                    							<span t-esc="str('{0:,.0f}'.format(float(tab3['lbr_kasir']))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+	                    						</td>
+	                    						<td class="text-right" style="padding:3px 5px; vertical-align:middle;">
+	                    							<span t-esc="str('{0:,.0f}'.format(float(tab3['lbr_pbuku']))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+	                    						</td>
+	                    						<td style="padding:3px 10px; vertical-align:middle;">Rp</td>
+	                    						<td class="text-right" style="padding:3px 5px; vertical-align:middle;">
+	                    							<t t-set="sub_kasir" t-value="tab3['coin_value']*tab3['lbr_kasir']"/>
+	                    							<span t-esc="str('{0:,.2f}'.format(float(sub_kasir))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+	                    						</td>
+	                    						<td style="padding:3px 10px; vertical-align:middle;">Rp</td>
+	                    						<td class="text-right" style="padding:3px 5px; vertical-align:middle;">
+	                    							<t t-set="sub_pbuku" t-value="tab3['coin_value']*tab3['lbr_pbuku']"/>
+	                    							<span t-esc="str('{0:,.2f}'.format(float(sub_pbuku))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+	                    						</td>
+	                    						<t t-set="sum_kasir" t-value="sum_kasir + sub_kasir"/>
+												<t t-set="sum_pbuku" t-value="sum_pbuku + sub_pbuku"/>
+											</t> 
+										</tr>
+										<tr height="25px">
+											<td colspan="2" class="text-center" style="vertical-align:middle;">Jumlah  :</td>
+											<td colspan="2"></td>
+											<td style="padding: 3px 10px; vertical-align:middle; border-top: 1px dashed #000">Rp</td>
+                    						<td class="text-right" style="vertical-align:middle; padding: 3px 5px; border-top: 1px dashed #000">
+                    							<span t-esc="str('{0:,.2f}'.format(float(sum_kasir))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+                    						</td>
+                    						<td style="padding: 3px 10px; vertical-align:middle; border-top: 1px dashed #000">Rp</td>
+                    						<td class="text-right" style="vertical-align:middle; padding: 3px 5px; border-top: 1px dashed #000">
+                    							<span t-esc="str('{0:,.2f}'.format(float(sum_pbuku))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+                    						</td>
+										</tr>
+										<tr height="7px">
+											<td colspan="4"></td>
+                    						<td colspan="4" style="margin-bottom:0px; padding-bottom:0;">
+                    							<hr style="border-top:1px dashed #000; margin-top:0px" />
+												<hr style="border-top:1px dashed #000; margin-top:-24px" />
+                    						</td>
+                    					</tr>
+										<tr height="25px">
+											<td colspan="4">Jumlah seluruhnya (Sisa)</td>
+											<td style="padding: 0px 5px;">Rp</td>
+											<td class="text-right" style="padding: 0px 5px; ">
+                    							<span t-esc="str('{0:,.2f}'.format(float(sum_kasir + sum_pbuku))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+                    						</td>
+											<td colspan="2"></td>
+										</tr>
+										<tr height="7px">
+											<td colspan="4"></td>
+                    						<td colspan="4" style="margin-bottom:0px; padding-bottom:0;">
+                    							<hr style="border-top:1px dashed #000; margin-top:0px" />
+												<hr style="border-top:1px dashed #000; margin-top:-24px" />
+                    						</td>
+                    					</tr>
+										<tr height="25px">
+											<td colspan="2" style="padding: 3px 5px;">Terbilang  :</td>
+											<td colspan="6" style="padding: 3px 5px;"><span t-esc="amount_to_text_id(int(sum_kasir + sum_pbuku))"/></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="col-xs-12" style="font-size:13px; margin-top:15px; padding-top:0px">
+								<table width="100%" style="table-layout:fixed;">
+									<tbody>
+										<tr height="25px">
+											<td colspan="2"></td>
+											<td colspan="2" class="text-right" style="padding-right:25px; text-transform: uppercase;">
+												<t t-set="d" t-value="o.with_context({'lang': user.company_id.partner_id.lang})"/>
+												<span t-esc="get_company_city()"/>, 
+												<span t-field="d.report_date" t-field-options="{'format': 'dd MMMM yyyy'}"/>
+											</td>
+										</tr>
+										<tr height="25px">
+											<td class="text-center" style="vertical-align:middle; padding:5px;border-top:1px dashed #000; border-right:1px dashed #000">Pemimpin</td>
+											<td class="text-center" colspan="2" style="vertical-align:middle; padding:5px;border-top:1px dashed #000; border-right:1px dashed #000">________________Pemeriksa________________</td>
+											<td class="text-center" style="vertical-align:middle; padding:5px;border-top:1px dashed #000;">Kasir</td>
+										</tr>
+										<tr height="20px">
+											<td class="text-center" style="vertical-align:middle; padding:5px;border-top:0px dashed #000; border-right:1px dashed #000"></td>
+											<td class="text-center" style="vertical-align:middle; padding:5px; border-right:1px dashed #000">Kepala Bagian TUK</td>
+											<td class="text-center" style="vertical-align:middle; padding:5px; border-right:1px dashed #000">Employee Kas/Bank</td>
+											<td class="text-center" style="vertical-align:middle; padding:5px;border-top:0px dashed #000;"></td>
+										</tr>
+										<tr height="100px">
+											<td style="border-top:1px dashed #000; border-right:1px dashed #000"></td>
+											<td style="border-top:1px dashed #000; border-right:1px dashed #000"></td>
+											<td style="border-top:1px dashed #000; border-right:1px dashed #000"></td>
+											<td style="border-top:1px dashed #000;"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+				</t>
+			</t>
+		</template>
+
+		<report
+	        id="cash_bank_report_qweb"
+	        model="cash.bank.report"
+	        string="Laporan Kas / Bank"
+	        name="ka_account.template_report_cash_bank"
+	        file="ka_account.template_report_cash_bank"
+	        report_type="qweb-pdf" 
+	        menu="False"/>
+		
+	    <record id="paperformat_cash_bank_report" model="report.paperformat">
+            <field name="name">Laporan Kas / Bank</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">13</field>
+            <field name="dpi">90</field>
+        </record>
+        
+		<record id="ka_account.cash_bank_report_qweb" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="ka_account.paperformat_cash_bank_report" />
+		</record>
+
+	</data>
+</odoo>

@@ -1,0 +1,161 @@
+<odoo>
+	<data>
+		<report id="estimasi_perolehan"
+			model="ka_plantation.sampling"
+			string="Estimasi Perolehan"
+			report_type="qweb-pdf"
+			name="ka_tanaman.estimasi_perolehan_view"
+			file="ka_tanaman.estimasi_perolehan"
+			menu="False"/>
+		<record model="report.paperformat" id="paperformat_estimasi_perolehan">
+			<field name="name">Estimasi Perolehan</field>
+			<field name="default" eval="True" />
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Landscape</field>
+			<field name="margin_top">30</field>
+			<field name="margin_right">5</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">5</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">20</field>
+			<field name="dpi">90</field> 
+		</record>
+
+		<record id="ka_tanaman.estimasi_perolehan" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="ka_tanaman.paperformat_estimasi_perolehan"/>
+		</record>
+
+		<template id="estimasi_perolehan_view">
+			<div class="header" style="margin:0px 10px 0px 5px; padding-bottom:0px;">
+					<div class="container" position="fixed" style="font-family: Dotrice; font-size:13px;">
+						<t t-set="huruf_urut" t-value="''"/>
+						<div class="row">
+							<div class="col-xs-3" style="padding:10px;">
+								<p class="text-left">
+									PT KEBON AGUNG<br></br>
+									<span t-esc="company()"/>
+									<br></br>
+									Dir
+								</p>
+							</div>
+							<div class="col-xs-6" style="padding:0px;">
+								<br></br>
+								<p class="text-center" style="padding:5px; margin:0px;font-size:16px;font-weight:bold;">
+									INVENTARISASI DAN ESTIMASI PEROLEHAN GILING TAHUN <span t-esc="docs.mtt_id.session_id.name"/>
+								</p>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			<div class="page" style="font-family:'Arial'">
+					<style type="text/css">
+						@media print {
+							thead {
+								display: table-header-group !important;
+							}
+						}
+
+						th, td {
+							vertical-align: middle !important;
+						}
+
+						.table-bordered > thead > tr > th,
+						.table-bordered > tbody > tr > td {
+							border: 1px solid #000 !important;
+						}
+					</style>
+						<table class="table table-condensed table-bordered" style="border-collapse: collapse;width: 100%; font-size: 11px;table-layout: fixed;">
+							<thead>
+								<tr>
+									<th class="text-center" rowspan="3" width="5%">No.</th>
+									<th class="text-center" rowspan="3" width="15%">Kecamatan</th>
+									<th class="text-center" rowspan="2" colspan="3" width="20%">Inventarisasi</th>
+									<th class="text-center" colspan="3" width="20%">Estimasi Perolehan (Ku)</th>
+									<th class="text-center" colspan="6" width="40%">Jenis Tebangan</th>
+								</tr>
+								<tr>
+									<th class="text-center" rowspan="2">Kelompok</th>
+									<th class="text-center" rowspan="2">Rekanan</th>
+									<th class="text-center" rowspan="2">Jumlah</th>
+									<th class="text-center" colspan="2">PG <br></br> Truck</th>
+									<th class="text-center" colspan="2">KOORDINASI <br></br> Truck</th>
+									<th class="text-center" colspan="2">KUD / Petani <br></br> Truck</th>
+								</tr>
+								<tr>
+
+									<th class="text-center">Luas<br></br> (ha)</th>
+									<th class="text-center">Tebu/Ha<br></br> (ku)</th>
+									<th class="text-center">Jumlah Tebu<br></br> (ku)</th>
+									<th class="text-center">(ha)</th>
+									<th class="text-center">(ku)</th>
+									<th class="text-center">(ha)</th>
+									<th class="text-center">(ku)</th>
+									<th class="text-center">(ha)</th>
+									<th class="text-center">(ku)</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<t t-set="count_kec" t-value="1"/>
+								<t t-foreach="kecamatan" t-as="kec">
+									<t t-set="temp_luas" t-value="0"/>
+									<t t-set="temp_produktivitas" t-value="0"/>
+									<tr>
+										<td class="text-center"><span t-esc="count_kec"/>.</td>
+										<td class="text-left"><span t-esc="kec.name"/></td>
+									<!-- 	str('{0:,.2f}'.format(float(produktivitas_kecamatan(kec.id,docs.mtt_id.id)))).replace('.', '%').replace(',', '.').replace('%', ',') -->
+										<td class="text-right">
+											<t t-if="luas_kecamatan(kec.id,docs.mtt_id.id) != ''">
+												<span t-esc="str('{0:,.2f}'.format(float(luas_kecamatan(kec.id,docs.mtt_id.id)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												<t t-set="temp_luas" t-value="temp_luas + luas_kecamatan(kec.id,docs.mtt_id.id)"/>
+											</t>
+										</td>
+										<td class="text-right">
+											<t t-if="produktivitas_kecamatan(kec.id,docs.mtt_id.id) != ''">
+												<t t-set="temp_produktivitas" t-value="temp_produktivitas + produktivitas_kecamatan(kec.id,docs.mtt_id.id)"/>
+												<t t-set="hasil" t-value="temp_produktivitas / temp_luas"/>
+												<t t-if="hasil > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(hasil))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+										</td>
+										<td>
+											<t t-if="produktivitas_kecamatan(kec.id,docs.mtt_id.id) != ''">
+												<span t-esc="str('{0:,.2f}'.format(float(produktivitas_kecamatan(kec.id,docs.mtt_id.id)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+										<td>
+											<t t-if="temp_produktivitas > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(temp_produktivitas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+										<td>5</td>
+										<td><span t-esc="temp_produktivitas"/></td>
+										<td>7</td>
+										<td>8</td>
+										<td>9</td>
+										<td>10</td>
+										<td>11</td>
+										<td>12</td>
+									</tr>
+									<t t-set="count_kec" t-value="count_kec+1"/>
+								</t>
+								<tr>
+									<td></td>
+									<td>JUMLAH TR</td>
+									<td colspan="12"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>TOTAL</td>
+									<td colspan="12"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		</template>
+	</data>
+</odoo>

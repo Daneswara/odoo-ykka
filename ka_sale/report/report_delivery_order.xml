@@ -1,0 +1,70 @@
+<odoo>
+	<data>
+
+  <report
+        id="report_delivery_order"
+        model="sale.order"
+        string="Report Delivery Order"
+        name="ka_sale.report_DO"
+        file="ka_sale.report_DO"
+        report_type="qweb-pdf" 
+        menu="False"/>
+
+        <template id="report_DO">
+		    <t t-call="report.html_container">
+		        <t t-foreach="docs" t-as="doc">
+		                <div class="page">
+							<div style="width:20%;margin: 120px 330px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<!-- <span t-field ="doc.sale_contract_id.delivery_number"/> -->
+									<strong><span t-field ="doc.sale_contract_id.delivery_number"/></strong>
+									
+							</div>
+							<div style="width:20%;margin: 270px 342px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span t-field ="doc.sale_contract_id.partner_id.name"/></strong>
+									
+							</div>
+							<div style="width:40%;margin: 295px 342px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span t-field ="doc.sale_contract_id.partner_id.street"/></strong>
+									
+							</div>
+							<div style="width:20%;margin: 368px 230px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span t-field ="doc.product_id"/>
+									</strong>
+							</div>
+							<div style="width:20%;margin: 400px 230px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span t-field ="doc.sale_contract_id.operating_unit_id"/>
+									</strong>
+							</div>
+							<div style="width:20%;margin: 428px 230px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+								<strong><span t-field="doc.sale_contract_id.taun_produksi"/>
+									</strong>
+							</div>
+							<div style="width:20%;margin: 460px 230px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span t-field ="doc.sale_contract_id.quantity"/>
+									<span t-field ="doc.sale_contract_id.product_uom"/>
+									</strong>
+							</div>
+							<div style="width:20%;margin: 488px 230px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span t-field ="doc.sale_contract_id.operating_unit_id"/>
+									</strong>
+							</div>
+							<div style="width:20%;margin: 585px 310px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span t-field ="doc.sale_contract_id.date_expected" t-field-options="{&quot;format&quot;: &quot;dd MMMM yyyy&quot;}"/>
+									</strong>
+							</div>
+							<div style="width:20%;margin: 650px 615px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span t-field="doc.sale_contract_id.sale_date" t-field-options="{&quot;format&quot;: &quot;dd MMMM yyyy&quot;}"/>
+									</strong>
+									
+							</div>
+							<div style="width:20%;margin: 780px 615px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+									<strong><span style="display: inline-block; border-bottom: 1px solid black; padding-bottom: 2px;">G. Agus Mulyono</span>
+									<br/>
+									<span>Direktur Keuangan</span></strong>
+							</div>
+						</div>
+		        </t>
+		    </t>
+		</template>
+  </data>
+</odoo>

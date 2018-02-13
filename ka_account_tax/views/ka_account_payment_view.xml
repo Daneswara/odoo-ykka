@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_payment_tax_inherit_view" model="ir.ui.view">
+            <field name="name">account.payment.tax.inherit.form</field>
+            <field name="model">ka_account.payment</field>
+            <field name="inherit_id" ref="ka_account.view_ka_account_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="percent_pph" position="replace"/>
+                <field name="amount_pph" position="replace">
+                    <field name="amount_pph" readonly="1" attrs="{'invisible': [('is_bail_payment','=',True)]}"/>
+                </field>
+                <xpath expr="/form/sheet/group[2]/group[1]" position="after">
+                    <group string="Potongan PPh">
+                        <field name="pph_ids" nolabel='1' attrs="{'readonly':[('state', '!=', 'proposed')]}">
+                            <tree editable='bottom'>
+                                <field name="tax_id" domain="[('type_tax_use', '=', 'purchase')]"/>
+                                <field name="amount"/>                                        
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record> 
+    </data>
+</odoo>    

@@ -1,0 +1,136 @@
+<odoo>
+	<data>
+		<template id="template_report_stock_retail_monthly">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_sale.report_stock_retail_monthly_document"/>
+				</div>
+			</t>
+		</template>
+
+		<template id="report_stock_retail_monthly_document">
+			<t t-call="report.html_container">
+				<t t-set="o" t-value="o.with_context({'lang':o.lang})"/>
+				<div class="header">
+					<div class="row">			
+						<div class="col-xs-12">
+							<p class="text-center" style="font-size:18px">
+								<img src="ka_report_layout/static/src/img/logo-ptkebonagung.png" style="margin: 0 auto; height: 50px"/>
+								<br></br>
+								<strong>LAPORAN STOK GULA RETAIL BULANAN</strong>
+							</p>
+							<p class="text-center" style="font-size:16px">
+								<strong>
+									Periode : 
+									<span t-field="o.date_from" t-field-options='{"format": "dd-MM-yyyy"}'/> 
+									s/d 
+									<span t-field="o.date_to" t-field-options='{"format": "dd-MM-yyyy"}'/> 
+								</strong>
+							</p>
+            			</div>
+            		</div>
+				</div>
+
+				<div class="page" style="font-family: Arial, Helvetica, sans-serif;">
+					<div class="row">
+						<div class="col-xs-12" style="margin-top:0px; padding:0px 5px;">
+							<t t-set="no" t-value="1"/>
+							<table class="table" width="100%" style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;border-collapse: collapse">
+	                			<thead>
+									<tr height="25px">
+	                        			<th class="text-center" width="5%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">No.</th>
+	                        			<th class="text-center" width="12%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Tanggal</th>
+	                        			<th class="text-center" width="17%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">No. Kwitansi/ No. Surat</th>
+	                        			<th class="text-center" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Keterangan</th>
+	                        			<th class="text-center" width="14%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Gula Masuk (Kg)</th>
+	                        			<th class="text-center" width="14%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Gula keluar (Kg)</th>
+	                        			<th class="text-center" width="14%" rowspan="2" style="padding:8px;vertical-align:middle;border:1px solid #000">Stok Gula Layak (Kg)</th>
+	                    			</tr>
+								</thead>
+	                			<tbody>
+	                				<t t-set="opening_stock" t-value="get_opening_stock(o.sale_category_id.id, o.location_id.id, o.date_from)"/>
+	                				<t t-set="current_stock" t-value="opening_stock"/>
+	                				<t t-set="total_stock_in" t-value="0"/>
+	                				<t t-set="total_stock_out" t-value="0"/>
+	                    			<tr height="25px">
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="no"/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-field="o.date_from" t-field-options='{"format": "dd-MMM-yy"}'/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"></td>
+	                    				<td class="text-left" style="padding:3px;border:1px solid #000">Sisa stok awal periode</td>
+	                    				<td class="text-right" style="padding:3px;border:1px solid #000">-</td>
+	                    				<td class="text-right" style="padding:3px;border:1px solid #000">-</td>
+	                    				<td class="text-right" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(current_stock)).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    				<t t-set="no" t-value="no+1"/>
+	                    			</tr>
+	                    			<tr t-foreach="get_stock_moves(o.sale_category_id.id, o.location_id.id, o.date_from, o.date_to)" t-as="move" height="25px">
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="no"/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="move['date'].strftime('%d-%b-%y')"/></td>
+	                    				<td class="text-center" style="padding:3px;border:1px solid #000"><span t-esc="move['picking_number']"/></td>
+	                    				<td class="text-left" style="padding:3px;border:1px solid #000"><span t-esc="move['notes']"/></td>
+	                    				<t t-if="move['quantity_in'] == 0">
+	                    					<td class="text-right" style="padding:3px;border:1px solid #000">-</td>
+	                    					<td class="text-right" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(move['quantity_out'])).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    					<t t-set="total_stock_out" t-value="total_stock_out + move['quantity_out']"/>
+	                    					<t t-set="current_stock" t-value="current_stock - move['quantity_out']"/>
+	                    				</t>
+	                    				<t t-if="move['quantity_out'] == 0">
+	                    					<td class="text-right" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(move['quantity_in'])).replace('.', '%').replace(',', '.').replace('%', ',')" /></td>
+	                    					<td class="text-right" style="padding:3px;border:1px solid #000">-</td>
+	                    					<t t-set="total_stock_in" t-value="total_stock_in + move['quantity_in']"/>
+	                    					<t t-set="current_stock" t-value="current_stock + move['quantity_in']"/>
+	                    				</t>
+	                    				<td class="text-right" style="padding:3px;border:1px solid #000"><span t-esc="'{0:,.2f}'.format(float(current_stock)).replace('.', '%').replace(',', '.').replace('%', ',')"/></td>
+	                    				<t t-set="no" t-value="no+1"/>
+	                    			</tr>
+	                    			
+	                    			<!-- FOOTER -->
+	                    			<tr height="20px"></tr>
+	                    			<tr height="10px">
+	                    				<td style="border:0px"></td>
+	                    				<td class="text-left" colspan="2" style="border:0px"><strong>Stok Awal Periode</strong></td>
+	                    				<td class="text-right" style="border:0px"><strong><span t-esc="'{0:,.2f}'.format(float(opening_stock)).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong></td>
+	                    				<td style="border:0px"></td>
+	                    				<td colspan="2" class="text-center" style="border:0px">
+	                    					Surabaya, <span t-esc="datetime.datetime.now().strftime('%d %B %Y')"/>
+	                    				</td>
+	                    			</tr>
+	                    			<tr height="10px">
+	                    				<td style="border:0px"></td>
+	                    				<td class="text-left" colspan="2" style="border:0px"><strong>Permintaan Barang</strong></td>
+	                    				<td class="text-right" style="border:0px"><strong><span t-esc="'{0:,.2f}'.format(float(total_stock_in)).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong></td>
+	                    				<td style="border:0px"></td>
+	                    				<td colspan="2" style="border:0px"></td>
+	                    			</tr>
+	                    			<tr height="10px">
+	                    				<td style="border:0px"></td>
+	                    				<td class="text-left" colspan="2" style="border:0px"><strong>Pengeluaran Barang</strong></td>
+	                    				<td class="text-right" style="border:0px"><strong><span t-esc="'{0:,.2f}'.format(float(total_stock_out)).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong></td>
+	                    				<td style="border:0px"></td>
+	                    				<td colspan="2" style="border:0px"></td>
+	                    			</tr>
+	                    			<tr height="10px">
+	                    				<td style="border:0px"></td>
+	                    				<td class="text-left" colspan="2" style="border:0px"><strong>Stok Awal Periode Berikutnya</strong></td>
+	                    				<td class="text-right" style="border:0px"><strong><span t-esc="'{0:,.2f}'.format(float(current_stock)).replace('.', '%').replace(',', '.').replace('%', ',')"/></strong></td>
+	                    				<td style="border:0px"></td>
+	                    				<td colspan="2" style="border:0px"></td>
+	                    			</tr>
+	                    			<tr height="10px">
+	                    				<td style="border:0px"></td>
+	                    				<td style="border:0px" colspan="2"></td>
+	                    				<td style="border:0px"></td>
+	                    				<td style="border:0px"></td>
+	                    				<td colspan="2" class="text-center" style="border:0px">
+	                    					<u><span t-esc="user.company_id.dept_sales.manager_id.name"/></u><br/>
+	                    					Kepala Bagian Pemasaran
+	                    				</td>
+	                    			</tr>
+	                    		</tbody>
+	                    	</table>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

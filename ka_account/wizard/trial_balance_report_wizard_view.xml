@@ -1,0 +1,53 @@
+<odoo> 
+	<data>
+		<record id="ka_trial_balance_report_wizard_form" model="ir.ui.view">
+            <field name="name">ka_trial.balance.report.wizard.form</field>
+            <field name="model">ka_trial.balance.report.wizard</field>
+            <field name="arch" type="xml">
+            	<form string="Neraca Bulanan">
+                	<div class="col-xs-6">
+            			<group>
+            				<field name="account_report_id" domain="[('parent_id','=',False)]"/>
+            				<field name="date_from"/>
+            				<field name="date_to"/>
+            				<field name="file_type" widget="radio"/>
+            			</group>
+	            	</div>
+	            	<footer>
+	            		<button name="generate_pdf_trial_balance_report" string="Generate PDF" type="object" class="btn-primary" attrs="{'invisible':[('file_type','!=','pdf')]}"/>
+                        <button name="generate_xlsx_trial_balance_report" string="Generate Excel" type="object" class="btn-primary" attrs="{'invisible':[('file_type','!=','xlsx')]}"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                 	</footer>
+            	</form>
+            </field>
+        </record>
+        
+        <record id="action_open_ka_trial_balance" model="ir.actions.act_window">
+            <field name="name">Neraca Bulanan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_trial.balance.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem 
+        	action="action_open_ka_trial_balance"
+			id="menu_ka_trial_balance" 
+			name="Neraca Bulanan (New)"
+			parent="ka_account.menu_financial_report_viewer" 
+            sequence="8"/> 
+
+        <report
+            id="trial_balance_xlsx"
+            model="account.financial.report"
+            string="Laporan Neraca Bulanan"
+            report_type="xlsx"
+            name="trial.balance.xlsx"
+            file="trial.balance.xlsx"
+            attachment_use="False"
+            menu="False"        
+        />
+        
+	</data>
+</odoo>

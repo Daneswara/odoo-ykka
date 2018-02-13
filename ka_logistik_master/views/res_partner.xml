@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+	<!--Search Rekanan-->
+		<record model="ir.ui.view" id="view_logistik_res_partner_filter">
+			<field name="name">logistik.res.partner.filter</field>
+			<field name="model">res.partner</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Pencarian Rekanan">
+					<field name="name" String="Nama"/>
+					<field name="code" string="Kode"/>
+					<field name="kelompok" string="Kelompok"/>
+					<field name="bidang_usaha" string="Bidang Usaha"/>
+					<field name="street" string="Alamat"/>
+					<field name="city" string="Kota"/>
+				</search>
+			</field>
+		</record>
+			
+		<!-- Res Partner Modity Tree View-->
+		<record model="ir.ui.view" id="view_logistik_partner_tree">
+			<field name="name">logistik.res.partner.tree</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree"/>
+			<field name="arch" type="xml">
+				<field name="display_name" position="replace">
+					<field name="code"/>
+					<field name="name"/>
+				</field>
+				<field name="phone" position="before">
+					<field name="bidang_usaha"/>
+					<field name="kelompok"/>
+				</field>
+			</field>
+		</record>
+
+		<!-- Res Partner Modity From View-->
+		<record model="ir.ui.view" id="view_logistik_partner_form">
+			<field name="name">logistik.res.partner.form</field>
+			<field name="model">res.partner</field>
+			<field name="priority" eval="30"/>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//div[@class='oe_title']" position="inside">
+					<h4>
+						<field name="code" placeholder="Kode Rekanan..." class="o_address_street oe_inline"/>
+						<br/>
+						<field name="alias" placeholder="Nama Singkatan..." class="o_address_street"/>
+						<br/>
+					</h4>
+					<button name="action_convert_partner" class="oe_button btn-primary" type="object" string="Jadikan Rekanan" attrs="{'invisible':[('is_calon', '=', False)]}"/>
+					<button name="action_convert_calon_partner" class="oe_button btn-primary" type="object" string="Jadikan Calon Rekanan" attrs="{'invisible':[('is_calon', '=', True)]}"/>
+					<hr/>
+				</xpath>
+
+				<xpath expr="/form/sheet/group" position="replace">
+				</xpath>
+                <field name="company_id" position="replace"/>
+				<xpath expr="//page[1]" position="before">
+					<page string="Informasi Umum" autofocus="autofocus">
+						<group col="2">
+							<group>
+								<field name="type" attrs="{'invisible': [('parent_id','=', False)]}" groups="base.group_no_one"/>
+								<label for="street" string="Alamat"/>
+								<div class="o_address_format">
+									<div class="oe_edit_only">
+										<button name="open_parent" type="object" string="(edit)" class="oe_link" attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}"/>
+									</div>
+
+									<field name="street" placeholder="Alamat..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+									<field name="street2" placeholder="Alamat 2..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+									<field name="city" placeholder="Kota" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+									<field name="state_id" class="o_address_state" placeholder="Provinsi" options='{"no_open": True}' attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'zip': zip}" domain="[('country_id', '=', country_id')]"/>
+									<field name="zip" placeholder="Kode POS" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+									<field name="country_id" placeholder="Negara" class="o_address_country" options='{"no_open": True, "no_create": True}' attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+								</div>
+								<field name="website" widget="url" placeholder="contoh. www.ptkebonagung.com"/>
+								<field name="kelompok"/>
+								<field name="bidang_usaha"/>
+								<field name="tgl_anggota"/>
+								<field name="is_calon" invisible="1"/>
+							</group>
+							<group>
+								<field name="function" placeholder="contoh: Manajer Pemasaran" string="Posisi" attrs="{'invisible': [('is_company','=', True)]}"/>
+								<field name="phone" widget="phone" string="No. Telepon"/>
+								<field name="mobile" widget="phone" string="No. HP"/>
+								<field name="fax"/>
+								<field name="user_ids" invisible="1"/>
+								<field name="email" widget="email" attrs="{'required': [('user_ids','!=', [])]}"/>
+								<!-- <field name="title" options='{"no_open": True}' attrs="{'invisible': [('is_company', '=', True)]}"/> -->
+								<field name="no_npwp"/>
+								<field name="bank" invisible="1"/>
+								<field name="no_acc" invisible="1"/>
+								<field name="lang" string="Bahasa"/>
+								<field name="category_id" widget="many2many_tags" placeholder="Tags..."/>
+                                <field name="company_id" options="{'no_create': True}" string="Unit/PG"/>
+							</group>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_logistik_res_partner_tree">
+			<field name="name">Data Rekanan</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Buat data rekanan terlebih dahulu!</p>
+			</field>
+			<field name="domain">[('is_calon', '=', False), ('is_company', '=', True)]</field>
+			<field name="context" eval="{'default_country_id':ref('base.id'), 'default_company_type': 'company', 'default_is_company': True}"/>
+		</record>
+		
+		<menuitem 
+			parent="menu_log1100" 
+			id="menu_action_logistik_res_partner_tree" 
+			action="action_logistik_res_partner_tree"
+			sequence="2"/>
+
+		<record model="ir.actions.act_window" id="action_logistik_res_partner_calon">
+			<field name="name">Calon Rekanan</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Buat data calon rekanan terlebih dahulu!</p>
+			</field>
+			<field name="domain">[('is_calon', '=', True), ('company_type', '=', 'company')]</field>
+			<field name="context" eval="{'default_country_id':ref('base.id'), 'default_company_type': 'company', 'default_is_company': True, 'default_is_calon': True, 'default_code': 'A'}"/>
+		</record>
+		
+		<menuitem 
+			parent="menu_log1100" 
+			id="menu_action_logistik_res_partner_calon" 
+			action="action_logistik_res_partner_calon"
+			sequence="2"/>
+			
+	</data>
+</odoo>

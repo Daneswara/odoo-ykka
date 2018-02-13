@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+
+      <record model="ir.ui.view" id="view_form_Kategori_Kredit">
+      <field name="name">Form Kategori Kredit</field>
+      <field name="model">ka_plantation.credit.category</field>
+      <field name="arch" type="xml">
+        <form string="Form Kategori Kredit">
+          <sheet>
+            <group>
+              <field name="code"/>
+              <field name="name"/>
+              <field name="property_account_id"/>
+              <field name="company_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_tree_Kategori_Kredit">
+      <field name="name">Data Kategori Kredit</field>
+      <field name="model">ka_plantation.credit.category</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="code"/>
+          <field name="name"/>
+          <field name="property_account_id"/>
+          <field name="company_id"/>
+        </tree>
+      </field>
+    </record>
+
+        <record model="ir.actions.act_window" id="action_kategori_kredit">
+            <field name="name">Kategori Kredit</field>
+            <field name="res_model">ka_plantation.credit.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Data Kategori Kredit masih kosong. Input terlebih dahulu.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

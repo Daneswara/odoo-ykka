@@ -1,0 +1,39 @@
+<odoo>
+	<data>
+		<record id="ka_daily_cash_form" model="ir.ui.view">
+            <field name="name">ka_daily.cash.form</field>
+            <field name="model">ka_daily.cash</field>
+            <field name="arch" type="xml">
+            	<form string="Laporan Kas Harian">
+                	<div class="col-xs-6">
+            			<group>
+            				<field name="report_date"/>
+            			</group>
+	            	</div>
+	            	<footer>
+	            		<button name="generate_pdf_daily_cash" string="Generate PDF" type="object" class="btn-primary"
+                                attrs="{'invisible':[('report_date','=',False)]}"/> 
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                 	</footer>
+            	</form>
+            </field>
+        </record>
+        
+        <record id="action_open_ka_daily_cash" model="ir.actions.act_window">
+            <field name="name">Laporan Kas Harian</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_daily.cash</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">new</field>
+        </record>
+
+		<menuitem 
+        	action="action_open_ka_daily_cash"
+			id="menu_ka_daily_cash" 
+			name="Laporan Kas Harian" 
+			parent="ka_account.menu_ka_history_transaction" 
+            sequence="3"/>  
+		
+	</data>
+</odoo>

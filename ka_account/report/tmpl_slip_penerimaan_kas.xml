@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="template_slip_penerimaan_kas">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_account.slip_penerimaan_kas_document"/>
+				</div>
+			</t>
+		</template>
+		<template id="slip_penerimaan_kas_document">
+			<t t-call="report.html_container">
+			<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+				<br></br>
+			<div class="header" >
+				<span t-esc="o.mark_printed_document()"/>
+				<div class="container" position="fixed" style="font-family: Dotrice; font-size:14px;">
+					<div class="row">
+						<div class="col-xs-12" style="margin-bottom:0px;padding:0px">
+							<table width="100%" style="border-collapse: collapse;">
+								<tbody>
+									<tr height="60px">
+									</tr>
+									<tr height="35px">
+										<td width="250px" style="padding: 8px 10px 2px 105px;">
+											<t t-if="o.type == 'inbound'"><span t-esc="o.journal_id.default_debit_account_id.code"/></t>
+				                            <t t-if="o.type == 'outbound'"><span t-esc="o.journal_id.default_credit_account_id.code"/></t>
+										</td>
+										<td width="360px" style="padding-top:3px;">
+											<t t-if="o.journal_id.type == 'cash'"><span style="margin-left:-20px;">X</span>
+												<span style="padding-left:140px;" t-esc="o.journal_id.default_debit_account_id.name"/>
+											</t>
+											<t t-if="o.journal_id.type == 'bank'"><span style="margin-left:50px;">X</span>
+												<span style="padding-left:55px;" t-esc="o.journal_id.default_debit_account_id.name"/>
+											</t>
+										</td>
+										<td width="" style="padding: 8px 10px 2px 85px; "></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div> 
+			</div>
+			<!-- END OF HEADER -->
+
+			<div class="page" style="font-family: Dotrice;">
+				<t t-set="idx" t-value="0"/>
+				<t t-foreach="range(o.max_array)" t-as="i_array">
+				<div class="row" name="payment_lines">
+					<div class="col-xs-9" style="margin-top:6px; padding:0px 5px 0px 0px;">
+						
+							<table width="104%" style="border-collapse: collapse;">
+								<tbody style="font-size:14px;padding-top:25px">
+									<tr height="20px">
+										<td style="padding: 5px;" colspan="3"> </td>
+									</tr>
+									<tr t-foreach="o.get_rows()[idx]" t-as="line" height="25px" style="padding: 2px;">
+										<td width="122px" style="padding: 5px 5px 5px 15px;">
+											 <span t-esc="line['account_id']"/>
+										</td>
+										<td width="381px" style="padding: 5px 5px 5px 15px;">
+											 <span t-esc="line['uraian']"/>
+										</td>
+										<td class="text-right" style="padding: 5px 10px 5px 5px">
+											<t t-if="line['amount']"><t t-esc="str('{0:,.2f}'.format(float(line['amount']))).replace('.', '%').replace(',', '.').replace('%', ',')"/></t>
+										</td>
+									</tr>
+									
+									<t t-if="idx != o.max_array-1">
+										<tr height="42px">
+											<td width="122px"></td>
+											<td style="padding: 5px 10px;"></td>
+											<td style="padding: 10px 5px 5px 5px;"></td>
+										</tr>
+										<tr height="52px">
+											<td width="122px" style="padding: 5px;"></td>
+											<td style="padding: 15px 5px 5px 10px;" colspan="2"></td>
+										</tr>
+									</t>									
+
+									<t t-if="idx == o.max_array-1">
+										<tr height="42px">
+											<td width="122px"></td>
+											<td class="text-right" style="vertical-align:middle;padding: 5px 10px;"></td>
+											<td  class="text-right" style="vertical-align:middle;padding: 10px 5px 5px 5px;">
+												<t t-esc="str('{0:,.2f}'.format(float(o.total_amount))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</td>
+										</tr>
+										<tr height="52px">
+											<td width="122px" style="padding: 5px;"></td>
+											<td style="padding: 15px 5px 5px 10px;" colspan="2"><span t-esc="o.amount_to_text_id(o.total_amount)"/></td>
+										</tr>
+									</t>
+								</tbody>
+							</table>
+							<t t-set="idx" t-value="idx+1"/>
+						
+					</div>
+
+					<div class="col-xs-3" style="margin-top:6px; padding:0px;">
+						<table width="88%" style="margin-left:28px;font-size:14px;">
+							<tbody>
+								<tr height="90px">
+		                      		<td style="padding: 20px 5px 5px 10px;"><br></br>
+		                          		<span t-field="o.partner_id.name"></span>
+		                          	</td>
+		                      	</tr>
+		                      	<tr height="105px">
+		                      		<td style="padding: 20px 5px 5px 10px;"><br></br>
+		                          		<span t-field="o.partner_id.street"/><br></br>
+										<span t-field="o.partner_id.street2"/><br></br>
+										<span t-field="o.partner_id.city"/>
+		                          	</td>
+		                      	</tr>
+		                      	<tr height="87px">
+		                      		<td style="padding: 15px 5px 5px 10px;"><br></br>
+		                          		<span t-field="o.description"/><br></br>
+		                          		<span t-field="o.date" t-field-options='{"format": "dd-MM-yyyy"}'/>
+		                          	</td>
+		                      	</tr>
+		                      	<tr height="87px">
+		                      		<td style="padding: 10px 5px 5px 10px;"><br></br>
+		                          		<span t-field="o.name"/>
+		                          	</td>
+		                      	</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				
+			</t>
+			</div>
+			</t>
+		</template>
+	</data>
+</odoo>

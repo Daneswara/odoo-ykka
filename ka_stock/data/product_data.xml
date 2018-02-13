@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_uom_karung" model="product.uom">
+            <field name="category_id" ref="product.product_uom_categ_kgm"/>
+            <field name="name">Karung (50 kg)</field>
+            <field name="factor_inv" eval="50"/>
+            <field name="uom_type">bigger</field>
+        </record>
+         <record id="product_uom_kwintal" model="product.uom">
+            <field name="category_id" ref="product.product_uom_categ_kgm"/>
+            <field name="name">Kwintal</field>
+            <field name="factor_inv" eval="100"/>
+            <field name="uom_type">bigger</field>
+        </record>
+	</data>
+</odoo>

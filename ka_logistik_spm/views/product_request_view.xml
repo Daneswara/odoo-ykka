@@ -1,0 +1,131 @@
+<odoo>
+	<data>	
+		<record model="ir.ui.view" id="view_product_code_request_filter">
+			<field name="name">spm.product.code.request.filter</field>
+			<field name="model">spm.product.code.request</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Pencarian">
+					<field name="name"/>
+					<!-- <field name="spm_line_id"/> -->
+					<field name="pengajuan_id"/>
+					<field name="company_id" groups="base.group_multi_company"/>
+					<filter string="Konsep" domain="[('state','=','draft')]" name="draft_request"/>
+					<filter string="Permintaan Baru" domain="[('state','=','send')]" name="send_request"/>
+					<filter string="Konfirmasi" domain="[('state','=','confirm')]" name="confirm_request"/>
+					<filter string="Selesai" domain="[('state','=','done')]" name="done_request"/>
+					<separator/>
+					<filter string="Belum Dibukukan" domain="[('booked','=',False)]" name="unbooked_request"/>
+					<filter string="Tunda/Spesifikasi Kurang" domain="[('suspended','=',True)]" name="suspended_request"/>
+					<separator/>
+					<filter string="Permintaan Saya" domain="['|',('request_by','=',uid),('partner_ids.user_ids','=',uid)]" name="my_request"/>
+				</search>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_product_code_request_tree">
+			<field name="name">spm.product.code.request.tree</field>
+			<field name="model">spm.product.code.request</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Data Permintaan Kode Barang" colors="red:state=='send';grey:state=='done';blue:state=='draft'">
+					<field name="company_id" groups="base.group_multi_company" invisible="1"/>
+					<field name="operating_unit_id" groups="base.group_multi_company"/>
+					<field name="date_request"/>
+					<field name="request_by"/>
+					<field name="name"/>
+					<field name="product_id"/>
+					<field name="spm_line_id"/>
+					<field name="date_done"/>
+					<field name="done_by"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_product_code_request_form">
+			<field name="name">spm.product.code.request.form</field>
+			<field name="model">spm.product.code.request</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Permintaan Kode Barang">
+					<header>
+						<button name="action_send" string="Kirim Permintaan" type="object" states="draft" class="oe_highlight"/>
+						<button name="action_confirm" string="Konfirmasi" type="object" states="send" class="oe_highlight" groups="ka_logistik_pengadaan.group_logistik"/>
+						<button name="action_done" string="Selesai" groups="ka_logistik_pengadaan.group_logistik" type="object" states="confirm" class="oe_highlight"/>
+						<field name="state" widget="statusbar"/>
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box"> 
+                    		 <button type="object" string="Booked" name="action_booked" class="oe_stat_button" icon="fa-external-link" attrs="{'invisible': [('booked','=',True)]}"/>
+                             <button type="object" string="Unbooked" name="action_unbooked" class="oe_stat_button" icon="fa-external-link" attrs="{'invisible': [('booked','=',False)]}"/>
+                    		 <button type="object" string="Tunda" help="Tunda karena spesifikasi kurang lengkap" name="action_suspended" class="oe_stat_button" icon="fa-pause" attrs="{'invisible': ['|',('state','!=','send'),('suspended', '=', True)]}" groups="ka_logistik_pengadaan.group_logistik"/>
+                    		 <button type="object" string="Lanjut" help="Pemberiakan Kode barang dilanjutkan" name="action_resume" class="oe_stat_button" icon="fa-check" attrs="{'invisible': [('suspended', '=', False)]}" groups="ka_logistik_pengadaan.group_logistik"/>
+                    	</div>
+                    	
+						<group string="Permintaan Kode Barang Baru">
+							<group>
+								<field name="name" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                                <field name="uom_id" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+								<field name="partner_ids" required="1" widget="many2many_tags" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+								<field name="spm_line_id" readonly="1"/>
+							</group>
+							<group>
+								<field name="company_id" groups="base.group_multi_company" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+								<field name="date_request"/>
+								<field name="request_by"/>
+							</group>
+						</group>
+						<group string="Pemberian Kode Barang">
+							<group>
+								<field name="product_id" attrs="{'readonly':[('state','not in',('draft','confirm'))]}" context="{'default_description': name}"/>
+								<field name="product_desc"/>
+							</group>
+							<group attrs="{'invisible':[('state','!=', 'done')]}">
+								<field name="date_done"/>
+								<field name="done_by"/>
+								<field name="booked" invisible="1"/>
+								<field name="suspended" invisible="1"/>
+							</group>
+						</group>
+						<group>
+								<field name="note" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+					<footer>
+						<button string="Batal" class="btn-default" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<!-- Permintaan Kode Barang -->
+		<record model="ir.actions.act_window" id="action_product_code_request_tree">
+			<field name="name">Permintaan Kode Barang</field>
+			<field name="res_model">spm.product.code.request</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_product_code_request_filter"/>
+			<field name="context">{
+				'search_default_unbooked_request': 1,
+				'search_default_my_request': 1}
+			</field>
+			<field name="domain">[]</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<menuitem 
+			name="Permintaan Kode Barang"
+			parent="menu_spm5000" 
+			groups="purchase.group_purchase_user,stock.group_stock_user"
+			id="menu_spm5200" 
+			action="action_product_code_request_tree"
+			sequence="2"/>
+	</data>
+</odoo>

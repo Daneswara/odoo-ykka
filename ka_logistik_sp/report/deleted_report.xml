@@ -1,0 +1,10 @@
+<odoo>
+	<data noupdate="1">
+		<delete model="ir.actions.report.xml" id="purchase.action_report_purchase_order"/>
+		<delete model="ir.actions.report.xml" id="purchase.report_purchase_quotation"/>
+		<!-- <report id="purchase.action_report_purchase_order" menu="False"/> -->
+		<!-- <record id="purchase.action_report_purchase_order" model="ir.actions.report.xml">
+			<field name="ir_values_id" ref="False"/>
+		</record> -->
+	</data>
+</odoo>

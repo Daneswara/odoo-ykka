@@ -1,0 +1,15 @@
+<odoo>
+	<data>
+		<record id="ka_account_payable_category_form_inherit" model="ir.ui.view">
+			<field name="name">ka_account.payable.category.form</field>
+            <field name="model">ka_account.payable.category</field>
+            <field name="inherit_id" ref="ka_account.view_ka_account_payable_category_form"/>
+            <field name="arch" type="xml">
+            	<field name="name"  position="after">
+                    <field name="kode_ntb"/>
+                    <field name="is_direct_purchase"/>
+            	</field>        
+            </field>
+		</record>
+	</data>
+</odoo>

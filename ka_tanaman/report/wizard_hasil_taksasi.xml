@@ -1,0 +1,42 @@
+<odoo>
+	<data>
+		<record id="wizard_hasil_taksasi" model="ir.ui.view">
+            <field name="name">ka_plantation.wizard.report.taksasi.form</field>
+            <field name="model">ka_plantation.wizard.report.taksasi</field>
+            <field name="arch" type="xml">
+            	<form string="Laporan Hasil Taksasi" create="0" delete="0">
+            		<sheet>
+	            		<div class="oe_title">
+                            <!-- <h1><field name="name" readonly="1"/></h1> -->
+                        </div>
+                    	<group>
+	            			<group>
+                                <field name="dasar_wilayah"/>
+                                <field name="dasar_taksasi"/>
+                                <field name="kecamatan_id" attrs="{'invisible':[('dasar_wilayah','!=','pilih')],'required':[('dasar_wilayah','=','pilih')]}"/>
+	            				<field name="desa_id" attrs="{'invisible':[('dasar_wilayah','!=','pilih')]}"/>
+	            			</group>
+	            		</group>
+	            		<!-- <button name="generate_pdf_daily_cash" string="Generate Laporan Kas Harian" type="object" class="btn-primary"
+                                attrs="{'invisible':[('report_date','=',False)]}"/> --> 
+                 		<br/><br/>
+	            	</sheet>
+                    <footer>
+                        <button name="tes_call" type="object" string="Generate Laporan"/> or 
+                        <button name="" string="Cancel" special="cancel" class="oe_link"/> 
+                    </footer>
+            	</form>
+            </field>
+        </record>
+        
+      	<record id="action_wizard_hasil_taksasi" model="ir.actions.act_window">
+            <field name="name">Laporan Hasil Taksasi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_plantation.wizard.report.taksasi</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_hasil_taksasi"/>
+            <field name="target">new</field>                 
+        </record>
+	</data>
+</odoo>

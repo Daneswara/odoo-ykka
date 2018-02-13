@@ -1,0 +1,66 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_holidays_group_tree">
+			<field name="name">ka_hr.holidays.group.tree</field>
+			<field name="model">ka_hr.holidays.group</field>
+			<field name="arch" type="xml">
+				<tree string="Cuti Bersama" decoration-bf="state=='draft'" decoration-primary="state=='approved'" decoration-success="state=='passed'" decoration-warning="state=='canceled'">
+					<field name="name"/>
+					<field name="tgl_holiday"/>
+					<field name="company_id" groups="base.group_multi_company"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_holidays_group_form">
+			<field name="name">ka_hr.holidays.group.form</field>
+			<field name="model">ka_hr.holidays.group</field>
+			<field name="arch" type="xml">
+				<form string="Cuti Bersama">
+					<header>
+						<button name="action_draft" type="object" string="Reset ke draft" states="approved,canceled" groups="hr_holidays.group_hr_holidays_user" confirm="Anda yakin ingin me-reset sebagai draft?"/>
+						<button name="action_approve" type="object" string="Setujui" states="draft" class="oe_highlight" groups="hr_holidays.group_hr_holidays_user" confirm="Anda yakin ingin menyetujui data ini?"/>
+						<button name="action_cancel" type="object" string="Batalkan" states="draft,approved" groups="hr_holidays.group_hr_holidays_user" confirm="Anda yakin ingin membatalkan data ini?"/>
+						<field name="state" widget="statusbar"/>
+					</header>
+
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="tgl_holiday"/>
+							<field name="company_id" groups="base.group_multi_company"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_holidays_group_search">
+			<field name="name">ka_hr.holidays.group.search</field>
+			<field name="model">ka_hr.holidays.group</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="tgl_holiday"/>
+					<filter name="state_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+					<filter name="state_approved" string="Disetujui" domain="[('state', '=', 'approved')]"/>
+					<filter name="state_canceled" string="Dibatalkan" domain="[('state', '=', 'canceled')]"/>
+					<group name="by_state" string="Status" context="{'group_by': 'state'}"/>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_view_holidays_group">
+			<field name="name">Cuti Bersama</field>
+			<field name="res_model">ka_hr.holidays.group</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Input data cuti bersama.</p>
+			</field>
+		</record>
+
+		<menuitem action="action_view_holidays_group" id="menu_ka_hr_holidays_group" parent="hr_holidays.menu_hr_holidays_configuration" sequence="2" />
+	</data>
+</odoo>

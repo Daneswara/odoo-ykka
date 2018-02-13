@@ -1,0 +1,796 @@
+<odoo>
+	<data>
+		<report id="hasil_taksasi"
+			model="ka_plantation.sampling"
+			string="Laporan Hasil Taksasi"
+			report_type="qweb-pdf"
+			name="ka_tanaman.hasil_taksasi_view"
+			file="ka_tanaman.hasil_taksasi"
+			menu="False"/>
+
+		<record model="report.paperformat" id="paperformat_report_hasil_taksasi">
+			<field name="name">Laporan Hasil Taksasi</field>
+			<field name="default" eval="True" />
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Landscape</field>
+			<field name="margin_top">30</field>
+			<field name="margin_right">5</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">5</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">20</field>
+			<field name="dpi">90</field> 
+		</record>
+
+		<record id="ka_tanaman.hasil_taksasi" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="ka_tanaman.paperformat_report_hasil_taksasi"/>
+		</record>
+
+		<template id="hasil_taksasi_view">
+			<!-- <div class="header" style="border-bottom: 2px solid black">
+				<h4 class="text-center"><strong>REKAPITULASI PRESENSI KARYAWAN STAF MINGGUAN</strong></h4>
+							
+				<h5 class="text-center">BULAN: <strong><span t-esc="monthname"/> <span t-esc="year"/></strong></h5>
+				<h5 class="text-center">TANGGAL: <strong><span t-esc="strdate_awal"/></strong> S/D <strong><span t-esc="strdate_akhir"/></strong></h5>
+			</div> -->
+				<div class="header" style="margin:0px 10px 0px 5px; padding-bottom:0px;">
+					<div class="container" position="fixed" style="font-family: Dotrice; font-size:13px;">
+						<t t-set="huruf_urut" t-value="''"/>
+						<t t-set="no_form" t-value="''"/>
+						<div class="row">
+							<div class="col-xs-3" style="padding:10px;">
+								<p class="text-left">
+									PT KEBON AGUNG<br></br>
+									<span t-esc="company()"/>
+									<br></br>
+								</p>
+							</div>
+							<div class="col-xs-6" style="padding:0px;">
+								<br></br>
+								<p class="text-center" style="padding:5px; margin:0px;font-size:16px;font-weight:bold;">
+									DATA TAKSASI 
+
+									<t t-if="docs.taks_periode == 'maret'">
+										<span>MARET</span>
+										<t t-set="no_form" t-value="'520'"/>
+									</t>
+									<t t-if="docs.taks_periode == 'desember'">
+										<span>DESEMBER</span>
+										<t t-set="no_form" t-value="'517'"/>
+									</t> 
+									PER 
+									<t t-if="taksasi == 'intensifikasi'">
+										<span>INTENSIFIKASI</span>
+										<t t-set="huruf_urut" t-value="'A'"/>
+									</t>
+									<t t-if="taksasi == 'varietas'">
+										<span>VARIETAS</span>
+										<t t-set="huruf_urut" t-value="'B'"/>
+									</t>
+									<t t-if="taksasi == 'tanam'">
+										<span>MASA TANAM</span>
+										<t t-set="huruf_urut" t-value="'C'"/>
+									</t>
+									<t t-if="taksasi == 'vartam'">
+										<span>VARIETAS DAN MASA TANAM</span>
+										<t t-set="huruf_urut" t-value="'D'"/>
+									</t> 
+									TR MTT <span t-esc="docs.mtt_id.name"/>
+									<br></br>
+								</p>
+							</div>
+							<div class="col-xs-3" style="padding:0px;">
+								<p class="text-right">
+									<span>
+										Form : <span t-esc="no_form"/>/81/05-<span t-esc="huruf_urut"/>
+									</span>
+									<br></br>
+									<br></br>
+									<br></br>
+									Hal: <span class="page"/>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<t t-foreach="docs" t-as="o">
+				<div class="page" style="font-family:'Arial'">
+					<style type="text/css">
+						@media print {
+							thead {
+								display: table-header-group !important;
+							}
+						}
+
+						th, td {
+							vertical-align: middle !important;
+							text-align: center !important;
+						}
+
+						.left {
+							text-align: left !important;
+						}
+
+						.table-bordered > thead > tr > th,
+						.table-bordered > tbody > tr > td {
+							border: 1px solid #000 !important;
+						}
+					</style>
+					<t t-if="taksasi != 'varietas' and taksasi != 'vartam'">
+						<table class="table table-condensed table-bordered" style="border-collapse: collapse;width: 100%; font-size: 11px;">
+							<thead>
+								<tr>
+									<th style="border:1px solid black;" rowspan="3" width="15%">Kecamatan</th>
+
+									<th style="border:1px solid black;" t-att-colspan="length_taksasi" width="70%">
+										<t t-if="taksasi == 'intensifikasi'">
+											<span>INTENSIFIKASI</span>
+										</t>
+										
+										<t t-if="taksasi == 'tanam'">
+											<span>MASA TANAM</span>
+										</t>
+											
+									</th>
+									<th style="border:1px solid black;" rowspan="2" colspan="2" width="12%">TOTAL</th>
+									<th style="border:1px solid black;" rowspan="3" width="13%">Produktivitas (Ku/ha)</th>
+								</tr>
+								<tr>
+									<t t-foreach="dasar_taksasi" t-as="inten">
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; " colspan="2"><span t-esc="inten.name"/></th>
+									</t>
+								</tr>
+								<tr>
+									<t t-foreach="dasar_taksasi" t-as="inten">
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ha</span></th>
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ku</span></th>
+									</t>
+									<th style="border:1px solid black;"><span>Ha</span></th>
+									<th style="border:1px solid black;"><span>Ku</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<t t-set="count_kec" t-value="1"/>
+								<t t-foreach="kecamatan" t-as="kec">
+									<tr>
+										<t t-set="sum_luas" t-value="0"/>
+										<t t-set="sum_prod" t-value="0"/>
+										<td class="left" style="border:1px solid black;">
+											<span t-esc="count_kec"/>. <span t-esc="kec.name"/>
+										</td>
+										<t t-foreach="dasar_taksasi" t-as="inten">
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="luas(kec.id,inten.id,o.mtt_id.id,taksasi) != ''">
+													<span t-esc="str('{0:,.2f}'.format(float(luas(kec.id,inten.id,o.mtt_id.id,taksasi)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="sum_luas" t-value="sum_luas+float(luas(kec.id,inten.id,o.mtt_id.id,taksasi))"/>
+												</t>
+											</td>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="produksi(kec.id,inten.id,o.mtt_id.id,taksasi) != ''">
+													<span t-esc="str('{0:,.2f}'.format(float(produksi(kec.id,inten.id,o.mtt_id.id,taksasi)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="sum_prod" t-value="sum_prod+float(produksi(kec.id,inten.id,o.mtt_id.id,taksasi))"/>
+												</t>
+											</td>
+												
+										</t>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="sum_luas > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(sum_luas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="sum_prod > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(sum_prod))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="sum_prod > 0 and sum_luas > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(sum_prod / sum_luas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+									</tr>
+									<t t-set="count_kec" t-value="count_kec+1"/>
+								</t>
+								<tr>
+									<td style="border:1px solid black; font-weight: bold;">TOTAL</td>
+									<t t-set="luas_total" t-value="0"/>
+									<t t-set="produksi_total" t-value="0"/>
+									<t t-foreach="dasar_taksasi" t-as="inten">
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+											<t t-if="luas_intensifikasi(inten.id,o.mtt_id.id,taksasi) != ''">
+												<span t-esc="str('{0:,.2f}'.format(float(luas_intensifikasi(inten.id,o.mtt_id.id,taksasi)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												<t t-set="luas_total" t-value="luas_total+luas_intensifikasi(inten.id,o.mtt_id.id,taksasi)"/>
+											</t>
+										</td>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+											<t t-if="produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi) != ''">
+												<span t-esc="str('{0:,.2f}'.format(float(produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												<t t-set="produksi_total" t-value="produksi_total+produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi)"/>
+											</t>
+										</td>
+									</t>
+									<td style="border:1px solid black; "></td>
+								</tr>
+								<tr>
+									<td style="border:1px solid black; font-weight: bold;">Produktivitas( Ku/ha )</td>
+									<t t-foreach="dasar_taksasi" t-as="inten">
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;" colspan="2">
+											<t t-if="produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi) != ''">
+												<t t-if="float(produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi)) > 0">
+													<t t-set="produktiv" t-value="'%.2f'%(float(produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi)) / float(luas_intensifikasi(inten.id,o.mtt_id.id,taksasi)))"/>
+													<span t-esc="str('{0:,.2f}'.format(float(produktiv))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+										</td>
+									</t>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+										<t t-if="luas_total > 0">
+											<span t-esc="str('{0:,.2f}'.format(float(luas_total))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+										</t>
+									</td>
+
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+										<t t-if="prod_total > 0">
+											<span t-esc="str('{0:,.2f}'.format(float(prod_total))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+										</t>
+									</td>
+
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</t>
+					<t t-if="taksasi == 'varietas'">
+						<table class="table table-condensed table-bordered" style="border-collapse: collapse;width: 100%; font-size: 11px;">
+							<thead>
+								<tr>
+									<th style="border:1px solid black;" rowspan="3" width="15%">Kecamatan</th>
+									<th style="border:1px solid black;" t-att-colspan="length_awal" width="20%">Masak Awal</th>
+									<th style="border:1px solid black;" t-att-colspan="length_tengah" width="20%">Masak Tengah</th>
+									<th style="border:1px solid black;" t-att-colspan="length_akhir" width="20%">Masak Akhir</th>
+									<th style="border:1px solid black;" rowspan="2" colspan="2" width="15%">Jumlah</th>
+								</tr>
+								<tr>
+									<t t-foreach="masak()" t-as="m">
+										<t t-foreach="kecamatan_varietas(taksasi,m)" t-as="inten">
+											<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; " colspan="2"><span t-esc="inten.name"/></th>
+										</t>
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; " colspan="2">Jumlah</th>
+									</t>
+								</tr>
+								<tr>
+									<t t-foreach="masak()" t-as="m">
+										<t t-foreach="kecamatan_varietas(taksasi,m)" t-as="inten">
+											<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ha</span></th>
+											<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ku</span></th>
+										</t>
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ha</span></th>
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ku</span></th>
+									</t>
+									<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ha</span></th>
+									<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ku</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<t t-set="count_kec" t-value="1"/>
+								<t t-set="jum_luas" t-value="0"/>
+								<t t-set="luas_awal" t-value="0"/>
+								<t t-set="luas_tengah" t-value="0"/>
+								<t t-set="luas_akhir" t-value="0"/>
+								<t t-set="jum_prod" t-value="0"/>
+								<t t-set="prod_awal" t-value="0"/>
+								<t t-set="prod_tengah" t-value="0"/>
+								<t t-set="prod_akhir" t-value="0"/>
+								<t t-set="komposisi_total" t-value="0"/>
+								<t t-foreach="kecamatan" t-as="kec">
+									<tr>
+										<t t-set="total_luas" t-value="0"/>
+										<t t-set="total_prod" t-value="0"/>
+										<td class="left" style="border:1px solid black;">
+											<span t-esc="count_kec"/>. <span t-esc="kec.name"/>
+										</td>
+										<t t-foreach="masak()" t-as="m">
+											<t t-set="sum_luas" t-value="0"/>
+											<t t-set="sum_prod" t-value="0"/>
+											<t t-foreach="kecamatan_varietas(taksasi,m)" t-as="inten">
+												<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+													<t t-if="luas(kec.id,inten.id,o.mtt_id.id,taksasi) != ''">
+														<span t-esc="str('{0:,.2f}'.format(float(luas(kec.id,inten.id,o.mtt_id.id,taksasi)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+														<t t-set="sum_luas" t-value="sum_luas+float(luas(kec.id,inten.id,o.mtt_id.id,taksasi))"/>
+
+													</t>
+												</td>
+												<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+													<t t-if="produksi(kec.id,inten.id,o.mtt_id.id,taksasi) != ''">
+														<span t-esc="str('{0:,.2f}'.format(float(produksi(kec.id,inten.id,o.mtt_id.id,taksasi)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+														<t t-set="sum_prod" t-value="sum_prod+float(produksi(kec.id,inten.id,o.mtt_id.id,taksasi))"/>
+													</t>
+												</td>
+											</t>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="sum_luas > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(sum_luas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="total_luas" t-value="total_luas+sum_luas"/>	
+													<t t-set="jum_luas" t-value="jum_luas+sum_luas"/>
+													<t t-if="m == 'awal'">
+														<t t-set="luas_awal" t-value="luas_awal+sum_luas"/>
+													</t>
+
+													<t t-if="m == 'tengah'">
+														<t t-set="luas_tengah" t-value="luas_tengah+sum_luas"/>
+													</t>
+
+													<t t-if="m == 'akhir'">
+														<t t-set="luas_akhir" t-value="luas_akhir+sum_luas"/>
+													</t>
+												</t>
+											</td>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="sum_prod > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(sum_prod))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="total_prod" t-value="total_prod+sum_prod"/>
+													<t t-set="jum_prod" t-value="jum_prod+sum_prod"/>
+													<t t-if="m == 'awal'">
+														<t t-set="prod_awal" t-value="prod_awal+sum_prod"/>
+													</t>
+
+													<t t-if="m == 'tengah'">
+														<t t-set="prod_tengah" t-value="prod_tengah+sum_prod"/>
+													</t>
+
+													<t t-if="m == 'akhir'">
+														<t t-set="prod_akhir" t-value="prod_akhir+sum_prod"/>
+													</t>
+												</t>
+											</td>
+										</t>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="total_luas > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(total_luas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="total_prod > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(total_prod))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+									</tr>
+									<t t-set="count_kec" t-value="count_kec+1"/>
+								</t>
+								<tr>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">Jumlah</td>
+									<t t-foreach="masak()" t-as="m">
+										<t t-foreach="kecamatan_varietas(taksasi,m)" t-as="inten">
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="luas_intensifikasi(inten.id,o.mtt_id.id,taksasi) != ''">
+													<span t-esc="str('{0:,.2f}'.format(float(luas_intensifikasi(inten.id,o.mtt_id.id,taksasi)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</td>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi) != ''">
+													<span t-esc="str('{0:,.2f}'.format(float(produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</td>
+										</t>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="m == 'awal'">
+												<t t-if="luas_awal > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(luas_awal))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+											<t t-if="m == 'tengah'">
+												<t t-if="luas_tengah > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(luas_tengah))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+											<t t-if="m == 'akhir'">
+												<t t-if="luas_akhir > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(luas_akhir))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+										</td>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="m == 'awal'">
+												<t t-if="prod_awal > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(prod_awal))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+											<t t-if="m == 'tengah'">
+												<t t-if="prod_tengah > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(prod_tengah))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+											<t t-if="m == 'akhir'">
+												<t t-if="prod_akhir > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(prod_akhir))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+										</td>
+									</t>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="jum_luas > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(jum_luas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">
+											<t t-if="jum_prod > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(jum_prod))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+								</tr>
+
+								<tr>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">ku/ha</td>
+									<t t-foreach="masak()" t-as="m">
+										<t t-foreach="kecamatan_varietas(taksasi,m)" t-as="inten">
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;" colspan="2">
+												<t t-if="produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi) != ''">
+													<t t-if="float(produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi)) > 0">
+														<t t-set="produktiv" t-value="'%.2f'%(float(produksi_intensifikasi(inten.id,o.mtt_id.id,taksasi)) / float(luas_intensifikasi(inten.id,o.mtt_id.id,taksasi)))"/>
+														<span t-esc="str('{0:,.2f}'.format(float(produktiv))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													</t>
+												</t>
+											</td>
+										</t>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;" colspan="2">
+											<t t-if="m == 'awal'">
+												<t t-if="prod_awal > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(prod_awal/luas_awal))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+											<t t-if="m == 'tengah'">
+												<t t-if="prod_tengah > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(prod_tengah/luas_tengah))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+											<t t-if="m == 'akhir'">
+												<t t-if="prod_akhir > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(prod_akhir/luas_akhir))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</t>
+										</td>
+									</t>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;" colspan="2">
+											<t t-if="jum_luas > 0 and jum_prod > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(jum_prod/jum_luas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+								</tr>
+
+								<tr>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;">Komposisi Varietas (%)</td>
+									<t t-foreach="masak()" t-as="m">
+										<t t-foreach="kecamatan_varietas(taksasi,m)" t-as="inten">
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;" colspan="2">
+												<t t-if="luas_intensifikasi(inten.id,o.mtt_id.id,taksasi) != ''">
+													<t t-if="float(luas_intensifikasi(inten.id,o.mtt_id.id,taksasi)) > 0">
+														<t t-set="komposisi" t-value="'%.2f'%(float(luas_intensifikasi(inten.id,o.mtt_id.id,taksasi) / jum_luas * 100))"/>
+														<span t-esc="str('{0:,.2f}'.format(float(komposisi))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													</t>
+												</t>
+											</td>
+										</t>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;" colspan="2">
+											<t t-if="m == 'awal'">
+												<t t-if="prod_awal > 0">
+													<t t-set="komposisi_awal" t-value="luas_awal / jum_luas * 100"/>
+													<span t-esc="str('{0:,.2f}'.format(float(komposisi_awal))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="komposisi_total" t-value="komposisi_total+komposisi_awal"/>
+												</t>
+											</t>
+											<t t-if="m == 'tengah'">
+												<t t-if="prod_tengah > 0">
+													<t t-set="komposisi_tengah" t-value="luas_tengah / jum_luas * 100"/>
+													<span t-esc="str('{0:,.2f}'.format(float(komposisi_tengah))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="komposisi_total" t-value="komposisi_total+komposisi_tengah"/>
+												</t>
+											</t>
+											<t t-if="m == 'akhir'">
+												<t t-if="prod_akhir > 0">
+													<t t-set="komposisi_akhir" t-value="luas_akhir / jum_luas * 100"/>
+													<span t-esc="str('{0:,.2f}'.format(float(komposisi_akhir))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="komposisi_total" t-value="komposisi_total+komposisi_akhir"/>
+												</t>
+											</t>
+										</td>
+									</t>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;" colspan="2">
+											<t t-if="komposisi_total > 0">
+												<span t-esc="str('{0:,.2f}'.format(float(komposisi_total))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+								</tr>
+							</tbody>
+						</table>
+					</t>
+					<t t-if="taksasi == 'vartam' and taksasi != 'varietas'">
+						<table class="table table-condensed table-bordered" style="border-collapse: collapse;width: 100%; font-size: 11px;">
+							<thead>
+								<tr>
+									<th style="border:1px solid black;" rowspan="3" width="3%">No.</th>
+									<th style="border:1px solid black;" rowspan="3" width="15%">Varietas</th>
+
+									<th style="border:1px solid black;" t-att-colspan="length_taksasi" width="70%">
+										<t t-if="taksasi == 'intensifikasi'">
+											<span>INTENSIFIKASI</span>
+										</t>
+										
+										<t t-if="taksasi == 'tanam'">
+											<span>MASA TANAM</span>
+										</t>
+										<t t-if="taksasi == 'vartam'">
+											<span>Bulan Tanam / Kepras</span>
+										</t>
+											
+									</th>
+									<th style="border:1px solid black;" rowspan="2" colspan="2" width="12%">TOTAL</th>
+								</tr>
+								<tr>
+									<t t-foreach="dasar_taksasi" t-as="inten">
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; " colspan="2"><span t-esc="inten.name"/></th>
+									</t>
+								</tr>
+								<tr>
+									<t t-foreach="dasar_taksasi" t-as="inten">
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ha</span></th>
+										<th style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span>Ku</span></th>
+									</t>
+									<th style="border:1px solid black;"><span>Ha</span></th>
+									<th style="border:1px solid black;"><span>Ku</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<t t-set="total_luas_vartam" t-value="0"/>
+								<t t-set="total_prod_vartam" t-value="0"/>
+								<t t-foreach="masak()" t-as="m">
+									<tr>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight:bold;">
+											<t t-if="m == 'awal'">
+												<span>A</span>
+											</t>
+											<t t-if="m == 'tengah'">
+												<span>B</span>
+											</t>
+											<t t-if="m == 'akhir'">
+												<span>C</span>
+											</t>
+										</td>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight:bold;">
+											<t t-if="m == 'awal'">
+												<span>MASAK AWAL</span>
+											</t>
+											<t t-if="m == 'tengah'">
+												<span>MASAK TENGAH</span>
+											</t>
+											<t t-if="m == 'akhir'">
+												<span>MASAK AKHIR</span>
+											</t>
+										</td>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;" t-att-colspan="length_taksasi" width="70%"/>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;" colspan="2"/>
+									</tr>
+									<t t-set="count_var" t-value="1"/>
+									<t t-foreach="kecamatan_varietas(taksasi,m)" t-as="varietas">
+										<tr>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span t-esc="count_var"/>.</td>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; "><span t-esc="varietas.name"/></td>
+											<t t-set="total_luas" t-value="0"/>
+											<t t-set="total_prod" t-value="0"/>
+											<t t-foreach="dasar_taksasi" t-as="tanam">
+												<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; ">
+													<t t-if="luas_vartam(varietas.id,tanam.id,o.mtt_id.id) != ''">
+														<span t-esc="str('{0:,.2f}'.format(float(luas_vartam(varietas.id,tanam.id,o.mtt_id.id)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+														<t t-set="total_luas" t-value="total_luas+luas_vartam(varietas.id,tanam.id,o.mtt_id.id)"/>
+													</t>
+												</td>
+												<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; ">
+													<t t-if="prod_vartam(varietas.id,tanam.id,o.mtt_id.id) != ''">
+														<span t-esc="str('{0:,.2f}'.format(float(prod_vartam(varietas.id,tanam.id,o.mtt_id.id)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+														<t t-set="total_prod" t-value="total_prod+prod_vartam(varietas.id,tanam.id,o.mtt_id.id)"/>
+													</t>
+												</td>
+											</t>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; ">
+												<t t-if="total_luas > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(total_luas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</td>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; ">
+												<t t-if="total_prod > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(total_prod))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												</t>
+											</td>
+										</tr>
+										<t t-set="count_var" t-value="count_var+1"/>
+									</t>
+									<tr>
+										<t t-set="var_luas" t-value="0"/>
+										<t t-set="var_prod" t-value="0"/>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle;font-weight:bold;" colspan="2">Jumlah</td>
+										<t t-foreach="dasar_taksasi" t-as="tanam">
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+												<t t-if="luas_per_tanam(tanam.id,o.mtt_id.id,m) != ''">
+													<span t-esc="str('{0:,.2f}'.format(float(luas_per_tanam(tanam.id,o.mtt_id.id,m)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="var_luas" t-value="var_luas+luas_per_tanam(tanam.id,o.mtt_id.id,m)"/>
+												</t>
+											</td>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+												<t t-if="prod_per_tanam(tanam.id,o.mtt_id.id,m) != ''">
+													<span t-esc="str('{0:,.2f}'.format(float(prod_per_tanam(tanam.id,o.mtt_id.id,m)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="var_prod" t-value="var_prod+prod_per_tanam(tanam.id,o.mtt_id.id,m)"/>
+												</t>
+											</td>
+										</t>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+												<t t-if="var_luas > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(var_luas))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="total_luas_vartam" t-value="total_luas_vartam+var_luas"/>
+												</t>
+											</td>
+											<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+												<t t-if="var_prod > 0">
+													<span t-esc="str('{0:,.2f}'.format(float(var_prod))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+													<t t-set="total_prod_vartam" t-value="total_prod_vartam+var_prod"/>
+												</t>
+											</td>
+									</tr>
+								</t>
+								<tr>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle;font-weight:bold;" colspan="2">Total</td>
+									<t t-foreach="dasar_taksasi" t-as="tanam">
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+											<t t-if="luas_total_tanam(tanam.id,o.mtt_id.id) != ''">
+												<span t-esc="str('{0:,.2f}'.format(float(luas_total_tanam(tanam.id,o.mtt_id.id)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+										<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+											<t t-if="prod_total_tanam(tanam.id,o.mtt_id.id) != ''">
+												<span t-esc="str('{0:,.2f}'.format(float(prod_total_tanam(tanam.id,o.mtt_id.id)))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</t>
+										</td>
+									</t>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+										<t t-if="total_luas_vartam > 0">
+											<span t-esc="str('{0:,.2f}'.format(float(total_luas_vartam))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+										</t>
+									</td>
+									<td style="border:1px solid black; padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+										<t t-if="total_prod_vartam > 0">
+											<span t-esc="str('{0:,.2f}'.format(float(total_prod_vartam))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+										</t>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</t>
+					<!-- <t t-if="wilayah == 'desa'">
+						<table class="table table-condensed table-bordered" style="width: 100%; font-size: 11px">
+							<thead>
+								<tr>
+									<th rowspan="3" width="15%">Kecamatan</th>
+									<th colspan="18" width="60%">Intensifikasi</th>
+									<th rowspan="2" colspan="2" width="12">TOTAL</th>
+									<th rowspan="3" width="13%">Produktivitas (Ku/ha)</th>
+								</tr>
+								<tr>
+									<t t-foreach="dasar_taksasi" t-as="inten">
+										<th style="padding: 3px 5px; vertical-align:middle; " colspan="2"><span t-esc="inten.name"/></th>
+									</t>
+								</tr>
+								<tr>
+									<t t-foreach="dasar_taksasi" t-as="inten">
+										<th style="padding: 3px 5px; vertical-align:middle; "><span>Ha</span></th>
+										<th style="padding: 3px 5px; vertical-align:middle; "><span>Ku</span></th>
+									</t>
+									<th><span>Ha</span></th>
+									<th><span>Ku</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<t t-foreach="kecamatan" t-as="kec">
+									<tr>
+										<t t-set="sum_luas" t-value="0"/>
+										<t t-set="sum_prod" t-value="0"/>
+										<td style="font-weight:bold;font-size:13px;"><span t-esc="kec.name"/></td>
+										<td colspan="18"></td>
+										<t t-foreach="dasar_taksasi" t-as="inten">
+											<td style="padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="luas(kec.id,inten.id,o.mtt_id.id) != ''">
+													<span t-esc="'%.2f'%(luas(kec.id,inten.id,o.mtt_id.id))"/>
+													<t t-set="sum_luas" t-value="sum_luas+float(luas(kec.id,inten.id,o.mtt_id.id))"/>
+												</t>
+											</td>
+											<td style="padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="produksi(kec.id,inten.id,o.mtt_id.id) != ''">
+													<span t-esc="'%.2f'%(produksi(kec.id,inten.id,o.mtt_id.id))"/>
+													<t t-set="sum_prod" t-value="sum_prod+float(produksi(kec.id,inten.id,o.mtt_id.id))"/>
+												</t>
+											</td>
+												
+										</t>
+										<td style="text-align:center;" colspan="2">
+										</td>
+										<td style="text-align:center;">
+										</td>
+									</tr>
+									<t t-set="count" t-value="1"/>
+									<t t-foreach="desa(kec.id,wilayah,desa_id)" t-as="des">
+										<tr>
+											<t t-set="sum_luas" t-value="0"/>
+											<t t-set="sum_prod" t-value="0"/>
+											<td><span t-esc="count"/>. <span t-esc="des.name"/></td>
+											<t t-foreach="dasar_taksasi" t-as="inten">
+											<td style="padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="luas_desa(des.id,inten.id,o.mtt_id.id) != ''">
+													<span t-esc="'%.2f'%(luas_desa(des.id,inten.id,o.mtt_id.id))"/>
+													<t t-set="sum_luas" t-value="sum_luas+float(luas_desa(des.id,inten.id,o.mtt_id.id))"/>
+												</t>
+											</td>
+											<td style="padding: 3px 5px; vertical-align:middle; text-align:center;">
+												<t t-if="produksi_desa(des.id,inten.id,o.mtt_id.id) != ''">
+													<span t-esc="'%.2f'%(produksi_desa(des.id,inten.id,o.mtt_id.id))"/>
+													<t t-set="sum_prod" t-value="sum_prod+float(produksi_desa(des.id,inten.id,o.mtt_id.id))"/>
+												</t>
+											</td>
+												
+											</t>
+											<td style="text-align:center;">
+												<t t-if="sum_luas > 0">
+													<span t-esc="'%.2f'%(sum_luas)"/>
+												</t>
+											</td>
+											<td style="text-align:center;">
+												<t t-if="sum_prod > 0">
+													<span t-esc="'%.2f'%(sum_prod)"/>
+												</t>
+											</td>
+											<td style="text-align:center;">
+												<t t-if="sum_prod > 0 and sum_luas > 0">
+													<span t-esc="'%.2f'%(sum_prod / sum_luas)"/>
+												</t>
+											</td>
+										</tr>
+										<t t-set="count" t-value="count+1"/>
+									</t>
+									<tr>
+										<td style="font-weight: bold;font-size:13px;">TOTAL</td>
+										<t t-foreach="dasar_taksasi" t-as="inten">
+											<td style="padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+												<t t-if="luas_intensifikasi(inten.id,o.mtt_id.id) != ''">
+													<span t-esc="'%.2f'%(luas_intensifikasi(inten.id,o.mtt_id.id))"/>
+												</t>
+											</td>
+											<td style="padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;">
+												<t t-if="produksi_intensifikasi(inten.id,o.mtt_id.id) != ''">
+													<span t-esc="'%.2f'%(produksi_intensifikasi(inten.id,o.mtt_id.id))"/>
+												</t>
+											</td>
+										</t>
+										<td colspan="3"></td>
+									</tr>
+									<tr>
+										<td style="font-weight: bold;font-size:13px;">Produktivitas( Ku/ha )</td>
+										<t t-foreach="dasar_taksasi" t-as="inten">
+											<td style="padding: 3px 5px; vertical-align:middle; text-align:center;font-weight: bold;" colspan="2">
+												<t t-if="produksi_intensifikasi(inten.id,o.mtt_id.id) != ''">
+													<t t-if="float(produksi_intensifikasi(inten.id,o.mtt_id.id)) > 0">
+														<span t-esc="'%.2f'%(float(produksi_intensifikasi(inten.id,o.mtt_id.id)) / float(luas_intensifikasi(inten.id,o.mtt_id.id)))"/>
+													</t>
+												</t>
+											</td>
+										</t>
+										<td colspan="3"></td>
+									</tr>
+								</t>
+							</tbody>
+						</table>
+					</t> -->
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

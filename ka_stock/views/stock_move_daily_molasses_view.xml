@@ -1,0 +1,134 @@
+<odoo>
+    <data>
+        <record id="view_stock_move_daily_molasses_tree" model="ir.ui.view">
+            <field name="name">stock.move.daily.molasses.tree</field>
+            <field name="model">stock.move.daily.molasses</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="manufacture_daily_id_molasses"/> 
+                    <field name="date"/>  
+                    <field name="product_id"/>
+                    <field name="product_uom"/>
+                    <field name="total_qty"/>
+                   	<field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>  
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_stock_move_daily_molasses_form" model="ir.ui.view">
+            <field name="name">stock.move.daily.molasses.form</field>
+            <field name="model">stock.move.daily.molasses</field>
+            <field name="arch" type="xml">
+                <form>
+                	<header>
+                        <button name="propose_daily_molasses_transaction" states="draft" type="object" class="oe_highlight" string="Propose"/>
+                        <button name="set_draft_daily_molasses_transaction" states="proposed" type="object" string="Set to Draft"/>
+                        <button name="validate_daily_molasses_transaction" states="proposed" type="object" class="oe_highlight" string="Validate"/>                            
+                        <field name="state" widget="statusbar"/>
+                    </header>            
+                    <sheet>
+                    	<div class="oe_button_box" name="button_box">
+		                    <button name="action_view_picking_molasses" string="Transfers" type="object" class="oe_stat_button" 
+		                    	icon="fa-bars" attrs="{'invisible': [('move_ids','=',[])]}">   
+		                    </button>
+		                    <button name="print_hasil_timbang" string="Hasil Timbang" type="object" class="oe_stat_button" 
+                                icon="fa-print" attrs="{'invisible': [('state','!=','proposed')]}">  
+                            </button>
+                             <button name="print_laporan_harian_tetes" string="Laporan Harian Tetes" type="object" class="oe_stat_button" 
+						        icon="fa-print" attrs="{'invisible': [('state','!=','done')]}">   
+						    </button>
+		                </div>
+                        <div class="oe_title">
+                            <h1><field name="name" attrs="{'readonly': True}"/></h1>
+                        </div>
+                        <group>
+                        	<group>
+                        		<field name="manufacture_daily_id_molasses" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}"/>
+	                    		<field name="date" attrs="{'readonly': [('state','!=','draft')]}"/>
+			                    <field name="product_id" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}"/>
+			                    <field name="product_uom" options="{'no_create': True}" attrs="{'readonly': [('state','!=','draft')]}"/>
+			                    <field name="bagi_hasil" attrs="{'readonly': [('state','!=','draft')]}"/>	
+	                        	<field name="move_ids" invisible="1"/> 	                    
+	                   			<field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" attrs="{'readonly': [('state','!=','draft')]}"/>
+							</group>
+							<group string="Bagi Hasil" attrs="{'required': [('bagi_hasil', '=', True)], 'invisible': [('bagi_hasil','!=',True)], 'readonly': [('state','!=','draft')]}">
+								<field name="factory_qty"/>
+		                    	<field name="farmer_qty"/>
+							</group>
+	                   	</group>
+	                   	
+	                   	<notebook string="Produksi">
+	                        <page string="Kuantum">
+	                            <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+	                           		<tree string="Daily Molasses Line" editable="bottom" delete="0" create="0">
+					                    <field name="name" readonly="1"/>
+					                    <field name="tank_qty"/>
+								      	<field name="brix_qty"/>    
+					                   	<field name="move_daily_molasses_id" invisible="True"/>
+	                                </tree>
+	                                <form string="Daily Molasses Line">
+					                	<sheet>
+					                		<group>
+					                			<group>
+								                    <field name="name" readonly="1"/>
+								                    <field name="tank_qty"/>
+								                    <field name="brix_qty"/>    
+								                   	<field name="move_daily_molasses_id" invisible="True"/>
+					                			</group>
+					                		</group>
+					                	</sheet>
+					                </form>
+	                            </field>
+	                            <group class="oe_subtotal_footer oe_right">
+	                                <field name="total_qty" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+	                            </group>
+	                        </page>
+	                        
+	                       	<page string="Kuantum Sirkulasi">
+	                            <field name="line_circulation_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+	                           		<tree string="Daily Molasses Circulation" editable="bottom" delete="0" create="0">
+					                    <field name="name" readonly="1"/>
+					                    <field name="tank_qty"/>
+								      	<field name="brix_qty"/>      
+					                   	<field name="move_daily_molasses_id" invisible="True"/>
+	                                </tree>
+	                                <form string="Daily Molasses Line">
+					                	<sheet>
+					                		<group>
+					                			<group>
+								                    <field name="name" readonly="1"/>
+								                    <field name="tank_qty"/>
+								      				<field name="brix_qty"/>    
+								                   	<field name="move_daily_molasses_id" invisible="True"/>
+					                			</group>
+					                		</group>
+					                	</sheet>
+					                </form>
+	                            </field>
+	                            <group class="oe_subtotal_footer oe_right">
+	                                <field name="total_circulation_qty"  class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+	                            </group>
+	                        </page>
+	                	</notebook>
+	              	</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+             
+     	<record id="action_open_produksi_tetes" model="ir.actions.act_window">
+            <field name="name">Produksi Tetes</field>
+            <field name="res_model">stock.move.daily.molasses</field>
+            <field name="view_type">form</field> 
+            <field name="view_mode">tree,form</field>             
+        </record>
+        
+        <menuitem id="menu_produksi_tetes" action="action_open_produksi_tetes" parent="ka_stock.menu_transaksi_harian" sequence="8"/>
+        
+    </data>
+</odoo>

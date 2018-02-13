@@ -1,0 +1,22 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_holidays_employee_form_inherit">
+			<field name="name">ka_hr.holidays.employee.form</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="ka_hr_pegawai.view_ka_employee_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='action_view_sp']" position="before">
+					<button class="oe_stat_button" type="object" name="action_view_cuti_tahunan" icon="fa-calendar" groups="base.group_user">
+						<field name="count_holidays_yearly" widget="statinfo"/>
+					</button>
+					<button class="oe_stat_button" type="object" name="action_view_cuti_besar" icon="fa-calendar" groups="base.group_user">
+						<field name="count_holidays_big" string="" widget="statinfo"/>
+					</button>
+					<button class="oe_stat_button" type="object" name="action_view_inhaldagen" icon="fa-calendar" groups="base.group_user">
+						<field name="count_holidays_inhaldagen" string="" widget="statinfo"/>
+					</button>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,33 @@
+<odoo>
+	<data>
+		<record id="view_logistik_realisasi_nomor" model="ir.ui.view">
+			<field name="name">Realisasi SPM</field>
+			<field name="model">logistik.realisasi.spm</field>
+			<field name="arch" type="xml">
+				<form string="Realisasi Sebagian" version="7.0">
+					<group col="4">
+						<field name="saldo"/>
+						<field name="kuantum_sp"/>
+						<field name="alasan" colspan="4" required="1"/>
+						<field name="save_ok" invisible="1"/>
+					</group>
+					<footer>
+						<button name="action_simpan" attrs="{'invisible':[('save_ok','!=', True)]}" string="Simpan" type="object" class="oe_highlight"/>
+						or
+						<button string="Batal" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_logistik_realisasi_spm_line" model="ir.actions.act_window">
+			<field name="name">Realisasi Sebagian</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">logistik.realisasi.spm</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="context">{'record_id' : active_id}</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

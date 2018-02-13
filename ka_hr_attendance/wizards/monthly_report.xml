@@ -1,0 +1,31 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="wizard_monthly_report_form">
+			<field name="name">Laporan Rekap Bulanan</field>
+			<field name="model">ka_hr_attendance.monthly.report.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Laporan Rekap Bulanan">
+					<group>
+						<field name="year"/>
+						<field name="month"/>
+						<field name="company_id" groups="base.group_multi_company"/>
+					</group>
+					<footer>
+						<button name="generate_pdf_report_monthly" string="Cetak Laporan PDF" type="object" class="btn-primary" attrs="{'invisible': ['|', ('year', '=', False), ('month', '=', False)]}"/>
+						<button string="Batal" class="btn-default" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window
+			id="action_wizard_monthly_report_form"
+			name="Laporan Rekap Bulanan"
+			res_model="ka_hr_attendance.monthly.report.wizard"
+			view_mode="form"
+			target="new"/>
+
+		<menuitem action="action_wizard_monthly_report_form" id="menu_wizard_monthly_report" parent="hr_attendance.menu_hr_attendance_report" sequence="2"/>
+	</data>
+</odoo>

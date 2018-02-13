@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+        <record id="rekap_vendor_payment_wizard_form" model="ir.ui.view">
+            <field name="name">rekap.vendor.payment.wizard.form</field>
+            <field name="model">rekap.vendor.payment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Rekapitulasi Pengajuan Pembayaran">
+                    <div class="col-xs-6">
+                        <group>
+                            <field name="date_from" string="Dari" required="1"/>
+                            <field name="date_to" string="Sampai" required="1"/>
+                        </group>
+                    </div>
+                    <footer>
+                        <button name="generate_pdf_rekap_vendor_payment" string="Generate PDF" type="object" class="btn-primary"
+                        	attrs="{'invisible': ['|',('date_from','=',False),('date_to','=',False)]}"/> 
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+		<record id="action_get_rekap_vendor_peyment" model="ir.actions.act_window">
+            <field name="name">Rekapitulasi Pengajuan Pembayaran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rekap.vendor.payment.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+		<menuitem 
+        	action="action_get_rekap_vendor_peyment"
+			id="menu_rekap_vedor_payment" 
+			name="Rekap Tagihan Supplier" 
+			parent="purchase.menu_purchase_control"
+            sequence="15"/>  
+
+	</data>
+</openerp>

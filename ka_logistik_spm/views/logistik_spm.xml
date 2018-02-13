@@ -1,0 +1,535 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>	
+		<!-- <menuitem
+			id="menu_log3000"
+			name="LOG3 - Permintaan Material"
+			parent="ka_logistik_master.logistik_root"
+			groups="ka_logistik_spm.group_user"
+			sequence="3"/> -->
+		<menuitem
+			id="menu_log3000"
+			name="LOG3 - Permintaan Material"
+			groups="purchase.group_purchase_manager,purchase.group_purchase_user,stock.group_stock_manager,stock.group_stock_user"
+			parent="ka_logistik_master.logistik_root"
+			sequence="3"/>
+
+		<!-- Search SPM -->
+		<record model="ir.ui.view" id="view_logistik_spm_filter">
+			<field name="name">logistik.spm.filter</field>
+			<field name="model">logistik.spm</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Pencarian SPM">
+					<field name="no_spm"/>
+					<field name="company_id" groups="base.group_multi_company"/>
+					<field name="operating_unit_id" string="Unit/PG" groups="base.group_multi_company"/>
+					<!--filter string="SPM Saya" domain="[('user_id','=',uid)]" help="SPM yang saya buat" icon="terp-personal" name="my_spm_filter"/-->
+					<filter string="Draft" domain="[('state','=','draft')]" name="draft_spm"/>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_spm_pivot">
+            <field name="name">logistik.spm.lines.pivot</field>
+            <field name="model">logistik.spm.lines</field>
+            <field name="arch" type="xml">
+                <pivot string="Pivot SPM" type="pivot">
+                    <field name="operating_unit_id" type="row"/>
+                    <field name="kuantum_spm" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+		
+		<!-- Pengelolaan Header SPM, digunakan untuk memudahkan ENTRY -->
+		<record model="ir.ui.view" id="view_logistik_spm_tree">
+			<field name="name">logistik.spm.tree</field>
+			<field name="model">logistik.spm</field>
+			<field name="priority" eval="1"/>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Pengelolaan SPM" colors="grey:state=='closed';blue:state=='draft'">
+					<!-- <field name="no_spm" invisible="1"/> -->
+					<field name="name"/>
+					<field name="tanggal"/>
+					<field name="company_id" groups="base.group_multi_company" invisible="1"/>
+					<field name="operating_unit_id" groups="base.group_multi_company"/>
+					<field name="pengadaan"/>
+					<field name="category" invisible="1"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_spm_form">
+			<field name="name">logistik.spm.form</field>
+			<field name="model">logistik.spm</field>
+			<field name="type">form</field>
+			<field name="priority" eval="1"/>
+			<field name="arch" type="xml">
+				<form string="Pengelolaan SPM">
+					<header>
+						<!-- <button name="%(action_logistik_spm_nomor)d" groups="ka_logistik_spm.group_validator" string="Setuju dan Buat Nomor SPM" type="action" class="oe_highlight"/> -->
+						<!--button name="action_reject" groups="logistik_spm.group_spm_validator" string="Batalkan SPM" type="object" states="draft" help="Klik untuk membatalkan SPM ini"/-->
+						<!--button name="%(action_logistik_spm_approve)d" groups="logistik_spm.group_spm_approval" string="Realisasikan SPM" type="action" states="validated"  class="oe_highlight"/-->
+						<!-- <button name="action_draft" groups="ka_logistik_spm.group_validator" string="Kembalikan Menjadi Konsep" type="object" states="reject"/> -->
+						<field name="state" widget="statusbar"/>
+					</header>
+					<sheet>
+						<h2 colspan="2">
+							<label string="Persetujuan dan Pengelompokan SPM" attrs="{'invisible':[('category','!=','none')]}" />
+							<label string="Permintaan(SPM) Bulanan RAB" attrs="{'invisible':[('category','!=','rab')]}" />
+							<label string="Permintaan(SPM) Bulanan Non RAB" attrs="{'invisible':[('category','!=','nonrab')]}" />
+							<label string="Permintaan(SPM) Tanpa Kode Barang" attrs="{'invisible':[('category','!=','noncode')]}" />
+						</h2>
+						<hr/>
+						<group>
+							<group>
+								<field name="no_spm" style="width: 30%%" readonly="0" widget="mask" data-inputmask="'mask': 'A.9999.9-999'"/>
+								<field name="tanggal" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+								<!-- <field name="company_id" groups="base.group_multi_company" attrs="{'readonly':[('state','!=', 'draft')]}"/> -->
+								<field name="operating_unit_id" options="{'no_create': True}" required="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+								<field name="company_id" groups="base.group_multi_company" readonly="1" options="{'no_create': True}" invisible="1"/>
+							</group>
+							<group attrs="{'readonly':[('state','!=', 'draft')]}">
+								<field name="category"/>
+								<field name="pengadaan" style="width: 50%%"/>
+							</group>
+						</group>
+						<notebook colspan="4">
+							<page string="Detail SPM">
+								<!--field name="line_ids" colspan="6" context="{'default_category': category}" attrs="{'readonly':[('state','!=', 'draft')]}"-->
+								<!--field name="line_ids" colspan="6" context="{'default_category': category, 'default_pengadaan': pengadaan}" attrs="{'readonly':[('state','in', ['approved', 'validated'])]}"-->
+								<field name="line_ids" colspan="6" context="{'default_category': category, 'default_pengadaan': pengadaan}">
+									<tree colors="blue:state in ('wait', 'draft');red:state=='cancel';grey:state=='approved'" attrs="{'readonly':[('state','=', 'draft')]}">
+										<field name="product_id"/>
+										<field name="product_desc"/>
+										<field name="spesifikasi"/>
+										<field name="kuantum" string="Kuantum SPM"/>
+										<field name="kuantum_sp" attrs="{'invisible':[('state','=', 'draft')]}"/>
+										<field name="unit_id"/>
+										<field name="tgl_minta"/>
+										<field name="pkrat_id"/>
+										<field name="btn_test" invisible="1"/>
+										<field name="category" invisible="1"/>
+										<field name="state"/>
+										<field name="doc_count" invisible="1"/>
+										<button name="attachment_tree_view" type="object" widget="ka_widget_attachment_button"/>
+									</tree>
+									<form>
+										<group col="2">
+											<!-- <group col="4" colspan="2"> -->
+												<field name="stasiun_id" domain="[('operating_unit_id', '=', parent.operating_unit_id)]" options="{'no_create': 1, 'no_create_edit': 1}"/>
+												<field name="account_id" options="{'no_create': 1, 'no_create_edit': 1}"/>
+											<!-- </group> -->
+											<!-- <group> -->
+												<!--field name="product_id" attrs="{'invisible':[('category','=','rab')], 'readonly':[('state','not in', ('draft', 'approved'))]}" on_change="onchange_product(product_id)"/-->
+												<!-- <field name="product_id" attrs="{'readonly':[('state','!=', 'draft')],'invisible':[('category','==', 'noncode')], 'required': [('category', '!=', 'noncode')]}" on_change="onchange_product(product_id)" options="{'no_create': 1, 'no_create_edit': 1}"/> -->
+												<field name="product_id" attrs="{'readonly':[('state','!=', 'draft')],'invisible':[('category','==', 'noncode')], 'required': [('category', '!=', 'noncode')]}" options="{'no_create': 1, 'no_create_edit': 1}"/>
+												<field name="spesifikasi" attrs="{'invisible':[('category','!=', 'noncode')], 'required': [('category', '==', 'noncode')]}"/>
+												<field name="product_desc" attrs="{'invisible':[('category','==', 'noncode')]}"/>
+												<field name="pabrikan" readonly="1"/>
+												<field name="kuantum_spm" invisible="1"/>
+												<field name="kuantum" style="width: 25%%" attrs="{'readonly':[('state','!=', 'draft')]}" string="Kuantum"/>
+												<field name="kuantum_sp" style="width: 25%%" attrs="{'invisible':[('state','=', 'draft')], 'readonly':[('state','=', 'approved')]}"/>
+												<field name="unit_id" style="width: 25%%" options="{'no_create': 1, 'no_create_edit': 1}"/>
+												<field name="tgl_minta" style="width: 25%%" required="1" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+												<field name="pkrat_id" style="width: 25%%" domain="[('stasiun_id', '=', stasiun_id)]" options="{'no_create': 1, 'no_create_edit': 1}"/>
+												<field name="pkrat_name"/>
+												<field name="catatan"/>
+												<field name="category" invisible="1"/>
+												<field name="pengadaan" invisible="1"/>
+												<field name="state" invisible="1"/>
+											<!-- </group> -->
+										</group>
+									</form>
+								</field>
+							</page>							
+						</notebook>
+						<group>
+							<field name="note" nolabel="1" class="oe_inline" placeholder="Catatan..."/>
+						</group>
+					</sheet>
+	                <div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+	                </div>
+				</form>
+			</field>
+		</record>
+
+
+
+		<!-- Pengelolaan detail SPM, digunakan untuk melihat semua barang dan status SPM atas barang tersebut -->
+		<record model="ir.ui.view" id="view_logistik_spm_lines_filter">
+			<field name="name">logistik.spm.lines.filter</field>
+			<field name="model">logistik.spm.lines</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Pencarian SPM">
+					<field name="pengajuan_id" string="No. Pengajuan SPM"/>
+					<field name="spm_id" string="No. SPM Direksi"/>
+					<field name="pengajuan_id" string="No. Pengajuan"/>
+					<field name="product_name_desc"/>
+					<field name="stasiun_id"/>
+					<field name="tanggal_spm"/>
+					<field name="operating_unit_id" groups="base.group_multi_company"/>
+					<filter name="spm_wait" string="Sudah Cetak" domain="[('state', '=', 'wait')]"/>
+					<filter name="spm_confirm" string="Confirm Gudang" domain="[('state', '=', 'confirm')]"/>
+					<filter name="spm_validate" string="Validate TUK" domain="[('state', '=', 'validated')]"/>
+					<filter name="spm_spm" string="Belum Disetujui DIV" domain="[('spm_state', '=', 'approved'), ('state', '=', 'spm')]"/>
+					<filter name="spm_approved" string="Sudah Disetujui DIV" domain="[('state', '=', 'approved')]"/>
+					<filter name="spm_cancel" string="Dibatalkan" domain="[('state', '=', 'cancel')]"/>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_spm_lines_form">
+			<field name="name">logistik.spm.lines.form</field>
+			<field name="model">logistik.spm.lines</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Detail SPM" version="7.0">
+					<header>
+<!-- 						<button 
+                            name="action_cancel" 
+                            string="Batalkan" 
+                            type="object" 
+                            states="draft,propose,print,confirm,validated,wait,spm" 
+							confirm="Apakah anda yakin ingin membatalkan pengajuan barang ini?"/> -->
+                        <button 
+                            name="action_realisasi_all" 
+                            help="Realisaikan Semua" 
+                            string="Realisasi Semua"
+                            class="oe_highlight" 
+                            type="object" 
+                            icon="fa-sign-in" 
+                            states="spm"
+                            groups="ka_logistik_spm.group_approval"/>
+                        <button 
+                            name="%(action_logistik_realisasi_spm_line)d" 
+                            help="Realisasikan Bertahap" 
+                            string="Realisasi Bertahap"
+                            type="action" 
+                            icon="fa-mail-forward" 
+                            states="spm"
+                            groups="ka_logistik_spm.group_approval"/>
+                        <button 
+                            name="action_undo_realisasi" 
+                            help="Batalkan Realisasi"
+                            string="Batalkan Realisai"                            
+                            type="object" 
+                            icon="fa-undo" 
+                            confirm="Anda yakin ingin membatalkan realisasi ini?" 
+                            groups="ka_logistik_spm.group_approval"
+                            attrs="{'invisible': ['|', ('state', '!=', 'approved'), ('golongan', '!=', 'none')]}"/>
+                        <button 
+                            name="%(action_logistik_spm_cancel)d" 
+                            help="Batalkan Barang ini" 
+                            string="Batalkan Barang Ini"
+                            type="action" 
+                            icon="fa-times-circle" 
+                            states="draft,propose,print,confirm,validated,wait,spm"/>
+					</header>
+					<sheet>
+                        <div class="oe_title">
+	                        <h2>Detail SPM</h2>
+	                    </div>					
+	                    <div class="oe_button_box" name="button_box" groups="base.group_user">
+	                        <button  class="oe_stat_button" name="attachment_tree_view" type="object" icon="fa-files-o">
+	                            <field string="Attachments" name="doc_count" widget="statinfo"/>
+	                        </button>
+	                    </div>					
+						<hr/>
+						<group string="Informasi SPM" >
+							<group>
+								<field name="company_id" groups="base.group_multi_company"/>
+								<field name="stasiun_id" options="{'no_create': 1, 'no_create_edit': 1}"/>
+								<field name="spm_id"/>
+								<field name="tanggal_spm"/>
+								<label for="pengadaan"/>
+		                        <div>
+		                            <field class="oe_inline" name="pengadaan" readonly="1"/>
+		                            <button class="oe_inline oe_link" name="%(ka_logistik_spm.act_edit_pengadaan_wizard)d" 
+                                        string="Ganti Menjadi SP Direksi" type="action" 
+                                        context="{'default_pengadaan':'RD','default_reason':'reason1'}"
+                                        icon="fa-exchange "
+		                            	groups="ka_logistik_spm.group_spm_edit_pengadaan" 
+                                        attrs="{'invisible': ['|',('state','!=','approved'),('pengadaan','=','RD')]}"/>
+                                    <button class="oe_inline oe_link" name="%(ka_logistik_spm.act_edit_pengadaan_wizard)d"
+                                        string="Ganti Menjadi SP Pabrik" type="action" 
+                                        groups="ka_logistik_spm.group_spm_edit_pengadaan" 
+                                        context="{'default_pengadaan':'RP', 'default_reason':'other'}"
+                                        icon="fa-exchange "
+                                        attrs="{'invisible': ['|',('state','!=','validated'),('pengadaan','=','RP')]}"/>
+		                        </div>
+							</group>
+							<group>
+								<field name="category" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+								<field name="account_id" options="{'no_create': 1, 'no_create_edit': 1}"/>
+								<field name="pkrat_id" options="{'no_create': 1, 'no_create_edit': 1}"/>
+								<field name="pkrat_name"/>
+                                <field name="golongan" invisible="1"/>
+								<!--field name="account_id" style="width: 20%%"/-->
+							</group>
+						</group>
+						<group string="Barang Yang Diminta">
+							<group colspan="4">
+								<field name="spesifikasi" readonly="1"/>
+							</group>
+							<group>
+								<field name="product_id" options="{'no_create': 1, 'no_create_edit': 1}" attrs="{'readonly':[('state','not in', ('draft', 'spm', 'approved'))]}"/>
+								<field name="product_desc"/>
+								<field name="unit_id"/>
+								<!--field name="state"/-->
+								<!--field name="alasan" attrs="{'readonly':[('state','!=', 'reject')]}"/-->
+							</group>
+							<group>
+								<field name="tgl_minta" attrs="{'readonly':[('state','not in', ('draft', 'spm'))]}"/>
+								<!-- <field name="kuantum_spm" attrs="{'readonly':[('state','!=', 'draft')]}"/> -->
+								<field name="kuantum_spm"/>
+								<!-- <field name="kuantum" attrs="{'readonly':[('state','!=', 'draft')]}"/> -->
+								<field name="kuantum"/>
+								<field name="kuantum_sp"/>
+							</group>
+						</group>
+						<label for="catatan"/>
+						<field name="catatan" colspan="4"/>
+					</sheet>
+					<footer>
+						<field name="state" widget="statusbar"/>
+					</footer>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_spm_lines_tree">
+			<field name="name">logistik.spm.lines.tree</field>
+			<field name="model">logistik.spm.lines</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Pengelolaan Detail SPM" colors="grey:state=='sp';blue:state=='validated'" create="false" delete="false" >
+					<field name="pengajuan_id" string="No. Permintaan"/>
+					<field name="spm_id" string="No. SP Direksi"/>
+					<field name="stasiun_id" invisible="1"/>
+					<field name="seksi_id"/>
+					<field name="company_id" invisible="1"/>
+					<field name="account_id" invisible="1"/>
+					<field name="name_spec"/>
+					<field name="kuantum_spm"/>
+					<!-- <field name="kuantum"/> -->
+					<!--button name(action_show_realisasi)d"  
+						help="Lihat Realisai Bertahap" type="action" 
+						icon="gtk-justify-fill"
+						attrs="{'invisible':[('child_ids','&lt;', 1)]}"/-->
+					<field name="tgl_minta"/>	
+					<field name="pkrat_id"/>
+					<field name="pengadaan"/>
+					<field name="category" invisible="1"/>
+					<field name="state"/>
+					<!-- <button name="action_undo_realisasi" help="Batalkan Realisasi" type="object" icon="gtk-undo" states="approved" groups="logistik_spm.group_spm_approval"/> -->
+					<button name="action_undo_realisasi" help="Batalkan Realisasi" type="object" icon="gtk-undo" states="approved"/>
+					<field name="doc_count" invisible="1"/>
+					<button name="attachment_tree_view" type="object" widget="ka_widget_attachment_button"/>
+					<field name="child_ids" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="action_show_realisasi">
+			<field name="name">Realisasi SPM - Bertahap</field>
+			<field name="res_model">logistik.spm.lines</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree</field>
+			<!--field name="view_id" ref="view_logistik_spm_lines_tree"/-->
+			<field name="target">new</field>		
+			<field name="domain">[('parent_id', '=', active_id)]</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_logistik_spm_lines_approve_tree">
+			<field name="name">logistik.spm.lines.approve.tree</field>
+			<field name="model">logistik.spm.lines</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Pengelolaan Detail SPM" colors="grey:state=='approved';blue:state=='spm'" create="false" delete="false">
+					<field name="spm_id" />
+					<field name="stasiun_id"/>
+					<field name="name_spec"/>
+					<field name="doc_count" invisible="1"/>
+					<button name="attachment_tree_view" type="object" help="Buka Lampiran" icon="fa-paperclip" attrs="{'invisible':[('doc_count','&lt;', 1)]}"/>
+					<field name="kuantum" string="Kuantum"/>
+					<field name="qty_saldo"/>
+					<button name="%(action_logistik_realisasi_spm_line)d" help="Realisasikan Bertahap" type="action" icon="fa-mail-forward" states="spm"/>
+					<button name="action_realisasi_all" help="Realisaikan Semua" type="object" icon="fa-sign-in" states="spm"/>
+					<field name="qty_realisasi"/>
+					<button name="%(action_show_realisasi)d" help="Lihat Realisasi" type="action" icon="fa-file-text" attrs="{'invisible':[('child_ids','&lt;', 1)]}"/>
+					<field name="tgl_minta"/>	
+					<field name="pkrat_id"/>
+					<field name="state"/>
+					<field name="golongan" invisible="1"/>
+					<button name="action_undo_realisasi" help="Batalkan Realisasi" type="object" icon="fa-undo" confirm="Anda yakin ingin membatalkan realisasi ini?" attrs="{'invisible': ['|', ('state', '!=', 'approved'), ('golongan', '!=', 'none')]}"/>
+					<button name="%(action_logistik_spm_cancel)d" help="Batalkan Barang ini" type="action" icon="fa-times-circle" states="spm"/>
+					<field name="category" invisible="1"/>
+					<field name="company_id" invisible="1"/>
+					<field name="account_id" invisible="1"/>
+					<field name="kuantum_sp" invisible="1"/>
+					<field name="child_ids" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+		
+
+		<!-- <menuitem
+			id="menu_log3200"
+			name="Pemeliharaan File"
+			parent="menu_log3000"
+			groups="logistik_spm.group_spm_validator"
+			sequence="2"/> -->
+		<menuitem
+			id="menu_log3200"
+			name="Pemeliharaan File"
+			parent="menu_log3000"
+			sequence="2"/>
+		
+		<!-- LOG3 Action or Menu Definition -->
+		<record model="ir.actions.act_window" id="action_spm_direksi_rab_tree">
+			<field name="name">Permintaan Bulanan RAB</field>
+			<field name="res_model">logistik.spm</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_spm_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_filter"/>
+			<field name="domain">[('category', '=', 'rab'), ('pengadaan', '=', 'RD')]</field>
+			<field name="context">{'default_category': 'rab', 'default_pengadaan': 'RD'}</field>
+		</record>
+
+		<menuitem
+			parent="menu_log3200"
+			name="1. SPM - RAB"
+			id="menu_log3110"
+			action="action_spm_direksi_rab_tree"
+			sequence="1"/>
+
+		<record model="ir.actions.act_window" id="action_spm_direksi_nonrab_tree">
+			<field name="name">Permintaan Bulanan Non RAB</field>
+			<field name="res_model">logistik.spm</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_spm_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_filter"/>
+			<field name="domain">[('category', '=', 'nonrab'), ('pengadaan', '=', 'RD')]</field>
+			<field name="context">{'default_category': 'nonrab', 'default_pengadaan': 'RD'}</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log3200" 
+			name="2. SPM - Non RAB"
+			id="menu_log3120" 
+			action="action_spm_direksi_nonrab_tree"
+			sequence="2"/>
+
+
+		<record model="ir.actions.act_window" id="action_spm_direksi_noncode_tree">
+			<field name="name">Permintaan Bulanan Tanpa Kode Barang</field>
+			<field name="res_model">logistik.spm</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_spm_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_filter"/>
+			<field name="domain">[('category', '=', 'noncode'), ('pengadaan', '=', 'RD')]</field>
+			<field name="context">{'default_category': 'noncode', 'default_pengadaan': 'RD'}</field>
+		</record>
+
+		<menuitem 
+			parent="menu_log3200" 
+			name="3. SPM Tanpa Kode Barang"
+			id="menu_log3130" 
+			action="action_spm_direksi_noncode_tree"
+			sequence="3"/>
+			
+		<!--record model="ir.actions.act_window" id="action_validated_spm_tree">
+			<field name="name">Persetujuan SPM dari PG</field>
+			<field name="res_model">logistik.spm</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_spm_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_filter"/>
+			<field name="domain">[('state', '=', 'validated')]</field>
+		</record-->
+
+		<record model="ir.actions.act_window" id="action_approve_spm_line_tree">
+			<field name="name">Persetujuan SPM dari PG</field>
+			<field name="res_model">logistik.spm.lines</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_spm_lines_approve_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_lines_filter"/>
+			<field name="domain">[('state', 'in', ('spm', 'approved', 'cancel')), ('pengadaan', '=', 'RD'), ('golongan', '=', 'none')]</field>
+		</record>
+		
+		<!-- <menuitem parent="menu_log3000" groups = "logistik_spm.group_spm_approval" name="Persetujuan SPM dari PG" id="menu_log3300" action="action_approve_spm_line_tree" sequence="3"/> -->
+		<menuitem parent="menu_log3000" 
+            name="Persetujuan SPM dari PG" 
+            id="menu_log3300" 
+            groups="ka_logistik_spm.group_approval"
+            action="action_approve_spm_line_tree" 
+            sequence="3"/>
+
+		<record model="ir.actions.act_window" id="action_approve_spm_line_spm_tree">
+			<field name="name">Persetujuan SPM dari PG</field>
+			<field name="res_model">logistik.spm.lines</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_spm_lines_approve_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_lines_filter"/>
+			<field name="domain">[('pengadaan', '=', 'RD'), ('golongan', '=', 'none')]</field>
+			<field name="context">{'search_default_spm_spm': 1}</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_approve_spm_line_approve_tree">
+			<field name="name">Persetujuan SPM dari PG</field>
+			<field name="res_model">logistik.spm.lines</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_spm_lines_approve_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_lines_filter"/>
+			<field name="domain">[('pengadaan', '=', 'RD'), ('golongan', '=', 'none')]</field>
+			<field name="context">{'search_default_spm_approved': 1}</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_approve_spm_line_cancel_tree">
+			<field name="name">Persetujuan SPM dari PG</field>
+			<field name="res_model">logistik.spm.lines</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_logistik_spm_lines_approve_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_lines_filter"/>
+			<field name="domain">[('pengadaan', '=', 'RD'), ('golongan', '=', 'none')]</field>
+			<field name="context">{'search_default_spm_cancel': 1}</field>
+		</record>
+
+		<menuitem parent="menu_log3300" name="Belum Disetujui" id="menu_log3301" action="action_approve_spm_line_spm_tree"/>
+		<menuitem parent="menu_log3300" name="Sudah Disetujui" id="menu_log3302" action="action_approve_spm_line_approve_tree"/>
+		<menuitem parent="menu_log3300" name="Sudah Dibatalkan" id="menu_log3303" action="action_approve_spm_line_cancel_tree"/>
+
+		<record model="ir.actions.act_window" id="action_logistik_spm_lines_tree">
+			<field name="name">Status Barang</field>
+			<field name="res_model">logistik.spm.lines</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,pivot</field>
+			<field name="domain">[('parent_id','=', False)]</field>
+			<field name="view_id" ref="view_logistik_spm_lines_tree"/>
+			<field name="search_view_id" ref="view_logistik_spm_lines_filter"/>
+		</record>
+			
+		<menuitem 
+			parent="menu_spm1000" 
+			id="menu_log3500" 
+			action="action_logistik_spm_lines_tree"
+			sequence="5"/>
+	</data>
+</odoo>

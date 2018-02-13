@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="template_laporan_harian_tetes">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_stock.laporan_harian_tetes_document"/>
+				</div>
+			</t>
+		</template>
+
+		<template id="laporan_harian_tetes_document">
+			<t t-call="report.html_container">
+				
+				<div class="header" style="font-family: Arial, Helvetica, sans-serif;margin:10px">
+					<div class="col-xs-12" style="margin:10px 0px; padding:0px;">
+						<p class="text-center" style="font-size: 20px;"> <strong> LAPORAN HARIAN TETES TAHUN PANEN 
+							<span t-field="o.manufacture_daily_id_molasses.session_id.fiscalyear_id.name"/> </strong> </p>
+						<p class="text-center" style="font-size: 18px;"> <strong> Tanggal 
+							<span t-field="o.date" t-field-options='{"format": "dd-MM-yyyy"}'/> </strong> </p>
+					</div>
+					<table width="100%">
+						<tr>
+							<td class="text-left" style="font-size: 16px;"><strong>Nomor : <span t-field="o.name"/></strong></td>
+							<td class="text-right" style="font-size: 16px;"><ul class="list-inline"><li>Hal.</li><li><span class="page"/></li></ul></td>
+						</tr>
+					</table>		
+				</div>
+				
+				<div class="page" style="font-family: Arial, Helvetica, sans-serif;margin:10px">
+					<div class="col-xs-12" style="margin:10px 0px; padding:3px 0px;border-top:1px solid #000; ">
+						<table width="100%" style="font-size: 16px;border-collapse:collapse;">
+							<t t-set="no" t-value="1"/>
+								<thead>						
+									<tr>
+										<th class="text-center" colspan="2" rowspan="2" style="padding-top:15px;">URAIAN</th>
+										<th class="text-center" width="20%" rowspan="2" style="padding-top:15px;border-left:1px solid #000;">Jumlah</th>
+										<th class="text-center" style="padding:7px 0px;border-left:1px solid #000;" t-att-colspan="o.get_len_line()">Tempat Penimbunan</th>
+									</tr>
+									
+									
+									<tr>
+                    					<t t-foreach="o.line_ids" t-as="line">
+											<th class="text-center" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000"><span t-field="line.name"/></th>
+										</t>
+									</tr>
+								</thead>
+								<tbody>
+									<tr> 
+										<td class="text-left" width="3%" style="padding:7px 0px;border-top:1px solid #000;"><strong>A.</strong></td> 
+										<td class="text-left" width="17%" style="padding:7px 0px;border-top:1px solid #000"><strong>PRODUKSI</strong></td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;"></td>
+										<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;"></td>
+										</t>
+									</tr>
+									<tr>
+										<td class="text-left" width="3%" style="padding:7px 0px;"></td> 
+										<td class="text-left" width="17%" style="padding:7px 0px;">s/d hari yang lalu</td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-left:1px solid #000;">
+                    						<span t-esc="'{0:,.2f}'.format(o.get_qty_production_yesterday())"/>
+										</td>
+                    					<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-left:1px solid #000;">
+												<span t-esc="'{0:,.2f}'.format(o.get_qty_production_tank_yesterday(line.name))"/>
+											</td>
+										</t>
+									</tr>
+									<tr>
+										<td class="text-left" width="3%" style="padding:7px 0px;"></td>  
+										<td class="text-left" width="17%" style="padding:7px 0px;">Hari ini</td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-left:1px solid #000;">
+											<span t-esc="'{0:,.2f}'.format(o.get_qty_production_today())"/>
+										</td>
+                    					<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-left:1px solid #000;">
+												<span t-esc="'{0:,.2f}'.format(o.get_qty_production_tank_today(line.name))"/>
+											</td>
+										</t>
+									</tr>
+									<tr>
+										<td class="text-left" width="3%" style="padding:7px 0px;"></td> 
+										<td class="text-left" width="17%" style="padding:7px 0px;">Jumlah s/d hari ini</td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-left:1px solid #000;">
+											<span t-esc="'{0:,.2f}'.format(o.get_qty_production_until_today())"/>
+										</td>
+                    					<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-left:1px solid #000;">
+												<span t-esc="'{0:,.2f}'.format(o.get_qty_production_tank_until_today(line.name))"/>
+											</td>
+										</t>
+									</tr>
+									<tr> 
+										<td class="text-left" width="3%" style="padding:7px 0px;border-top:1px solid #000;"><strong>B.</strong></td> 
+										<td class="text-left" width="17%" style="padding:7px 0px;border-top:1px solid #000"><strong>PENGELUARAN</strong></td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;"></td>
+										<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;"></td>
+										</t>
+									</tr>
+									<tr>
+										<td class="text-left" width="3%" style="padding:7px 0px;"></td>   
+										<td class="text-left" width="17%" style="padding:7px 0px;">s/d hari yang lalu</td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-left:1px solid #000;">
+                    						<span t-esc="'{0:,.2f}'.format(o.get_qty_sale_yesterday())"/>
+										</td>
+                    					<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-left:1px solid #000;">
+												<span t-esc="'{0:,.2f}'.format(o.get_qty_sale_tank_yesterday(line.name))"/>
+											</td>
+										</t>
+									</tr>
+									<tr>
+										<td class="text-left" width="3%" style="padding:7px 0px;"></td>   
+										<td class="text-left" width="17%" style="padding:7px 0px;">Hari ini</td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-left:1px solid #000;">
+											<span t-esc="'{0:,.2f}'.format(o.get_qty_sale_today())"/>
+										</td>
+                    					<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-left:1px solid #000;">
+												<span t-esc="'{0:,.2f}'.format(o.get_qty_sale_tank_today(line.name))"/>
+											</td>
+										</t>
+									</tr>
+									<tr>
+										<td class="text-left" width="3%" style="padding:7px 0px;"></td>  
+										<td class="text-left" width="17%" style="padding:7px 0px;">Jumlah s/d hari ini</td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-left:1px solid #000;">
+											<span t-esc="'{0:,.2f}'.format(o.get_qty_sale_until_today())"/>
+										</td>
+                    					<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-left:1px solid #000;">
+												<span t-esc="'{0:,.2f}'.format(o.get_qty_sale_tank_until_today(line.name))"/>
+											</td>
+										</t>
+									</tr>
+									<tr> 
+										<td class="text-left" width="3%" style="padding:7px 0px;border-top:1px solid #000;border-bottom:1px solid #000;"><strong>C.</strong></td>  
+										<td class="text-left" width="17%" style="padding:7px 0px;border-top:1px solid #000;border-bottom:1px solid #000;"><strong>PERSEDIAAN</strong></td>
+										<td class="text-center" width="15%" style="padding:7px 0px;border-top:1px solid #000;border-left:1px solid #000;">
+											<span t-esc="'{0:,.2f}'.format(o.get_equity_qty())"/>
+										</td>
+                    					<t t-foreach="o.line_ids" t-as="line">
+											<td class="text-center" style="padding:7px 0px;border-top:1px solid #000;border-left:1px solid #000;">
+												<span t-esc="'{0:,.2f}'.format(o.get_equity_qty_tank(line.name))"/>
+											</td>
+										</t>
+									</tr>
+									<tr> 
+										<td class="text-left" t-att-colspan="o.total_td()" style="padding:7px 0px;border-top:1px solid #000;"><strong>D. RINCIAN PENGELUARAN TETES HARI INI (Kg)</strong></td>
+									</tr>
+								</tbody>
+						</table>
+						
+						<table width="100%"> 
+								<tbody>								
+									<tr style="font-family: Arial, Helvetica, sans-serif; font-size: 16px;text-align: center"> 
+										<td class="text-center" width="7%" style="padding:7px 0px;border-top:1px solid #000;border-bottom:1px solid #000;">NoUrt</td>
+										<td class="text-center" width="13%" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;">No. Kirim</td>
+										<td class="text-center" width="20%" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;">No. Kendaraan</td>
+										<td class="text-center" width="20%" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;">Berat Neto</td>
+										<td class="text-center" width="20%" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;">Brix (%)</td>
+										<td class="text-center" width="20%" style="padding:7px 0px;border-left:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;">Berat Brix (Kg)</td>
+									</tr>
+									
+									
+									
+									<t t-set="total_berat_netto" t-value="0"/>
+									<t t-set="total_average_brix" t-value="0"/>
+									<t t-set="no" t-value="1"/>									
+									<t t-foreach="o.get_sale_order()" t-as="sale">
+										<t t-set="berat_netto" t-value="0"/>
+										<t t-set="average_brix" t-value="0"/>
+	                    				<t t-foreach="o.get_rincian_pengeluaran(sale.id)" t-as="stock">
+											<tr style="font-family: 'Courier New', Courier, monospace; font-size: 16px;text-align: center">
+												<td class="text-center" width="7%" style="padding:7px 0px">
+													<span t-esc="no"/> 
+													<t t-set="no" t-value="no+1"/>
+												</td>
+												<td class="text-center" width="13%" style="padding:7px 0px">
+													<span t-esc="(stock.picking_id.delivery_number)"/>
+												</td>
+												<td class="text-center" width="20%" style="padding:7px 0px">
+													<span t-esc="(stock.picking_id.timbangan_id.truck_id)"/>
+												</td>
+												<td class="text-center" width="20%" style="padding:7px 0px">
+													<span t-esc="(stock.product_uom_qty)"/>
+												</td>
+												<td class="text-center" width="20%" style="padding:7px 0px">
+													<span t-esc="(stock.picking_id.timbangan_id.tetes_brix_qty)"/>
+												</td>
+												<td class="text-center" width="20%" style="padding:7px 0px">
+													<span t-esc="(stock.product_uom_qty)"/>
+												</td>
+												<t t-set="berat_netto" t-value="berat_netto + stock.product_uom_qty"/>	
+												<t t-set="average_brix" t-value="average_brix + stock.picking_id.timbangan_id.tetes_brix_qty"/>											
+											</tr>
+										</t>
+										
+										<t t-set="average_brix" t-value="average_brix / len(o.get_rincian_pengeluaran(sale.id))"/>
+										<tr style="font-family: 'Courier New', Courier, monospace; font-size: 16px;text-align: center">
+											<td class="text-center" width="7%" style="padding:7px 0px;"></td>
+											<td class="text-left" colspan="2" style="padding:7px 0px;">SubTotal <span t-esc="sale.name"/></td>
+											<td class="text-center" width="20%" style="padding:7px 0px;"><strong><span t-esc="berat_netto"/></strong></td>
+											<td class="text-center" width="20%" style="padding:7px 0px;"><strong><span t-esc="average_brix"/></strong></td>
+											<td class="text-center" width="20%" style="padding:7px 0px;"><strong><span t-esc="berat_netto"/></strong></td>
+										</tr>
+										
+										<t t-set="total_berat_netto" t-value="total_berat_netto + berat_netto"/>
+										<t t-set="total_average_brix" t-value="total_average_brix + average_brix"/>
+									</t>
+									
+									<tr style="font-family: 'Courier New', Courier, monospace; font-size: 16px;text-align: center">
+										<t t-set="total_average_brix" t-value="o.set_total_average_brix(total_average_brix)"/>
+										
+										<td class="text-right" colspan="3" style="padding:7px 0px;border-bottom:1px solid #000;"><strong>Total</strong></td>
+										<td class="text-center" width="20%" style="padding:7px 0px;border-bottom:1px solid #000;">
+											<strong><span t-esc="total_berat_netto"/></strong>
+										</td>
+										<td class="text-center" width="20%" style="padding:7px 0px;border-bottom:1px solid #000;">
+											<strong><span t-esc="total_average_brix"/></strong>
+										</td>
+										<td class="text-center" width="20%" style="padding:7px 0px;border-bottom:1px solid #000;">
+											<strong><span t-esc="total_berat_netto"/></strong>
+										</td>
+									</tr>
+								</tbody>
+						</table>
+						<br></br>
+						
+						<div class="col-xs-5" style="font-family: 'Courier New', Courier, monospace; font-size: 16px;text-align: left">
+							<p><strong>Catatan Sisa DO :</strong></p>
+							<table width="100%">				
+								<t t-foreach="o.get_partner()" t-as="partner">
+									<tr style="font-family: 'Courier New', Courier, monospace; font-size: 16px;text-align: center">
+										<td class="text-left" width="60%" style="padding:7px 0px;"><span t-esc="partner.display_name"/></td>
+										<td class="text-right" width="40%" style="padding:7px 0px;"><span t-esc="o.get_qty_partner(partner.id)"/></td>
+									</tr>
+								</t>
+							</table>
+						</div>
+						<div class="col-xs-5 col-xs-offset-1" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px;text-align: center">
+							<p><span t-field="o.company_id.city"/>, <span t-esc="datetime.datetime.now().strftime('%d-%m-%Y')"/></p>
+							<br></br>
+							<br></br>
+							<br></br>
+							<p><u>testtesttest</u></p>
+							<p>apaajalah jabatannya</p>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</odoo>

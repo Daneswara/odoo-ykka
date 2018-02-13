@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report 
+            id="bukti_keluar_gula_natura" 
+            model="stock.picking"
+            string="Bukti Pengeluaran Gula Natura"
+            report_type="qweb-pdf"
+            name="ka_sale.template_bukti_keluar_gula_natura"
+            file="ka_sale.template_bukti_keluar_gula_natura"
+			menu="False"        
+        /> 
+
+		<template id="template_bukti_keluar_gula_natura">
+			<t t-foreach="docs" t-as="o">
+				<div class="row">
+					<t t-call="ka_sale.bukti_keluar_gula_natura_document"/>
+				</div>
+			</t>
+		</template>
+		
+		<template id="bukti_keluar_gula_natura_document">
+			<t t-call="report.html_container">
+				<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+				<div class="page" style="font-family: Dotrice;">
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:100px 10px 0px 10px">
+							<table width="100%" style="margin:0px; padding: 0px; font-size: 16px;">
+								<tbody>
+									<tr height="26px">
+										<td width="23%">JENIS GULA</td>
+										<td width="4%">:</td>
+										<td>SHS I A</td>
+										<td class="text-right">Panen <span t-esc="datetime.datetime.now().strftime('%Y')"/></td>
+									</tr>
+									<tr height="26px">
+										<td>DO / Kontrak A No.</td>
+										<td>:</td>
+										<td><span t-field="o.sale_id.name"/></td>
+										<td></td>
+									</tr>
+									<tr height="26px">
+										<td>Jumlah</td>
+										<td>:</td>
+										<td><span t-esc="o.jum_keluar_gula()"/> <span t-field="o.move_lines.product_id.production_uom_id.name"/></td>
+										<td></td>
+									</tr>
+									<tr height="26px">
+										<td>Petani</td>
+										<td>:</td>
+										<td><span t-field="o.partner_id.name"/></td>
+										<td></td>
+									</tr>
+									<tr height="26px">
+										<td>Alamat</td>
+										<td>:</td>
+										<td><span t-field="o.partner_id.street"/>  <span t-field="o.partner_id.city"/></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>	
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:40px 10px 0px 10px; font-size: 18px;">
+							<p class="text-center"><strong>PENYERAHAN</strong> </p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:10px 10px 0px 10px">
+							<table width="100%" style="margin:0px; padding: 0px; font-size: 16px;">
+								<tbody>
+									<tr height="26px">
+										<td width="23%">Truk No. / PT</td>
+										<td width="4%">:</td>
+										<td><span t-esc="o.timbangan_id.truck_id"/> / <span t-esc="o.agent_partner_id.name"/></td>
+									</tr>
+									<tr height="26px">
+										<td>Jumlah Gula</td>
+										<td>:</td>
+										<td><span t-esc="int(o.get_netto_karung())"/> Karung</td>
+									</tr>
+									<tr height="26px">
+										<td></td>
+										<td></td>
+										<td>( <span t-esc="o.amount_to_text_id(int(o.get_netto_karung()))"/> )</td>
+									</tr>
+								</tbody>
+							</table>	
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:40px 10px 0px 10px">
+							<table width="100%" style="margin:0px; padding: 0px; font-size: 16px;">
+								<tbody>
+									<tr height="28px">
+										<td width="23%">Berat bersih</td>
+										<td width="4%">:</td>
+										<td><t t-esc="str('{0:,.2f}'.format(float(o.timbangan_id.weight_net))).replace('.', '%').replace(',', '.').replace('%', ',')"/> <span t-field="o.move_lines.product_id.uom_id.name"/></td>
+									</tr>
+									<tr height="28px">
+										<td>Batas waktu</td>
+										<td>:</td>
+										<td><span t-field="o.min_date" t-field-options='{"format": "dd-MM-yyyy"}'/></td>
+									</tr>
+								</tbody>
+							</table>	
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:20px 10px 0px 10px">
+							<table width="100%" style="margin:0px; padding: 0px; font-size: 16px;">
+								<tbody>
+									<tr height="30px">
+										<td colspan="2"></td>
+										<td class="text-center">
+											<span t-field="o.company_id.city"/>, <span t-esc="datetime.datetime.now().strftime('%d-%m-%Y')"/>
+										</td>
+									</tr>
+									<tr height="120px">
+										<td class="text-center">Penerima</td>
+										<td width="30%"></td>
+										<td class="text-center">Manajer T.U.K,</td>
+									</tr>
+									<tr height="26px">
+										<td class="text-center">__________________</td>
+										<td></td>
+										<td class="text-center">__________________</td>
+									</tr>
+									<tr height="120px">
+										<td class="text-center" style="padding-top:40px">Yang Menyerahkan</td>
+										<td colspan="2"></td>
+									</tr>
+									<tr>
+										<td  class="text-center" style="padding-top:25px;">__________________</td>
+										<td colspan="2"></td>
+									</tr>
+									<tr>
+										<td  class="text-center" style="padding-top:-10px;">Mandor Gudang Gula</td>
+										<td colspan="2"></td>
+									</tr>
+								</tbody>
+							</table>	
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12" style="margin:0px;padding:25px 10px 0px 10px; font-size: 13px;">
+							<p>NB : - Keluhan atas jumlah gula setelah meninggalkan gudang tidak dilayani</p>
+							<p style="margin-top:-10px; padding-left:45px">- Mohon tidak memberikan tips kepada Petugas kami</p>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>				
+	</data>
+</odoo>
+	

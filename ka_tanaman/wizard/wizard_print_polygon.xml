@@ -1,0 +1,32 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="print_polygon_wizard_form_view">
+            <field name="name">print.polygon.form</field>
+            <field name="model">ka_plantation.area.print.polygon</field>
+            <field name="arch" type="xml">
+                <form string="Print polygon Form">
+	                <group>
+	                    <field name="pilih_kategori"/>
+                        <field name="desa_id" attrs="{'invisible':[('pilih_kategori', '!=', 'desa')]}"/>
+                        <field name="kecamatan_id" attrs="{'invisible':[('pilih_kategori', '!=', 'kecamatan')]}"/>
+                        <field name="kab_kota_id"  attrs="{'invisible':[('pilih_kategori', '!=', 'kabupaten')]}"/>
+	                </group>
+	                <footer>
+	                 	<button name="wizard_cetak_polygon" type="object" string="Download PDF"/> or 
+	                 	<button name="" string="Cancel" special="cancel" class="oe_link"/> 
+	                </footer>
+	            </form>
+            </field>
+        </record>
+
+        <record id="action_view_print_polygon" model="ir.actions.act_window">
+            <field name="name">Plot Polygon to PDF</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_plantation.area.print.polygon</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="print_polygon_wizard_form_view"/>
+            <field name="target">new</field>
+        </record>
+	</data>
+</odoo>

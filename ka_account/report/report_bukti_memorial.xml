@@ -1,0 +1,71 @@
+<odoo>
+	<data>
+		 <report
+        id="report_bukti_memorial"
+        model="account.move"
+        string="Report Bukti Memorial"
+        name="ka_account.report_bukti_memo"
+        file="ka_account.report_bukti_memo"
+        report_type="qweb-pdf" 
+        menu="True"/>
+
+        <template id="report_bukti_memo">
+		    <t t-call="report.html_container">
+		        <t t-foreach="docs" t-as="doc">
+		        	<t t-set="sumDebet" t-value="0" />
+		        	<t t-set="sumCredit" t-value="0" />
+		        	<div class="header">
+		        		<div style="width:20%;margin: 40px 600px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+		        			<span t-field ="doc.name"/>
+						</div>
+						<div style="width:20%;margin: 125px 600px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+							<span t-field ="doc.date"/>
+						</div>
+		        	</div>
+		            <div class="page">
+						<div style="width:100%;left: 0px;top: 0px;z-index:0;position:absolute;font-size:16px; margin-top:65px;">
+							<t t-foreach="doc.line_ids" t-as="o">
+								<table style="width:99%;">
+									<tr>
+										<td style="width:12%;text-align: left;padding:5px;">
+											<span t-field ="o.account_id.code"/>
+										</td>
+										<td style="width:48%;text-align: left;padding:5px;">
+											<span t-field ="o.account_id.name"/> - <span t-field ="o.partner_id"/> - <span t-field ="o.name"/>
+										</td>
+										<td style="width:20%;text-align: right;padding:5px;">
+											<t t-if="o.debit != 0">
+												<t t-esc="str('{0:,.2f}'.format(float(o.debit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												<t t-set="sumDebet" t-value="sumDebet+o.debit" />
+											</t>
+											<t t-if="o.debit == 0">
+												<span> - </span>
+											</t>
+										</td>
+										<td style="width:20%;text-align: right;padding:5px;">
+											<t t-if="o.credit != 0">
+												<t t-esc="str('{0:,.2f}'.format(float(o.credit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+												<t t-set="sumCredit" t-value="sumCredit+o.credit" />
+											</t>
+											<t t-if="o.credit == 0">
+												<span> - </span>
+											</t>
+										</td>
+									</tr>
+								</table>
+							</t>
+						</div>
+					</div>
+					<div class="footer">
+						<div style="width:20%;margin: 0px 630px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+							<t t-esc="str('{0:,.2f}'.format(float(sumDebet))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+						</div>
+						<div style="width:20%;margin: 0px 830px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
+							<t t-esc="str('{0:,.2f}'.format(float(sumCredit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+						</div>
+					</div>
+		        </t>
+		    </t>
+		</template>
+	</data>
+</odoo>

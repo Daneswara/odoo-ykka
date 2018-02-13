@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <report 
+            id="laporan_harian_ampas" 
+            model="stock.move.daily.bagasse"
+            string="Laporan Harian Ampas"
+            report_type="qweb-pdf"
+            name="ka_stock.template_laporan_harian_ampas"
+            file="ka_stock.template_laporan_harian_ampas"
+			menu="False"       
+        /> 
+         <record id="paperformat_laporan_harian_ampas" model="report.paperformat">
+            <field name="name">Laporan Harian Ampas</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">2</field>
+            <field name="margin_left">15</field>
+            <field name="margin_right">15</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+		<record id="ka_stock.laporan_harian_ampas" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="ka_stock.paperformat_laporan_harian_ampas" />
+		</record>	
+	</data>
+</odoo>

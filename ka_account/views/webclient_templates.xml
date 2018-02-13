@@ -1,0 +1,9 @@
+<odoo>
+	<data>
+		<template id="ka_form_view_layout_extra" inherit_id="web.assets_backend">
+        	<xpath expr="//link[@href='/web/static/src/less/form_view_layout_extra.less']" position="replace">
+        		<link rel="stylesheet" type="text/less" href="/ka_account/static/src/less/form_view_layout_extra.less"/>
+        	</xpath>
+		</template>
+	</data>
+</odoo>

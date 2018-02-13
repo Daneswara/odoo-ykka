@@ -1,0 +1,13 @@
+.openerp .oe_form_sheetbg {
+	padding: 16px 0;
+	max-width: none;
+}
+
+.openerp .oe_form_sheet_landscape {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.td-no-border {
+	border: none;
+}

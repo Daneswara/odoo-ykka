@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_logistik_spm_user,logistik.spm.user,model_logistik_spm,ka_logistik_spm.group_user,1,0,0,0
+access_logistik_spm_lines_user,logistik.spm.lines.user,model_logistik_spm_lines,ka_logistik_spm.group_user,1,0,0,0
+access_logistik_spm_creator,logistik.pengajauan.spm.creator,model_logistik_pengajuan_spm,ka_logistik_spm.group_creator,1,1,1,1
+access_logistik_spm_lines_creator,logistik.spm.lines.creator,model_logistik_spm_lines,ka_logistik_spm.group_creator,1,1,1,1
+access_logistik_spm_validator,logistik.spm.validator,model_logistik_spm,ka_logistik_spm.group_validator,1,1,1,0
+access_logistik_spm_lines_validator,logistik.spm.lines.validator,model_logistik_spm_lines,ka_logistik_spm.group_validator,1,1,1,0
+access_logistik_spm_approval,logistik.spm.approval,model_logistik_spm,ka_logistik_spm.group_approval,1,1,0,0
+access_logistik_spm_lines_approval,logistik.spm.approval.lines,model_logistik_spm_lines,ka_logistik_spm.group_approval,1,1,0,0
+access_spm_product_code_request_user_purchase,spm.product.code.request user.purchase,model_spm_product_code_request,purchase.group_purchase_user,1,1,1,1
+access_spm_product_code_request_user_stock,spm.product.code.request user.stock,model_spm_product_code_request,stock.group_stock_user,1,1,1,1

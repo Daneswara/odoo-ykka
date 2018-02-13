@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="template_mail_cuti_allocation" model="mail.template">
+			<field name="name">Alokasi Cuti Mail Template</field>
+			<field name="email_from">${object.company_id.email or ''}</field>
+			<field name="subject">Pemberitahuan Alokasi Jatah Cuti</field>
+			<field name="email_to">${object.employee_id.work_email}</field>
+			<field name="email_cc"/>
+			<field name="model_id" ref="ka_hr_holidays.model_hr_holidays"/>
+			<field name="auto_delete" eval="False"/>
+			<field name="lang"/>
+			<field name="copyvalue"/>
+			<field name="body_html">
+<![CDATA[
+<p>
+	Yth. ${object.employee_id.name}
+</p>
+<p>
+	Berikut ini kami informasikan bahwa anda mendapatkan alokasi cuti:
+	<br/>
+	Jenis Cuti: ${object.holiday_status_id.code} - ${object.holiday_status_id.name}
+	<br/>
+	Jumlah: ${object.number_of_days_temp} ${object.holiday_status_id.satuan}
+	<br/>
+	Tanggal Mulai: ${object.get_local_date_start_exp()}
+</p>
+<br/>
+<p>
+	Terima Kasih.
+	<br/>
+	${object.company_id.name}
+</p>
+]]>
+			</field>
+		</record>
+	</data>
+</odoo>

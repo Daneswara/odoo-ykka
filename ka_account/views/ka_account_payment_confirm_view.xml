@@ -1,0 +1,110 @@
+<odoo>
+	<data>
+       	<record id="ka_account_payment_confirm_form" model="ir.ui.view">
+            <field name="name">ka_account.payment.confirm.form</field>
+            <field name="model">ka_account.payment.confirm</field>
+            <field name="arch" type="xml">
+            	<form string="Confirmed Payments" version="7">
+            		<header>
+            			<button name="action_set_draft" states="confirm" string="Set to Draft" type="object" groups="account.group_account_manager"/>
+                        <button name="action_confirm" class="oe_highlight" states="draft" string="Confirm" type="object" groups="account.group_account_manager"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+            		<sheet>
+            			<div class="oe_button_box" name="button_box"> 
+                    		 <button type="action" string="Lampiran Bank" name="%(report_ka_account_confirmed_payment)d" class="oe_stat_button"
+                    		 icon="fa-print" attrs="{'invisible': [('state','=', 'draft')]}"/>
+                             <button type="object" string="Slip Setoran" name="print_slip_setoran_bank" class="oe_stat_button"
+                             icon="fa-print" attrs="{'invisible': [('state','=', 'draft')]}"/>
+                    	</div>	 
+            			<div class="oe_title">
+                            <h1><field name="name" required="1" readonly="0"/></h1>
+                        </div>
+                        <group>
+                        	<group>
+                        		<field name="confirm_date" required="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        		<field name="journal_id" required="1" options="{'no_create': True}" domain="[('type','in',('bank','cash'))]" attrs="{'readonly': [('state','!=','draft')]}"/>
+                        	</group>
+                            <group>
+                                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"
+                                     attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="currency_id" invisible="1" options="{'no_create': True}" />
+                                <field name="ttd_dir" attrs="{'readonly': [('state','!=','draft')]}" required="1"/>
+  								<field name="ttd_tuk" attrs="{'readonly': [('state','!=','draft')]}" required="1"/> 
+                                <field name="printed" readonly="1"/> 
+                            </group>
+                        </group>
+	            		<notebook>
+	            			<page string="Bukti Kas">
+            					<field name="journal_voucher_ids"  options="{'reload_on_button': True}" widget="many2many"
+            						attrs="{'readonly': [('state','!=','draft')]}" domain="[('state','=','proposed'), ('journal_id', '=',journal_id), ('confirmed_payment_id','=',False)]">
+        							<tree delete="false">
+        								<field name="main_state" invisible="1"/>
+        								<field name="name"/>
+                                        <field name="partner_id"/>
+                                        <field name="partner_bank_id"/>
+                                        <field name="partner_bank_acc"/>
+        								<field name="description"/>
+        								<field name="date"/>
+        								<field name="currency_id" invisible="1"/>
+        								<field name="total_amount"/>
+        								<button name="action_delete" type="object" icon="fa-trash-o" attrs="{'invisible': [('main_state','!=', 'draft')]}"/>      								
+        							</tree>
+        						</field>
+	            				<group>
+	            					<group class="oe_subtotal_footer oe_right">           						
+	                                    <field name="amount_total" class="oe_subtotal_footer_separator"/>
+	                                </group>
+	            				</group>
+	            			</page>
+	            		</notebook>
+            		</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+            	</form>
+            </field>
+       	</record>
+       	
+       	<record id="ka_account_payment_confirm_tree" model="ir.ui.view">
+            <field name="name">ka_account.payment.confirm.tree</field>
+            <field name="model">ka_account.payment.confirm</field>
+            <field name="arch" type="xml">
+            	<tree string="Confirmed Payments">
+            		<field name="name"/>
+                    <field name="journal_id"/>
+            		<field name="confirm_date"/>
+            		<field name="currency_id" invisible="1"/>
+            		<field name="amount_total"/>
+            		<field name="state"/>
+            	</tree>
+            </field>
+        </record>
+        
+    	<record id="ka_account_payment_confirm_filter" model="ir.ui.view">
+            <field name="name">ka_account.payment.confirm.select</field>
+            <field name="model">ka_account.payment.confirm</field>
+            <field name="arch" type="xml">
+                <search string="Search Confirm Payment">
+                    <field name="name" string="Nomor"/>
+                    <field name="journal_id" string="Journal"/>
+               </search>   
+            </field>
+        </record>
+       	
+       	<record id="action_open_confirmed_payment" model="ir.actions.act_window">
+		    <field name="name">Pengajuan Ke Bank</field>
+		    <field name="res_model">ka_account.payment.confirm</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">list,form</field>
+		</record>
+       	
+       	<menuitem name="Pengajuan Ke Bank" 
+       		id="menu_confirmed_payment" 
+       		sequence="5"
+       		parent="ka_account.menu_journal_voucher"
+            action="action_open_confirmed_payment"
+       		groups="account.group_account_manager"/> 
+	</data>
+</odoo>

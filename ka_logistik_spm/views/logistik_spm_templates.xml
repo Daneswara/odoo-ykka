@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="Logistik SPM assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/ka_logistik_spm/static/src/less/logistik_spm.less"/>
+            <script type="text/javascript" src="/ka_logistik_spm/static/src/js/logistik_spm.js"></script>
+        </xpath>
+    </template>
+</odoo>
+
+

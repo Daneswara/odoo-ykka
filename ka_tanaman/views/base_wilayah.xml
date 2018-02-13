@@ -1,0 +1,43 @@
+<odoo>
+	<data>
+		<record model="ir.actions.act_window" id="action_kabupaten">
+			<field name="name">Data Kabupaten</field>
+			<field name="res_model">res.kab.kota</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data Kabupaten masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_kecamatan">
+			<field name="name">Data Kecamatan</field>
+			<field name="res_model">res.kecamatan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data Kecamatan masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_desa">
+			<field name="name">Data Desa</field>
+			<field name="res_model">res.desa.kelurahan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data Desa masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_provinsi">
+			<field name="name">Data Provinsi</field>
+			<field name="res_model">res.provinsi</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data Provinsi masih kosong. Input terlebih dahulu.</p>
+			</field>
+		</record>
+	</data>
+</odoo>

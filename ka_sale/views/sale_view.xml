@@ -1,0 +1,180 @@
+<odoo>
+	<data>
+		<!-- Edit Base Menu Sales -->
+		<menuitem id="sales_team.menu_sales" 
+			name="Sales" 
+			parent="sales_team.menu_base_partner" 
+			sequence="2"/> 
+		
+        <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="domain">[('state','in',('draft','sent','cancel'))]</field>
+        </record>
+		
+		<record id="view_saleorder_linked_form" model="ir.ui.view">
+            <field name="name">saleorder.linked.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <button name="action_cancel" position="attributes">
+                    <attribute name="confirm">Are you sure to cancel this record?</attribute>  
+                </button>
+            	<xpath expr="//form/header/button[1]" position="attributes">
+            		<attribute name="attrs">{'invisible': [('invisible_button_invoice','=',True)]}</attribute>
+            	</xpath>
+            	<xpath expr="//button[@name='action_quotation_send']" position="after">
+	                <button name="action_create_so_factory" string="Create Factory SO" type="object" class="oe_highlight" 
+	                	attrs="{'invisible': ['|','|','|','|','|',('invoice_count','=',0),('invoice_status','not in',('to invoice','invoiced')),('dest_so_id','!=',False),('saleorder_type','!=','rkout'),('sale_contract_id','=',False),('need_contract','=',False)]}"/>
+	               	<button name="action_create_so_factory" string="Create Factory SO" type="object" class="oe_highlight" 
+	                	attrs="{'invisible': ['|','|','|','|',('invoice_count','=',0),('invoice_status','not in',('to invoice','invoiced')),('dest_so_id','!=',False),('saleorder_type','!=','rkout'),('need_contract','=',True)]}"/>
+	            </xpath>
+	            <xpath expr="//button[@name='action_confirm']" position="before">
+              		<button name="create_sale_contract" string="Create Contract" class="oe_highlight" type="object"
+              		attrs="{'invisible': ['|','|','|',('saleorder_type','=','rkin'),('invoice_status','!=','to invoice'),('sale_contract_id','!=', False),('need_contract','=',False)]}"/>
+                </xpath>
+                <field name="payment_term_id" position="replace"></field>
+             	<field name="partner_id" position="after">
+             		<field name="agent_partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+             		<field name="product_ids" invisible="1" widget="many2many_tags"/>
+             		<field name="source_partner_id" attrs="{'invisible': [('saleorder_type', '!=', 'rkin')]}"/>  
+                    <field name="so_categ_id" options="{'no_create': True}" required="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+                    <field name="payment_term_id" string="Tenor" attrs="{'readonly': [('state','!=','draft')]}"/>
+             		<field name="invisible_button_invoice" invisible="1"/>
+                	<field name="sale_contract_id" invisible="1"/>
+                    <field name="need_contract" invisible="1"/>
+                </field> 
+            	<field name="partner_id" position="attributes">
+            		<attribute name="domain">[('customer','=',True),('sale_product_ids','!=',False)]</attribute>
+            		<attribute name="attrs">{'invisible': [('saleorder_type', '=', 'rkin')]}</attribute>
+                    <attribute name="options">{'no_create': True}</attribute>  
+                </field>
+                <field name="confirmation_date" position="after">
+                    <field name="operating_unit_id" required="1" options="{'no_create': True}"/>
+                    <field name="saleorder_type"/>
+                    <field name="source_so_id" invisible="1"/>
+                    <field name="dest_so_id" invisible="1"/>
+                </field>
+                <field name="date_order" position="attributes">
+                	<attribute name="attrs">{'invisible': False}</attribute>
+                </field>
+                <field name="order_line" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute> 
+                    <attribute name="options">{'reload_on_button': True}</attribute>
+                    <attribute name="context">{'so_categ_id': so_categ_id, 'product_ids': product_ids}</attribute>
+                </field>
+                <button name="action_done" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </button>
+                <field name="user_id"  position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>  
+                </field>
+                <field name="project_id"  position="attributes">
+                	<attribute name="invisible">1</attribute>
+                    <attribute name="options">{'no_create': True}</attribute>  
+                </field>
+                <field name="incoterm" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </field>
+                <field name="fiscal_position_id" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </field>
+                <group name="sale_pay" position="attributes">
+                	<attribute name="attrs">{'invisible': [('state', 'not in', ('sale','done'))]}</attribute>
+                </group>
+                
+                <!-- ORDER LINES -->
+                <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[@name='qty_delivered']" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[@name='qty_delivered']" position="after">
+                	<field name="product_ids_line" invisible="1" widget="many2many_tags"/> 
+                	<field name="qty_delivered_unit" invisible="context.get('hide_sale')" string="Dikirim"/>
+                    <field name="check_qty" invisible="1"/>
+					<field name="line_created" invisible="1"/>                    
+                    <button name="adjust_qty" type="object" icon="fa fa-arrow-right" string="Berita Acara Kelebihan Pengambilan" attrs="{'invisible': ['|',('check_qty','=',False),('line_created','=',True)]}"/> 
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                    <attribute name="domain">[('id', 'in', product_ids_line[0][2])]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="attributes">
+                     <attribute name="options">{'no_create': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                     <attribute name="options">{'no_create': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='analytic_tag_ids']" position="attributes">
+                	 <attribute name="invisible">1</attribute>
+                     <attribute name="options">{'no_create': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="attributes">
+                     <attribute name="options">{'no_create': True}</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[1]/field[1]/tree/field[@name='name']" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </xpath>
+            </field> 	
+        </record>
+        
+        <record id="view_order_form_timbangan" model="ir.ui.view">
+            <field name="name">sale.order.form.timbangan</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_delivery']" position="before">
+                    <field name="sale_contract_id" invisible="1"/>
+                    <button type="action" name="%(report_delivery_order)d" class="oe_stat_button" icon="fa-print" string="Print DO" attrs="{'invisible': [('sale_contract_id', '=', False)]}"/>
+                    <button type="object" string="Contract"
+                        name="action_view_contract"
+                        class="oe_stat_button"
+                        icon="fa-file"
+                        attrs="{'invisible': [('sale_contract_id', '=', False)]}" groups="base.group_user" >
+                    </button>
+                    <!--
+                    <button type="object"
+                        name="action_view_timbangan"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('timbangan_count', '=', 0)]}"
+                    	groups="ka_timbang.ka_timbang_group_guest,ka_timbang.ka_timbang_group_manager,ka_timbang.ka_timbang_group_user">
+                    	<field name="timbangan_count" widget="statinfo" string="Timbangan" groups="ka_timbang.ka_timbang_group_guest,ka_timbang.ka_timbang_group_manager,ka_timbang.ka_timbang_group_user"/> 
+                    </button>
+                    -->
+                </xpath>
+       		</field>
+		</record>
+		
+		<record id="sale_view_inherit_replace_requested_date" model="ir.ui.view">
+			<field name="name">sale.view.inherit.replace.requested.date</field>
+	        <field name="model">sale.order</field>
+	        <field name="type">form</field>
+	        <field name="inherit_id" ref="sale_order_dates.view_order_form_inherit_sale_stock_inherit_sale_order_dates"/>
+	        <field name="arch" type="xml">
+            	<xpath expr="//field[@name='requested_date']" position="replace">
+            		<field name="validity_date" attrs="{'invisible': [('state', 'in', ['sale', 'done'])]}"/>
+            	</xpath>
+            	<xpath expr="//field[@name='validity_date']" position="replace">
+            		<field name="requested_date"/>
+            	</xpath>
+            	<field name="commitment_date" position="attributes">
+            		<attribute name="attrs">{'readonly': False, 'invisible': False}</attribute>
+            	</field>
+            	<field name="effective_date" position="attributes">
+            		<attribute name="attrs">{'readonly': False, 'invisible': False}</attribute>
+            	</field>
+            	<field name="confirmation_date" position="attributes">
+            		<attribute name="attrs">{'readonly': False, 'invisible': False}</attribute>
+            	</field>
+            	<field name="requested_date" position="attributes">
+            		<attribute name="attrs">{'readonly': False, 'invisible': False}</attribute>
+            	</field>
+	        </field>
+		</record>
+
+<!-- ================================= CUSTOMER INVOICE MENU ITEMS =========================================== -->
+	    <menuitem action="account.action_invoice_tree1" 
+	    		id="menu_action_sale_invoice_tree1" 
+	    		parent="sale.menu_sale_invoicing" 
+	    		sequence="3"/>
+
+	</data>
+</odoo>

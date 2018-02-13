@@ -1,0 +1,93 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_ba_form">
+			<field name="name">logistik.kontrak.ba.form</field>
+			<field name="model">logistik.kontrak.beritaacara</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Berita Acara Kontrak">
+					<sheet>
+						<group>
+							<div class="header">
+								<h2>Berita Acara Kontrak</h2>
+							</div>
+						</group>
+						<hr/>
+						<group col="2">
+							<group>
+								<field name="order_id" string="Kontrak ID" on_change="onchange_nomor(order_id)"/>
+								<field name="partner_id"/>
+								<field name="amount_total"/>
+								<field name="total_persen_progress"/>
+								<field name="total_nilai_progress"/>
+							</group>
+							<group>
+								<field name="nomor" string="Nomor Berita Acara"/>
+								<field name="tanggal" string="Tanggal"/>
+								<label for="progress" string="Progress"/>
+								<div>
+									<field name="progress" class="oe_inline"/>
+									<span class="oe_inline"> %</span>
+								</div>
+								<label for="nilai" string="Nilai"/>
+								<div>
+									<field name="nilai" class="oe_inline"/>
+									<span class="oe_inline"> Rp.</span>
+								</div>
+							</group>
+						</group>
+						<group>
+							<field name="keterangan" nolabel="1" class="oe_inline" placeholder="Catatan..."/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_ba_tree">
+			<field name="name">logistik.kontrak.ba.tree</field>
+			<field name="model">logistik.kontrak.beritaacara</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Berita Acara Kontrak">
+					<field name="nomor" string="Nomor Berita Acara"/>
+					<field name="tanggal" string="Tanggal"/>
+					<field name="order_id" string="Kontrak ID"/>
+					<field name="progress" string="Progress"/>
+					<field name="nilai" string="Nilai"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_sp_kontrak_beritaacara">
+			<field name="name">Berita Acara Kontrak</field>
+			<field name="res_model">logistik.kontrak.beritaacara</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+			<field name="view_id" ref="view_ba_tree"/>
+			<!-- <field name="search_view_id" ref="view_pkrat_ba_filter"/> -->
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
+			</field>
+		</record>
+
+		<record id="view_act_ba_tree" model="ir.actions.act_window.view">
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_ba_tree"/>
+			<field name="act_window_id" ref="action_sp_kontrak_beritaacara"/>
+		</record>
+
+		<record id="view_act_ba_form" model="ir.actions.act_window.view">
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_ba_form"/>
+			<field name="act_window_id" ref="action_sp_kontrak_beritaacara"/>
+		</record>
+
+		<menuitem
+			parent="logistik_pengadaan.menu_log4500"
+			name="Berita Acara Kontrak"
+			id="menu_log4550"
+			action="action_sp_kontrak_beritaacara"
+			sequence="6"/>
+	</data>
+</odoo>

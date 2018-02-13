@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+    	<menuitem id="main_menu_sdm" name="SDM" sequence="11" web_icon="ka_hr_pegawai,static/description/icon.png"/>    	
+    	<menuitem id="sub_menu_sdm" name="Sumber Daya Manusia" parent="main_menu_sdm" sequence="1"/>
+    	<menuitem id="sub_menu_kepegawaian" name="Kepegawaian" parent="main_menu_sdm" sequence="2"/>
+    	<menuitem id="sub_menu_config" name="Konfigurasi" parent="main_menu_sdm" sequence="3"/>
+    	<menuitem id="sub_menu_master" name="Data Master" parent="main_menu_sdm" sequence="4"/>
+    	<menuitem id="sub_menu_document" name="Dokumen" parent="main_menu_sdm" sequence="5"/>
+
+    	<!-- <menuitem id="sub_menu_attendance" name="Presensi" parent="main_menu_sdm" sequence="2"/> -->
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <menuitem
+            id="menu_log5000"
+            name="LOG5 - Invoice"
+            parent="ka_logistik_master.logistik_root"
+            sequence="5"/>
+
+        <menuitem
+            id="menu_log5100"
+            name="Invoice"
+            parent="menu_log5000"
+            action="action_logistik_invoice"
+            sequence="1"/>
+    </data>
+</odoo>
