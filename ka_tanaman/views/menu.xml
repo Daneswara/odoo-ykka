@@ -62,6 +62,6 @@
             <menuitem id="menu_setting_other" parent="menu_setting" name="Lain-lain" sequence="14"/>
                 <menuitem id="menu_setting_zona_rehabilitasi" parent="menu_setting_other" name="Tarif Zona" action="action_zona_rehabilitasi" sequence="15"/>
                 <menuitem id="menu_setting_taksasi_periode" parent="menu_setting_other" name="Periode Taksasi" action="action_area_taksasi_periode" sequence="16"/>
-            <menuitem id="menu_setting_config" parent="menu_setting" name="Settingg" sequence="17" action="action_configure"/>
+            <menuitem id="menu_setting_config" parent="menu_setting" name="Setting" sequence="17" action="action_configure"/>
     </data>
 </odoo>
