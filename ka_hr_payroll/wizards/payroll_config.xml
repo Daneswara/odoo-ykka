@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="wizard_config_form">
+            <field name="name">SDM - Setting Payroll</field>
+            <field name="model">ka_hr_payroll.config.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="SDM - Setting Payroll">
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="konjungtur"/>
+                    </group>
+                    <footer>
+                        <button name="save_data" string="Simpan Data" type="object" class="btn-primary"/>
+                        <button string="Batal" special="cancel">
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
