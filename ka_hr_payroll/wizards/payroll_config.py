@@ -7,7 +7,7 @@ class KaHrPayrollConfigWizard(models.TransientModel):
 
     company_id = fields.Many2one('res.company', string="Unit/PG", required=True,
         default=lambda self: self.env.user.company_id)
-    konjungtur = field.Float(related='company_id.konjungtur', string="Konjungtur", required=True,
+    konjungtur = fields.Float(related='company_id.konjungtur', string="Konjungtur", required=True,
         default=1.0)
     
     @api.multi
