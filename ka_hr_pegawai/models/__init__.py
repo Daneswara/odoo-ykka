@@ -13,3 +13,4 @@ from . import hubungan_kerja
 from . import hubungan_keluarga
 # from . import hr_job
 from . import hr_employee_sp
+from . import hr_pangkat
