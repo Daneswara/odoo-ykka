@@ -17,4 +17,11 @@ class KaHrPangkat(models.Model):
 
     _name = 'hr.pangkat'
 
+    code = fields.Char(string="Kode", size=6, required=True)
     name = fields.Char(string="Nama", size=64, required=True)
+    company_id = fields.Many2one('res.company', string="Unit/PG", required=True,
+        default=lambda self: self.env.user.company_id)
+
+    _sql_constraints = [
+		('hr_pangkat_unique', 'UNIQUE(code, company_id)', "Kode sudah digunakan! Silahkan menggunakan kode lainnya.")
+	]
