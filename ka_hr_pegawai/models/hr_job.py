@@ -10,9 +10,9 @@ Website:
 from odoo import models, fields
 
 class KaHrJob(models.Model):
-	"""Manage employee jobs.
+	"""Master data of employee job position.
 
-	Inherit: 'hr.job'
+	_inherit = 'hr.job'
 	"""
 
 	_inherit = 'hr.job'
