@@ -16,6 +16,7 @@ class KaHrPangkat(models.Model):
     """
 
     _name = 'hr.pangkat'
+    _description = "SDM master data kepangkatan karyawan"
 
     code = fields.Char(string="Kode", size=6, required=True)
     name = fields.Char(string="Nama", size=64, required=True)

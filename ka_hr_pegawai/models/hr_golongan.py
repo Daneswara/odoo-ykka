@@ -16,5 +16,8 @@ class KaHrGolongan(models.Model):
     """
 
     _name = 'hr.golongan'
+    _description = "SDM master data golongan karyawan"
 
     name = fields.Char(string="Nama", size=12, required=True)
+    company_id = fields.Many2one('res.company', string="Unit/PG", required=True,
+        default=lambda self: self.env.user.company_id)
