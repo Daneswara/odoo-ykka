@@ -7,11 +7,10 @@ Website:
 	https://cakjuice.com
 """
 
-
 from odoo import models, fields
 
 class KaHrJob(models.Model):
-	"""Pengaturan Jabatan Karyawan
+	"""Manage employee jobs.
 
 	Inherit: 'hr.job'
 	"""

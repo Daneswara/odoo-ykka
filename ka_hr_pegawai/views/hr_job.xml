@@ -14,7 +14,7 @@
 			</field>
 		</record>
 
-		<record model="ir.ui.view" id="hr_job_form_inherit">
+		<!-- <record model="ir.ui.view" id="hr_job_form_inherit">
 			<field name="name">HR Job Form</field>
 			<field name="model">hr.job</field>
 			<field name="inherit_id" ref="hr.view_hr_job_form"/>
@@ -23,7 +23,7 @@
 					<field name="level"/>
 				</xpath>
 			</field>
-		</record>
+		</record> -->
 
 		<record id="action_open_hr_job_tree" model="ir.actions.act_window">
 			<field name="name">Jabatan</field>
@@ -35,7 +35,7 @@
 				<p class="oe_view_nocontent_create">Data masih kosong, input data terlebih dahulu!</p>
 			</field>
 		</record>
-		
+
 		<menuitem action="action_open_hr_job_tree" id="menu_sdm_job_tree" parent="sub_menu_config" sequence="3"/>
 	</data>
 </odoo>
