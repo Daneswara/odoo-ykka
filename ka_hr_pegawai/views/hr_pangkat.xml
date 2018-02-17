@@ -35,6 +35,17 @@ Website: https://cakjuice.com
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_hr_pangkat_search">
+            <field name="name">hr.pangkat.search</field>
+            <field name="model">hr.pangkat</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_hr_pangkat">
             <field name="name">Pangkat</field>
             <field name="res_model">hr.pangkat</field>

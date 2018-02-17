@@ -33,6 +33,16 @@ Website: https://cakjuice.com
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_hr_golongan_search">
+            <field name="name">hr.golongan.search</field>
+            <field name="model">hr.golongan</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_hr_golongan">
             <field name="name">Golongan</field>
             <field name="res_model">hr.golongan</field>
