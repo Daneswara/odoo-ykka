@@ -72,7 +72,7 @@ class hr_employee(models.Model):
 			department = rec.department_id.name or ''
 			job = rec.job_id.name or ''
 			rec.position = company + '/' + department + '/' + job
-			
+
 	# def action_view_absensi(self):
 	# 	action = self.env.ref('ka_hr_pegawai.action_hr_holidays')
 	# 	result = action.read()[0]
@@ -142,7 +142,7 @@ class hr_employee(models.Model):
 
 				s.tgl_mpp = datetime.strptime('{}-{}-{}'.format(mpp_year, mpp_month, 1), DATE_FORMAT)
 			else:
-				tgl_pensiun = None
+				s.tgl_pensiun = None
 
 	@api.multi
 	def action_view_sp(self):
