@@ -1,16 +1,23 @@
-# ----------------------------------------------------------
-# Data karyawan
-# inherit from hr.employee
-# author @CakJuice
-# website: https://cakjuice.com
-# email: hd.brandoz@gmail.com
-# ----------------------------------------------------------
+# -*- coding: utf-8 -*-
+
+"""Author:
+	@CakJuice <hd.brandoz@gmail.com>
+
+Website:
+	https://cakjuice.com
+"""
+
+from datetime import datetime
 
 from odoo import models, fields, api
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
-from datetime import datetime, timedelta
 
-class hr_employee(models.Model):
+class KaHrEmployee(models.Model):
+	"""Master data of employee.
+
+	_inherit = 'hr.employee'
+	"""
+
 	_inherit = 'hr.employee'
 
 	nik = fields.Char(string='N I K', size=10, required=True)
@@ -70,7 +77,7 @@ class hr_employee(models.Model):
 		Returns:
 			Recordset -- Create result will return recordset
 		"""
-		employee = super(hr_employee, self).create(vals)
+		employee = super(KaHrEmployee, self).create(vals)
 		employee.create_employee_history()
 		return employee
 
@@ -93,7 +100,7 @@ class hr_employee(models.Model):
 			'golongan_id' in vals or 'company_id' in vals:
 				is_change_history = True
 
-		employee = super(hr_employee, self).write(vals)
+		employee = super(KaHrEmployee, self).write(vals)
 		if is_change_history:
 			self.create_employee_history()
 		return employee
