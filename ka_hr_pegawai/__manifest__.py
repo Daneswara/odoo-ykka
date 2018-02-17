@@ -41,10 +41,6 @@
 
         'reports/employee_sp.xml',
 
-        'data/ir_sequence.xml',
-        'data/template_mail_employee_sp_approved.xml',
-        'data/template_mail_employee_sp_canceled.xml',
-
         'views/templates.xml',
         'views/hr_employee.xml',
         'views/hr_document.xml',
@@ -58,5 +54,10 @@
         'views/hr_golongan.xml',
 
         'helpers/cleaning_field.xml',
+
+        'data/ir_sequence.xml',
+        'data/template_mail_employee_sp_approved.xml',
+        'data/template_mail_employee_sp_canceled.xml',
+        'data/data_hr_golongan.xml',
     ],
 }
