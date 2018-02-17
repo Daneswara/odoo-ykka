@@ -7,9 +7,9 @@ Website:
 	https://cakjuice.com
 """
 
-from odoo import models, fields, api
+from odoo import models, fields
 
-class KaPayrollResCompany(models.Model):
+class KaHrPayrollResCompany(models.Model):
     """Master data of company (Unit/PG).
 
     _inherit = 'res.company'
