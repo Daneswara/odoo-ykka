@@ -8,11 +8,12 @@
                 <form string="SDM - Setting Payroll">
                     <group>
                         <field name="company_id" groups="base.group_multi_company"/>
-                        <field name="konjungtur"/>
+                        <field name="konjungtur_umum"/>
+                        <field name="konjungtur_pensiun"/>
                     </group>
                     <footer>
                         <button name="save_data" string="Simpan Data" type="object" class="btn-primary"/>
-                        <button string="Batal" special="cancel">
+                        <button string="Batal" special="cancel"/>
                     </footer>
                 </form>
             </field>

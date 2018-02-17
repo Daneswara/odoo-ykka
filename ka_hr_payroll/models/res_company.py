@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
 
-"""Data `res_company` yang terkait dengan payroll
+"""Author:
+	@CakJuice <hd.brandoz@gmail.com>
 
-Author:
-    @CakJuice <hd.brandoz@gmail.com>
+Website:
+	https://cakjuice.com
 """
 
 from odoo import models, fields, api
 
 class KaPayrollResCompany(models.Model):
-    """Inherit dari `res.company`
+    """Master data of company (Unit/PG).
+
+    _inherit = 'res.company'
     """
 
     _inherit = 'res.company'
 
-    konjungtur = fields.Float("Konjungtur", required=True, default=1.0)
+    konjungtur_gaji = fields.Float("Konjungtur Gaji", required=True, default=100.0)
+    konjungtur_pensiun = fields.Float("Konjungtur Pensiun", required=True, default=100.0)

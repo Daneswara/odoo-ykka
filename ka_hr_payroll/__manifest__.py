@@ -19,7 +19,7 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr_payroll', 'ka_hr_pegawai', 'ka_hr_attendance'],
+    'depends': ['base', 'ka_hr_pegawai', 'ka_hr_attendance'],
 
     # always loaded
     'data': [
