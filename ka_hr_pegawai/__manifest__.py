@@ -36,7 +36,7 @@
     'data': [
         # 'security/hr_security.xml',
         'security/ir.model.access.csv',
-                
+
         'wizards/employee_config.xml',
 
         'reports/employee_sp.xml',
@@ -54,7 +54,9 @@
         'views/hubungan_kerja.xml',
         'views/hubungan_keluarga.xml',
         'views/hr_employee_sp.xml',
-        
+        'views/hr_pangkat.xml',
+        'views/hr_golongan.xml',
+
         'helpers/cleaning_field.xml',
     ],
 }

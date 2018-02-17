@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of hr.pangkat
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_hr_pangkat_tree">
+            <field name="name">hr.pangkat.tree</field>
+            <field name="model">hr.pangkat</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_hr_pangkat_form">
+            <field name="name">hr.pangkat.form</field>
+            <field name="model">hr.pangkat</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_hr_pangkat">
+            <field name="name">Pangkat</field>
+            <field name="res_model">hr.pangkat</field>
+            <field name="view_type">form</field>
+            <field name="view_model">tree,form</field>
+            <field name="help" type="html">
+				<p class="oe_view_nocontent_create">Input data pangkat terlebih dahulu.</p>
+			</field>
+        </record>
+
+        <menuitem action="action_hr_pangkat" id="menu_hr_pangkat" parent="sub_menu_master" sequence="3"/>
+    </data>
+</odoo>
