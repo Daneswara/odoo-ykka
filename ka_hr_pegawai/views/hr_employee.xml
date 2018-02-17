@@ -42,7 +42,7 @@
 										<a type="open">
 											NIK : <field name="nik"/><br/>
 											<field name="name"/>
-											<t t-if="record.login.raw_value"> 
+											<t t-if="record.login.raw_value">
 												(<field name="login"/>)
 											</t>
 										</a>
@@ -92,6 +92,8 @@
 								<field name="company_id" groups="base.group_multi_company" string="Unit/PG"/>
 								<field name="department_id" domain="[('company_id', '=', company_id)]"/>
 								<field name="job_id" string="Jabatan" domain="[('company_id', '=', company_id)]"/>
+								<field name="pangkat_id" domain="[('company_id', '=', company_id)]"/>
+								<field name="golongan_id" domain="[('company_id', '=', company_id)]"/>
                                 <field name="parent_id"/>
 							</group>
 							<group string="Informasi">
@@ -113,7 +115,7 @@
 								<field name="home_phone"/>
 								<label for="place_birthday" />
 								<div>
-									<field name="place_birthday" class="oe_inline"/> / 
+									<field name="place_birthday" class="oe_inline"/> /
 									<field name="birthday" class="oe_inline"/>
 								</div>
 								<field name="gender"/>
@@ -167,7 +169,7 @@
 					</page> -->
 					<page string="Pendidikan Formal">
 						<field name="graduate_ids">
-							<tree editable="bottom"> 
+							<tree editable="bottom">
 								<field name="graduate_id"/>
 								<field name="lembaga"/>
 								<field name="jurusan"/>
@@ -177,7 +179,7 @@
 					</page>
 					<page string="Kursus/Workshop">
 						<field name="course_ids">
-							<tree editable="bottom"> 
+							<tree editable="bottom">
 								<field name="lembaga"/>
 								<field name="keterangan"/>
 								<field name="tahun"/>
@@ -264,7 +266,7 @@
 			<field name="domain">[('parent_id','=',False)]</field>
 		</record>
 
-		
+
 
 		<!-- <menuitem action="action_open_hr_job_tree" id="menu_sdm_job_tree" parent="hr.menu_human_resources_configuration" sequence="5"/> -->
 		<!-- <menuitem action="action_open_department_structure" id="menu_sdm_department_stru" parent="hr.menu_hr_main" sequence="6"/> -->

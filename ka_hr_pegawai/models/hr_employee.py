@@ -46,6 +46,9 @@ class hr_employee(models.Model):
 	tgl_mpp = fields.Date(compute='_compute_birthday', string="Tanggal MPP", store=True,
 		help="Tanggal persiapan pensiun pegawai.")
 
+	pangkat_id = fields.Many2one('hr.pangkat', string="Pangkat")
+	golongan_id = fields.Many2one('hr.golongan', string="Golongan")
+
 	employee_keluarga_ids = fields.One2many('ka_hr.employee.keluarga', 'employee_id')
 
 	# Override

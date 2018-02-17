@@ -21,3 +21,4 @@ class KaHrGolongan(models.Model):
     name = fields.Char(string="Nama", size=12, required=True)
     company_id = fields.Many2one('res.company', string="Unit/PG", required=True,
         default=lambda self: self.env.user.company_id)
+    employee_ids = fields.One2many('hr.employee', 'golongan_id', string="Karyawan")

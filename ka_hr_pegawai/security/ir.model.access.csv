@@ -35,3 +35,7 @@ access_ka_hr_pegawai_hubungan_kerja_base_user,ka_hr.hubungan.kerja.base.user,mod
 access_ka_hr_pegawai_employee_sp_hr_manager,hr.employee.sp.hr.manager,model_hr_employee_sp,hr.group_hr_manager,1,1,1,0
 access_ka_hr_pegawai_employee_sp_hr_user,hr.employee.sp.hr.user,model_hr_employee_sp,hr.group_hr_user,1,1,1,0
 access_ka_hr_pegawai_employee_sp_base_user,hr.employee.sp.base.user,model_hr_employee_sp,base.group_user,1,0,0,0
+access_ka_hr_pegawai_pangkat_hr_manager,hr.pangkat.hr.manager,model_hr_pangkat,hr.group_hr_manager,1,1,1,0
+access_ka_hr_pegawai_pangkat_hr_user,hr.pangkat.hr.user,model_hr_pangkat,hr.group_hr_user,1,0,0,0
+access_ka_hr_pegawai_golongan_hr_manager,hr.golongan.hr.manager,model_hr_golongan,hr.group_hr_manager,1,1,1,0
+access_ka_hr_pegawai_golongan_hr_user,hr.golongan.hr.user,model_hr_golongan,hr.group_hr_user,1,0,0,0
