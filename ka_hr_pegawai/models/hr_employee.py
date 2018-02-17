@@ -50,11 +50,65 @@ class hr_employee(models.Model):
 	golongan_id = fields.Many2one('hr.golongan', string="Golongan")
 
 	employee_keluarga_ids = fields.One2many('ka_hr.employee.keluarga', 'employee_id')
+	employee_history_ids = fields.One2many('hr.employee.history', 'employee_id')
 
 	# Override
 	@api.onchange('user_id')
 	def _onchange_user(self):
 		pass
+
+	@api.model
+	def create(self, vals):
+		"""Override method `create()`. Use for insert data
+
+		Decorators:
+			api.model
+
+		Arguments:
+			vals {Dict} -- Values insert data
+
+		Returns:
+			Recordset -- Create result will return recordset
+		"""
+		employee = super(hr_employee, self).create(vals)
+		employee.create_employee_history()
+		return employee
+
+	@api.multi
+	def write(self, vals):
+		"""Override method `write()`. Use for update data
+
+		Decorators:
+			api.multi
+
+		Arguments:
+			vals {dict} -- Values update data
+
+		Returns:
+			Boolean -- Update result will return boolean
+		"""
+		is_change_history = False
+
+		if 'department_id' in vals or 'job_id' in vals or 'pangkat_id' in vals or \
+			'golongan_id' in vals or 'company_id' in vals:
+				is_change_history = True
+
+		employee = super(hr_employee, self).write(vals)
+		if is_change_history:
+			self.create_employee_history()
+		return employee
+
+	def create_employee_history(self):
+		"""Insert data to `hr.employee.history`
+		"""
+		self.env['hr.employee.history'].create({
+			'employee_id': self.id,
+			'department_id': self.department_id.id,
+			'job_id': self.job_id.id,
+			'pangkat_id': self.pangkat_id.id,
+			'golongan_id': self.golongan_id.id,
+			'company_id': self.company_id.id,
+		})
 
 	# def action_view_presensi(self):
 	# 	action = self.env.ref('ka_hr_pegawai.action_ka_hr_presensi')

@@ -15,3 +15,4 @@ from . import hr_job
 from . import hr_employee_sp
 from . import hr_pangkat
 from . import hr_golongan
+from . import hr_employee_history

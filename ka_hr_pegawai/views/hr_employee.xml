@@ -150,6 +150,17 @@
 								<field name="tgl_mpp"/>
 							</group>
 						</group>
+						<field name="employee_history_ids" widget="many2one_list">
+							<tree editable="bottom">
+								<field name="date_start"/>
+								<field name="department_id"/>
+								<field name="job_id"/>
+								<field name="pangkat_id"/>
+								<field name="golongan_id"/>
+								<field name="company_id"/>
+								<field name="notes"/>
+							</tree>
+						</field>
 					</page>
 					<!-- <page string="Tunjangan">
 						<field name="employee_tunjangan_line_ids" widget="one2many_list">
