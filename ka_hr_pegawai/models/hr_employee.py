@@ -44,7 +44,7 @@ class KaHrEmployee(models.Model):
 		('lain','Lain-nya'),
 	], 'Agama')
 
-	gaji_pokok = fields.Float(string="Gaji Pokok", required=True)
+	# gaji_pokok = fields.Float(string="Gaji Pokok", required=True)
 	hub_kerja_id = fields.Many2one('ka_hr.hubungan.kerja', string="Hub. Kerja")
 	is_tetap = fields.Boolean(string="Pegawai Tetap")
 	tgl_tetap = fields.Date(string="Tanggal Pengangkatan", help="Tanggal pengangkatan sebagai pegawai tetap.")

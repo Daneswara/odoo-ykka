@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of hr.employee
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_hr_employee_form_inherit">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="ka_hr_pegawai.view_ka_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="hub_kerja_id" position="after">
+                    <field name="scale"/>
+                    <field name="gaji_pokok"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

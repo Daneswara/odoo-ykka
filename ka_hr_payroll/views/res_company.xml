@@ -1,3 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of res.company
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
 <odoo>
     <data>
         <record model="ir.ui.view" id="view_res_company_form_inherit">
