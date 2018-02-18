@@ -24,7 +24,10 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+        'views/templates.xml',
         'views/res_company.xml',
+
+        'wizards/payroll_config.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

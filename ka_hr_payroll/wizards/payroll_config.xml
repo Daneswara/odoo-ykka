@@ -1,3 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of ka_hr_payroll.config.wizard
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
 <odoo>
     <data>
         <record model="ir.ui.view" id="wizard_config_form">
@@ -8,7 +17,7 @@
                 <form string="SDM - Setting Payroll">
                     <group>
                         <field name="company_id" groups="base.group_multi_company"/>
-                        <field name="konjungtur_umum"/>
+                        <field name="konjungtur_gaji"/>
                         <field name="konjungtur_pensiun"/>
                     </group>
                     <footer>
@@ -18,5 +27,14 @@
                 </form>
             </field>
         </record>
+
+        <act_window
+            id="action_wizard_config"
+            name="Setting Payroll"
+            res_model="ka_hr_payroll.config.wizard"
+            view_mode="form"
+            target="new"/>
+
+        <menuitem action="action_wizard_config" id="menu_wizard_config" name="Konfigurasi Penggajian" parent="menu_config"/>
     </data>
 </odoo>
