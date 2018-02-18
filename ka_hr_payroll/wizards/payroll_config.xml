@@ -35,6 +35,6 @@ Website: https://cakjuice.com
             view_mode="form"
             target="new"/>
 
-        <menuitem action="action_wizard_config" id="menu_wizard_config" name="Konfigurasi Penggajian" parent="menu_config"/>
+        <menuitem action="action_wizard_config" id="menu_wizard_config" name="Konfigurasi Penggajian" parent="menu_config" sequence="10"/>
     </data>
 </odoo>

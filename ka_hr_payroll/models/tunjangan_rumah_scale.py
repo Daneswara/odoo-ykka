@@ -17,22 +17,75 @@ class KaHrPayrollTunjanganRumahScale(models.Model):
 
     _name = 'ka_hr_payroll.tunjangan.rumah.scale'
 
-    date_start = fields.Date(string="Tanggal Mulai", required=True, default=fields.Date.today)
-    min_scale = fields.Float(string="Skala Awal", required=True, default=1.000)
-    max_scale = fields.Float(string="Skala Akhir", required=True, default=1.000)
-    value_start = fields.Float(string="Nilai Awal", required=True)
-    delta = fields.Float(string="Nilai Delta", required=True)
-    golongan_id = fields.Many2one(string="Golongan", required=True)
-    company_id = fields.Many2one('res.company', string="Unit/PG", required=True,
-        default=lambda self: self.env.user.company_id)
-    line_ids = fields.One2many('ka_hr_payroll.tunjangan.rumah.scale.lines', 'gapok_scale_id')
+    date_start = fields.Date(string="Tanggal Mulai", required=True, readonly=True,
+        default=fields.Date.today, states={'draft': [('readonly', False)]})
+    min_scale = fields.Float(string="Skala Awal", digits=(6,3), required=True, readonly=True,
+        default=1.000, states={'draft': [('readonly', False)]})
+    max_scale = fields.Float(string="Skala Akhir", digits=(6,3), required=True, readonly=True,
+        default=1.000, states={'draft': [('readonly', False)]})
+    value_start = fields.Float(string="Nilai Awal", required=True, readonly=True,
+        states={'draft': [('readonly', False)]})
+    delta = fields.Float(string="Nilai Delta", required=True, readonly=True,
+        states={'draft': [('readonly', False)]})
+    golongan_id = fields.Many2one('hr.golongan', string="Golongan", required=True, readonly=True,
+        states={'draft': [('readonly', False)]})
+    company_id = fields.Many2one('res.company', string="Unit/PG", required=True, readonly=True,
+        default=lambda self: self.env.user.company_id, states={'draft': [('readonly', False)]})
+    state = fields.Selection([
+        ('draft', "Draft"),
+        ('processed', "Diproses"),
+        ('canceled', "Dibatalkan"),
+    ], string="Status", default='draft')
+    line_ids = fields.One2many('ka_hr_payroll.tunjangan.rumah.scale.lines', 'tunjangan_scale_id', readonly=True,
+        states={'draft': [('readonly', False)]})
 
     @api.multi
-    def action_generate_lines(self):
-        """Generate lines of this model
+    def name_get(self):
+        """Override from `name_get()`. Representation name of model
 
         Decorators:
             api.multi
+
+        Returns:
+            List -- List of tuple of representation name
+        """
+        res = []
+        for gapok in self:
+            res.append((gapok.id, gapok.date_start))
+        return res
+
+    @api.multi
+    def action_draft(self):
+        """Set state to `draft` then delete related lines
+
+        Decorators:
+            api.multi
+        """
+        self.state = 'draft'
+        for line in self.line_ids:
+            line.unlink()
+
+    @api.multi
+    def action_process(self):
+        """Set state to `processed` then generate lines.
+
+        Decorators:
+            api.multi
+        """
+        self.state = 'processed'
+        self.action_generate_lines()
+
+    @api.multi
+    def action_cancel(self):
+        """Set state to `canceled`.
+
+        Decorators:
+            api.multi
+        """
+        self.state = 'canceled'
+
+    def action_generate_lines(self):
+        """Generate lines of this model
         """
         min_int = int(self.min_scale * 1000)
         max_int = int(self.max_scale * 1000)
@@ -53,6 +106,7 @@ class KaHrPayrollTunjanganRumahScaleLines(models.Model):
 
     _name = 'ka_hr_payroll.tunjangan.rumah.scale.lines'
 
-    tunjangan_scale_id = fields.Many2one('ka_hr_payroll.tunjangan.rumah.scale', string="Skala Tunjangan Rumah", required=True)
-    scale = fields.Float(string="Skala", required=True)
+    tunjangan_scale_id = fields.Many2one('ka_hr_payroll.tunjangan.rumah.scale', string="Skala Tunjangan Rumah",
+        required=True, ondelete='cascade')
+    scale = fields.Float(string="Skala", digits=(6,3), required=True)
     value = fields.Float(string="Nilai", required=True)
