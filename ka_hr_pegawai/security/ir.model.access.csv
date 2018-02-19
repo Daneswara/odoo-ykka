@@ -1,7 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ka_hr_pegawai_category_hr_manager,hr.category.hr.manager,model_hr_category,hr.group_hr_manager,1,1,1,0
-access_ka_hr_pegawai_category_hr_user,hr.category.hr.user,model_hr_category,hr.group_hr_user,1,1,1,0
-access_ka_hr_pegawai_category_base_user,hr.category.base.user,model_hr_category,base.group_user,1,0,0,0
 access_ka_hr_pegawai_document_asset_hr_manager,hr.document.asset.hr.manager,model_hr_document_asset,hr.group_hr_manager,1,1,1,0
 access_ka_hr_pegawai_document_asset_hr_user,hr.document.asset.hr.user,model_hr_document_asset,hr.group_hr_user,1,1,1,0
 access_ka_hr_pegawai_document_asset_base_user,hr.document.asset.base.user,model_hr_document_asset,base.group_user,1,0,0,0

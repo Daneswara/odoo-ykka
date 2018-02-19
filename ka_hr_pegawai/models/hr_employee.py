@@ -21,12 +21,11 @@ class KaHrEmployee(models.Model):
 	_inherit = 'hr.employee'
 
 	nik = fields.Char(string='N I K', size=10, required=True)
-	position = fields.Char(string="Posisi", compute="_complite_position")
+	# position = fields.Char(string="Posisi", compute="_complite_position")
 	address = fields.Char(string='Alamat', size=64)
 	city = fields.Char(string='Kota', size=32)
 	tgl_masuk = fields.Date(string='Tgl. Masuk', required=True)
 	home_phone = fields.Char(string='Telepon Rumah', size=16)
-	# category_id = fields.Many2one('hr.category', string='Kategori')
 	npwp = fields.Char(string='NPWP', size=32)
 	bank_id = fields.Many2one('res.bank', string='Bank')
 	acc_number = fields.Char(string='No. Rekening', size=32)
@@ -129,13 +128,13 @@ class KaHrEmployee(models.Model):
 	# 	result['domain'] = [('employee_id', '=', self.id)]
 	# 	return result
 
-	@api.multi
-	def _complite_position(self):
-		for rec in self:
-			company = rec.company_id.name or ''
-			department = rec.department_id.name or ''
-			job = rec.job_id.name or ''
-			rec.position = company + '/' + department + '/' + job
+	# @api.multi
+	# def _complite_position(self):
+	# 	for rec in self:
+	# 		company = rec.company_id.name or ''
+	# 		department = rec.department_id.name or ''
+	# 		job = rec.job_id.name or ''
+	# 		rec.position = '{0}/{1}/{2}'.format(company, department, job)
 
 	# def action_view_absensi(self):
 	# 	action = self.env.ref('ka_hr_pegawai.action_hr_holidays')
@@ -173,6 +172,11 @@ class KaHrEmployee(models.Model):
 
 	@api.depends('birthday')
 	def _compute_birthday(self):
+		"""Compute tgl_mpp & tgl_pensiun, based on birthday
+
+		Decorators:
+			api.depends('birthday')
+		"""
 		for s in self:
 			if not s.company_id.hr_pensiun_age or not s.company_id.hr_mpp_month:
 				continue
@@ -210,6 +214,14 @@ class KaHrEmployee(models.Model):
 
 	@api.multi
 	def action_view_sp(self):
+		"""To open view SP.
+
+		Decorators:
+			api.multi
+
+		Returns:
+			Dict -- Result of view action
+		"""
 		action = self.env.ref('ka_hr_pegawai.action_employee_sp')
 		result = action.read()[0]
 		result['domain'] = [('employee_id', '=', self.id), ('state', '!=', 'draft')]

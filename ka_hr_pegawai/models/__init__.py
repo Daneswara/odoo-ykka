@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# from . import hr_category
 from . import hr_graduate
 from . import hr_employee
 from . import hr_employee_graduate
