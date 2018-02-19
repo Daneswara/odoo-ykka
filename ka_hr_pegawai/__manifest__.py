@@ -58,6 +58,6 @@
         'data/ir_sequence.xml',
         'data/template_mail_employee_sp_approved.xml',
         'data/template_mail_employee_sp_canceled.xml',
-        'data/data_hr_golongan.xml',
+        # 'data/data_hr_golongan.xml',
     ],
 }

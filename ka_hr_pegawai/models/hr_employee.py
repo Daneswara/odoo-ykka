@@ -26,7 +26,7 @@ class KaHrEmployee(models.Model):
 	city = fields.Char(string='Kota', size=32)
 	tgl_masuk = fields.Date(string='Tgl. Masuk', required=True)
 	home_phone = fields.Char(string='Telepon Rumah', size=16)
-	category_id = fields.Many2one('hr.category', string='Kategori')
+	# category_id = fields.Many2one('hr.category', string='Kategori')
 	npwp = fields.Char(string='NPWP', size=32)
 	bank_id = fields.Many2one('res.bank', string='Bank')
 	acc_number = fields.Char(string='No. Rekening', size=32)
