@@ -10,7 +10,7 @@ Website:
 from odoo import models, fields
 
 class KaHrPangkat(models.Model):
-    """Master data of employee job rank.
+    """Master data of employee job rank (pangkat).
 
     _name = 'hr.pangkat'
     """
