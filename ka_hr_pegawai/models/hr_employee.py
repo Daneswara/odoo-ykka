@@ -44,7 +44,7 @@ class KaHrEmployee(models.Model):
 	], 'Agama')
 
 	# gaji_pokok = fields.Float(string="Gaji Pokok", required=True)
-	hub_kerja_id = fields.Many2one('ka_hr.hubungan.kerja', string="Hub. Kerja")
+	# hub_kerja_id = fields.Many2one('ka_hr.hubungan.kerja', string="Hub. Kerja") deleted
 	is_tetap = fields.Boolean(string="Pegawai Tetap")
 	tgl_tetap = fields.Date(string="Tanggal Pengangkatan", help="Tanggal pengangkatan sebagai pegawai tetap.")
 	tgl_pensiun = fields.Date(compute='_compute_birthday', string="Tanggal Pensiun", store=True,
@@ -54,6 +54,7 @@ class KaHrEmployee(models.Model):
 
 	pangkat_id = fields.Many2one('hr.pangkat', string="Pangkat")
 	golongan_id = fields.Many2one('hr.golongan', string="Golongan")
+	status_id = fields.Many2one('hr.employee.status', string="Status")
 
 	employee_keluarga_ids = fields.One2many('ka_hr.employee.keluarga', 'employee_id')
 	employee_history_ids = fields.One2many('hr.employee.history', 'employee_id')

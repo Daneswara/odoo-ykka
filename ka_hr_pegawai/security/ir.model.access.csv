@@ -26,9 +26,6 @@ access_ka_hr_pegawai_hubungan_keluarga_base_user,ka_hr.hubungan.keluarga.base.us
 access_ka_hr_pegawai_keluarga_hr_manager,ka_hr.employee.keluarga.hr.manager,model_ka_hr_employee_keluarga,hr.group_hr_manager,1,1,1,0
 access_ka_hr_pegawai_keluarga_hr_user,ka_hr.employee.keluarga.hr.user,model_ka_hr_employee_keluarga,hr.group_hr_user,1,1,1,0
 access_ka_hr_pegawai_keluarga_base_user,ka_hr.employee.keluarga.base.user,model_ka_hr_employee_keluarga,base.group_user,1,0,0,0
-access_ka_hr_pegawai_hubungan_kerja_hr_manager,ka_hr.hubungan.kerja.hr.manager,model_ka_hr_hubungan_kerja,hr.group_hr_manager,1,1,1,0
-access_ka_hr_pegawai_hubungan_kerja_hr_user,ka_hr.hubungan.kerja.hr.user,model_ka_hr_hubungan_kerja,hr.group_hr_user,1,1,1,0
-access_ka_hr_pegawai_hubungan_kerja_base_user,ka_hr.hubungan.kerja.base.user,model_ka_hr_hubungan_kerja,base.group_user,1,0,0,0
 access_ka_hr_pegawai_employee_sp_hr_manager,hr.employee.sp.hr.manager,model_hr_employee_sp,hr.group_hr_manager,1,1,1,0
 access_ka_hr_pegawai_employee_sp_hr_user,hr.employee.sp.hr.user,model_hr_employee_sp,hr.group_hr_user,1,1,1,0
 access_ka_hr_pegawai_employee_sp_base_user,hr.employee.sp.base.user,model_hr_employee_sp,base.group_user,1,0,0,0

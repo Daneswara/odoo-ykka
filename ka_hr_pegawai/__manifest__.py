@@ -47,11 +47,12 @@
         'views/hr_configuration.xml',
         'views/res_company.xml',
         'views/hr_job.xml',
-        'views/hubungan_kerja.xml',
+        # 'views/hubungan_kerja.xml',
         'views/hubungan_keluarga.xml',
         'views/hr_employee_sp.xml',
         'views/hr_pangkat.xml',
         'views/hr_golongan.xml',
+        'views/hr_employee_status.xml',
 
         'helpers/cleaning_field.xml',
 

@@ -34,6 +34,6 @@
 			</field>
 		</record>
 
-		<menuitem action="action_ka_hr_hub_keluarga" id="menu_sdm_hub_keluarga" parent="sub_menu_master" sequence="5" />
+		<menuitem action="action_ka_hr_hub_keluarga" id="menu_sdm_hub_keluarga" parent="sub_menu_master" sequence="7" />
 	</data>
 </odoo>

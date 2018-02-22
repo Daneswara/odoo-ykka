@@ -139,7 +139,8 @@
 						<group>
 							<group>
 								<!-- <field name="gaji_pokok"/> -->
-								<field name="hub_kerja_id"/>
+								<!-- <field name="hub_kerja_id"/> -->
+								<field name="status_id"/>
 							</group>
 							<group>
 								<field name="tgl_masuk"/>

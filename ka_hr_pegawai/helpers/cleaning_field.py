@@ -80,3 +80,5 @@ class KaHrHolidaysCleanField(models.TransientModel):
 		self._drop_table_constraint('hr_category', 'kategori_company_uniq')
 		self._drop_model('hr.category')
 		self._remove_field('hr_employee', 'category_id')
+		self._drop_model('ka_hr.hubungan.kerja')
+		self._remove_field('hr_employee', 'hub_kerja_id')
