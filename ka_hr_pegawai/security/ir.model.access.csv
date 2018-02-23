@@ -1,7 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ka_hr_pegawai_category_hr_manager,hr.category.hr.manager,model_hr_category,hr.group_hr_manager,1,1,1,0
-access_ka_hr_pegawai_category_hr_user,hr.category.hr.user,model_hr_category,hr.group_hr_user,1,1,1,0
-access_ka_hr_pegawai_category_base_user,hr.category.base.user,model_hr_category,base.group_user,1,0,0,0
 access_ka_hr_pegawai_document_asset_hr_manager,hr.document.asset.hr.manager,model_hr_document_asset,hr.group_hr_manager,1,1,1,0
 access_ka_hr_pegawai_document_asset_hr_user,hr.document.asset.hr.user,model_hr_document_asset,hr.group_hr_user,1,1,1,0
 access_ka_hr_pegawai_document_asset_base_user,hr.document.asset.base.user,model_hr_document_asset,base.group_user,1,0,0,0
@@ -29,9 +26,10 @@ access_ka_hr_pegawai_hubungan_keluarga_base_user,ka_hr.hubungan.keluarga.base.us
 access_ka_hr_pegawai_keluarga_hr_manager,ka_hr.employee.keluarga.hr.manager,model_ka_hr_employee_keluarga,hr.group_hr_manager,1,1,1,0
 access_ka_hr_pegawai_keluarga_hr_user,ka_hr.employee.keluarga.hr.user,model_ka_hr_employee_keluarga,hr.group_hr_user,1,1,1,0
 access_ka_hr_pegawai_keluarga_base_user,ka_hr.employee.keluarga.base.user,model_ka_hr_employee_keluarga,base.group_user,1,0,0,0
-access_ka_hr_pegawai_hubungan_kerja_hr_manager,ka_hr.hubungan.kerja.hr.manager,model_ka_hr_hubungan_kerja,hr.group_hr_manager,1,1,1,0
-access_ka_hr_pegawai_hubungan_kerja_hr_user,ka_hr.hubungan.kerja.hr.user,model_ka_hr_hubungan_kerja,hr.group_hr_user,1,1,1,0
-access_ka_hr_pegawai_hubungan_kerja_base_user,ka_hr.hubungan.kerja.base.user,model_ka_hr_hubungan_kerja,base.group_user,1,0,0,0
 access_ka_hr_pegawai_employee_sp_hr_manager,hr.employee.sp.hr.manager,model_hr_employee_sp,hr.group_hr_manager,1,1,1,0
 access_ka_hr_pegawai_employee_sp_hr_user,hr.employee.sp.hr.user,model_hr_employee_sp,hr.group_hr_user,1,1,1,0
 access_ka_hr_pegawai_employee_sp_base_user,hr.employee.sp.base.user,model_hr_employee_sp,base.group_user,1,0,0,0
+access_ka_hr_pegawai_pangkat_hr_manager,hr.pangkat.hr.manager,model_hr_pangkat,hr.group_hr_manager,1,1,1,0
+access_ka_hr_pegawai_pangkat_hr_user,hr.pangkat.hr.user,model_hr_pangkat,hr.group_hr_user,1,0,0,0
+access_ka_hr_pegawai_golongan_hr_manager,hr.golongan.hr.manager,model_hr_golongan,hr.group_hr_manager,1,1,1,0
+access_ka_hr_pegawai_golongan_hr_user,hr.golongan.hr.user,model_hr_golongan,hr.group_hr_user,1,0,0,0

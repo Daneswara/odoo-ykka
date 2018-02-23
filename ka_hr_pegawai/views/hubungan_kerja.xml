@@ -34,6 +34,6 @@
 			</field>
 		</record>
 
-		<menuitem action="action_ka_hr_hubungan_kerja" id="menu_sdm_hub_kerja" parent="sub_menu_master" sequence="4" />
+		<menuitem action="action_ka_hr_hubungan_kerja" id="menu_sdm_hub_kerja" parent="sub_menu_master" sequence="8" />
 	</data>
 </odoo>

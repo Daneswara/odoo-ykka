@@ -32,7 +32,7 @@ class KaHrHolidaysCleanField(models.TransientModel):
 		sql_model = """SELECT id FROM ir_model WHERE model = '%s'""" % (model_name,)
 		self._cr.execute(sql_model)
 		fetch = self._cr.fetchone()
-		
+
 		if fetch and len(fetch) > 0:
 			sql_model_constraint = """DELETE FROM ir_model_constraint WHERE model = %d""" % (fetch[0],)
 			self._cr.execute(sql_model_constraint)
@@ -77,4 +77,8 @@ class KaHrHolidaysCleanField(models.TransientModel):
 		self._drop_model('ka_hr.absensi')
 		self._drop_model('ka_hr.absensi.jenis')
 		self._drop_model('report.ka_hr_pegawai.report_ka_hr_activity_presensi_weekly_view')
-		
+		self._drop_table_constraint('hr_category', 'kategori_company_uniq')
+		self._drop_model('hr.category')
+		self._remove_field('hr_employee', 'category_id')
+		self._drop_model('ka_hr.hubungan.kerja')
+		self._remove_field('hr_employee', 'hub_kerja_id')

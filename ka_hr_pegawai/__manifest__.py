@@ -36,14 +36,10 @@
     'data': [
         # 'security/hr_security.xml',
         'security/ir.model.access.csv',
-                
+
         'wizards/employee_config.xml',
 
         'reports/employee_sp.xml',
-
-        'data/ir_sequence.xml',
-        'data/template_mail_employee_sp_approved.xml',
-        'data/template_mail_employee_sp_canceled.xml',
 
         'views/templates.xml',
         'views/hr_employee.xml',
@@ -51,10 +47,18 @@
         'views/hr_configuration.xml',
         'views/res_company.xml',
         'views/hr_job.xml',
-        'views/hubungan_kerja.xml',
+        # 'views/hubungan_kerja.xml',
         'views/hubungan_keluarga.xml',
         'views/hr_employee_sp.xml',
-        
+        'views/hr_pangkat.xml',
+        'views/hr_golongan.xml',
+        'views/hr_employee_status.xml',
+
         'helpers/cleaning_field.xml',
+
+        'data/ir_sequence.xml',
+        'data/template_mail_employee_sp_approved.xml',
+        'data/template_mail_employee_sp_canceled.xml',
+        # 'data/data_hr_golongan.xml',
     ],
 }

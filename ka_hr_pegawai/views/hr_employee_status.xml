@@ -1,0 +1,88 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_hr_employee_status_list">
+            <field name="name">hr.employee.status.tree</field>
+            <field name="model">hr.employee.status</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="view_hr_employee_status_tree">
+            <field name="name">hr.employee.status.tree</field>
+            <field name="model">hr.employee.status</field>
+            <field name="field_parent">child_ids</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_hr_employee_status_form">
+            <field name="name">hr.employee.status.form</field>
+            <field name="model">hr.employee.status</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="parent_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Karyawan">
+                                <field name="employee_ids" widget="many2one_list">
+                                    <field name="nik"/>
+                                    <field name="name"/>
+                                    <field name="company_id"/>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_hr_employee_status_search">
+            <field name="name">hr.employee.status.search</field>
+            <field name="model">hr.employee.status</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_hr_employee_status">
+            <field name="name">Status Karyawan</field>
+            <field name="res_model">hr.employee.status</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hr_employee_status_list"/>
+            <field name="help" type="html">
+				<p class="oe_view_nocontent_create">Input data status karyawan terlebih dahulu.</p>
+			</field>
+        </record>
+
+        <menuitem action="action_hr_employee_status" id="menu_hr_employee_status" parent="sub_menu_master" sequence="5"/>
+
+        <record model="ir.actions.act_window" id="action_hr_employee_status_tree">
+            <field name="name">Status Karyawan Tree</field>
+            <field name="res_model">hr.employee.status</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('parent_id', '=', False)]</field>
+            <field name="view_id" ref="view_hr_employee_status_tree"/>
+        </record>
+
+        <menuitem action="action_hr_employee_status_tree" id="menu_hr_employee_status_tree" parent="sub_menu_master" sequence="6"/>
+    </data>
+</odoo>

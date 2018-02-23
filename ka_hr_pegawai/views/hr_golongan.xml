@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of hr.golongan
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_hr_golongan_tree">
+            <field name="name">hr.golongan.tree</field>
+            <field name="model">hr.golongan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_hr_golongan_form">
+            <field name="name">hr.golongan.form</field>
+            <field name="model">hr.golongan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <notebook>
+                            <page string="Karyawan">
+                                <field name="employee_ids" widget="many2one_list">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="job_id"/>
+                                        <field name="pangkat_id"/>
+                                        <field name="company_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_hr_golongan_search">
+            <field name="name">hr.golongan.search</field>
+            <field name="model">hr.golongan</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_hr_golongan">
+            <field name="name">Golongan</field>
+            <field name="res_model">hr.golongan</field>
+            <field name="view_type">form</field>
+            <field name="view_model">tree,form</field>
+            <field name="help" type="html">
+				<p class="oe_view_nocontent_create">Input data golongan terlebih dahulu.</p>
+			</field>
+        </record>
+
+        <menuitem action="action_hr_golongan" id="menu_hr_golongan" parent="sub_menu_master" sequence="4"/>
+    </data>
+</odoo>

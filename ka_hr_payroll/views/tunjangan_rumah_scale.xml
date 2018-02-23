@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of ka_hr_payroll.tunjangan.rumah.scale
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_tunjangan_rumah_scale_tree">
+            <field name="name">ka_hr_payroll.tunjangan.rumah.scale.tree</field>
+            <field name="model">ka_hr_payroll.tunjangan.rumah.scale</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date_start"/>
+                    <field name="min_scale"/>
+                    <field name="max_scale"/>
+                    <field name="value_start"/>
+                    <field name="delta"/>
+                    <field name="golongan_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_tunjangan_rumah_scale_form">
+            <field name="name">ka_hr_payroll.tunjangan.rumah.scale.form</field>
+            <field name="model">ka_hr_payroll.tunjangan.rumah.scale</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_draft" type="object" string="Set ke draft" states="canceled"/>
+                        <button name="action_process" type="object" string="Proses" states="draft" class="oe_highlight"/>
+                        <button name="action_cancel" type="object" string="Batalkan" states="draft,processed"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="min_scale"/>
+                                <field name="max_scale"/>
+                                <field name="value_start"/>
+                                <field name="delta"/>
+                            </group>
+                            <group>
+                                <field name="golongan_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detail Skala">
+                                <field name="line_ids" widget="many2one_list">
+                                    <tree>
+                                        <field name="scale"/>
+                                        <field name="value"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_tunjangan_rumah_scale_search">
+            <field name="name">ka_hr_payroll.tunjangan.rumah.search</field>
+            <field name="model">ka_hr_payroll.tunjangan.rumah.scale</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="date_start"/>
+                    <field name="min_scale"/>
+                    <field name="max_scale"/>
+                    <field name="value_start"/>
+                    <field name="delta"/>
+                    <field name="golongan_id"/>
+                    <field name="company_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tunjangan_rumah_scale">
+            <field name="name">Skala Tunjangan Rumah</field>
+            <field name="res_model">ka_hr_payroll.tunjangan.rumah.scale</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+				<p class="oe_view_nocontent_create">Input data skala tunjangan rumah terlebih dahulu.</p>
+			</field>
+        </record>
+
+        <menuitem action="action_tunjangan_rumah_scale" id="menu_tunjangan_rumah_scale" parent="menu_config" sequence="2"/>
+    </data>
+</odoo>
