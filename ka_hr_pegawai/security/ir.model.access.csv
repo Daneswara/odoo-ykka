@@ -33,3 +33,7 @@ access_ka_hr_pegawai_pangkat_hr_manager,hr.pangkat.hr.manager,model_hr_pangkat,h
 access_ka_hr_pegawai_pangkat_hr_user,hr.pangkat.hr.user,model_hr_pangkat,hr.group_hr_user,1,0,0,0
 access_ka_hr_pegawai_golongan_hr_manager,hr.golongan.hr.manager,model_hr_golongan,hr.group_hr_manager,1,1,1,0
 access_ka_hr_pegawai_golongan_hr_user,hr.golongan.hr.user,model_hr_golongan,hr.group_hr_user,1,0,0,0
+access_ka_hr_pegawai_config_hr_manager,hr.config.hr.manager,model_hr_config,hr.group_hr_manager,1,1,1,0
+access_ka_hr_pegawai_config_hr_user,hr.config.hr.user,model_hr_config,hr.group_hr_user,1,0,0,0
+access_ka_hr_pegawai_employee_status_hr_manager,hr.employee.status.hr.manager,model_hr_employee_status,hr.group_hr_manager,1,1,1,0
+access_ka_hr_pegawai_employee_status_hr_user,hr.employee.status.hr.user,model_hr_employee_status,hr.group_hr_user,1,0,0,0
