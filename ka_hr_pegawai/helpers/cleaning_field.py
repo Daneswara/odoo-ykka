@@ -71,7 +71,6 @@ class KaHrHolidaysCleanField(models.TransientModel):
 		self._drop_model('ka_hr.potongan.lines')
 		self._drop_model('ka_hr.payroll.jenis')
 		self._drop_model('ka_hr.activity.presensi.wizard')
-		self._drop_model('ka_hr.employee.config.wizard')
 		self._drop_model('ka_hr.holiday')
 		self._drop_model('ka_hr.cuti')
 		self._drop_model('ka_hr.absensi')

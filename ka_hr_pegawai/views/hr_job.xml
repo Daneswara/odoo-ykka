@@ -36,6 +36,6 @@
 			</field>
 		</record>
 
-		<menuitem action="action_open_hr_job_tree" id="menu_sdm_job_tree" parent="sub_menu_master" sequence="2"/>
+		<menuitem action="action_open_hr_job_tree" id="menu_sdm_job_tree" parent="sub_menu_master" sequence="2" groups="hr.group_hr_user"/>
 	</data>
 </odoo>

@@ -1,32 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of hr.config.settings
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
 <odoo>
-	<data>
-		<record model="ir.ui.view" id="wizard_employee_config_form">
-			<field name="name">SDM - Setting Kepegawaian</field>
-			<field name="model">ka_hr_pegawai.config.wizard</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="SDM - Setting Kepegawaian">
-					<group>
-						<field name="company_id" groups="base.group_multi_company"/>
-						<field name="hr_pensiun_age"/>
-						<field name="hr_mpp_month"/>
-					</group>
+    <data>
+        <record model="ir.ui.view" id="wizard_employee_config_form">
+            <field name="name">hr.config.settings.form</field>
+            <field name="model">ka_hr_pegawai.config.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Konfigurasi SDM">
+					<field name="hr_config" invisible="1"/>
+                    <group>
+                        <group>
+                            <field name="hr_status_staf"/>
+                            <field name="hr_status_pelaksana"/>
+                        </group>
+                        <group>
+                            <field name="hr_pensiun_age"/>
+                            <field name="hr_mpp_month"/>
+                        </group>
+                    </group>
 					<footer>
-						<button name="save_data" string="Simpan Data" type="object" class="btn-primary"/>
-						<button string="Batal" class="btn-default" special="cancel"/>
+                        <button string="Save" type="object" name="save_data" class="oe_highlight"/>
+                        <button string="Cancel" type="object" name="cancel" class="oe_link" special="cancel"/>
 					</footer>
-				</form>
-			</field>
-		</record>
+                </form>
+            </field>
+        </record>
 
-		<act_window
-			id="action_wizard_config"
-			name="Setting Kepegawaian"
-			res_model="ka_hr_pegawai.config.wizard"
-			view_mode="form"
-			target="new"/>
+        <record model="ir.actions.act_window" id="action_wizard_config">
+            <field name="name">Setting SDM</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ka_hr_pegawai.config.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
 
-		<menuitem action="action_wizard_config" id="menu_wizard_config" parent="sub_menu_config" sequence="4" groups="hr.group_hr_user"/>
-	</data>
+        <menuitem action="action_wizard_config" id="menu_wizard_config" parent="sub_menu_config" sequence="1" groups="hr.group_hr_user"/>
+    </data>
 </odoo>

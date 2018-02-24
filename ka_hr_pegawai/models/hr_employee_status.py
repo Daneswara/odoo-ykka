@@ -11,6 +11,8 @@ from odoo import models, fields, api
 
 class KaHrEmployeeStatus(models.Model):
     """Master data of employee status (staf, pelaksana)
+
+    _name = 'hr.employee.status'
     """
 
     _name = 'hr.employee.status'

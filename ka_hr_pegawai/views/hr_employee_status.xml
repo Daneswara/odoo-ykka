@@ -1,3 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of hr.employee.status
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
 <odoo>
     <data>
         <record model="ir.ui.view" id="view_hr_employee_status_list">
@@ -72,7 +81,7 @@
 			</field>
         </record>
 
-        <menuitem action="action_hr_employee_status" id="menu_hr_employee_status" parent="sub_menu_master" sequence="5"/>
+        <menuitem action="action_hr_employee_status" id="menu_hr_employee_status" parent="sub_menu_master" sequence="5" groups="hr.group_hr_user"/>
 
         <record model="ir.actions.act_window" id="action_hr_employee_status_tree">
             <field name="name">Status Karyawan Tree</field>
@@ -83,6 +92,6 @@
             <field name="view_id" ref="view_hr_employee_status_tree"/>
         </record>
 
-        <menuitem action="action_hr_employee_status_tree" id="menu_hr_employee_status_tree" parent="sub_menu_master" sequence="6"/>
+        <menuitem action="action_hr_employee_status_tree" id="menu_hr_employee_status_tree" parent="sub_menu_master" sequence="6" groups="hr.group_hr_user"/>
     </data>
 </odoo>

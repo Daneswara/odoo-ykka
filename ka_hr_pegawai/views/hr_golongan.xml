@@ -67,6 +67,6 @@ Website: https://cakjuice.com
 			</field>
         </record>
 
-        <menuitem action="action_hr_golongan" id="menu_hr_golongan" parent="sub_menu_master" sequence="4"/>
+        <menuitem action="action_hr_golongan" id="menu_hr_golongan" parent="sub_menu_master" sequence="4" groups="hr.group_hr_user"/>
     </data>
 </odoo>
