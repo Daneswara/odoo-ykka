@@ -14,11 +14,11 @@ Website: https://cakjuice.com
             <field name="model">ka_hr_pegawai.config.wizard</field>
             <field name="arch" type="xml">
                 <form string="Konfigurasi SDM">
-					<field name="hr_config" invisible="1"/>
+					<field name="hr_config_id" invisible="1"/>
                     <group>
                         <group>
-                            <field name="hr_status_staf"/>
-                            <field name="hr_status_pelaksana"/>
+                            <field name="hr_status_staf_id"/>
+                            <field name="hr_status_pelaksana_id"/>
                         </group>
                         <group>
                             <field name="hr_pensiun_age"/>

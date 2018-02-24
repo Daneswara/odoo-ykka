@@ -44,7 +44,6 @@
         'views/templates.xml',
         'views/hr_employee.xml',
         'views/hr_document.xml',
-        'views/hr_configuration.xml',
         'views/res_company.xml',
         'views/hr_job.xml',
         'views/hubungan_keluarga.xml',

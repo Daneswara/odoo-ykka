@@ -1,5 +1,0 @@
-<odoo>
-	<data>
-		<menuitem id="menu_view_employee_category_form" action="hr.open_view_categ_form" parent="sub_menu_config" groups="base.group_no_one" sequence="1"/>
-	</data>
-</odoo>

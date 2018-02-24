@@ -18,9 +18,9 @@ class KaHrConfig(models.Model):
 
 	_name = 'hr.config'
 
-	hr_status_staf = fields.Many2one('hr.employee.status', string="Status Staf",
+	hr_status_staf_id = fields.Many2one('hr.employee.status', string="Status Staf",
 		help="Pilih status karyawan untuk 'Staf'.")
-	hr_status_pelaksana = fields.Many2one('hr.employee.status', string="Status Pelaksana",
+	hr_status_pelaksana_id = fields.Many2one('hr.employee.status', string="Status Pelaksana",
 		help="Pilih status karyawan untuk 'Pelaksana'.")
 	hr_pensiun_age = fields.Integer(string="Usia Pensiun", default=55,
 		help="Untuk menentukan usia pensiun dari karyawan.")
