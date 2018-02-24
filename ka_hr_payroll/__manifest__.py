@@ -25,10 +25,10 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/templates.xml',
-        'views/res_company.xml',
-        'views/gapok_scale.xml',
-        'views/tunjangan_rumah_scale.xml',
-        'views/hr_employee.xml',
+        # 'views/res_company.xml',
+        # 'views/gapok_scale.xml',
+        # 'views/tunjangan_rumah_scale.xml',
+        # 'views/hr_employee.xml',
 
         'wizards/payroll_config.xml',
     ],
