@@ -10,6 +10,6 @@ Website: https://cakjuice.com
 <odoo>
     <data>
         <menuitem id="menu_root" name="Penggajian" sequence="45" web_icon="hr_payroll,static/description/icon.png"/>
-        <menuitem id="menu_config" name="Konfigurasi" parent="menu_root"/>
+        <menuitem id="menu_config" name="Konfigurasi" parent="menu_root" groups="hr.group_hr_user"/>
     </data>
 </odoo>

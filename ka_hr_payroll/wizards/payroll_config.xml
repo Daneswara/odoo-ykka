@@ -15,10 +15,10 @@ Website: https://cakjuice.com
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="SDM - Setting Payroll">
+                    <field name="config_id" invisible="1"/>
                     <group>
-                        <field name="company_id" groups="base.group_multi_company"/>
                         <field name="konjungtur_gaji"/>
-                        <field name="konjungtur_pensiun"/>
+                        <field name="konjungtur_dapen"/>
                     </group>
                     <footer>
                         <button name="save_data" string="Simpan Data" type="object" class="btn-primary"/>
@@ -35,6 +35,6 @@ Website: https://cakjuice.com
             view_mode="form"
             target="new"/>
 
-        <menuitem action="action_wizard_config" id="menu_wizard_config" name="Konfigurasi Penggajian" parent="menu_config" sequence="10"/>
+        <menuitem action="action_wizard_config" id="menu_wizard_config" name="Konfigurasi Penggajian" parent="menu_config" sequence="10" groups="hr.group_hr_user"/>
     </data>
 </odoo>
