@@ -23,7 +23,8 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+
         'views/templates.xml',
         # 'views/res_company.xml',
         # 'views/gapok_scale.xml',

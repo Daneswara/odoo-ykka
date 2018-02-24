@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ka_hr_payroll_ka_hr_payroll,ka_hr_payroll.ka_hr_payroll,model_ka_hr_payroll_ka_hr_payroll,,1,0,0,0
+access_ka_hr_payroll_config_hr_manager,ka_hr_payroll.config.hr.manager,model_ka_hr_payroll_config,hr.group_hr_manager,1,1,1,0
+access_ka_hr_payroll_config_hr_user,ka_hr_payroll.config.hr.user,model_ka_hr_payroll_config,hr.group_hr_user,1,0,0,0
