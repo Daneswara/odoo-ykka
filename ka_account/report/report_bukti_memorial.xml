@@ -14,54 +14,276 @@
 		        <t t-foreach="docs" t-as="doc">
 		        	<t t-set="sumDebet" t-value="0" />
 		        	<t t-set="sumCredit" t-value="0" />
-		        	<div class="header">
+		        	<!-- <div class="header">
 		        		<div style="width:20%;margin: 40px 600px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
 		        			<span t-field ="doc.name"/>
 						</div>
 						<div style="width:20%;margin: 125px 600px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
 							<span t-field ="doc.date"/>
 						</div>
-		        	</div>
-		            <div class="page">
-						<div style="width:100%;left: 0px;top: 0px;z-index:0;position:absolute;font-size:16px; margin-top:65px;">
-							<t t-foreach="doc.line_ids" t-as="o">
-								<table style="width:99%;">
-									<tr>
-										<td style="width:12%;text-align: left;padding:5px;">
-											<span t-field ="o.account_id.code"/>
+		        	</div> -->
+		        	<div class="header" >
+						<style type="text/css">
+							.table-headtext-td1 {
+								width: 28%;
+								padding-left: 5px;
+								vertical-align: middle;
+							}
+							.table-headtext-td2 {
+								width: 18%;
+								vertical-align: middle;
+							}
+							.table-headtext-td3 {
+								width: 54%;
+								vertical-align: middle;
+							}
+						</style>
+						<div class="row">
+							<div class="col-xs-12">
+								<table width="100%" style="border-collapse: collapse;">
+									<tr height="100px">
+										<td class="text-center" rowspan="2" style="border:1px solid black; width:25%;vertical-align: middle">
+											<img src="ka_report_layout/static/src/img/logo-ptkebonagung.png" style="margin: 0 auto; height: 18px"/>
+											<br/>
+											<span t-esc="user.company_id.name"/><br/>
+											<span t-esc="user.company_id.city" style="text-transform: uppercase;"/>
 										</td>
-										<td style="width:48%;text-align: left;padding:5px;">
-											<span t-field ="o.account_id.name"/> - <span t-field ="o.partner_id"/> - <span t-field ="o.name"/>
+						
+										<td class="text-center" rowspan="2" style="padding: 5px 10px; font-size:18px;border:1px solid black; width:50%; vertical-align: middle">
+											<strong><span style="color: #e02929 !important;">BUKTI MEMORIAL</span></strong>
+											
 										</td>
-										<td style="width:20%;text-align: right;padding:5px;">
-											<t t-if="o.debit != 0">
-												<t t-esc="str('{0:,.2f}'.format(float(o.debit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
-												<t t-set="sumDebet" t-value="sumDebet+o.debit" />
-											</t>
-											<t t-if="o.debit == 0">
-												<span> - </span>
-											</t>
-										</td>
-										<td style="width:20%;text-align: right;padding:5px;">
-											<t t-if="o.credit != 0">
-												<t t-esc="str('{0:,.2f}'.format(float(o.credit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
-												<t t-set="sumCredit" t-value="sumCredit+o.credit" />
-											</t>
-											<t t-if="o.credit == 0">
-												<span> - </span>
-											</t>
+										<td style="padding: 10px; border:1px solid black; width:25%">No. <span t-field ="doc.name"/></td>	
+									</tr>
+											
+									<tr height="50px">
+										<td style="padding: 5px; border:1px solid black; vertical-align: middle">
+											Tanggal : <span t-field ="doc.date"/>
 										</td>
 									</tr>
 								</table>
-							</t>
+							</div>
 						</div>
 					</div>
-					<div class="footer">
-						<div style="width:20%;margin: 0px 630px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
-							<t t-esc="str('{0:,.2f}'.format(float(sumDebet))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
-						</div>
-						<div style="width:20%;margin: 0px 830px;left: 0px;top: 0px;z-index:0;position:absolute;font-size:18px;">
-							<t t-esc="str('{0:,.2f}'.format(float(sumCredit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+					<div class="page" style="font-family: 'Times New Roman', Times, serif;">
+						<style type="text/css">
+							@media print {
+								.thead-content {
+									display: table-header-group !important;
+								}
+							}
+
+							.thead-td {
+								border: 1px solid #000 !important;
+							}
+
+							.tr-fixed {
+								height: 60px !important;
+							}
+
+							.td-content {
+								/*margin: 0 !important;*/
+								/*padding: 4px 5px !important;*/
+								vertical-align: middle !important;
+							}
+
+							.td-left-right {
+								border-right: 1px solid #000 !important;
+								border-left: 1px solid #000 !important;
+							}
+
+							.td-right {
+								border-right: 1px solid #000 !important;
+							}
+
+							.td-side {
+								padding: 5px 5px 5px 10px;
+								border: 1px solid #000;
+							}
+
+							.td-bottom {
+								padding: 3px 5px !important;
+								border-bottom: 1px solid #000 !important;
+							}
+							.td-top {
+								padding: 3px 5px !important;
+								vertical-align: middle !important;
+								border-top: 1px solid #000 !important;
+							}
+
+							.td-top-double {
+								padding: 3px 5px !important;
+								vertical-align: top !important;
+								border-top: double !important;
+							}
+
+							.no-top-bottom {
+								border-top: none !important;
+								border-bottom: none !important;
+							}
+							.no-top {
+								border-top: none !important;
+							}
+
+							p {
+								margin: 0 !important;
+								padding: 0 !important;
+							}
+						</style>
+						<div class="row">
+							<t t-set="count_lines" t-value="len(doc.line_ids)"/>
+							<div class="col-xs-12">
+								<table class="table table-condensed table-bordered" style="width:100%; font-size:14px; table-layout:fixed">
+									<thead class="thead-content">
+										<tr>
+											<td class="thead-td text-center td-content" style="width:15%">
+												No. Perk.
+											</td>
+											<td class="thead-td text-center td-content" colspan="3" style="width:50%">Nama Perkiraan dan Uraian</td>
+											<td class="thead-td text-center td-content">DEBET (Rp.)</td>
+											<td class="thead-td text-center td-content">KREDIT (Rp.)</td>
+										</tr>
+									</thead>
+									<tbody>
+										<t t-set="line_increment" t-value="1"/>
+										<t t-set="full_row" t-value="16"/>
+										
+										<tr t-foreach="doc.line_ids" t-as="o" class="tr-fixed" style="font-size:16px;">
+											<t t-if="line_increment % full_row == 0">
+												<!-- baris terakhir -->
+												<td style="width:12%;padding:5px;" class="td-left-right td-bottom no-top text-center">
+													<span t-field ="o.account_id.code"/>
+												</td>
+												<td style="width:48%;text-align: left;padding:5px;" colspan="3" class="td-right no-top td-bottom ">
+													<span t-field ="o.account_id.name"/> - <span t-field ="o.partner_id"/> - <span t-field ="o.name"/>
+												</td>
+												<td style="width:20%;text-align: right;padding:5px;" class="td-right no-top td-bottom ">
+													<t t-if="o.debit != 0">
+														<t t-esc="str('{0:,.2f}'.format(float(o.debit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+														<t t-set="sumDebet" t-value="sumDebet+o.debit" />
+													</t>
+													<t t-if="o.debit == 0">
+														<span> - </span>
+													</t>
+												</td>
+												<td style="width:20%;text-align: right;padding:5px;" class="td-right no-top td-bottom ">
+													<t t-if="o.credit != 0">
+														<t t-esc="str('{0:,.2f}'.format(float(o.credit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+														<t t-set="sumCredit" t-value="sumCredit+o.credit" />
+														</t>
+													<t t-if="o.credit == 0">
+														<span> - </span>
+													</t>
+												</td>
+												<t t-set="line_increment" t-value="1"/>
+											</t>
+											<t t-else="">
+												<td style="width:12%;padding:5px;" class="td-left-right no-top-bottom text-center">
+													<t t-esc="line_increment"/>. 
+													<span t-field ="o.account_id.code"/>
+												</td>
+												<td style="width:48%;text-align: left;padding:5px;" colspan="3" class="td-right no-top-bottom">
+													<span t-field ="o.account_id.name"/> - <span t-field ="o.partner_id"/> - <span t-field ="o.name"/>
+												</td>
+												<td style="width:20%;text-align: right;padding:5px;" class="td-right no-top-bottom">
+													<t t-if="o.debit != 0">
+														<t t-esc="str('{0:,.2f}'.format(float(o.debit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+														<t t-set="sumDebet" t-value="sumDebet+o.debit" />
+													</t>
+													<t t-if="o.debit == 0">
+														<span> - </span>
+													</t>
+												</td>
+												<td style="width:20%;text-align: right;padding:5px;" class="td-right no-top-bottom">
+													<t t-if="o.credit != 0">
+														<t t-esc="str('{0:,.2f}'.format(float(o.credit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+														<t t-set="sumCredit" t-value="sumCredit+o.credit" />
+														</t>
+													<t t-if="o.credit == 0">
+														<span> - </span>
+													</t>
+												</td>
+												<t t-set="line_increment" t-value="line_increment + 1"/>
+											</t>
+										</tr>
+
+										<t t-set="max_row_sisa" t-value="full_row - 2"/>
+										<t t-set="sisa" t-value="full_row - (len(doc.line_ids) % full_row)"/>
+
+										<t t-if="sisa &lt; 2">
+											<t t-set="sisa" t-value="sisa + max_row_sisa"/>
+										</t>
+										<t t-else="">
+											<t t-set="sisa" t-value="sisa - 2"/>
+										</t>
+
+										<tr t-foreach="range(sisa)" t-as="i" class="tr-fixed">
+											<t t-set="count_lines" t-value="count_lines + 1"/>
+
+											<t t-if="count_lines % full_row == 0">
+												<td class="text-center td-left-right no-top-bottom td-content">
+													<p><![CDATA[&nbsp;]]></p>
+												</td>
+												<td class="td-right td-content no-top-bottom" colspan="3">
+													<p><![CDATA[&nbsp;]]></p>
+												</td>
+												<td class="text-right td-right td-content no-top-bottom">
+													<p><![CDATA[&nbsp;]]></p>
+												</td>
+												<td class="text-right td-right td-content no-top-bottom">
+													<p><![CDATA[&nbsp;]]></p>
+												</td>
+											</t>
+											<t t-else="">
+												<td class="text-center td-left-right td-content no-top-bottom">
+													<p><![CDATA[&nbsp;]]></p>
+												</td>
+												<td class="td-right td-content no-top-bottom" colspan="3">
+													<p><![CDATA[&nbsp;]]></p>
+												</td>
+												<td class="text-right td-right td-content no-top-bottom">
+													<p><![CDATA[&nbsp;]]></p>
+												</td>
+												<td class="text-right td-right td-content no-top-bottom">
+													<p><![CDATA[&nbsp;]]></p>
+												</td>
+											</t>
+										</tr>
+										<tr></tr>
+										<tr class="tr-fixed">
+											<td class="text-center td-bottom td-top-double td-left-right" rowspan="2">
+												Dibuat
+											</td>
+											<td class="text-center td-bottom td-top-double td-left-right" rowspan="2">
+												Diperiksa
+											</td>
+											<td class="text-center td-bottom td-top-double td-left-right" rowspan="2">
+												Diketahui
+											</td>
+											<td class="text-right td-right td-content no-top-bottom">
+												<p><![CDATA[&nbsp;]]></p>
+											</td>
+											<td class="text-right td-right td-content no-top-bottom">
+												<p><![CDATA[&nbsp;]]></p>
+											</td>
+											<td class="text-right td-right td-content no-top-bottom">
+												<p><![CDATA[&nbsp;]]></p>
+											</td>
+										</tr>
+										<tr class="tr-fixed">
+											<td class="td-bottom td-top td-left-right text-center">
+												Jumlah / Dipindahkan
+											</td>
+											<td class="td-bottom td-top td-left-right" style="text-align: right;">
+												<t t-esc="str('{0:,.2f}'.format(float(sumDebet))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</td>
+											<td class="td-bottom td-top td-right" style="text-align: right;">
+												<t t-esc="str('{0:,.2f}'.format(float(sumCredit))).replace('.', '%').replace(',', '.').replace('%', ',')"/>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 		        </t>
