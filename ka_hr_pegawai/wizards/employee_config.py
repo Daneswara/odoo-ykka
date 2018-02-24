@@ -10,7 +10,7 @@ Website:
 from odoo import models, fields, api
 
 class KaHrPegawaiConfigWizard(models.TransientModel):
-	"""models.TransientModel setting for `hr` modules.
+	"""models.TransientModel setting for `hr` modules which saved on `hr.config`.
 
 	_name = ka_hr_pegawai.config.wizard
 	"""
@@ -19,6 +19,7 @@ class KaHrPegawaiConfigWizard(models.TransientModel):
 
 	def default_config(self):
 		"""To get default config from `hr.config` model.
+		Query `hr.config` for first record only.
 		"""
 		config = self.env['hr.config'].search([], order='id asc', limit=1)
 		if not config:
