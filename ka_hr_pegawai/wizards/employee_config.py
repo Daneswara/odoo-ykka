@@ -19,13 +19,11 @@ class KaHrPegawaiConfigWizard(models.TransientModel):
 
 	def default_config(self):
 		"""To get default config from `hr.config` model.
-		Query `hr.config` for first record only.
+
+		Returns:
+			Recordset -- Result default config
 		"""
-		config = self.env['hr.config'].search([], order='id asc', limit=1)
-		if not config:
-			config = self.env['hr.config'].create({'hr_pensiun_age': 55, 'hr_mpp_month': 4})
-			self._cr.commit()
-		return config
+		return self.env['hr.config'].default_config()
 
 	hr_config_id = fields.Many2one('hr.config', string="Config", default=default_config)
 	hr_status_staf_id = fields.Many2one(string="Status Staf", related='hr_config_id.hr_status_staf_id',

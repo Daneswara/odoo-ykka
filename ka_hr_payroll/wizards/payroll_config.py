@@ -17,13 +17,11 @@ class KaHrPayrollConfigWizard(models.TransientModel):
 
     def default_config(self):
 		"""To get default config from `ka_hr_payroll.config` model.
-		Query `ka_hr_payroll.config` for first record only.
+
+        Returns:
+            Recordset -- Result default config
 		"""
-		config = self.env['ka_hr_payroll.config'].search([], order='id asc', limit=1)
-		if not config:
-			config = self.env['ka_hr_payroll.config'].create({'konjungtur_gaji': 100, 'konjungtur_dapen': 100})
-			self._cr.commit()
-		return config
+		return self.env['ka_hr_payroll.config'].default_config()
 
     config_id = fields.Many2one('ka_hr_payroll.config', string="Config", default=default_config)
     konjungtur_gaji = fields.Float(related='config_id.konjungtur_gaji', string="Konjungtur Gaji", required=True,
