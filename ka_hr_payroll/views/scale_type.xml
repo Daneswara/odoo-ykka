@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+View of ka_hr_payroll.scale.type
+
+Author: @CakJuice <hd.brandoz@gmail.com>
+Website: https://cakjuice.com
+-->
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_scale_type_tree">
+            <field name="name">ka_hr_payroll.scale.type.tree</field>
+            <field name="model">ka_hr_payroll.scale.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_scale_type_form">
+            <field name="name">ka_hr_payroll.scale.type.form</field>
+            <field name="model">ka_hr_payroll.scale.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_scale_type_search">
+            <field name="name">ka_hr_payroll.scale.type.search</field>
+            <field name="model">ka_hr_payroll.scale.type</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_scale_type">
+            <field name="name">Tipe Skala Penggajian</field>
+            <field name="res_model">ka_hr_payroll.scale.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+				<p class="oe_view_nocontent_create">Input data tipe skala terlebih dahulu.</p>
+			</field>
+        </record>
+
+        <menuitem action="action_scale_type" id="menu_scale_type" parent="menu_config" sequence="2"/>
+    </data>
+</odoo>

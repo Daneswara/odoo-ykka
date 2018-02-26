@@ -26,6 +26,8 @@
         'security/ir.model.access.csv',
 
         'views/templates.xml',
+        'views/scale.xml',
+        'views/scale_type.xml',
         # 'views/res_company.xml',
         # 'views/gapok_scale.xml',
         # 'views/tunjangan_rumah_scale.xml',
