@@ -181,11 +181,10 @@ class PurchaseOrder(models.Model):
         self.write({'name': (self.name + suffix), 'notes': notes})
         return super(PurchaseOrder, self).button_cancel()
     
-    # @api.onchange('date_planned')
-    # def onchange_date_planned(self):
-        # for order in self:
-            # for l in order.order_line:
-                # l.date_planned = order.date_planned
+    @api.onchange('date_planned')
+    def onchange_date_planned(self):
+        for order in self:
+            order.order_line.write({'date_planned': order.date_planned})
         
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
