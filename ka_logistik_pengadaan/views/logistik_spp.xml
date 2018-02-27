@@ -159,6 +159,7 @@
 				<form string="Pengelolaan SPP">
 					<header>
 						<button name="action_draft" string="Konsep SPPH" confirm="Apakah benar SPP ini akan dijadikan menjadi konsep?" help="Menjadikan SPPH ini menjadi konsep SPPH" type="object" states="sent,confirm"/>
+						<button name="action_spph_send" string="Kirim e-mail" type="object" states="sent,confirm" icon=" fa-envelope" groups="base.group_no_one"/>
 						<button name="action_print_spp" string="SPPH" icon="fa-print" help="Cetak Surat Permintaan Harga" type="object" states="draft" class="oe_highlight"/>
 						<button name="action_print_spp" string="SPPH" icon="fa-print" help="Cetak Surat Permintaan Harga" type="object" states="sent,confirm,order"/>
 						<button name="action_cancel" confirm="Pembatalan SPP akan mengemembalikan SPM menjadi belum di-golongkan. Apakah benar SPP ini akan Di-Batalkan?" string="Batalkan SPPH dan SPM" help="Batalkan SPPH ini sekaligus Penggolongan SPM-nya" type="object" states="draft,sent"/>

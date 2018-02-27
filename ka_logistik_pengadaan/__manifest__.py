@@ -16,8 +16,6 @@
     'website': "http://ptkebonagung.com",
 
     # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
-    # for the full list
     'category': 'Logistik',
     'version': '0.1',
 
@@ -46,5 +44,6 @@
         'report/spp_result.xml',
         'report/tender_spp.xml',
         'report/tender_result.xml',
+        'data/mail_template_data.xml',
     ],
 }

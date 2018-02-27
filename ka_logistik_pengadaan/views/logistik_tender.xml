@@ -85,6 +85,7 @@
 									<tree default_order='partner_id' editable="bottom" colors="grey:state=='confirm';blue:state=='sent';red:state=='norespon'" create="false">
 										<button name="action_print_spp" help="Cetak SPPH rekanan ini." icon="fa-print" type="object"/>
 										<field name="partner_id"/>
+										<button name="action_spph_send" help="Kirim email" type="object" icon=" fa-envelope" groups="base.group_no_one"/>
 										<button class="danger" name="action_norespon" help="Rekanan Tidak Merespon" string="Tidak Merespon" attrs="{'invisible':[('tender_state','!=', 'spp')]}" type="object" confirm="Set rekanan tidak merespon?"/>
 										<field name="no_penawaran"/>
 										<field name="total_spph"/>
