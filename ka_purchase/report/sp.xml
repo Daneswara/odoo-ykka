@@ -38,7 +38,7 @@
 										<p style="margin-top:5px;font-weight: normal;padding-left:113px;"><span t-field="o.spp_id.tgl_penawaran" t-field-options="{&quot;format&quot;: &quot;d MMMM y&quot;}"/></p>
 									</th>
 									<th style="padding-left:-20px;font-weight:normal" colspan="1">
-										<p style="margin-top:-20px;font-size:12px;white-space:nowrap"><span t-field="o.spp_id.no_penawaran"/></p>
+										<p style="margin-top:-20px;font-size:12px;white-space:nowrap"><span t-esc="o.spp_id.no_penawaran[:23]"/></p>
 									</th>
 								</tr>
 							</thead>
