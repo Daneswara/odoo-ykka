@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <menuitem id="academic0"
+                  name="Academic"
+                  sequence="20"/>
+        <menuitem id="academic1"
+                  name="Academic"
+                  parent="academic0"
+                  sequence="20"/>
+        <menuitem id="menu_academic_course"
+                  name="Course"
+                  parent="academic1"
+                  action="action_course_list"
+                  sequence="20"/>
+        <menuitem id="menu_academic_session"
+                  name="Session"
+                  parent="academic1"
+                  action="action_session_list"
+                  sequence="30"/>
+        <menuitem id="menu_academic_attendee"
+                  name="Attendee"
+                  parent="academic1"
+                  action="action_attendee_list"
+                  sequence="40"/>
+        <menuitem id="menu_academic_instructor"
+                  name="Instructor"
+                  parent="academic1"
+                  action="action_instructor_list"
+                  sequence="50"/>
+    </data>
+</odoo>

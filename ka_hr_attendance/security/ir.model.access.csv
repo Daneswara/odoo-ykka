@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hr_attendance_shift_user,hr.attendance.shift.user,model_hr_attendance_shift,hr_attendance.group_hr_attendance_user,1,0,0,0
-access_hr_attendance_shift_manager,hr.attendance.shift.manager,model_hr_attendance_shift,hr_attendance.group_hr_attendance_manager,1,1,1,1
-access_hr_attendance_group_user,hr.attendance.group.user,model_hr_attendance_group,hr_attendance.group_hr_attendance_user,1,0,0,0
-access_hr_attendance_group_manager,hr.attendance.group.manager,model_hr_attendance_group,hr_attendance.group_hr_attendance_manager,1,1,1,1
-access_hr_attendance_group_shift_user,hr.attendance.group.shift.user,model_hr_attendance_group_shift,hr_attendance.group_hr_attendance_user,1,0,0,0
-access_hr_attendance_group_shift_manager,hr.attendance.group.shift.manager,model_hr_attendance_group_shift,hr_attendance.group_hr_attendance_manager,1,1,1,1
-access_ka_hr_attendance_report_weekly_user,ka_hr_attendance.report.weekly.user,model_ka_hr_attendance_report_weekly,hr_attendance.group_hr_attendance_user,1,0,0,0
-access_ka_hr_attendance_report_weekly_manager,ka_hr_attendance.report.weekly.manager,model_ka_hr_attendance_report_weekly,hr_attendance.group_hr_attendance_manager,1,1,1,1

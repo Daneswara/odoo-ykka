@@ -1,5 +1,0 @@
-<odoo>
-	<data>
-		<function id="ka_hr_pegawai_cleaning_field" model="ka_hr.pegawai.clean.field" name="do_clean_field"/>
-	</data>
-</odoo>

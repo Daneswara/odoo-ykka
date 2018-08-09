@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_timbang_spta_user,ka_timbang.spta.user,model_ka_timbang_spta,ka_timbang.ka_timbang_group_user,1,1,1,0
-access_timbang_spta_manager,ka_timbang.spta.manager,model_ka_timbang_spta,ka_timbang.ka_timbang_group_manager,1,1,1,1
-access_timbang_spta_guest,ka_timbang.spta.guest,model_ka_timbang_spta,ka_timbang.ka_timbang_group_guest,1,0,0,0
-access_timbang_material_user,ka_timbang.material.user,model_ka_timbang_material,ka_timbang.ka_timbang_group_user,1,1,1,0
-access_timbang_material_manager,ka_timbang.material.manager,model_ka_timbang_material,ka_timbang.ka_timbang_group_manager,1,1,1,1
-access_timbang_material_guest,ka_timbang.material.guest,model_ka_timbang_material,ka_timbang.ka_timbang_group_guest,1,0,0,0

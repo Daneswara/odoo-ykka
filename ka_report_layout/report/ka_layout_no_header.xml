@@ -1,8 +1,0 @@
-<odoo>
-	<data>
-		<template id="ka_layout_no_header" name="ka_layout_no_header">
-			<t t-raw="0"/>
-			<t t-call="ka_report_layout.external_layout_footer_inherit"/>
-		</template>
-	</data>
-</odoo>

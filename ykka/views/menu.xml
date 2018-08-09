@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+
+      <!-- Top menu item -->
+    
+    <menuitem name="YKKA" id="ykka.menu_root"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Master" id="ykka.menu_master" parent="ykka.menu_root"/>
+    <!-- <menuitem name="Menu 2" id="ykka.menu_2" parent="ykka.menu_root"/> -->
+
+    <menuitem name="Proses" id="ykka.menu_proses" parent="ykka.menu_root"/>
+    <!-- <menuitem name="Menu 2" id="ykka.menu_2" parent="ykka.menu_root"/> -->
+   
+   
+  </data>
+</odoo>

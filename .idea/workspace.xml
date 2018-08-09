@@ -1,0 +1,1612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fb2446a2-e44a-4320-ba81-9c99dc321ca0" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/academic/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/__manifest__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/models/attendee.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/models/course.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/models/partner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/models/session.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/views/attendee.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/views/course.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/views/menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/views/partner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/academic/views/session.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ykka/models/m_rek.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amount_to_text_id/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amount_to_text_id/__openerp__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amount_to_text_id/amount_to_text.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/__openerp__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/images/screen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/description/contact.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/description/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/description/project.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/description/screen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/lib/css/drawer.3.2.0.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/lib/js/drawer.3.2.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/lib/js/iscroll-probe.5.2.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/css/juice.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/font/Roboto-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/img/material-background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/js/web_responsive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/less/app_drawer.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/less/bootswatch/bootswatch.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/less/bootswatch/style.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/less/bootswatch/variables.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/less/main.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/less/navbar.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/static/src/less/variables.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/views/assets.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_theme_v10/views/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/demo/demo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/models/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/static/src/css/juice.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/static/src/fonts/Ubuntu-B.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/static/src/fonts/Ubuntu-BI.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/static/src/fonts/Ubuntu-L.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/static/src/fonts/Ubuntu-LI.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/static/src/fonts/Ubuntu-M.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/static/src/fonts/Ubuntu-MI.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/static/src/js/juice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cj_theme/views/views.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputmask_widget/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputmask_widget/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputmask_widget/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputmask_widget/static/description/main_screenshot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputmask_widget/static/lib/jquery.inputmask/jquery.inputmask.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputmask_widget/static/src/js/widgets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputmask_widget/static/src/xml/mask.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputmask_widget/views/assets_templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/data/account_type_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/data/ir_cron_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/data/ir_sequence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/data/ka_account_fiscalmonth_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/account.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/account_bank_statement.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/account_cash_nominal.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/account_config_setting.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/account_invoice.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/account_journal_dashboard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/account_move.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/account_penalty.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/attachment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/chart_template.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/financial_report.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/ka_account_fiscalmonth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/ka_account_fiscalyear.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/ka_account_payment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/ka_account_payment_confirm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/ka_account_periodic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/ka_account_voucher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/res_partner_bank.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/models/res_users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/account_report_financial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/cash_bank_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/cash_flow_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/cash_flow_report_tmpl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/daily_cash_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/daily_cash_report_tmpl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/ka_account_report_confirmed_payment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/ka_general_ledger.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/ka_general_ledger_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/ka_trial_balance_report_tmpl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/laporan_buku_besar.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/laporan_buku_besar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/render_html_confirm_payment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_bukti_memorial.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_confirmed_payment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_confirmed_payment_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_financial_custom.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_financial_custom_landscape.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_financial_custom_portrait.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_proposed_payment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_proposed_payment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_rekap_vendor_payment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_rekap_vendor_payment_tmpl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/report_slip_setoran_bank.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/slip_penerimaan_kas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/slip_penerimaan_kas_plus.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/slip_setoran_bank.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/slip_setoran_kas_keluar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/tmpl_laporan_buku_besar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/tmpl_proposed_payment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/tmpl_slip_penerimaan_kas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/tmpl_slip_penerimaan_kas_plus.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/tmpl_slip_setoran_bank.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/tmpl_slip_setoran_kas_keluar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report/trial_balance_xlsx.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report_neraca_lama/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report_neraca_lama/neraca_saldo_lama.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report_neraca_lama/neraca_saldo_lama_tmpl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/report_neraca_lama/neraca_saldo_lama_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/security/account_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/static/description/Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/static/description/box-X.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/static/description/box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/static/src/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/static/src/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/static/src/less/form_view_layout_extra.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/static/src/xml/financial_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/account_bank_statement_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/account_cash_nominal_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/account_config_setting_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/account_fiscalyear.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/account_invoice_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/account_journal_dashboard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/account_penalty_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/account_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/bank_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/chart_template_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/financial_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/ka_account_payment_confirm_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/ka_account_payment_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/ka_account_periodic_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/ka_account_report_financial_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/ka_account_voucher_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/open_chart.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/report_balance_sheet_horizontal.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/report_financial.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/res_bank_partner_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/views/webclient_templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/account_chart.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/bank_statement_line_import_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/bank_statement_line_import_wizard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/cash_bank_report.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/cash_bank_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/cash_flow_report_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/cash_flow_report_wizard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/financial_report_detail_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/financial_report_detail_wizard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_account_export_dbf_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_account_export_dbf_wizard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_account_payment_confirm_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_account_payment_confirm_wizard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_account_payment_export_faktur_pajak_wiz.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_account_payment_export_faktur_pajak_wiz.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_account_print_payment_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_account_print_payment_wizard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_daily_cash.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/ka_daily_cash_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/rekap_vendor_payment_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/rekap_vendor_payment_wizard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/trial_balance_report_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/trial_balance_report_wizard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/voucher_print_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account/wizard/voucher_print_wizard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/models/account_tax.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/models/ka_account_payment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/models/ka_account_tax.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/report/ka_account_pph_buktipotong_envelope.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/security/account_tax_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/views/ka_account_payment_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/views/ka_account_tax_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/wizard/ka_account_payment_confirm_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/wizard/ka_account_payment_export_faktur_pajak_wiz.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/wizard/ka_account_payment_export_faktur_pajak_wiz.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/wizard/ka_account_tax_confirm_state_import.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_account_tax/wizard/ka_account_tax_confirm_state_import_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/models/account_analytic_account.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/models/account_analytic_stasiun.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/models/res_user_stasiun.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/security/stasiun_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_analytic_stasiun/views/analytic.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/models/res_company.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/models/res_partner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/models/res_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/static/img/ka.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/static/img/kba.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/static/img/tk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/views/ka_base_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/views/res_company_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/views/res_partner_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base/views/res_user_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/models/base_wilayah.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/models/res_desa_kelurahan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/models/res_dusun.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/models/res_kab_kota.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/models/res_kecamatan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/models/res_provinsi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/security/base_wilayah.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/views/desa_kelurahan.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/views/dusun.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/views/kab_kota.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/views/kecamatan.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_base_wilayah/views/views.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/demo/demo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/models/fingerspot_action_log.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/models/fingerspot_device.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/models/fingerspot_scanlog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/models/fingerspot_server.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/models/fingerspot_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/views/fingerspot_action_log.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/views/fingerspot_device.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/views/fingerspot_scanlog.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/views/fingerspot_server.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/views/fingerspot_user.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_fingerspot/views/menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/data/ir_cron_fingerspot_scan.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/data/ir_cron_weekly_report_mail.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/data/template_mail_no_check_in.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/data/template_mail_no_check_out.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/data/template_mail_weekly_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/demo/demo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/helpers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/helpers/cleaning_db.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/helpers/cleaning_db.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/models/attendance_report_weekly.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/models/employee_attendance.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/models/group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/models/hr_employee.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/models/res_company.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/models/shift.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/reports/monthly_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/reports/weekly_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/views/attendance_report_weekly.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/views/employee_attendance.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/views/group.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/views/hr_employee.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/views/menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/views/res_company.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/views/shift.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/wizards/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/wizards/attendance_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/wizards/attendance_config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/wizards/fingerspot_attendance_import.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/wizards/fingerspot_attendance_import.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/wizards/monthly_report.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_attendance/wizards/monthly_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/data/ir_cron_employee_holidays_allocation.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/data/ir_sequence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/data/template_mail_cuti_allocation.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/data/template_mail_cuti_approval.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/data/template_mail_cuti_approved.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/data/template_mail_cuti_refused.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/demo/demo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/helpers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/helpers/cleaning_field.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/helpers/cleaning_field.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/af.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/am.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/ar.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/bg.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/bs.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/ca.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/cs.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/da.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/de.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/el.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/en_GB.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_AR.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_BO.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_CL.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_CO.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_CR.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_DO.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_EC.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_MX.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_PE.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_PY.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/es_VE.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/et.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/eu.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/fa.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/fi.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/fr.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/fr_BE.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/fr_CA.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/gl.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/gu.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/he.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/hi.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/hr.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/hu.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/id.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/it.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/ja.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/ka.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/kab.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/ko.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/lt.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/lv.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/mk.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/mn.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/my.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/nb.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/nl.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/nl_BE.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/pl.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/pt.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/pt_BR.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/ro.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/ru.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/sk.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/sl.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/sq.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/sr.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/sr@latin.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/sv.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/th.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/tr.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/uk.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/vi.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/zh_CN.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/i18n/zh_TW.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/models/employee_holidays.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/models/holidays_afkoop.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/models/holidays_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/models/holidays_public.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/models/holidays_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/models/hr_employee.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/models/res_company.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/reports/employee_dinas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/reports/employee_holidays.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/employee_holidays.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/employee_holidays_general.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/holidays_afkoop.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/holidays_group.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/holidays_public.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/holidays_status.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/hr_employee.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/views/res_company.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/wizards/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/wizards/holidays_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_holidays/wizards/holidays_config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/bp_ka_hr_payroll.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/class_ka_hr_payroll.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/demo/demo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/models/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/models/gapok_scale.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/models/hr_employee.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/models/res_company.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/models/scale.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/models/tunjangan_rumah_scale.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/views/gapok_scale.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/views/hr_employee.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/views/res_company.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/views/scale.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/views/scale_type.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/views/tunjangan_rumah_scale.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/wizards/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/wizards/payroll_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_payroll/wizards/payroll_config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/class_ka_hr_pegawai.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/data/data_hr_golongan.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/data/ir_sequence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/data/template_mail_employee_sp_approved.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/data/template_mail_employee_sp_canceled.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/helpers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/helpers/cleaning_field.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/helpers/cleaning_field.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_document_asset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_document_kerjasama.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_document_legal.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_employee.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_employee_graduate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_employee_history.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_employee_sp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_employee_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_golongan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_graduate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_job.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hr_pangkat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/hubungan_keluarga.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/res_company.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/models/res_users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/reports/employee_sp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/security/hr_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/hr_document.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/hr_employee.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/hr_employee_sp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/hr_employee_status.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/hr_golongan.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/hr_job.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/hr_pangkat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/hubungan_keluarga.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/res_company.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/wizards/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/wizards/employee_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_hr_pegawai/wizards/employee_config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/models/logistik_invoice.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/models/logistik_sp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/views/logistik_invoice.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_invoice/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/models/product_category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/models/product_template.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/models/res_partner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/security/logistik_master.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/views/logistik_master.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/views/product.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/views/res_partner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/wizard/product_update_hps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_master/wizard/product_update_hps_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/data/mail_template_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/models/logistik_sp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/models/logistik_spm_lines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/models/logistik_spp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/models/logistik_spp_lines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/models/logistik_tender.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/models/logistik_tender_lines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/models/stock_move.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/report/spp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/report/spp_result.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/report/tender_result.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/report/tender_spp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/security/logistik_pengadaan.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/views/logistik_sp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/views/logistik_spm.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/views/logistik_spp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/views/logistik_tender.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/views/purchase_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/views/stock_move_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/wizard/logistik_spm_penggolongan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/wizard/logistik_spm_penggolongan.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/wizard/logistik_spm_penggolongan_lines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/wizard/logistik_tender_cancel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/wizard/logistik_tender_cancel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/wizard/logistik_tender_rekanan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pengadaan/wizard/logistik_tender_rekanan.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/models/account_analytic_account.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/models/logistik_base_denda.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/models/logistik_base_garansi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/models/logistik_pkrat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/models/logistik_pkrat_fisik.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/models/logistik_pkrat_kontrak.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/security/logistik_pkrat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_pkrat/views/logistik_pkrat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/models/logistik_rab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/models/logistik_rab_lines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/security/logistik_rab.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_rab/views/logistik_rab.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/account_analytic_account.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/logistik_kontrak_beritaacara.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/logistik_pkrat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/logistik_sp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/logistik_sp_lines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/logistik_spm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/product.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/purchase_order_line.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/res_partner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/stock_move.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/models/stock_picking.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/report/deleted_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/report/sp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/report/sp_konsep.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/report/sp_sementara.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/report/sp_tandaterima.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/views/logistik_kontrak_beritaacara.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/views/logistik_pkrat_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/views/logistik_sp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/views/logistik_sp_kontrak.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/views/logistik_spm.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/views/product.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/views/res_partner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/wizard/logistik_sp_cancel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_sp/wizard/logistik_sp_cancel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/data/logistik_spm.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/data/mail_template.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/department.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/logistik_pengajuan_spm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/logistik_spm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/logistik_spm_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/logistik_spm_lines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/product_code_request.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/purchase.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/models/stock_picking.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/report/logistik_spm.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/security/logistik_spm.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/static/src/js/logistik_spm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/static/src/less/logistik_spm.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/views/department.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/views/logistik_pengajuan_spm.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/views/logistik_spm.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/views/logistik_spm_config_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/views/logistik_spm_templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/views/product_request_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_edit_jenis_pengadaan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_edit_jenis_pengadaan_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_realisasi_spm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_realisasi_spm.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_approve.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_approve.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_approve_lines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_cancel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_cancel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_line_approve.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_line_approve.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_merge_dbf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_merge_dbf_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_nomor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_nomor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_pengajuan_direksi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_pengajuan_direksi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_logistik_spm/wizard/logistik_spm_pengajuan_direksi_line.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/__openerp__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/models/ka_manufacture_closing_period.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/models/ka_manufacture_daily.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/models/ka_manufacture_session.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/security/stock_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/views/ka_manufacture_closing_period_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/views/ka_manufacture_daily_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_manufacture/views/ka_manufacture_session_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/i18n/id.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/models/account_analytic_account.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/models/account_invoice.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/models/logistik_spm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/models/product_template.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/models/purchase.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/models/res_partner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/models/stock_picking.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/account_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/deleted_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/purchase_order_templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/report_ntb.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/report_ntb_factory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/report_rekap_sp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/sp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/sp_konsep.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/sp_sementara.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/sp_tandaterima.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/report/tmpl_rekap_sp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/static/description/Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/account_invoice_translate_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/account_invoice_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/account_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/logistik_spm_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/product_template_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/purchase_translation.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/purchase_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/res_partner_translate.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/res_partner_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/views/stock_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/account_invoice_merge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/account_invoice_merge.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/logistik_sp_cancel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/logistik_sp_cancel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/product_uom_edit_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/product_uom_edit_wizard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/purchase_edit_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/purchase_edit_wizard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/rekap_sp_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_purchase/wizard/rekap_sp_wizard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/external_layout_footer.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/external_layout_header.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/external_layout_header_logo_only.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/ka_external_layout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/ka_external_layout_header.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/ka_external_layout_logo_only.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/ka_layout_footer_logistik.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/ka_layout_header_logistik.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/ka_layout_header_logistik_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/ka_layout_header_tandaterima_logistik.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/ka_layout_no_header.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/layout_header_internal.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/report/paper_format.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/static/src/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/static/src/img/icon-kebonagung.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/static/src/img/logo-ptkebonagung.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/views/paper_report.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_report_layout/views/views.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/models/account_invoice.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/models/ka_sale_order_category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/models/res_partner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/models/sale.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/models/sale_contract.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/models/stock.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/bukti_keluar_gula.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/bukti_keluar_gula_natura.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/delivery_slip.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/delivery_slip_molasses.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/report_contract_gula.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/report_contract_tetes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/report_delivery_order.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/report_penjualan_gula_retail.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/report_piutang_retail.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/report_stock_monthly.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/slip_kwitansi_so.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/tmpl_bukti_keluar_gula.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/tmpl_bukti_keluar_gula_natura.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/tmpl_delivery_molasses.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/tmpl_delivery_order.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/tmpl_report_penjualan_gula_retail.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/tmpl_report_piutang_retail.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/tmpl_report_stock_monthly.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/report/tmpl_slip_kwitansi_so.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/security/sale_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/static/src/css/ka_sale_order_dashboard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/static/src/js/ka_sale_dashboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/account_invoice_translate_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/account_invoice_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/ka_sale_order_category_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/res_partner_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/sale_contract_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/sale_dashboard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/sale_order_translate_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/sale_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/stock_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/report_penjualan_gula_retail_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/report_penjualan_gula_retail_wizard_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/report_piutang_retail.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/report_piutang_retail_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/report_stock_monthly.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/report_stock_monthly_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/stock_picking_split_wizard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_sale/wizard/stock_picking_split_wizard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/data/ir_sequence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/data/product_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/ka_manufacture_daily.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/product.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/stock_config_settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/stock_move.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/stock_move_daily_bagasse.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/stock_move_daily_molasses.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/stock_move_daily_sugar.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/stock_move_daily_sugar_premium.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/stock_move_daily_sugar_retail.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/stock_tank.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/models/timbang_material.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/abstract_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/laporan_harian_ampas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/laporan_harian_gula.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/laporan_harian_tetes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/laporan_harian_tetes_label.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/serah_terima_gula_harian.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/serah_terima_tetes_harian.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/templ_laporan_harian_tetes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/tmpl_laporan_harian_ampas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/tmpl_laporan_harian_gula.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/tmpl_serah_terima_gula_harian.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/report/tmpl_serah_terima_tetes_harian.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/security/stock_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/ka_manufacture_daily_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/product_template_translate_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/product_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_config_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_move_daily_bagasse_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_move_daily_molasses_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_move_daily_sugar_retail_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_move_daily_sugar_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_move_daily_sugarpremium_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_picking_translate_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_tank_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/stock_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/views/timbang_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock/wizard/stock_backorder_confirmation_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/data/ir_sequence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/demo/demo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/models/account_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/models/res_partner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/models/stock.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/models/stock_inventroy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/models/stock_move.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/models/stock_picking.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/report/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/report/report_stock_product_receive.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/report/report_stock_product_return.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/report/report_transaction_usage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/report/report_transaction_usage.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/report/tmpl_report_transaction_usage.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/views/.goutputstream-XEDZQY" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/views/account_config_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/views/res_partner_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/views/stock_move_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/views/stock_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/wizard/stock_backorder_confirmation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/wizard/stock_immediate_transfer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/wizard/stock_picking_return.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_stock_account/wizard/stock_picking_return_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/controllers/controllers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/area.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/area_agronomi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/area_rehabilitation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/area_sampling.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/area_sampling_taksasi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/area_taksasi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/area_taksasi_periode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/credit_bibit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/credit_category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/credit_farmer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/credit_jadwal_kirim_tebu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/credit_jaminan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/credit_kud.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/credit_traktor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/credit_umbh.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/farmer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/intesifikasi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/ir_ui_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/ka_account_voucher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/kud.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/mtt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/periode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/register.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/res_partner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/ts_category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/ts_category_cost.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/ts_contract.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/varietas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/models/zona_rehabilitasi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/report/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/report/report_estimasi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/report/report_estimasi_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/report/report_hasil_taksasi_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/report/report_taksasi_new.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/report/wizard_hasil_taksasi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/security/tanaman_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/img/marker1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/img/marker2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/img/marker3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/img/marker4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/img/marker_search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/img/rehab.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/js/areamap_rehab_view.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/js/areamap_view.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/js/areamap_widget.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/.~lock.DESA_AR.dbf#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_AR.dbf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_AR.prj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_AR.qpj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_AR.shp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_AR.shx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_LN.dbf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_LN.prj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_LN.qpj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_LN.shp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/DESA_LN.shx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JALAN_LN.dbf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JALAN_LN.prj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JALAN_LN.qpj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JALAN_LN.shp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JALAN_LN.shx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JEMBATAN_PT.dbf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JEMBATAN_PT.prj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JEMBATAN_PT.qpj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JEMBATAN_PT.shp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/JEMBATAN_PT.shx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/SUNGAI_LN.dbf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/SUNGAI_LN.prj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/SUNGAI_LN.qpj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/SUNGAI_LN.shp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/shp/SUNGAI_LN.shx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/xml/areamap.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/static/src/xml/areamap_rehab.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/area.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/area_agronomi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/area_rehabilitation.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/area_sampling_line.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/area_sampling_taksasi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/area_sampling_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/area_taksasi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/area_taksasi_periode.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/assets.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/base_wilayah.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/credit_category.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/credit_farmer.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/credit_kud.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/farmer.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/hasil_taksasi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/intesifikasi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/kud.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/mtt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/periode.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/register.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/ts_category.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/ts_category_cost.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/ts_contract.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/varietas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/views/zona_rehabilitasi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/wizard/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/wizard/area_intersect.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/wizard/area_intersect_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/wizard/upload_gps_file.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/wizard/upload_gps_file_wizard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/wizard/wizard_print_polygon.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_tanaman/wizard/wizard_print_polygon.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/data/ir_sequence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/models/timbang_material.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/models/timbang_spta.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/security/ir.model.access.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/security/timbang_security.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ka_timbang/views/timbang_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n_ka_coa/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n_ka_coa/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n_ka_coa/data/account.account.template.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n_ka_coa/data/ka_chart_template_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n_ka_coa/data/ka_chart_template_data.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n_ka_coa/data/l10n_ka_chart_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n_ka_coa/static/description/Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_xlsx/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_xlsx/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_xlsx/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_xlsx/models/ir_report.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_xlsx/report/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_xlsx/report/report_xlsx.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_xlsx/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/README.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/i18n/de.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/i18n/es.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/i18n/hr.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/i18n/nl_NL.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/i18n/pt_BR.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/models/res_users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/static/description/notifications_screenshot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/static/src/js/web_client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/tests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/tests/test_res_users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_notify/views/web_notify.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/LICENSE/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/models/web_org_chart.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/drag&amp;drop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/expand.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/horizontal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/open1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/open2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/open3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/root.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/description/vertical.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/src/css/primitives.latest.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/src/css/print_web_org_chart.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/src/img/dept.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/src/js/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/src/js/primitives.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/src/js/web_org_chart.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/static/src/xml/web_org_chart.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/views/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_org_chart/views/web_org_chart.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_pdf_preview/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_pdf_preview/__manifest__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_pdf_preview/controllers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_pdf_preview/static/src/js/web_pdf_preview.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_pdf_preview/views/web_pdf_preview.xml" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="course.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/academic/views/course.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="30" selection-start-column="30" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="partner.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/academic/models/partner.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="partner.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/academic/views/partner.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="567">
+              <caret line="40" column="48" lean-forward="true" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="menu.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/academic/views/menu.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__manifest__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/academic/__manifest__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attendee.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/academic/views/attendee.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="36" column="27" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attendee.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/academic/models/attendee.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="session.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/academic/views/session.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="50" column="130" selection-start-line="50" selection-start-column="130" selection-end-line="50" selection-end-column="130" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="session.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/academic/models/session.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="113" selection-start-line="13" selection-start-column="104" selection-end-line="13" selection-end-column="113" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>nama</find>
+      <find>pasien</find>
+      <find>res.partner</find>
+      <find>jabatan</find>
+      <find>ir.</find>
+      <find>ir.sequence.type</find>
+      <find>kode</find>
+      <find>search</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/ykka/models/m_jabatan.py" />
+        <option value="$PROJECT_DIR$/ykka/views/jabatan.xml" />
+        <option value="$PROJECT_DIR$/ka_hr_attendance/__manifest__.py" />
+        <option value="$PROJECT_DIR$/ykka/models/m_rekening.py" />
+        <option value="$PROJECT_DIR$/ykka/models/__init__.py" />
+        <option value="$PROJECT_DIR$/ykka/models/m_peserta.py" />
+        <option value="$PROJECT_DIR$/ykka/models/m_rek.py" />
+        <option value="$PROJECT_DIR$/ykka/views/peserta.xml" />
+        <option value="$PROJECT_DIR$/academic/__init__.py" />
+        <option value="$PROJECT_DIR$/academic/models/course.py" />
+        <option value="$PROJECT_DIR$/academic/views/course.xml" />
+        <option value="$PROJECT_DIR$/academic/models/attendee.py" />
+        <option value="$PROJECT_DIR$/academic/models/session.py" />
+        <option value="$PROJECT_DIR$/academic/views/attendee.xml" />
+        <option value="$PROJECT_DIR$/academic/models/partner.py" />
+        <option value="$PROJECT_DIR$/academic/models/__init__.py" />
+        <option value="$PROJECT_DIR$/academic/__manifest__.py" />
+        <option value="$PROJECT_DIR$/academic/views/session.xml" />
+        <option value="$PROJECT_DIR$/academic/views/menu.xml" />
+        <option value="$PROJECT_DIR$/academic/views/partner.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="47" />
+    <option name="width" value="1380" />
+    <option name="height" value="948" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Course" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="10.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="10.0" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="10.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="10.0" type="462c0819:PsiDirectoryNode" />
+              <item name="academic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="10.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="10.0" type="462c0819:PsiDirectoryNode" />
+              <item name="academic" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="10.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="10.0" type="462c0819:PsiDirectoryNode" />
+              <item name="academic" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="10.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="10.0" type="462c0819:PsiDirectoryNode" />
+              <item name="ykka" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="10.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="10.0" type="462c0819:PsiDirectoryNode" />
+              <item name="ykka" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="10.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="10.0" type="462c0819:PsiDirectoryNode" />
+              <item name="ykka" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///var/lib/odoo/.local/share/Odoo/addons/10.0/academic/views/course.xml" />
+    <property name="last_opened_file_path" value="/usr/lib/python2.7/dist-packages/odoo/addons" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/academic" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
+      <module name="10.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="/usr/bin" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="/usr/bin/odoo" />
+      <option name="PARAMETERS" value="-d dev -u academic" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="25" width="1920" height="990" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21929362" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5348558" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32932693" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.21875" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39928058" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32932693" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ykka/models/__init__.py</url>
+          <line>2</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_jabatan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_peserta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_jabatan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_jabatan.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_peserta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/views/templates.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/views/views.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1323">
+          <caret line="1119" column="47" lean-forward="true" selection-start-line="1119" selection-start-column="47" selection-end-line="1119" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/views/ms_pendaftaran.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/views/ms_pemeriksaan.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-765" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/views/account_invoice.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/views/ms_poli.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/views/res_partner.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1004">
+          <caret line="78" column="46" selection-start-line="78" selection-start-column="46" selection-end-line="78" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/views/jabatan.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ka_account/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/ka_account/__manifest__.py" />
+    <entry file="file://$PROJECT_DIR$/ka_hr_attendance/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/ka_hr_attendance/__manifest__.py" />
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_rekening.py" />
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_rek.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="48" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/models/res_partner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/models/ms_poli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="28" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/models/ms_pendaftaran.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ms_puskesmas/models/ms_pemeriksaan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telegram/controllers/main.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telegram/README.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telegram/telegram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/views/menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/models/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+          <folding>
+            <element signature="e#25#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_jabatan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="36" lean-forward="true" selection-start-column="36" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/models/m_peserta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ykka/views/peserta.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/models/course.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="126" selection-start-line="11" selection-start-column="121" selection-end-line="11" selection-end-column="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/views/attendee" />
+    <entry file="file://$PROJECT_DIR$/academic/models/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="113" selection-start-line="13" selection-start-column="104" selection-end-line="13" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/models/attendee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/models/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding>
+            <element signature="e#1#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/views/course.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/models/partner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/views/session.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="50" column="130" selection-start-line="50" selection-start-column="130" selection-end-line="50" selection-end-column="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/views/attendee.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="27" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/views/menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/academic/views/partner.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="40" column="48" lean-forward="true" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

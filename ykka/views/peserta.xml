@@ -1,0 +1,107 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ykka_peserta_tree_view">
+		    <field name="name">ykka.peserta.tree</field>
+		    <field name="model">ykka.peserta</field>
+		    <field name="arch" type="xml">
+		        <tree string="Daftar Peserta">
+		        	<field name="kode" string="ID"/>
+		            <field name="name"/>
+		            <field name="tanggal_kepesertaan" string="Tanggal Kepesertaan"/>
+		            <field name="status"/>
+		        </tree>
+		     </field>
+		</record>
+		
+		<record id="view_ms_dokter_search" model="ir.ui.view">
+            <field name="name">ykka.peserta.search</field>
+            <field name="model">ykka.peserta</field>
+            <field name="arch" type="xml">
+                <search string="Search Peserta">
+		            <field name="kode" string="ID"/>
+		            <field name="name" string="Nama"/>
+                    <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}"/>
+                </search>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="ykka_peserta_form_view">
+		    <field name="name">ykka.peserta.form</field>
+		    <field name="model">ykka.peserta</field>
+		    <field name="arch" type="xml">
+		    	
+		    	<form string="Peserta">
+		    		<sheet>
+		    			<group col="4">
+	                    	<field name="kode" string="ID" required="1"/>
+		    				<field name="name" string="Nama" required="1"/>
+		    				<field name="tanggal_kepesertaan" string="Tanggal Kepesertaan" required="1" widget="date"/>
+		            		<field name="status" string="Status" required="1"/>
+	                    </group>
+						<notebook>
+                            <page string="History Jabatan">
+                                <field name="history_jabatan" readonly="0">
+                                    <tree string="History Jabatan" editable="bottom">
+                                        <field name="jabatan" string="Jabatan"/>
+                                        <field name="tanggal_pengangkatan" string="Tanggal Pengangkatan"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Rekening Penerima">
+                                <field name="rekening" readonly="0">
+                                    <tree string="Rekening Penerima" editable="bottom">
+                                        <field name="name" string="Atas Nama"/>
+                                        <field name="rek_no" string="Nomer Rekening"/>
+                                        <field name="rek_bank" string="Bank"/>
+                                        <field name="rek_dipakai" string="Gunakan"/>
+                                    </tree>
+                                </field>
+                            </page>
+							<!-- <page string="History Tabungan">
+								<group>
+									<field name="comment" nolabel="1" class="oe_inline" placeholder="Note"/>
+								</group>
+							</page> -->
+						</notebook>
+		    		</sheet>
+		    	</form>
+		    	
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="ykka_peserta_action">
+            <field name="name">Peserta</field>
+            <field name="res_model">ykka.peserta</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_ms_dokter_search"/>
+        </record>
+        
+        <record id="ykka_peserta_action_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ykka_peserta_tree_view"/>
+            <field name="act_window_id" ref="ykka_peserta_action"/>
+        </record>
+        
+        <record id="ykka_peserta_action_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ykka_peserta_form_view"/>
+            <field name="act_window_id" ref="ykka_peserta_action"/>
+        </record>
+
+        <menuitem action="ykka_peserta_action" id="ykka.peserta_menu" parent="ykka.menu_master" sequence="10"/>
+
+    </data>
+    <data noupdate="1">
+
+        <record id="ykka_peserta_seq" model="ir.sequence">
+            <field name="name">peserta_seq</field>
+            <field name="code">ykka.peserta.seq</field>
+            <field name="prefix">PST</field>
+            <field name="padding">5</field>
+        </record>
+
+    </data>
+</odoo>

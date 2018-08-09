@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="ykka.list">
+      <field name="name">ykka list</field>
+      <field name="model">ykka.peserta</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nama"/>
+          <field name="nik"/>
+          <field name="tanggal_masuk"/>
+          <field name="tanggal_lahir"/>
+          <field name="status"/>
+          <field name="jabatan"/>
+        </tree>
+      </field>
+    </record>
+   
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="ykka.action_window">
+      <field name="name">Daftar Peserta</field>
+      <field name="res_model">ykka.peserta</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    <!-- server action to the one above -->
+<!--     
+    <record model="ir.actions.server" id="ykka.action_server">
+      <field name="name">ykka server</field>
+      <field name="model_id" ref="model_ykka_ykka"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record> -->
+   
+
+    
+    <menuitem name="Peserta" id="ykka.menu_1_list" parent="ykka.menu_1"
+              action="ykka.action_window"/>
+    <!-- <menuitem name="Server to list" id="ykka" parent="ykka.menu_2"
+              action="ykka.action_server"/> -->
+   
+  </data>
+</odoo>

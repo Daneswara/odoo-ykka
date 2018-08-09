@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_provinsi_user,res.provinsi.user,model_res_provinsi,ka_base_wilayah.group_user,1,0,0,0
-access_res_provinsi_manager,res.model_res_provinsi.manager,model_res_provinsi,ka_base_wilayah.group_manager,1,1,1,0
-access_res_kab_kota_user,res.kab.kota.user,model_res_kab_kota,ka_base_wilayah.group_user,1,0,0,0
-access_res_kab_kota_manager,res.kab.kota.manager,model_res_kab_kota,ka_base_wilayah.group_manager,1,1,1,0
-access_res_kecamatan_user,res.kecamatan.user,model_res_kecamatan,ka_base_wilayah.group_user,1,0,0,0
-access_res_kecamatan_manager,res.kecamatan.manager,model_res_kecamatan,ka_base_wilayah.group_manager,1,1,1,0
-access_res_desa_kelurahan_user,res.desa.kelurahan.user,model_res_desa_kelurahan,ka_base_wilayah.group_user,1,0,0,0
-access_res_desa_kelurahan_manager,res.desa.kelurahan.manager,model_res_desa_kelurahan,ka_base_wilayah.group_manager,1,1,1,0

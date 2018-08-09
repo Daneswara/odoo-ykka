@@ -1,2 +1,0 @@
-import abstract_model
-import laporan_harian_tetes

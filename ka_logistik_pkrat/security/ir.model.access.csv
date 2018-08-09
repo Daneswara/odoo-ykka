@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_pkrat_user,logistik.pkrat.user,model_logistik_pkrat,ka_logistik_pkrat.group_user,1,0,0,0
-access_pkrat_kontrak_user,logistik.pkrat.kontrak.user,model_logistik_pkrat_kontrak,ka_logistik_pkrat.group_user,1,0,0,0
-access_pkrat_fisik_user,logistik.pkrat.fisik.user,model_logistik_pkrat_fisik,ka_logistik_pkrat.group_user,1,0,0,0
-access_pkrat_manager,logistik.pkrat.manager,model_logistik_pkrat,ka_logistik_pkrat.group_manager,1,1,1,1
-access_pkrat_kontrak_manager,logistik.pkrat.kontrak.manager,model_logistik_pkrat_kontrak,ka_logistik_pkrat.group_manager,1,1,1,1
-access_pkrat_fisik_manager,logistik.pkrat.fisik.manager,model_logistik_pkrat_fisik,ka_logistik_pkrat.group_manager,1,1,1,1

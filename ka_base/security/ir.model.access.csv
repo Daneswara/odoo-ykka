@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ka_base_ka_base,ka_base.ka_base,model_ka_base_ka_base,,1,0,0,0
